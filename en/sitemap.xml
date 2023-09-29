@@ -2,9 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</loc>
+  </url><url>
+    <loc>/en/posts/tools/vim/</loc>
+  </url><url>
     <loc>/en/search/</loc>
   </url><url>
     <loc>/en/categories/</loc>
+  </url><url>
+    <loc>/en/posts/</loc>
   </url><url>
     <loc>/en/series/</loc>
   </url><url>
