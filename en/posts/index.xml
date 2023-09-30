@@ -17,11 +17,20 @@
     
     <item>
       <title></title>
-      <link>/en/posts/tools/vim/</link>
+      <link>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/tools/vim/</guid>
-      <description>vim的使用</description>
+      <guid>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
+      <description>Why parallelism? Why efficiency? Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
+      <description>vim的使用 光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移</description>
     </item>
     
     <item>
