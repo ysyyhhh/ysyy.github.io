@@ -17,6 +17,15 @@
     
     <item>
       <title></title>
+      <link>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
+      <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你需要实现多线程的版本. 多线程版本中只需要修改w</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
