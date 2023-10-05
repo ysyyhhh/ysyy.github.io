@@ -35,6 +35,15 @@
     
     <item>
       <title></title>
+      <link>/en/posts/cmu-15418618/l2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418618/l2/</guid>
+      <description>L2 并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) {</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
