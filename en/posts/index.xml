@@ -5,59 +5,69 @@
     <link>/en/posts/</link>
     <description>Recent content in Posts on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language><atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sat, 07 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title></title>
-      <link>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <title>工作学习流(vscode快捷键)</title>
+      <link>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
+      <pubDate>Sat, 07 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
-      <description>测试 blog2313</description>
+      <guid>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
+      <description>view Run Run python file in terminal: Ctrl + F5</description>
     </item>
     
     <item>
       <title></title>
       <link>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 06 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
-      <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你需要实现多线程的版本. 多线程版本中只需要修改 w</description>
+      <description>参考 任务 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你</description>
     </item>
     
     <item>
-      <title></title>
-      <link>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
-      <description>Why parallelism? Why efficiency? Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不</description>
-    </item>
-    
-    <item>
-      <title></title>
+      <title>L2</title>
       <link>/en/posts/cmu-15418618/l2/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/cmu-15418618/l2/</guid>
-      <description>L2 并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) {</description>
+      <description>并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) { value</description>
     </item>
     
     <item>
-      <title></title>
+      <title>Why parallelism? Why efficiency?</title>
+      <link>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
+      <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
+      <description>Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不是这样的</description>
+    </item>
+    
+    <item>
+      <title>vim的使用</title>
       <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 30 Sep 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
-      <description>vim的使用 光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移</description>
+      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
     </item>
     
     <item>
-      <title></title>
+      <title>测试 blog2313</title>
+      <link>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
+      <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>用Hugo &#43; Github Pages/Action &#43; py &#43; 任务计划程序 搭建 全自动化markdown笔记转博客</title>
       <link>/en/posts/tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
-      <description>用Hugo + Github Pages/Action + py + 任务计划程序 搭建 全自动化markdown笔记转博客 TL;DR 背景: 已使用nextcloud和typora写笔记 需求: 将笔记转换</description>
+      <description>TL;DR 背景: 已使用nextcloud和typora写笔记 需求: 将笔记转换为博客.(且因为本人太懒,😂 所以需要全自动化) 在nextcloud中, 专</description>
     </item>
     
   </channel>

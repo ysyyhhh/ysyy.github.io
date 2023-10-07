@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>c&#43;&#43; on ysyy&#39;s blog</title>
+    <link>/en/categories/c&#43;&#43;/</link>
+    <description>Recent content in c&#43;&#43; on ysyy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Fri, 29 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/c++/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>测试 blog2313</title>
+      <link>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
+      <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
