@@ -6,7 +6,16 @@
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 09 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>cmu-15418618</title>
+      <link>/en/tags/cmu-15418618/</link>
+      <pubDate>Mon, 09 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/tags/cmu-15418618/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>tools</title>
       <link>/en/tags/tools/</link>
@@ -17,18 +26,9 @@
     </item>
     
     <item>
-      <title>cmu-15418618</title>
-      <link>/en/tags/cmu-15418618/</link>
-      <pubDate>Fri, 06 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/tags/cmu-15418618/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>vim</title>
       <link>/en/tags/vim/</link>
-      <pubDate>Sat, 30 Sep 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 07 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/tags/vim/</guid>
       <description></description>
