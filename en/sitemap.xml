@@ -2,16 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</loc>
-    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>/en/categories/</loc>
-    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/en/tags/cmu-15418618/</loc>
-    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/en/categories/cmu-15418618/</loc>
     <lastmod>2023-10-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/en/posts/</loc>
@@ -20,7 +11,25 @@
     <loc>/en/tags/</loc>
     <lastmod>2023-10-10T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>/en/tags/tips/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/en/categories/tips/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/en/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/en/posts/tips/docker/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/en/tags/cmu-15418618/</loc>
+    <lastmod>2023-10-10T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/en/categories/cmu-15418618/</loc>
     <lastmod>2023-10-10T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/en/posts/cmu-15418618/l3/</loc>
