@@ -6,11 +6,29 @@
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 10 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>/en/tags/docker/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>/en/tags/sql/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/tags/sql/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>tips</title>
       <link>/en/tags/tips/</link>
-      <pubDate>Tue, 10 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/tags/tips/</guid>
       <description></description>

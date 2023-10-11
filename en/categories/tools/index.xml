@@ -6,7 +6,34 @@
     <description>Recent content in tools on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 07 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 11 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker Usage</title>
+      <link>/en/posts/tools/docker/docker/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/docker/docker/</guid>
+      <description>多阶段构建docker镜像 多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段 usages： 第一阶段：编译/打包程序</description>
+    </item>
+    
+    <item>
+      <title>Docker命令</title>
+      <link>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
+      <description>1.镜像相关 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # 拉取镜像 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] # 查看镜像 docker images [选项] [仓库名] # 删</description>
+    </item>
+    
+    <item>
+      <title>MySql常用命令</title>
+      <link>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>修改用户密码 1 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 刷新权限 1 flush privileges; 添加一个远程用户 1 2 3 4 5 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option; *.*所有数据库下的所有表</description>
+    </item>
+    
     <item>
       <title>vim的使用</title>
       <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
