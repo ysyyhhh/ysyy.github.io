@@ -6,14 +6,59 @@
     <description>Recent content in Posts on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Fri, 13 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 14 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/posts/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>minikube使用</title>
+      <title>Abstraction vs implementation</title>
+      <link>/en/posts/cmu-15418cs-618/l3/</link>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l3/</guid>
+      <description>ISPC language SPMD: Single Program Multiple Data 一种花哨的方式来说，就是一种并行编程的范式，它的特点是：在编程时，我们只需要写一个程序，然后在运行时，这个程序会被复制多份，每</description>
+    </item>
+    
+    <item>
+      <title>asst2</title>
+      <link>/en/posts/cmu-15418cs-618/asst2/</link>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/asst2/</guid>
+      <description>1. 问题</description>
+    </item>
+    
+    <item>
+      <title>L4 Parallel Programing basics</title>
+      <link>/en/posts/cmu-15418cs-618/l4/</link>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l4/</guid>
+      <description>主要用三种方式实现并行程序(没有进行真正的优化) 例子 n-body simulation 创建并行程序的过程 1. Decomposition 主要思想: 创造至少足够的任务让所有的处理单元都有事情做 Amdahl&amp;rsquo;s Law: 串行</description>
+    </item>
+    
+    <item>
+      <title>minikube</title>
       <link>/en/posts/tools/k8s/minikube/</link>
-      <pubDate>Fri, 13 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/k8s/minikube/</guid>
       <description>使用</description>
+    </item>
+    
+    <item>
+      <title>利于部署的开发规范手册</title>
+      <link>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
+      <description>本规范用于在开发过程中，使得项目能够更好的部署，更好的维护。 使用时间: 当项目开始开发时，就应该遵守本规范。 核心要点: 管理依赖库 使用docke</description>
+    </item>
+    
+    <item>
+      <title>工作学习流(vscode快捷键)</title>
+      <link>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
+      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
+      <description>markdown 快捷键 删除线: alt + s view Run Run python file in terminal: Ctrl + F5</description>
     </item>
     
     <item>
@@ -54,20 +99,11 @@
     
     <item>
       <title></title>
-      <link>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
+      <link>/en/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
       <pubDate>Mon, 09 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/cmu-15418618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
+      <guid>/en/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
       <description>参考 任务 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你</description>
-    </item>
-    
-    <item>
-      <title>Abstraction vs implementation</title>
-      <link>/en/posts/cmu-15418618/l3/</link>
-      <pubDate>Sun, 08 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418618/l3/</guid>
-      <description>ISPC language SPMD: Single Program Multiple Data 一种花哨的方式来说，就是一种并行编程的范式，它的特点是：在编程时，我们只需要写一个程序，然后在运行时，这个程序会被复制多份，每</description>
     </item>
     
     <item>
@@ -80,29 +116,20 @@
     </item>
     
     <item>
-      <title>工作学习流(vscode快捷键)</title>
-      <link>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
-      <pubDate>Sat, 07 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
-      <description>view Run Run python file in terminal: Ctrl + F5</description>
-    </item>
-    
-    <item>
       <title>L2</title>
-      <link>/en/posts/cmu-15418618/l2/</link>
+      <link>/en/posts/cmu-15418cs-618/l2/</link>
       <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/cmu-15418618/l2/</guid>
+      <guid>/en/posts/cmu-15418cs-618/l2/</guid>
       <description>并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) { value</description>
     </item>
     
     <item>
       <title>Why parallelism? Why efficiency?</title>
-      <link>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
+      <link>/en/posts/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
       <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/cmu-15418618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
+      <guid>/en/posts/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
       <description>Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不是这样的</description>
     </item>
     
