@@ -6,7 +6,16 @@
     <description>Recent content in cmu-15418&amp;cs-618 on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sun, 15 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 16 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>L5 Work distribution and scheduling</title>
+      <link>/en/posts/cmu-15418cs-618/l5/</link>
+      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l5/</guid>
+      <description>三种分配策略的总结 静态分配 优点: 几乎没有运行时的开销(关于分配) 缺点: 不总是均匀的分配任务 什么时候使用: (最简单的例子) 当知道每个任务的工作</description>
+    </item>
+    
     <item>
       <title>L4 Parallel Programing basics</title>
       <link>/en/posts/cmu-15418cs-618/l4/</link>
@@ -14,15 +23,6 @@
       
       <guid>/en/posts/cmu-15418cs-618/l4/</guid>
       <description>主要用三种方式实现并行程序(没有进行真正的优化) 例子 n-body simulation 创建并行程序的过程 1. Decomposition 主要思想: 创造至少足够的任务让所有的处理单元都有事情做 Amdahl&amp;rsquo;s Law: 串行</description>
-    </item>
-    
-    <item>
-      <title>L5 Work distribution and scheduling</title>
-      <link>/en/posts/cmu-15418cs-618/l5/</link>
-      <pubDate>Sun, 15 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l5/</guid>
-      <description>三种分配策略的总结 静态分配 优点: 几乎没有运行时的开销(关于分配) 缺点: 不总是均匀的分配任务 什么时候使用: (最简单的例子) 当知道每个任务的工作</description>
     </item>
     
     <item>
