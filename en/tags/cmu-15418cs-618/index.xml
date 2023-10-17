@@ -6,7 +6,16 @@
     <description>Recent content in cmu-15418&amp;cs-618 on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>L6</title>
+      <link>/en/posts/cmu-15418cs-618/l6/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l6/</guid>
+      <description>虚拟文件系统 /proc/cpuinfo model name cpu MHz - 频率 cache size - 缓存大小 siblings - 逻辑cpu数量 processor - 逻辑cpu编号 cpu cores - 物理cpu数量 core id - 物理cpu编号 这样查看的cpu数量很</description>
+    </item>
+    
     <item>
       <title>L5 Work distribution and scheduling</title>
       <link>/en/posts/cmu-15418cs-618/l5/</link>

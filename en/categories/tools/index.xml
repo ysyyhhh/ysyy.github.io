@@ -6,7 +6,25 @@
     <description>Recent content in tools on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Sat, 14 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/tools/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grep</title>
+      <link>/en/posts/tools/grep/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/grep/</guid>
+      <description>grep工具</description>
+    </item>
+    
+    <item>
+      <title>vim的使用</title>
+      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
+      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
+    </item>
+    
     <item>
       <title>minikube</title>
       <link>/en/posts/tools/k8s/minikube/</link>
@@ -50,15 +68,6 @@
       
       <guid>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
       <description>修改用户密码 1 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 刷新权限 1 flush privileges; 添加一个远程用户 1 2 3 4 5 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option; *.*所有数据库下的所有表</description>
-    </item>
-    
-    <item>
-      <title>vim的使用</title>
-      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
-      <pubDate>Sat, 07 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
-      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
     </item>
     
     <item>

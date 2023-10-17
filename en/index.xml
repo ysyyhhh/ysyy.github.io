@@ -6,7 +6,34 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 16 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>grep</title>
+      <link>/en/posts/tools/grep/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/grep/</guid>
+      <description>grep工具</description>
+    </item>
+    
+    <item>
+      <title>L6</title>
+      <link>/en/posts/cmu-15418cs-618/l6/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l6/</guid>
+      <description>虚拟文件系统 /proc/cpuinfo model name cpu MHz - 频率 cache size - 缓存大小 siblings - 逻辑cpu数量 processor - 逻辑cpu编号 cpu cores - 物理cpu数量 core id - 物理cpu编号 这样查看的cpu数量很</description>
+    </item>
+    
+    <item>
+      <title>vim的使用</title>
+      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
+      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
+    </item>
+    
     <item>
       <title>L5 Work distribution and scheduling</title>
       <link>/en/posts/cmu-15418cs-618/l5/</link>
@@ -113,15 +140,6 @@
       
       <guid>/en/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
       <description>参考 任务 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你</description>
-    </item>
-    
-    <item>
-      <title>vim的使用</title>
-      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
-      <pubDate>Sat, 07 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
-      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
     </item>
     
     <item>
