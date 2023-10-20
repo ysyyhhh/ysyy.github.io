@@ -6,7 +6,16 @@
     <description>Recent content in cmu-15418&amp;cs-618 on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 17 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 18 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/categories/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>L7</title>
+      <link>/en/posts/cmu-15418cs-618/l7/</link>
+      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l7/</guid>
+      <description>GPU 图形渲染 图像中的每个对象都有很自然的并行性。</description>
+    </item>
+    
     <item>
       <title>L6</title>
       <link>/en/posts/cmu-15418cs-618/l6/</link>
