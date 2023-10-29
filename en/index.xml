@@ -5,186 +5,185 @@
     <link>/en/</link>
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language><atom:link href="/en/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>docker相关技巧</title>
-      <link>/en/posts/tips/docker/</link>
-      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <title></title>
+      <link>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/tips/docker/</guid>
-      <description>记把深度学习项目装入docker 安装时出现选项 1 2 3 # RUN apt-get install libglib2.0-dev -y # 由于安装libglib2.0-dev的时候，bash会有交互操作叫你选择对</description>
-    </item>
-    
-    <item>
-      <title>利于部署的开发规范手册</title>
-      <link>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
-      <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
-      <description>本规范用于在开发过程中，使得项目能够更好的部署，更好的维护。 使用时间: 当项目开始开发时，就应该遵守本规范。 核心要点: 管理依赖库 使用docke</description>
-    </item>
-    
-    <item>
-      <title>L7</title>
-      <link>/en/posts/cmu-15418cs-618/l7/</link>
-      <pubDate>Wed, 18 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l7/</guid>
-      <description>GPU 图形渲染 图像中的每个对象都有很自然的并行性。</description>
-    </item>
-    
-    <item>
-      <title>grep</title>
-      <link>/en/posts/tools/grep/</link>
-      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/grep/</guid>
-      <description>grep工具</description>
-    </item>
-    
-    <item>
-      <title>L6</title>
-      <link>/en/posts/cmu-15418cs-618/l6/</link>
-      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l6/</guid>
-      <description>虚拟文件系统 /proc/cpuinfo model name cpu MHz - 频率 cache size - 缓存大小 siblings - 逻辑cpu数量 processor - 逻辑cpu编号 cpu cores - 物理cpu数量 core id - 物理cpu编号 这样查看的cpu数量很</description>
-    </item>
-    
-    <item>
-      <title>vim的使用</title>
-      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
-      <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
-      <description>光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移动到行首 $: 移</description>
-    </item>
-    
-    <item>
-      <title>L5 Work distribution and scheduling</title>
-      <link>/en/posts/cmu-15418cs-618/l5/</link>
-      <pubDate>Mon, 16 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l5/</guid>
-      <description>三种分配策略的总结 静态分配 优点: 几乎没有运行时的开销(关于分配) 缺点: 不总是均匀的分配任务 什么时候使用: (最简单的例子) 当知道每个任务的工作</description>
-    </item>
-    
-    <item>
-      <title>L4 Parallel Programing basics</title>
-      <link>/en/posts/cmu-15418cs-618/l4/</link>
-      <pubDate>Sun, 15 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l4/</guid>
-      <description>主要用三种方式实现并行程序(没有进行真正的优化) 例子 n-body simulation 创建并行程序的过程 1. Decomposition 主要思想: 创造至少足够的任务让所有的处理单元都有事情做 Amdahl&amp;rsquo;s Law: 串行</description>
-    </item>
-    
-    <item>
-      <title>Abstraction vs implementation</title>
-      <link>/en/posts/cmu-15418cs-618/l3/</link>
-      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/l3/</guid>
-      <description>ISPC language SPMD: Single Program Multiple Data 一种花哨的方式来说，就是一种并行编程的范式，它的特点是：在编程时，我们只需要写一个程序，然后在运行时，这个程序会被复制多份，每</description>
-    </item>
-    
-    <item>
-      <title>asst2</title>
-      <link>/en/posts/cmu-15418cs-618/asst2/</link>
-      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/cmu-15418cs-618/asst2/</guid>
-      <description>1. 问题</description>
-    </item>
-    
-    <item>
-      <title>minikube</title>
-      <link>/en/posts/tools/k8s/minikube/</link>
-      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/k8s/minikube/</guid>
-      <description>使用</description>
-    </item>
-    
-    <item>
-      <title>工作学习流(vscode快捷键)</title>
-      <link>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
-      <pubDate>Sat, 14 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
-      <description>markdown 快捷键 删除线: alt + s view Run Run python file in terminal: Ctrl + F5</description>
-    </item>
-    
-    <item>
-      <title>docker Usage</title>
-      <link>/en/posts/tools/docker/docker/</link>
-      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/docker/docker/</guid>
-      <description>多阶段构建docker镜像 多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段 usages： 第一阶段：编译/打包程序</description>
-    </item>
-    
-    <item>
-      <title>Docker命令</title>
-      <link>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
-      <description>1.镜像相关 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # 拉取镜像 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] # 查看镜像 docker images [选项] [仓库名] # 删</description>
-    </item>
-    
-    <item>
-      <title>MySql常用命令</title>
-      <link>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
-      <description>修改用户密码 1 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 刷新权限 1 flush privileges; 添加一个远程用户 1 2 3 4 5 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option; *.*所有数据库下的所有表</description>
+      <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
+      <description>测试 blog2313</description>
     </item>
     
     <item>
       <title></title>
       <link>/en/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
-      <pubDate>Mon, 09 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
-      <description>参考 任务 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给出了串行的实现, 你</description>
+      <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给</description>
     </item>
     
     <item>
-      <title>L2</title>
-      <link>/en/posts/cmu-15418cs-618/l2/</link>
-      <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/asst2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/cmu-15418cs-618/l2/</guid>
-      <description>并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) { value</description>
+      <guid>/en/posts/cmu-15418cs-618/asst2/</guid>
+      <description>asst2 1. 问题</description>
     </item>
     
     <item>
-      <title>Why parallelism? Why efficiency?</title>
+      <title></title>
       <link>/en/posts/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
-      <pubDate>Thu, 05 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
-      <description>Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不是这样的</description>
+      <description>Why parallelism? Why efficiency? Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不</description>
     </item>
     
     <item>
-      <title>测试 blog2313</title>
-      <link>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
-      <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
-      <description></description>
+      <guid>/en/posts/cmu-15418cs-618/l2/</guid>
+      <description>L2 并行程序 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) {</description>
     </item>
     
     <item>
-      <title>用Hugo &#43; Github Pages/Action &#43; py &#43; 任务计划程序 搭建 全自动化markdown笔记转博客</title>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l3/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l3/</guid>
+      <description>Abstraction vs implementation ISPC language SPMD: Single Program Multiple Data 一种花哨的方式来说，就是一种并行编程的范式，它的特点是：在编程时，我们只需要写一个程序，然后在运行时，这个程序会被复制多</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l4/</guid>
+      <description>L4 Parallel Programing basics 主要用三种方式实现并行程序(没有进行真正的优化) 例子 n-body simulation 创建并行程序的过程 1. Decomposition 主要思想: 创造至少足够的任务让所有的处理单元都有事情做</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l5/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l5/</guid>
+      <description>L5 Work distribution and scheduling 三种分配策略的总结 静态分配 优点: 几乎没有运行时的开销(关于分配) 缺点: 不总是均匀的分配任务 什么时候使用: (最简单的例子) 当知道每个</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l6/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l6/</guid>
+      <description>L6 虚拟文件系统 /proc/cpuinfo model name cpu MHz - 频率 cache size - 缓存大小 siblings - 逻辑cpu数量 processor - 逻辑cpu编号 cpu cores - 物理cpu数量 core id - 物理cpu编号 这样查看的cpu数量</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/cmu-15418cs-618/l7/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/cmu-15418cs-618/l7/</guid>
+      <description>L7 GPU 图形渲染 图像中的每个对象都有很自然的并行性。</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</guid>
+      <description>利于部署的开发规范手册 本规范用于在开发过程中，使得项目能够更好的部署，更好的维护。 使用时间: 当项目开始开发时，就应该遵守本规范。 核心要点: 管</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tips/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tips/docker/</guid>
+      <description>docker相关技巧 记把深度学习项目装入docker 安装时出现选项 1 2 3 # RUN apt-get install libglib2.0-dev -y # 由于安装libglib2.0-dev的时候，bash会</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/docker/docker/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/docker/docker/</guid>
+      <description>docker Usage 多阶段构建docker镜像 多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段 usages： 第一阶段：编译/打包</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
+      <description>Docker命令 1.镜像相关 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # 拉取镜像 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] # 查看镜像 docker images [选项</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/grep/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/grep/</guid>
+      <description>grep grep工具</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/k8s/minikube/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/k8s/minikube/</guid>
+      <description>minikube 使用 进入pods的容器 1 2 3 4 5 kubectl exec -it &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt; -- /bin/bash # 查看对应容器的日志 kubectl logs -f &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt;</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
+      <description>MySql常用命令 修改用户密码 1 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 刷新权限 1 flush privileges; 添加一个远程用户 1 2 3 4 5 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option; *.*所</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vim/%E6%8C%87%E4%BB%A4%E6%89%8B%E5%86%8C/</guid>
+      <description>vim的使用 光标移动 h: 左移一个字符 j: 下移一行 k: 上移一行 l: 右移一个字符 w: 移动到下一个单词的开头 e: 移动到当前单词末尾 b: 移动到上一个单词的开头 0: 移</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/en/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
+      <description>工作学习流(vscode快捷键) markdown 快捷键 删除线: alt + s view Run Run python file in terminal: Ctrl + F5</description>
+    </item>
+    
+    <item>
+      <title></title>
       <link>/en/posts/tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link>
-      <pubDate>Fri, 29 Sep 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid>
-      <description>TL;DR 背景: 已使用nextcloud和typora写笔记 需求: 将笔记转换为博客.(且因为本人太懒,😂 所以需要全自动化) 在nextcloud中, 专</description>
+      <description>用Hugo + Github Pages/Action + py + 任务计划程序 搭建 全自动化markdown笔记转博客 TL;DR 背景: 已使用nextcloud和typora写笔记 需求: 将笔记转换</description>
     </item>
     
     <item>
