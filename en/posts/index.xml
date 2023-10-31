@@ -12,7 +12,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
-      <description>测试 blog2313</description>
+      <description>Modern C++ lambda表达式 描述: 一个匿名函数对象 一个可调用的代码单元 一个函数对象的语法糖 语法规则: {}; []: lambda表达式的引导符 (): 参数列表 {}: 函数</description>
     </item>
     
     <item>
@@ -129,7 +129,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
-      <description>Docker命令 1.镜像相关 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 # 拉取镜像 docker pull [选项] [Docker Registry 地址[:端口号]/]仓库名[:标签] # 查看镜像 docker images [选项</description>
+      <description>Docker命令 安装docker 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 sudo apt -y update sudo apt -y upgrade sudo apt -y full-upgrade # 安装依赖 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release # 添加</description>
     </item>
     
     <item>
@@ -147,7 +147,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>/en/posts/tools/k8s/minikube/</guid>
-      <description>minikube 使用 进入pods的容器 1 2 3 4 5 kubectl exec -it &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt; -- /bin/bash # 查看对应容器的日志 kubectl logs -f &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt;</description>
+      <description>minikube 使用 进入pods的容器 1 2 3 4 5 kubectl exec -it &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt; -- /bin/bash # 查看对应容器的日志 kubectl logs -f &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt; 错误和解决方案 minikube 挂载 本地目录进minikube时,作为my</description>
     </item>
     
     <item>
