@@ -6,11 +6,11 @@
     <description>Recent content in tips on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 24 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 06 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>docker相关技巧</title>
       <link>/posts/tips/docker/</link>
-      <pubDate>Tue, 24 Oct 2023 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 06 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/tips/docker/</guid>
       <description>记把深度学习项目装入docker 安装时出现选项 # RUN apt-get install libglib2.0-dev -y # 由于安装libglib2.0-dev的时候，bash会有交互操作叫你选择对应的时</description>
