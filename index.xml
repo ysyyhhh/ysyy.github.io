@@ -6,14 +6,14 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 16 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 17 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
       <link>/posts/tips/linux/</link>
-      <pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/tips/linux/</guid>
-      <description>用户相关 # 创建用户 useradd -m -s /bin/bash -d /home/username username ## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录 # 设置密码 passwd username # 删除用户 userdel -r username</description>
+      <description>用户相关 # 创建用户 useradd -m -s /bin/bash -d /home/username username ## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录 # 设置密码 passwd username # 删除用户 userdel -r username # 添加用户的sudo权</description>
     </item>
     
     <item>
