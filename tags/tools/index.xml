@@ -6,14 +6,14 @@
     <description>Recent content in tools on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 10 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tools/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>工作学习流(vscode快捷键)</title>
       <link>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
-      <pubDate>Fri, 10 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
-      <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
+      <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c 引用: alt + q terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
     </item>
     
     <item>
