@@ -6,7 +6,25 @@
     <description>Recent content in Posts on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 18 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 20 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Linux</title>
+      <link>/posts/tips/linux/</link>
+      <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tips/linux/</guid>
+      <description>用户相关 # 创建用户 useradd -m -s /bin/bash -d /home/username username ## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录 # 设置密码 passwd username # 删除用户 userdel -r username # 添加用户的sudo权</description>
+    </item>
+    
+    <item>
+      <title>conda</title>
+      <link>/posts/tools/python/conda/</link>
+      <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/python/conda/</guid>
+      <description># 查看环境 conda env list # 创建环境 conda create -n py3 python=3.6 # 通过yml文件创建环境 conda env create -f environment.yml # 激活环境 conda activate py3 # 退出环境 conda deactivate # 删除环境 conda remove -n py3 --all 迁移时可能会出现pi</description>
+    </item>
+    
     <item>
       <title>工作学习流(vscode快捷键)</title>
       <link>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
@@ -14,15 +32,6 @@
       
       <guid>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
       <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c 引用: alt + q terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
-    </item>
-    
-    <item>
-      <title>Linux</title>
-      <link>/posts/tips/linux/</link>
-      <pubDate>Fri, 17 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tips/linux/</guid>
-      <description>用户相关 # 创建用户 useradd -m -s /bin/bash -d /home/username username ## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录 # 设置密码 passwd username # 删除用户 userdel -r username # 添加用户的sudo权</description>
     </item>
     
     <item>
