@@ -6,14 +6,14 @@
     <description>Recent content in tips on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 20 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Linux</title>
       <link>/posts/tips/linux/</link>
-      <pubDate>Mon, 20 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/tips/linux/</guid>
-      <description>用户相关 # 创建用户 useradd -m -s /bin/bash -d /home/username username ## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录 # 设置密码 passwd username # 删除用户 userdel -r username # 添加用户的sudo权</description>
+      <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a 用户</description>
     </item>
     
     <item>
