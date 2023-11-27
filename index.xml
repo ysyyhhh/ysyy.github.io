@@ -6,7 +6,25 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 22 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>I/O模型</title>
+      <link>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</link>
+      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</guid>
+      <description>一、什么是I/O模型 及 I/O模型的分类 二、I/O 多路复用 三、实际应用 Reactor模式 Proactor模式 事件驱动模式</description>
+    </item>
+    
+    <item>
+      <title>读书目录</title>
+      <link>/posts/book/%E5%BE%85%E8%AF%BB%E4%B9%A6%E7%9B%AE%E5%BD%95/</link>
+      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/book/%E5%BE%85%E8%AF%BB%E4%B9%A6%E7%9B%AE%E5%BD%95/</guid>
+      <description>正在读的 待读的 现在很多计算机学院也开始使用《计算机网络:自顶向下方法》这本不错的教材，如果没有看过的可以看下。当然还是那句话你一定要看懂而不</description>
+    </item>
+    
     <item>
       <title>Linux</title>
       <link>/posts/tips/linux/</link>
