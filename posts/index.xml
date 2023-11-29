@@ -6,14 +6,32 @@
     <description>Recent content in Posts on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>asst2</title>
+      <link>/posts/cmu-15418cs-618/asst2/</link>
+      <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cmu-15418cs-618/asst2/</guid>
+      <description>C++ Sync thread的使用 #include &amp;lt;thread&amp;gt; #include &amp;lt;stdio.h&amp;gt; void my_func(int thread_id, int num_threads) { printf(&amp;#34;Hello from spawned thread %d of %d\n&amp;#34;, thread_id, num_threads); } int main(int argc, char** argv) { std::thread t0 = std::thread(my_func, 0, 2); std::thread t1 = std::thread(my_func, 1, 2); printf(&amp;#34;The main thread is running concurrently with spawned threads.\n&amp;#34;); t0.join(); t1.join(); printf(&amp;#34;Spawned threads have terminated at this point.\n&amp;#34;); return 0; }</description>
+    </item>
+    
     <item>
       <title>I/O模型</title>
       <link>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</link>
-      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</guid>
       <description>一、什么是I/O模型 及 I/O模型的分类 二、I/O 多路复用 三、实际应用 Reactor模式 Proactor模式 事件驱动模式</description>
+    </item>
+    
+    <item>
+      <title>mongoDB</title>
+      <link>/posts/tools/sql/mongodb/</link>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/sql/mongodb/</guid>
+      <description>常用命令 # 连接 mongosh ip[:port]/database -u username -p password # 查看数据库 show dbs # 切换数据库 use database # 查看集合 show collections # file # 查看集合数据 db.{collection}.find() # 按条件查看集合数据 ## pid=1 db.{collection}.find({pid:1})</description>
     </item>
     
     <item>
@@ -86,15 +104,6 @@
       
       <guid>/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
       <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给</description>
-    </item>
-    
-    <item>
-      <title>asst2</title>
-      <link>/posts/cmu-15418cs-618/asst2/</link>
-      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cmu-15418cs-618/asst2/</guid>
-      <description>1. 问题 we1</description>
     </item>
     
     <item>

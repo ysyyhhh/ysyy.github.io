@@ -6,7 +6,16 @@
     <description>Recent content in cmu-15418&amp;cs-618 on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 05 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/cmu-15418cs-618/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>asst2</title>
+      <link>/posts/cmu-15418cs-618/asst2/</link>
+      <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cmu-15418cs-618/asst2/</guid>
+      <description>C++ Sync thread的使用 #include &amp;lt;thread&amp;gt; #include &amp;lt;stdio.h&amp;gt; void my_func(int thread_id, int num_threads) { printf(&amp;#34;Hello from spawned thread %d of %d\n&amp;#34;, thread_id, num_threads); } int main(int argc, char** argv) { std::thread t0 = std::thread(my_func, 0, 2); std::thread t1 = std::thread(my_func, 1, 2); printf(&amp;#34;The main thread is running concurrently with spawned threads.\n&amp;#34;); t0.join(); t1.join(); printf(&amp;#34;Spawned threads have terminated at this point.\n&amp;#34;); return 0; }</description>
+    </item>
+    
     <item>
       <title>Abstraction vs implementation</title>
       <link>/posts/cmu-15418cs-618/l3/</link>
@@ -23,15 +32,6 @@
       
       <guid>/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
       <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给</description>
-    </item>
-    
-    <item>
-      <title>asst2</title>
-      <link>/posts/cmu-15418cs-618/asst2/</link>
-      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cmu-15418cs-618/asst2/</guid>
-      <description>1. 问题 we1</description>
     </item>
     
     <item>

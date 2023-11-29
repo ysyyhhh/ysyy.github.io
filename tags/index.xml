@@ -6,22 +6,40 @@
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Mon, 27 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 29 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>book</title>
-      <link>/tags/book/</link>
-      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      <title>cmu-15418&amp;cs-618</title>
+      <link>/tags/cmu-15418cs-618/</link>
+      <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>/tags/book/</guid>
+      <guid>/tags/cmu-15418cs-618/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>sql</title>
+      <link>/tags/sql/</link>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/sql/</guid>
       <description></description>
     </item>
     
     <item>
       <title>服务端编程</title>
       <link>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
-      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>book</title>
+      <link>/tags/book/</link>
+      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/book/</guid>
       <description></description>
     </item>
     
@@ -71,15 +89,6 @@
     </item>
     
     <item>
-      <title>cmu-15418&amp;cs-618</title>
-      <link>/tags/cmu-15418cs-618/</link>
-      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/cmu-15418cs-618/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>k8s</title>
       <link>/tags/k8s/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
@@ -103,15 +112,6 @@
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/tags/vim/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sql</title>
-      <link>/tags/sql/</link>
-      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/sql/</guid>
       <description></description>
     </item>
     
