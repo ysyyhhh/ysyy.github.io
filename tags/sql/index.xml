@@ -6,14 +6,14 @@
     <description>Recent content in sql on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 28 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/sql/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>mongoDB</title>
       <link>/posts/tools/sql/mongodb/</link>
-      <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 30 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/tools/sql/mongodb/</guid>
-      <description>常用命令 # 连接 mongosh ip[:port]/database -u username -p password # 查看数据库 show dbs # 切换数据库 use database # 查看集合 show collections # file # 查看集合数据 db.{collection}.find() # 按条件查看集合数据 ## pid=1 db.{collection}.find({pid:1})</description>
+      <description>常用命令 # 连接 mongosh ip[:port]/database -u username -p password # 查看数据库 show dbs # 切换数据库 use database # 查看集合 show collections # file # 查看集合数据 db.{collection}.find() # 按条件查看集合数据 ## pid=1 db.{collection}.find({pid:1}) ## 限制4条 db.{collection}.find().limit(4) ## 只显示其</description>
     </item>
     
     <item>

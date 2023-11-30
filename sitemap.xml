@@ -2,13 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>/posts/cmu-15418cs-618/asst2/</loc>
-    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/cmu-15418cs-618/</loc>
+    <loc>/posts/tools/sql/mongodb/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/posts/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/sql/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/</loc>
@@ -17,13 +17,13 @@
     <loc>/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
+    <loc>/posts/cmu-15418cs-618/asst2/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>/tags/cmu-15418cs-618/</loc>
+    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</loc>
-    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/posts/tools/sql/mongodb/</loc>
-    <lastmod>2023-11-30T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>/tags/sql/</loc>
     <lastmod>2023-11-30T00:00:00+00:00</lastmod>
   </url><url>
     <loc>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</loc>
