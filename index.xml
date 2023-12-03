@@ -6,7 +6,16 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 30 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 02 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>nginx</title>
+      <link>/posts/tools/nginx/nginx/</link>
+      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/nginx/nginx/</guid>
+      <description>nginx安装 1. 安装依赖 yum install -y gcc gcc-c++ autoconf automake make yum install -y pcre pcre-devel yum install -y zlib zlib-devel yum install -y openssl openssl-devel 2. 转发后端图片 # 1. 创建目录 mkdir -p /data/nginx/cache # 2. 修改目录权限 chown -R nginx:nginx /data/nginx/cache</description>
+    </item>
+    
     <item>
       <title>mongoDB</title>
       <link>/posts/tools/sql/mongodb/</link>
