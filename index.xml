@@ -6,7 +6,25 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>openai 相关QA</title>
+      <link>/posts/qa/python/openai/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/qa/python/openai/</guid>
+      <description>无法连接 Q: openai.error.APIConnectionError: Error communicating with OpenAI: HTTPSConnectionPool(host=&amp;#39;api.openai.com&amp;#39;, port=443): Max retries exceeded with url: /v1/chat/completions (Caused by ProxyError(&amp;#39;Unable to connect to proxy&amp;#39;, SSLError(SSLZeroReturnError(6, &amp;#39;TLS/SSL connection has been closed (EOF) (_ssl.c:1131)&amp;#39;)))) A: 问题出在模块 urllib3 的版本，报错的是 1.26.3，没报错的是 1.25.11 在原报错环境中使</description>
+    </item>
+    
+    <item>
+      <title>工作学习流(vscode快捷键)</title>
+      <link>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
+      <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>/posts/tools/git/git/</link>
@@ -44,30 +62,12 @@
     </item>
     
     <item>
-      <title>asst2</title>
-      <link>/posts/cmu-15418cs-618/asst2/</link>
-      <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cmu-15418cs-618/asst2/</guid>
-      <description>C++ Sync thread的使用 #include &amp;lt;thread&amp;gt; #include &amp;lt;stdio.h&amp;gt; void my_func(int thread_id, int num_threads) { printf(&amp;#34;Hello from spawned thread %d of %d\n&amp;#34;, thread_id, num_threads); } int main(int argc, char** argv) { std::thread t0 = std::thread(my_func, 0, 2); std::thread t1 = std::thread(my_func, 1, 2); printf(&amp;#34;The main thread is running concurrently with spawned threads.\n&amp;#34;); t0.join(); t1.join(); printf(&amp;#34;Spawned threads have terminated at this point.\n&amp;#34;); return 0; }</description>
-    </item>
-    
-    <item>
       <title>I/O模型</title>
       <link>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</link>
       <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</guid>
       <description>一、什么是I/O模型 及 I/O模型的分类 二、I/O 多路复用 三、实际应用 Reactor模式 Proactor模式 事件驱动模式</description>
-    </item>
-    
-    <item>
-      <title>读书目录</title>
-      <link>/posts/book/%E5%BE%85%E8%AF%BB%E4%B9%A6%E7%9B%AE%E5%BD%95/</link>
-      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/book/%E5%BE%85%E8%AF%BB%E4%B9%A6%E7%9B%AE%E5%BD%95/</guid>
-      <description>正在读的 待读的 现在很多计算机学院也开始使用《计算机网络:自顶向下方法》这本不错的教材，如果没有看过的可以看下。当然还是那句话你一定要看懂而不</description>
     </item>
     
     <item>
@@ -86,15 +86,6 @@
       
       <guid>/posts/tools/python/conda/</guid>
       <description># 查看环境 conda env list # 创建环境 conda create -n py3 python=3.6 # 通过yml文件创建环境 conda env create -f environment.yml # 激活环境 conda activate py3 # 退出环境 conda deactivate # 删除环境 conda remove -n py3 --all 迁移时可能会出现pi</description>
-    </item>
-    
-    <item>
-      <title>工作学习流(vscode快捷键)</title>
-      <link>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
-      <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c 引用: alt + q terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
     </item>
     
     <item>
@@ -125,30 +116,12 @@
     </item>
     
     <item>
-      <title>asst1</title>
-      <link>/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</link>
-      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cmu-15418cs-618/asst1-performance-analysis-on-a-quad-core-cpu/</guid>
-      <description>参考 任务 Program 1: Parallel Fractal Generation Using Threads (20 points) 提示: 需要先看CMU15-418/CS149的L2再完成Pro1 任务描述: 用多线程画mandelbrot fractal. 代码中给</description>
-    </item>
-    
-    <item>
       <title>L2</title>
       <link>/posts/cmu-15418cs-618/l2/</link>
       <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/posts/cmu-15418cs-618/l2/</guid>
       <description>并行程序 void sinx(int N, int terms, float* x, float* result) { for (int i = 0; i &amp;lt; N; i++) { float value = x[i]; float number = x[i] * x[i] * x[i]; int sign = -1; int denom = 6; for (int j = 0; j &amp;lt; terms; j++) { value += sign * number / denom; sign *= -1; denom *= (2*j+3)*(2*j+2); number *= x[i]</description>
-    </item>
-    
-    <item>
-      <title>Modern C&#43;&#43;</title>
-      <link>/posts/c&#43;&#43;/modern-c&#43;&#43;/</link>
-      <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/c&#43;&#43;/modern-c&#43;&#43;/</guid>
-      <description>lambda表达式 描述: 一个匿名函数对象 一个可调用的代码单元 一个函数对象的语法糖 语法规则: {}; []: lambda表达式的引导符 (): 参数列表 {}: 函数体 具</description>
     </item>
     
     <item>

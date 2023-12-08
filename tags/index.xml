@@ -6,7 +6,25 @@
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 08 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>python</title>
+      <link>/tags/python/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/python/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tools</title>
+      <link>/tags/tools/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/tools/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>git</title>
       <link>/tags/git/</link>
@@ -44,29 +62,11 @@
     </item>
     
     <item>
-      <title>cmu-15418&amp;cs-618</title>
-      <link>/tags/cmu-15418cs-618/</link>
-      <pubDate>Wed, 29 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/cmu-15418cs-618/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>服务端编程</title>
       <link>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
       
       <guid>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>book</title>
-      <link>/tags/book/</link>
-      <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/book/</guid>
       <description></description>
     </item>
     
@@ -80,24 +80,6 @@
     </item>
     
     <item>
-      <title>python</title>
-      <link>/tags/python/</link>
-      <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/python/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tools</title>
-      <link>/tags/tools/</link>
-      <pubDate>Sat, 18 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tools/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>docker</title>
       <link>/tags/docker/</link>
       <pubDate>Tue, 07 Nov 2023 00:00:00 +0000</pubDate>
@@ -107,11 +89,11 @@
     </item>
     
     <item>
-      <title>c&#43;&#43;</title>
-      <link>/tags/c&#43;&#43;/</link>
+      <title>cmu-15418&amp;cs-618</title>
+      <link>/tags/cmu-15418cs-618/</link>
       <pubDate>Sun, 05 Nov 2023 00:00:00 +0000</pubDate>
       
-      <guid>/tags/c&#43;&#43;/</guid>
+      <guid>/tags/cmu-15418cs-618/</guid>
       <description></description>
     </item>
     
