@@ -6,7 +6,43 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 08 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker Usage</title>
+      <link>/posts/tools/docker/docker/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/docker/docker/</guid>
+      <description>多阶段构建docker镜像 多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段 usages： 第一阶段：编译/打包程序</description>
+    </item>
+    
+    <item>
+      <title>Docker命令</title>
+      <link>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
+      <description>安装docker sudo apt -y update sudo apt -y upgrade sudo apt -y full-upgrade # 安装依赖 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release # 添加官方GPG密钥 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg #添加仓库 echo &amp;#34;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&amp;#34; | sudo</description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/posts/tips/linux/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tips/linux/</guid>
+      <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a 用户</description>
+    </item>
+    
+    <item>
+      <title>npm</title>
+      <link>/posts/tools/npm/npm/</link>
+      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/npm/npm/</guid>
+      <description>docker中的npm # 设置npm源 npm config set registry https://registry.npm.taobao.org</description>
+    </item>
+    
     <item>
       <title>asst2</title>
       <link>/posts/cmu-15418cs-618/asst2/</link>
@@ -98,15 +134,6 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>/posts/tips/linux/</link>
-      <pubDate>Wed, 22 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tips/linux/</guid>
-      <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a 用户</description>
-    </item>
-    
-    <item>
       <title>conda</title>
       <link>/posts/tools/python/conda/</link>
       <pubDate>Sun, 19 Nov 2023 00:00:00 +0000</pubDate>
@@ -122,15 +149,6 @@
       
       <guid>/posts/tips/docker/</guid>
       <description>记把深度学习项目装入docker 安装时出现选项 # RUN apt-get install libglib2.0-dev -y # 由于安装libglib2.0-dev的时候，bash会有交互操作叫你选择对应的时</description>
-    </item>
-    
-    <item>
-      <title>Docker命令</title>
-      <link>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Tue, 07 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
-      <description>安装docker sudo apt -y update sudo apt -y upgrade sudo apt -y full-upgrade # 安装依赖 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release # 添加官方GPG密钥 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg #添加仓库 echo &amp;#34;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&amp;#34; | sudo</description>
     </item>
     
     <item>
@@ -248,15 +266,6 @@
       
       <guid>/posts/cmu-15418cs-618/l4/</guid>
       <description>主要用三种方式实现并行程序(没有进行真正的优化) 例子 n-body simulation 创建并行程序的过程 1. Decomposition 主要思想: 创造至少足够的任务让所有的处理单元都有事情做 Amdahl&amp;rsquo;s Law: 串行</description>
-    </item>
-    
-    <item>
-      <title>docker Usage</title>
-      <link>/posts/tools/docker/docker/</link>
-      <pubDate>Wed, 11 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tools/docker/docker/</guid>
-      <description>多阶段构建docker镜像 多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段 usages： 第一阶段：编译/打包程序</description>
     </item>
     
     <item>
