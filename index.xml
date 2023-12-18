@@ -6,7 +6,16 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 14 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 18 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>asst2</title>
+      <link>/posts/cmu-15418cs-618/asst2/</link>
+      <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/cmu-15418cs-618/asst2/</guid>
+      <description>C++ Sync thread的使用 #include &amp;lt;thread&amp;gt; #include &amp;lt;stdio.h&amp;gt; void my_func(int thread_id, int num_threads) { printf(&amp;#34;Hello from spawned thread %d of %d\n&amp;#34;, thread_id, num_threads); } int main(int argc, char** argv) { std::thread t0 = std::thread(my_func, 0, 2); std::thread t1 = std::thread(my_func, 1, 2); printf(&amp;#34;The main thread is running concurrently with spawned threads.\n&amp;#34;); t0.join(); t1.join(); printf(&amp;#34;Spawned threads have terminated at this point.\n&amp;#34;); return 0; }</description>
+    </item>
+    
     <item>
       <title>docker Usage</title>
       <link>/posts/tools/docker/docker/</link>
@@ -41,15 +50,6 @@
       
       <guid>/posts/tools/npm/npm/</guid>
       <description>docker中的npm # 设置npm源 npm config set registry https://registry.npm.taobao.org</description>
-    </item>
-    
-    <item>
-      <title>asst2</title>
-      <link>/posts/cmu-15418cs-618/asst2/</link>
-      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/cmu-15418cs-618/asst2/</guid>
-      <description>C++ Sync thread的使用 #include &amp;lt;thread&amp;gt; #include &amp;lt;stdio.h&amp;gt; void my_func(int thread_id, int num_threads) { printf(&amp;#34;Hello from spawned thread %d of %d\n&amp;#34;, thread_id, num_threads); } int main(int argc, char** argv) { std::thread t0 = std::thread(my_func, 0, 2); std::thread t1 = std::thread(my_func, 1, 2); printf(&amp;#34;The main thread is running concurrently with spawned threads.\n&amp;#34;); t0.join(); t1.join(); printf(&amp;#34;Spawned threads have terminated at this point.\n&amp;#34;); return 0; }</description>
     </item>
     
     <item>
