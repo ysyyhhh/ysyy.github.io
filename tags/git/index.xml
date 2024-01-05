@@ -6,11 +6,11 @@
     <description>Recent content in git on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 05 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/git/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>git</title>
       <link>/posts/tools/git/git/</link>
-      <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>/posts/tools/git/git/</guid>
       <description>git 常用命令 git 基本配置 git config --global user.name &amp;#34;your name&amp;#34; git config --global user.email &amp;#34;your email&amp;#34; git 基本操作 git init # 初始化仓库 git add . # 添加所有文件到暂存区 git commit -m &amp;#34;commit message&amp;#34; # 提交到本地仓库 git remote add origin git push -u origin</description>

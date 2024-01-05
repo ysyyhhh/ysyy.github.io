@@ -6,7 +6,25 @@
     <description>Recent content in Posts on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 31 Dec 2023 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>git</title>
+      <link>/posts/tools/git/git/</link>
+      <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tools/git/git/</guid>
+      <description>git 常用命令 git 基本配置 git config --global user.name &amp;#34;your name&amp;#34; git config --global user.email &amp;#34;your email&amp;#34; git 基本操作 git init # 初始化仓库 git add . # 添加所有文件到暂存区 git commit -m &amp;#34;commit message&amp;#34; # 提交到本地仓库 git remote add origin git push -u origin</description>
+    </item>
+    
+    <item>
+      <title>Linux</title>
+      <link>/posts/tips/linux/</link>
+      <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tips/linux/</guid>
+      <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a # 列</description>
+    </item>
+    
     <item>
       <title>windows 下的子系统</title>
       <link>/posts/tips/windows%E4%B8%8B%E7%9A%84%E5%AD%90%E7%B3%BB%E7%BB%9F/</link>
@@ -44,15 +62,6 @@
     </item>
     
     <item>
-      <title>Linux</title>
-      <link>/posts/tips/linux/</link>
-      <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tips/linux/</guid>
-      <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a 用户</description>
-    </item>
-    
-    <item>
       <title>npm</title>
       <link>/posts/tools/npm/npm/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
@@ -86,15 +95,6 @@
       
       <guid>/posts/tools/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
       <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>/posts/tools/git/git/</link>
-      <pubDate>Tue, 05 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/posts/tools/git/git/</guid>
-      <description>git 常用命令 git 基本配置 git config --global user.name &amp;#34;your name&amp;#34; git config --global user.email &amp;#34;your email&amp;#34; git 基本操作 git init # 初始化仓库 git add . # 添加所有文件到暂存区 git commit -m &amp;#34;commit message&amp;#34; # 提交到本地仓库 git remote add origin git push -u origin</description>
     </item>
     
     <item>
