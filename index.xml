@@ -6,11 +6,11 @@
     <description>Recent content on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sat, 06 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>MySql常用命令</title>
       <link>/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Sat, 06 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>/posts/tools/sql/mysql%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4/</guid>
       <description>修改用户密码 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 刷新权限 flush privileges; 添加一个远程用户 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option; *.*所有数据库下的所有表 创建数据库并设</description>
