@@ -6,7 +6,25 @@
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Sun, 07 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker</title>
+      <link>/tags/docker/</link>
+      <pubDate>Wed, 10 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/docker/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>reference</title>
+      <link>/tags/reference/</link>
+      <pubDate>Wed, 10 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/tags/reference/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>sql</title>
       <link>/tags/sql/</link>
@@ -31,15 +49,6 @@
       <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>/tags/tips/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>docker</title>
-      <link>/tags/docker/</link>
-      <pubDate>Thu, 28 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/docker/</guid>
       <description></description>
     </item>
     
@@ -130,15 +139,6 @@
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>/tags/k8s/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reference</title>
-      <link>/tags/reference/</link>
-      <pubDate>Thu, 19 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/reference/</guid>
       <description></description>
     </item>
     

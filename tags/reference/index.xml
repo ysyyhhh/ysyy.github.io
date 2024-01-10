@@ -6,7 +6,16 @@
     <description>Recent content in reference on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 19 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="/tags/reference/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/reference/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>docker 相关的部署规范</title>
+      <link>/posts/reference/docker%E7%9B%B8%E5%85%B3%E7%9A%84%E9%83%A8%E7%BD%B2%E8%A7%84%E8%8C%83/</link>
+      <pubDate>Wed, 10 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/reference/docker%E7%9B%B8%E5%85%B3%E7%9A%84%E9%83%A8%E7%BD%B2%E8%A7%84%E8%8C%83/</guid>
+      <description>1.命名规范 1.1.镜像命名规范 镜像命名规范：&amp;lt;小组名&amp;gt;/&amp;lt;项目名&amp;gt;/&amp;lt;镜像名&amp;gt;:&amp;lt;版本号&amp;gt;</description>
+    </item>
+    
     <item>
       <title>利于部署的开发规范手册</title>
       <link>/posts/reference/%E5%88%A9%E4%BA%8E%E9%83%A8%E7%BD%B2%E7%9A%84%E5%BC%80%E5%8F%91%E8%A7%84%E8%8C%83/</link>
