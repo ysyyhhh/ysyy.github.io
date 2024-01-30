@@ -6,11 +6,20 @@
     <description>Recent content in tips on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Fri, 05 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sun, 28 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tips/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>服务器</title>
+      <link>/posts/tips/server/</link>
+      <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
+      
+      <guid>/posts/tips/server/</guid>
+      <description>scp传输文件 # 本地到远程 scp -r /home/username/data username@ip:/home/username/data</description>
+    </item>
+    
     <item>
       <title>Linux</title>
       <link>/posts/tips/linux/</link>
-      <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>/posts/tips/linux/</guid>
       <description>系统资源相关 # 查看内存 free -h # 查看cpu cat /proc/cpuinfo # 查看cpu使用情况 top # 查看GPU使用情况 nvidia-smi # 查看磁盘 df -h # 查看系统版本 cat /etc/os-release # 查看系统信息 uname -a # 列</description>

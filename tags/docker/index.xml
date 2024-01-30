@@ -6,11 +6,11 @@
     <description>Recent content in docker on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Wed, 10 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 16 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/docker/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Docker命令</title>
       <link>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</link>
-      <pubDate>Wed, 10 Jan 2024 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
       
       <guid>/posts/tools/docker/docker%E5%91%BD%E4%BB%A4/</guid>
       <description>安装docker sudo apt -y update sudo apt -y upgrade sudo apt -y full-upgrade # 安装依赖 sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release # 添加官方GPG密钥 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg #添加仓库 echo &amp;#34;deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable&amp;#34; | sudo</description>
