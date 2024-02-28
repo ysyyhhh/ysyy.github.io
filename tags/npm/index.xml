@@ -2,17 +2,17 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Npm on ysyy&#39;s blog</title>
-    <link>http://localhost/tags/npm/</link>
+    <link>https://ysyyhhh.github.io/tags/npm/</link>
     <description>Recent content in Npm on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 28 Feb 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost/tags/npm/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ysyyhhh.github.io/tags/npm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>npm</title>
-      <link>http://localhost/posts/tools/npm/npm/</link>
+      <link>https://ysyyhhh.github.io/posts/tools/npm/npm/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/posts/tools/npm/npm/</guid>
+      <guid>https://ysyyhhh.github.io/posts/tools/npm/npm/</guid>
       <description>docker中的npm # 设置npm源 npm config set registry https://registry.npm.taobao.org</description>
     </item>
   </channel>

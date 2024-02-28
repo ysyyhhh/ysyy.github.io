@@ -2,129 +2,129 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on ysyy&#39;s blog</title>
-    <link>http://localhost/tags/</link>
+    <link>https://ysyyhhh.github.io/tags/</link>
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
     <lastBuildDate>Wed, 28 Feb 2024 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost/tags/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://ysyyhhh.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Git</title>
-      <link>http://localhost/tags/git/</link>
+      <link>https://ysyyhhh.github.io/tags/git/</link>
       <pubDate>Wed, 28 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/git/</guid>
+      <guid>https://ysyyhhh.github.io/tags/git/</guid>
       <description></description>
     </item>
     <item>
       <title>Sql</title>
-      <link>http://localhost/tags/sql/</link>
+      <link>https://ysyyhhh.github.io/tags/sql/</link>
       <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/sql/</guid>
+      <guid>https://ysyyhhh.github.io/tags/sql/</guid>
       <description></description>
     </item>
     <item>
       <title>Nginx</title>
-      <link>http://localhost/tags/nginx/</link>
+      <link>https://ysyyhhh.github.io/tags/nginx/</link>
       <pubDate>Tue, 20 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/nginx/</guid>
+      <guid>https://ysyyhhh.github.io/tags/nginx/</guid>
       <description></description>
     </item>
     <item>
       <title>Reference</title>
-      <link>http://localhost/tags/reference/</link>
+      <link>https://ysyyhhh.github.io/tags/reference/</link>
       <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/reference/</guid>
+      <guid>https://ysyyhhh.github.io/tags/reference/</guid>
       <description></description>
     </item>
     <item>
       <title>Docker</title>
-      <link>http://localhost/tags/docker/</link>
+      <link>https://ysyyhhh.github.io/tags/docker/</link>
       <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/docker/</guid>
+      <guid>https://ysyyhhh.github.io/tags/docker/</guid>
       <description></description>
     </item>
     <item>
       <title>Shell</title>
-      <link>http://localhost/tags/shell/</link>
+      <link>https://ysyyhhh.github.io/tags/shell/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/shell/</guid>
+      <guid>https://ysyyhhh.github.io/tags/shell/</guid>
       <description></description>
     </item>
     <item>
       <title>Tips</title>
-      <link>http://localhost/tags/tips/</link>
+      <link>https://ysyyhhh.github.io/tags/tips/</link>
       <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/tips/</guid>
+      <guid>https://ysyyhhh.github.io/tags/tips/</guid>
       <description></description>
     </item>
     <item>
       <title>Cmu-15418&amp;cs-618</title>
-      <link>http://localhost/tags/cmu-15418cs-618/</link>
+      <link>https://ysyyhhh.github.io/tags/cmu-15418cs-618/</link>
       <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/cmu-15418cs-618/</guid>
+      <guid>https://ysyyhhh.github.io/tags/cmu-15418cs-618/</guid>
       <description></description>
     </item>
     <item>
       <title>Npm</title>
-      <link>http://localhost/tags/npm/</link>
+      <link>https://ysyyhhh.github.io/tags/npm/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/npm/</guid>
+      <guid>https://ysyyhhh.github.io/tags/npm/</guid>
       <description></description>
     </item>
     <item>
       <title>C&#43;&#43;</title>
-      <link>http://localhost/tags/c&#43;&#43;/</link>
+      <link>https://ysyyhhh.github.io/tags/c&#43;&#43;/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/c&#43;&#43;/</guid>
+      <guid>https://ysyyhhh.github.io/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
     <item>
       <title>Python</title>
-      <link>http://localhost/tags/python/</link>
+      <link>https://ysyyhhh.github.io/tags/python/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/python/</guid>
+      <guid>https://ysyyhhh.github.io/tags/python/</guid>
       <description></description>
     </item>
     <item>
       <title>Tools</title>
-      <link>http://localhost/tags/tools/</link>
+      <link>https://ysyyhhh.github.io/tags/tools/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/tools/</guid>
+      <guid>https://ysyyhhh.github.io/tags/tools/</guid>
       <description></description>
     </item>
     <item>
       <title>Maven</title>
-      <link>http://localhost/tags/maven/</link>
+      <link>https://ysyyhhh.github.io/tags/maven/</link>
       <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/maven/</guid>
+      <guid>https://ysyyhhh.github.io/tags/maven/</guid>
       <description></description>
     </item>
     <item>
       <title>服务端编程</title>
-      <link>http://localhost/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
+      <link>https://ysyyhhh.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
+      <guid>https://ysyyhhh.github.io/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
     <item>
       <title>Book</title>
-      <link>http://localhost/tags/book/</link>
+      <link>https://ysyyhhh.github.io/tags/book/</link>
       <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/book/</guid>
+      <guid>https://ysyyhhh.github.io/tags/book/</guid>
       <description></description>
     </item>
     <item>
       <title>K8s</title>
-      <link>http://localhost/tags/k8s/</link>
+      <link>https://ysyyhhh.github.io/tags/k8s/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/k8s/</guid>
+      <guid>https://ysyyhhh.github.io/tags/k8s/</guid>
       <description></description>
     </item>
     <item>
       <title>Vim</title>
-      <link>http://localhost/tags/vim/</link>
+      <link>https://ysyyhhh.github.io/tags/vim/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      <guid>http://localhost/tags/vim/</guid>
+      <guid>https://ysyyhhh.github.io/tags/vim/</guid>
       <description></description>
     </item>
   </channel>
