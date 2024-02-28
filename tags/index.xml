@@ -2,163 +2,130 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
     <title>Tags on ysyy&#39;s blog</title>
-    <link>/tags/</link>
+    <link>http://localhost/tags/</link>
     <description>Recent content in Tags on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Tue, 30 Jan 2024 00:00:00 +0000</lastBuildDate><atom:link href="/tags/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 28 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost/tags/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>shell</title>
-      <link>/tags/shell/</link>
+      <title>Git</title>
+      <link>http://localhost/tags/git/</link>
+      <pubDate>Wed, 28 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/git/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Sql</title>
+      <link>http://localhost/tags/sql/</link>
+      <pubDate>Fri, 23 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/sql/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Nginx</title>
+      <link>http://localhost/tags/nginx/</link>
+      <pubDate>Tue, 20 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/nginx/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Reference</title>
+      <link>http://localhost/tags/reference/</link>
+      <pubDate>Wed, 07 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/reference/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Docker</title>
+      <link>http://localhost/tags/docker/</link>
+      <pubDate>Mon, 05 Feb 2024 00:00:00 +0000</pubDate>
+      <guid>http://localhost/tags/docker/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Shell</title>
+      <link>http://localhost/tags/shell/</link>
       <pubDate>Tue, 30 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/shell/</guid>
+      <guid>http://localhost/tags/shell/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tips</title>
-      <link>/tags/tips/</link>
+      <title>Tips</title>
+      <link>http://localhost/tags/tips/</link>
       <pubDate>Sun, 28 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tips/</guid>
+      <guid>http://localhost/tags/tips/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>docker</title>
-      <link>/tags/docker/</link>
-      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/docker/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>reference</title>
-      <link>/tags/reference/</link>
-      <pubDate>Tue, 16 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/reference/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>sql</title>
-      <link>/tags/sql/</link>
-      <pubDate>Sun, 07 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/sql/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>git</title>
-      <link>/tags/git/</link>
-      <pubDate>Fri, 05 Jan 2024 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/git/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>cmu-15418&amp;cs-618</title>
-      <link>/tags/cmu-15418cs-618/</link>
+      <title>Cmu-15418&amp;cs-618</title>
+      <link>http://localhost/tags/cmu-15418cs-618/</link>
       <pubDate>Mon, 18 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/cmu-15418cs-618/</guid>
+      <guid>http://localhost/tags/cmu-15418cs-618/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>npm</title>
-      <link>/tags/npm/</link>
+      <title>Npm</title>
+      <link>http://localhost/tags/npm/</link>
       <pubDate>Thu, 14 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/npm/</guid>
+      <guid>http://localhost/tags/npm/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>c&#43;&#43;</title>
-      <link>/tags/c&#43;&#43;/</link>
+      <title>C&#43;&#43;</title>
+      <link>http://localhost/tags/c&#43;&#43;/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/c&#43;&#43;/</guid>
+      <guid>http://localhost/tags/c&#43;&#43;/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>python</title>
-      <link>/tags/python/</link>
+      <title>Python</title>
+      <link>http://localhost/tags/python/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/python/</guid>
+      <guid>http://localhost/tags/python/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>tools</title>
-      <link>/tags/tools/</link>
+      <title>Tools</title>
+      <link>http://localhost/tags/tools/</link>
       <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/tools/</guid>
+      <guid>http://localhost/tags/tools/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>maven</title>
-      <link>/tags/maven/</link>
+      <title>Maven</title>
+      <link>http://localhost/tags/maven/</link>
       <pubDate>Mon, 04 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/maven/</guid>
+      <guid>http://localhost/tags/maven/</guid>
       <description></description>
     </item>
-    
-    <item>
-      <title>nginx</title>
-      <link>/tags/nginx/</link>
-      <pubDate>Sat, 02 Dec 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/nginx/</guid>
-      <description></description>
-    </item>
-    
     <item>
       <title>服务端编程</title>
-      <link>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
+      <link>http://localhost/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link>
       <pubDate>Tue, 28 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
+      <guid>http://localhost/tags/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>book</title>
-      <link>/tags/book/</link>
+      <title>Book</title>
+      <link>http://localhost/tags/book/</link>
       <pubDate>Mon, 27 Nov 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/book/</guid>
+      <guid>http://localhost/tags/book/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>k8s</title>
-      <link>/tags/k8s/</link>
+      <title>K8s</title>
+      <link>http://localhost/tags/k8s/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/k8s/</guid>
+      <guid>http://localhost/tags/k8s/</guid>
       <description></description>
     </item>
-    
     <item>
-      <title>vim</title>
-      <link>/tags/vim/</link>
+      <title>Vim</title>
+      <link>http://localhost/tags/vim/</link>
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>/tags/vim/</guid>
+      <guid>http://localhost/tags/vim/</guid>
       <description></description>
     </item>
-    
   </channel>
 </rss>
