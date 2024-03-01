@@ -22,5 +22,12 @@
       <guid>https://ysyyhhh.github.io/posts/tool/sql/mysql/</guid>
       <description>MySql常用命令 修改用户 修改密码 alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;; 修改用户host update mysql.user set host = &amp;#39;%&amp;#39; where user = &amp;#39;root 刷新权限 flush privileges; 添加一个远程用户 create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39; GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;; grant</description>
     </item>
+    <item>
+      <title>redis</title>
+      <link>https://ysyyhhh.github.io/posts/tool/sql/redis/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/tool/sql/redis/</guid>
+      <description>flushall 清空</description>
+    </item>
   </channel>
 </rss>

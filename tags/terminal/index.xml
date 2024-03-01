@@ -9,6 +9,13 @@
     <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ysyyhhh.github.io/tags/terminal/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>工具</title>
+      <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</guid>
+      <description>下载文件 wget wget -c -t 0 -T 60 -O 文件名 下载地址 # -c 断点续传 # -t 0 重试次数 # -T 60 超时时间 # -O 文件名 保存文件名 tree指令在windows下 https://blog.csdn.net/pyufftj/article/details/83102530 https://blog.csdn.net/fragrant_no1/article/details/85986511 nohup nohup python3 -u</description>
+    </item>
+    <item>
       <title>命令行</title>
       <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
@@ -21,13 +28,6 @@
       <pubDate>Tue, 17 Oct 2023 00:00:00 +0000</pubDate>
       <guid>https://ysyyhhh.github.io/posts/tool/terminal/grep/</guid>
       <description>grep工具</description>
-    </item>
-    <item>
-      <title>工具</title>
-      <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</guid>
-      <description>https://blog.csdn.net/pyufftj/article/details/83102530 https://blog.csdn.net/fragrant_no1/article/details/85986511 nohup nohup python3 -u tcp_client.py &amp;gt; tcp.log 2&amp;gt;&amp;amp;1 &amp;amp; nuhup : 不挂起的意思 python3 tcp_client.py : 使用python3环境运行 tcp_client.py文件 -u : 代表程序不启用缓存，也就是把输出直接</description>
     </item>
   </channel>
 </rss>

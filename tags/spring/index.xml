@@ -30,13 +30,6 @@
       <description>https://www.jianshu.com/p/38d247f02724 安全 https://blog.csdn.net/qq_37023928/article/details/116777630 解决前后端分离的跨域问题 https://www.yisu.com/zixun/606000.html 创建Test类注解 @RunWith(SpringJUnit4ClassRunner.class) @SpringBootTest 依赖 &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-boot-test&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; &amp;lt;dependency&amp;gt; &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt; &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt; &amp;lt;/dependency&amp;gt; 开启services Views -&amp;gt; Tool Windows -&amp;gt; Services Spring容器中找不到Serv</description>
     </item>
     <item>
-      <title>redis</title>
-      <link>https://ysyyhhh.github.io/posts/language/spring/redis/</link>
-      <pubDate>Sun, 16 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>https://ysyyhhh.github.io/posts/language/spring/redis/</guid>
-      <description>flushall 清空</description>
-    </item>
-    <item>
       <title>code相关知识</title>
       <link>https://ysyyhhh.github.io/posts/language/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link>
       <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>

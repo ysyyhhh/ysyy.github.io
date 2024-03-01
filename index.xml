@@ -128,11 +128,25 @@
       <description>L1 Relational Model &amp;amp; Relational Algebra 1.1 Databases 数据库：an organized collection of inter-related data that models some aspect of the real-world 数据库管理系统 DBMS：the software that manages a database 1.2 Flat File Strawman 数据库常常以CSV(comma-sepa</description>
     </item>
     <item>
+      <title>redis</title>
+      <link>https://ysyyhhh.github.io/posts/tool/sql/redis/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/tool/sql/redis/</guid>
+      <description>flushall 清空</description>
+    </item>
+    <item>
       <title>Why parallelism? Why efficiency?</title>
       <link>https://ysyyhhh.github.io/posts/public-course/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://ysyyhhh.github.io/posts/public-course/cmu-15418cs-618/l1-%E5%B9%B6%E8%A1%8C%E8%AE%A1%E7%AE%97%E5%92%8C%E9%AB%98%E6%95%88/</guid>
       <description>Parallelism 加速比 Speed up 是指： 程序在单处理器上运行的时间 / 程序在多处理器上运行的时间 我们一般会期望用两倍的硬件得到两倍的速度提升,但是实际上并不是这样的</description>
+    </item>
+    <item>
+      <title>笔试算法题</title>
+      <link>https://ysyyhhh.github.io/posts/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</guid>
+      <description>1.已知平面上的一个圆和若干点 快速求出包含点数最少的多边形使得圆在多边形中 预处理：圆内的点删去 点排序，按照射线的角度排序。O(nlogn) 如</description>
     </item>
     <item>
       <title>部署手册</title>
@@ -156,11 +170,25 @@
       <description>scp传输文件 # 本地到远程 scp -r /home/username/data username@ip:/home/username/data</description>
     </item>
     <item>
+      <title>工具</title>
+      <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</guid>
+      <description>下载文件 wget wget -c -t 0 -T 60 -O 文件名 下载地址 # -c 断点续传 # -t 0 重试次数 # -T 60 超时时间 # -O 文件名 保存文件名 tree指令在windows下 https://blog.csdn.net/pyufftj/article/details/83102530 https://blog.csdn.net/fragrant_no1/article/details/85986511 nohup nohup python3 -u</description>
+    </item>
+    <item>
       <title>命令行</title>
       <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%91%BD%E4%BB%A4%E8%A1%8C/</link>
       <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://ysyyhhh.github.io/posts/tool/terminal/%E5%91%BD%E4%BB%A4%E8%A1%8C/</guid>
       <description>cmd 后缀 .bat 或 .cmd 的批处理文件 powershell 后缀 .ps1 的脚本文件 bash zsh fish</description>
+    </item>
+    <item>
+      <title>写在前面</title>
+      <link>https://ysyyhhh.github.io/posts/knowledge/%E7%AE%97%E6%B3%95/acmer%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/knowledge/%E7%AE%97%E6%B3%95/acmer%E9%9D%A2%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</guid>
+      <description>笔试上机题型基本是经典算法题，且难度最多leetcode hard。但面试的题目类型很多，如场景题、NP问题等没有最优解的问题。 以下对求职面试</description>
     </item>
     <item>
       <title>Linux</title>
@@ -303,13 +331,6 @@
       <description>1.分层领域模型规约： • DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。 • DTO（ Data Transfer Object）：数据传</description>
     </item>
     <item>
-      <title>工具</title>
-      <link>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</link>
-      <pubDate>Mon, 07 Aug 2023 00:00:00 +0000</pubDate>
-      <guid>https://ysyyhhh.github.io/posts/tool/terminal/%E5%B7%A5%E5%85%B7/</guid>
-      <description>https://blog.csdn.net/pyufftj/article/details/83102530 https://blog.csdn.net/fragrant_no1/article/details/85986511 nohup nohup python3 -u tcp_client.py &amp;gt; tcp.log 2&amp;gt;&amp;amp;1 &amp;amp; nuhup : 不挂起的意思 python3 tcp_client.py : 使用python3环境运行 tcp_client.py文件 -u : 代表程序不启用缓存，也就是把输出直接</description>
-    </item>
-    <item>
       <title>服务端</title>
       <link>https://ysyyhhh.github.io/posts/language/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link>
       <pubDate>Sun, 23 Jul 2023 00:00:00 +0000</pubDate>
@@ -353,13 +374,6 @@ gitlab pipline</description>
       <description>程序优化侧重于提高程序的性能，通过对程序中关键函数的跟踪或者运行时信息的统计，找到系统性能的瓶颈，从而采取进一步行动对程序进行优化，同时减少</description>
     </item>
     <item>
-      <title>redis</title>
-      <link>https://ysyyhhh.github.io/posts/language/spring/redis/</link>
-      <pubDate>Sun, 16 Apr 2023 00:00:00 +0000</pubDate>
-      <guid>https://ysyyhhh.github.io/posts/language/spring/redis/</guid>
-      <description>flushall 清空</description>
-    </item>
-    <item>
       <title>code相关知识</title>
       <link>https://ysyyhhh.github.io/posts/language/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link>
       <pubDate>Tue, 17 Jan 2023 00:00:00 +0000</pubDate>
@@ -372,13 +386,6 @@ gitlab pipline</description>
       <pubDate>Thu, 03 Mar 2022 00:00:00 +0000</pubDate>
       <guid>https://ysyyhhh.github.io/posts/language/spring/spring-cloud-alibaba/</guid>
       <description>各个springboot Nacos注册中心 核心功能 服务注册： 服务心跳： 服务同步： 服务发现：拿到微服务地址 服务调用： 服务健康检查： Ribbon 负载均衡 feign</description>
-    </item>
-    <item>
-      <title>unity3d 1-1 入门</title>
-      <link>https://ysyyhhh.github.io/posts/language/unity3d-&#43;-ar/unity3d-1-1-%E5%85%A5%E9%97%A8/</link>
-      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
-      <guid>https://ysyyhhh.github.io/posts/language/unity3d-&#43;-ar/unity3d-1-1-%E5%85%A5%E9%97%A8/</guid>
-      <description></description>
     </item>
   </channel>
 </rss>
