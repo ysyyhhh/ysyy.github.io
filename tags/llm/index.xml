@@ -6,12 +6,19 @@
     <description>Recent content in Llm on ysyy&#39;s blog</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh</language>
-    <lastBuildDate>Thu, 29 Feb 2024 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://ysyyhhh.github.io/tags/llm/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>NoRBERT：使用迁移学习改进需求分类任务</title>
+      <link>https://ysyyhhh.github.io/posts/paper/llm/nobert/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/paper/llm/nobert/</guid>
+      <description>NoRBERT: Transfer Learning for Requirements Classification Tobias Hey， Jan Keim， Anne Koziolek， Walter F. Tichy Karlsruhe Institute of Technology (KIT) 引用 T. Hey, J. Keim, A. Koziolek and W. F. Tichy, &amp;ldquo;NoRBERT: Transfer Learning for Requirements Classification,&amp;rdquo; 2020 IEEE 28th International Requirements Engineering Conference (RE), Zurich, Switzerland, 2020, pp. 169-179, doi: 10.1109/RE48521.2020.00028. 论文</description>
+    </item>
     <item>
       <title>大语言模型原理</title>
       <link>https://ysyyhhh.github.io/posts/knowledge/llm/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86/</link>
-      <pubDate>Thu, 29 Feb 2024 00:00:00 +0000</pubDate>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
       <guid>https://ysyyhhh.github.io/posts/knowledge/llm/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%8E%9F%E7%90%86/</guid>
       <description>语言模型的基础技术 transformer 大语言模型 GPT BERT BERT vs GPT</description>
     </item>

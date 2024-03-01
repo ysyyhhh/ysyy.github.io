@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Cmu-15445 on ysyy&#39;s blog</title>
+    <link>https://ysyyhhh.github.io/tags/cmu-15445/</link>
+    <description>Recent content in Cmu-15445 on ysyy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ysyyhhh.github.io/tags/cmu-15445/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>P0 [C&#43;&#43; Primer](https://15445.courses.cs.cmu.edu/fall2022/project0/)</title>
+      <link>https://ysyyhhh.github.io/posts/public-course/cmu-15445/cmu15-445/</link>
+      <pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/public-course/cmu-15445/cmu15-445/</guid>
+      <description>L1 Relational Model &amp;amp; Relational Algebra 1.1 Databases 数据库：an organized collection of inter-related data that models some aspect of the real-world 数据库管理系统 DBMS：the software that manages a database 1.2 Flat File Strawman 数据库常常以CSV(comma-sepa</description>
+    </item>
+  </channel>
+</rss>

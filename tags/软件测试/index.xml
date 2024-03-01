@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>软件测试 on ysyy&#39;s blog</title>
+    <link>https://ysyyhhh.github.io/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/</link>
+    <description>Recent content in 软件测试 on ysyy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ysyyhhh.github.io/tags/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>程序分析</title>
+      <link>https://ysyyhhh.github.io/posts/knowledge/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</link>
+      <pubDate>Wed, 19 Apr 2023 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/knowledge/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</guid>
+      <description>程序优化侧重于提高程序的性能，通过对程序中关键函数的跟踪或者运行时信息的统计，找到系统性能的瓶颈，从而采取进一步行动对程序进行优化，同时减少</description>
+    </item>
+  </channel>
+</rss>

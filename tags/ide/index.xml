@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Ide on ysyy&#39;s blog</title>
+    <link>https://ysyyhhh.github.io/tags/ide/</link>
+    <description>Recent content in Ide on ysyy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ysyyhhh.github.io/tags/ide/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>工作学习流(vscode快捷键)</title>
+      <link>https://ysyyhhh.github.io/posts/tool/ide/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link>
+      <pubDate>Fri, 08 Dec 2023 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/tool/ide/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid>
+      <description>markdown 快捷键 删除线: alt + s 待办事项勾选/取消勾选: alt + c terminal 命令行创建: Ctrl + Shift + ~ 命令行切换: Ctrl + fn + upArrow/downArrow view Run Run python file in terminal: Ctrl + F5</description>
+    </item>
+  </channel>
+</rss>

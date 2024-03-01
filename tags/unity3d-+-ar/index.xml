@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Unity3d &#43; Ar on ysyy&#39;s blog</title>
+    <link>https://ysyyhhh.github.io/tags/unity3d-&#43;-ar/</link>
+    <description>Recent content in Unity3d &#43; Ar on ysyy&#39;s blog</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh</language>
+    <lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://ysyyhhh.github.io/tags/unity3d-+-ar/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>unity3d 1-1 入门</title>
+      <link>https://ysyyhhh.github.io/posts/language/unity3d-&#43;-ar/unity3d-1-1-%E5%85%A5%E9%97%A8/</link>
+      <pubDate>Wed, 12 Jan 2022 00:00:00 +0000</pubDate>
+      <guid>https://ysyyhhh.github.io/posts/language/unity3d-&#43;-ar/unity3d-1-1-%E5%85%A5%E9%97%A8/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
