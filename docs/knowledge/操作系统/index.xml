@@ -1,1 +1,29 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>操作系统 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml"/><description>操作系统</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>操作系统</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link></image></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>操作系统 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/index.xml" rel="self" type="application/rss+xml"/><description>操作系统</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>操作系统</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
+&lt;h4 id="epoll底层实现">epoll底层实现&lt;/h4>
+&lt;p>epoll是Linux内核提供的一种高效的I/O多路复用机制，其底层实现主要包括以下几个部分：&lt;/p>
+&lt;ol>
+&lt;li>内核事件表：epoll使用一个内核事件表来存储所有的I/O事件，包括读、写和异常事件等。&lt;/li>
+&lt;li>文件描述符表：epoll使用一个文件描述符表来存储所有需要监控的文件描述符，每个文件描述符都对应一个epoll_event结构体，用于存储该文件描述符上的事件信息。&lt;/li>
+&lt;li>回调函数：当有I/O事件发生时，内核会调用注册的回调函数来处理该事件，回调函数可以是用户自定义的函数，也可以是系统提供的函数。&lt;/li>
+&lt;/ol>
+&lt;h4 id="五种io模型">五种IO模型&lt;/h4>
+&lt;ol>
+&lt;li>阻塞式I/O模型：当应用程序调用I/O操作时，如果数据没有准备好，应用程序会一直等待，直到数据准备好为止。&lt;/li>
+&lt;li>非阻塞式I/O模型：当应用程序调用I/O操作时，如果数据没有准备好，应用程序会立即返回，不会等待数据准备好。&lt;/li>
+&lt;li>I/O复用模型：应用程序使用select、poll或epoll等系统调用来监控多个文件描述符，当有数据准备好时，应用程序会被通知。&lt;/li>
+&lt;li>信号驱动式I/O模型：应用程序使用sigaction系统调用来注册一个信号处理函数，当数据准备好时，内核会向应用程序发送一个信号，应用程序在信号处理函数中处理数据。&lt;/li>
+&lt;li>异步I/O模型：应用程序调用aio_read或aio_write等异步I/O函数来发起I/O操作，内核会在I/O操作完成后通知应用程序。&lt;/li>
+&lt;/ol>
+&lt;h4 id="解释同步阻塞">解释同步，阻塞&lt;/h4>
+&lt;p>同步是指应用程序在执行某个操作时，必须等待该操作完成后才能继续执行下一步操作。&lt;/p>
+&lt;p>阻塞是指应用程序在执行某个操作时，如果该操作不能立即完成，应用程序会被挂起，直到该操作完成为止。&lt;/p>
+&lt;p>在阻塞式I/O模型中，应用程序调用I/O操作时，如果数据没有准备好，应用程序会一直等待，直到数据准备好为止，这就是阻塞。而在非阻塞式I/O模型中，应用程序调用I/O操作时，如果数据没有准备好，应用程序会立即返回，这就是非阻塞。&lt;/p>
+&lt;h4 id="nio和bio区别">NIO和BIO区别&lt;/h4>
+&lt;p>BIO（Blocking I/O）是阻塞式I/O模型，应用程序调用I/O操作时，如果数据没有准备好，应用程序会一直等待，直到数据准备好为止。NIO（Non-blocking I/O）是非阻塞式I/O模型，应用程序调用I/O操作时，如果数据没有准备好，应用程序会立即返回，不会等待数据准备好。&lt;/p>
+&lt;h4 id="nio的底层">NIO的底层&lt;/h4>
+&lt;p>NIO的底层实现主要包括以下几个部分：&lt;/p>
+&lt;ol>
+&lt;li>缓冲区：NIO使用缓冲区来存储数据，包括读缓冲区和写缓冲区。&lt;/li>
+&lt;li>通道：NIO使用通道来进行数据的读写操作，通道类似于流，但是可以双向传输数据。&lt;/li>
+&lt;li>选择器：NIO使用选择器来监控多个通道的状态，当有数据准备好时，选择器会通知应用程序。&lt;/li>
+&lt;/ol></description></item></channel></rss>

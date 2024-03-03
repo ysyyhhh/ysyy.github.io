@@ -1,1 +1,1300 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><description>数据库</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>数据库</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link></image></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><description>数据库</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>数据库</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
+&lt;h2 id="redis基础知识">Redis基础知识：&lt;/h2>
+&lt;h3 id="redis是什么有什么用">Redis是什么？有什么用？&lt;/h3>
+&lt;p>Redis是一个开源的内存数据结构存储系统。&lt;/p>
+&lt;ol>
+&lt;li>Redis最常用来做缓存，是实现分布式缓存的首先中间件；&lt;/li>
+&lt;li>Redis可以作为数据库，实现诸如点赞、关注、排行等对性能要求极高的互联网需求；&lt;/li>
+&lt;li>Redis可以作为计算工具，能用很小的代价，统计诸如PV/UV、用户在线天数等数据；&lt;/li>
+&lt;li>Redis还有很多其他的使用场景，例如：可以实现分布式锁，可以作为消息队列使用。&lt;/li>
+&lt;/ol>
+&lt;h3 id="使用redis的好处是什么">使用Redis的好处是什么？&lt;/h3>
+&lt;p>使用Redis的好处包括高性能、高可用性、支持多种数据结构、支持事务和Lua脚本等。&lt;/p>
+&lt;h3 id="redis与其他key-value存储的不同之处在哪里">Redis与其他key-value存储的不同之处在哪里？&lt;/h3>
+&lt;p>Redis与其他key-value存储的不同之处在于，Redis支持多种数据结构，包括字符串、哈希、列表、集合和有序集合等，而其他key-value存储通常只支持字符串类型。&lt;/p>
+&lt;h3 id="比较redis与memcache">比较Redis与Memcache&lt;/h3>
+&lt;ul>
+&lt;li>Redis支持多种数据结构，包括字符串、哈希、列表、集合和有序集合，支持事务和Lua脚本、支持持久化和复制等。&lt;/li>
+&lt;li>Memcache只支持字符串类型。&lt;/li>
+&lt;/ul>
+&lt;h3 id="redis是单进程单线程的吗">Redis是单进程单线程的吗&lt;/h3>
+&lt;p>是的，Redis是单进程单线程的，主要是指Redis的网络IO和键值对读写是由一个线程来完成的。&lt;/p>
+&lt;p>而Redis的其他功能，如持久化、异步删除、集群数据同步等，则是依赖其他线程来执行的。所以，说Redis是单线程的只是一种习惯的说法，事实上它的底层不是单线程的。&lt;/p>
+&lt;ol>
+&lt;li>对服务端程序来说，线程切换和锁通常是性能杀手，而单线程避免了线程切换和竞争所产生的消耗；&lt;/li>
+&lt;li>Redis的大部分操作是在内存上完成的，这是它实现高性能的一个重要原因；&lt;/li>
+&lt;li>Redis采用了IO多路复用机制，使其在网络IO操作中能并发处理大量的客户端请求，实现高吞吐率。&lt;/li>
+&lt;/ol>
+&lt;h2 id="redis-命令">Redis 命令&lt;/h2>
+&lt;h3 id="redis中的watch命令">Redis中的watch命令&lt;/h3>
+&lt;p>很多时候，要确保事务中的数据没有被其他客户端修改才执行该事务。&lt;/p>
+&lt;p>Redis提供了watch命令来解决这类问题，这是一种乐观锁的机制。&lt;/p>
+&lt;p>客户端通过watch命令，要求服务器对一个或多个key进行监视，如果在客户端执行事务之前，这些key发生了变化，则服务器将拒绝执行客户端提交的事务，并向它返回一个空值。&lt;/p>
+&lt;h2 id="redis数据类型">Redis数据类型&lt;/h2>
+&lt;h3 id="redis的数据类型有哪些">Redis的数据类型有哪些？&lt;/h3>
+&lt;ol>
+&lt;li>Redis支持5种核心的数据类型，分别是字符串、哈希、列表、集合(set)、有序集合(zset)；&lt;/li>
+&lt;li>Redis还提供了Bitmap、HyperLogLog、Geo类型，但这些类型都是基于上述核心数据类型实现的；&lt;/li>
+&lt;li>Redis在5.0新增加了Streams数据类型，它是一个功能强大的、支持多播的、可持久化的消息队列。&lt;/li>
+&lt;/ol>
+&lt;h3 id="set和zset有什么区别">set和zset有什么区别？&lt;/h3>
+&lt;p>set：&lt;/p>
+&lt;ul>
+&lt;li>集合中的元素是无序、不可重复的，一个集合最多能存储232-1个元素；&lt;/li>
+&lt;li>集合除了支持对元素的增删改查之外，还支持对多个集合取交集、并集、差集。&lt;/li>
+&lt;/ul>
+&lt;p>zset：&lt;/p>
+&lt;ul>
+&lt;li>有序集合保留了集合元素不能重复的特点；&lt;/li>
+&lt;li>有序集合会给每个元素设置一个分数，并以此作为排序的依据；&lt;/li>
+&lt;li>有序集合不能包含相同的元素，但是不同元素的分数可以相同。&lt;/li>
+&lt;/ul>
+&lt;h3 id="一个字符串类型的值能存储的最大容量是多少">一个字符串类型的值能存储的最大容量是多少？&lt;/h3>
+&lt;p>一个字符串类型的值能存储的最大容量是512MB。&lt;/p>
+&lt;h3 id="redis中list结构的相关操作">Redis中List结构的相关操作&lt;/h3>
+&lt;p>列表是线性有序的数据结构，它内部的元素是可以重复的，并且一个列表最多能存储2^32-1个元素。列表包含如下的常用命令：&lt;/p>
+&lt;ul>
+&lt;li>lpush/rpush：从列表的左侧/右侧添加数据；&lt;/li>
+&lt;li>lrange：指定索引范围，并返回这个范围内的数据；&lt;/li>
+&lt;li>lindex：返回指定索引处的数据；&lt;/li>
+&lt;li>lpop/rpop：从列表的左侧/右侧弹出一个数据；&lt;/li>
+&lt;li>blpop/brpop：从列表的左侧/右侧弹出一个数据，若列表为空则进入阻塞状态。&lt;/li>
+&lt;/ul>
+&lt;h2 id="redis持久化">Redis持久化&lt;/h2>
+&lt;h3 id="redis的持久化机制有哪些">Redis的持久化机制有哪些？&lt;/h3>
+&lt;p>RDB和AOF是Redis的两种持久化机制，它们都可以将Redis的数据保存到磁盘上，以便在Redis重启时恢复数据。但是它们的实现方式和适用场景有所不同。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>RDB是一种快照机制，它可以将Redis的内存数据保存到磁盘上。&lt;/p>
+&lt;ul>
+&lt;li>RDB的实现方式是在指定的时间间隔内，将Redis的内存数据快照保存到磁盘上。快照文件的格式是二进制的，可以通过配置文件指定保存的文件名和路径。&lt;/li>
+&lt;li>RDB的优点是快速、简单、可靠，适合用于备份和恢复数据。缺点是可能会丢失最近一次快照之后的数据，因为快照是定期保存的。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>AOF是一种追加日志机制，它可以将Redis的写操作记录到磁盘上。&lt;/p>
+&lt;ul>
+&lt;li>AOF的实现方式是将Redis的写操作以追加的方式记录到一个日志文件中，日志文件的格式是文本的。&lt;/li>
+&lt;li>AOF有三种同步方式：always、everysec和no。always表示每次写操作都会同步到磁盘上，保证数据的完整性和一致性，但是会影响性能；everysec表示每秒钟同步一次，可以平衡性能和数据安全；no表示不同步，性能最好，但是数据安全性最差。&lt;/li>
+&lt;li>AOF的优点是可以保证数据的完整性和一致性，适合用于数据持久化和灾备。缺点是日志文件可能会很大，需要定期进行压缩和重写。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>在实际应用中，可以根据实际情况选择RDB和AOF中的一种或两种持久化机制。如果数据的安全性和一致性比较重要，可以选择AOF；如果数据的恢复速度比较重要，可以选择RDB；如果两者都比较重要，可以同时使用两种持久化机制。&lt;/p>
+&lt;h3 id="缓存雪崩缓存穿透缓存预热缓存更新和缓存降级是什么">缓存雪崩、缓存穿透、缓存预热、缓存更新和缓存降级是什么？&lt;/h3>
+&lt;h4 id="缓存穿透">缓存穿透&lt;/h4>
+&lt;p>客户端查询根本不存在的数据，使得请求直达存储层，导致其负载过大，甚至宕机。出现这种情况的原因，可能是业务层误将缓存和库中的数据删除了，也可能是有人恶意攻击，专门访问库中不存在的数据。&lt;/p>
+&lt;p>解决方案：&lt;/p>
+&lt;ol>
+&lt;li>缓存空对象：存储层未命中后，仍然将空值存入缓存层，客户端再次访问数据时，缓存层会直接返回空值。&lt;/li>
+&lt;li>布隆过滤器：将数据存入布隆过滤器，访问缓存之前以过滤器拦截，若请求的数据不存在则直接返回空值。&lt;/li>
+&lt;/ol>
+&lt;h4 id="缓存击穿">缓存击穿&lt;/h4>
+&lt;p>一份热点数据，它的访问量非常大。在其缓存失效的瞬间，大量请求直达存储层，导致服务崩溃。&lt;/p>
+&lt;p>解决方案：&lt;/p>
+&lt;ol>
+&lt;li>永不过期：热点数据不设置过期时间，所以不会出现上述问题，这是“物理”上的永不过期。或者为每个数据设置逻辑过期时间，当发现该数据逻辑过期时，使用单独的线程重建缓存。&lt;/li>
+&lt;li>加互斥锁：对数据的访问加互斥锁，当一个线程访问该数据时，其他线程只能等待。这个线程访问过后，缓存中的数据将被重建，届时其他线程就可以直接从缓存中取值。&lt;/li>
+&lt;/ol>
+&lt;h4 id="缓存雪崩">缓存雪崩&lt;/h4>
+&lt;p>在某一时刻，缓存层无法继续提供服务，导致所有的请求直达存储层，造成数据库宕机。可能是缓存中有大量数据同时过期，也可能是Redis节点发生故障，导致大量请求无法得到处理。&lt;/p>
+&lt;p>解决方案：&lt;/p>
+&lt;ol>
+&lt;li>避免数据同时过期：设置过期时间时，附加一个随机数，避免大量的key同时过期。&lt;/li>
+&lt;li>启用降级和熔断措施：在发生雪崩时，若应用访问的不是核心数据，则直接返回预定义信息/空值/错误信息。或者在发生雪崩时，对于访问缓存接口的请求，客户端并不会把请求发给Redis，而是直接返回。&lt;/li>
+&lt;li>构建高可用的Redis服务：采用哨兵或集群模式，部署多个Redis实例，个别节点宕机，依然可以保持服务的整体可用。&lt;/li>
+&lt;/ol>
+&lt;h3 id="redis过期键的删除策略有哪些">Redis过期键的删除策略有哪些？&lt;/h3>
+&lt;p>Redis过期键的删除策略包括定期删除和惰性删除。&lt;/p>
+&lt;p>惰性删除：客户端访问一个key的时候，Redis会先检查它的过期时间，如果发现过期就立刻删除这个key。&lt;/p>
+&lt;p>定期删除：Redis会将设置了过期时间的key放到一个独立的字典中，并对该字典进行每秒10次的过期扫描，&lt;/p>
+&lt;p>过期扫描不会遍历字典中所有的key，而是采用了一种简单的贪心策略。该策略的删除逻辑如下：&lt;/p>
+&lt;ol>
+&lt;li>从过期字典中随机选择20个key；&lt;/li>
+&lt;li>删除这20个key中已过期的key；&lt;/li>
+&lt;li>如果已过期key的比例超过25%，则重复步骤1。&lt;/li>
+&lt;/ol>
+&lt;h3 id="redis的回收策略有哪些">Redis的回收策略有哪些？&lt;/h3>
+&lt;p>Redis的回收策略包括noeviction、allkeys-lru、volatile-lru、allkeys-random和volatile-random等。&lt;/p>
+&lt;h3 id="redis的持久化机制的优缺点有哪些">Redis的持久化机制的优缺点有哪些？&lt;/h3>
+&lt;p>Redis的持久化机制包括RDB和AOF两种方式，各自的优缺点包括数据恢复速度、数据安全性、数据一致性等方面。&lt;/p>
+&lt;h3 id="保证缓存与数据库的双写一致性--">保证缓存与数据库的双写一致性&amp;ndash;&lt;/h3>
+&lt;p>四种同步策略：&lt;/p>
+&lt;p>想要保证缓存与数据库的双写一致，一共有4种方式，即4种同步策略：&lt;/p>
+&lt;ol>
+&lt;li>先更新缓存，再更新数据库；&lt;/li>
+&lt;li>先更新数据库，再更新缓存；&lt;/li>
+&lt;li>先删除缓存，再更新数据库；&lt;/li>
+&lt;li>先更新数据库，再删除缓存。&lt;/li>
+&lt;/ol>
+&lt;p>从这4种同步策略中，我们需要作出比较的是：&lt;/p>
+&lt;ol>
+&lt;li>更新缓存与删除缓存哪种方式更合适？&lt;/li>
+&lt;li>应该先操作数据库还是先操作缓存？&lt;/li>
+&lt;/ol>
+&lt;p>更新缓存还是删除缓存：&lt;/p>
+&lt;p>下面，我们来分析一下，应该采用更新缓存还是删除缓存的方式。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>更新缓存&lt;/p>
+&lt;p>优点：每次数据变化都及时更新缓存，所以查询时不容易出现未命中的情况。&lt;/p>
+&lt;p>缺点：更新缓存的消耗比较大。如果数据需要经过复杂的计算再写入缓存，那么频繁的更新缓存，就会影响服务器的性能。如果是写入数据频繁的业务场景，那么可能频繁的更新缓存时，却没有业务读取该数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>删除缓存&lt;/p>
+&lt;p>优点：操作简单，无论更新操作是否复杂，都是将缓存中的数据直接删除。&lt;/p>
+&lt;p>缺点：删除缓存后，下一次查询缓存会出现未命中，这时需要重新读取一次数据库。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>从上面的比较来看，一般情况下，删除缓存是更优的方案。&lt;/p>
+&lt;p>先操作数据库还是缓存：&lt;/p>
+&lt;p>下面，我们再来分析一下，应该先操作数据库还是先操作缓存。&lt;/p>
+&lt;p>首先，我们将先删除缓存与先更新数据库，在出现失败时进行一个对比：&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="https://uploadfiles.nowcoder.com/images/20220224/4107856_1645695077865/A8EAB406CDF2717DDC4C9AB91E37092E" alt="img" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>如上图，是先删除缓存再更新数据库，在出现失败时可能出现的问题：&lt;/p>
+&lt;ol>
+&lt;li>进程A删除缓存成功；&lt;/li>
+&lt;li>进程A更新数据库失败；&lt;/li>
+&lt;li>进程B从缓存中读取数据；&lt;/li>
+&lt;li>由于缓存被删，进程B无法从缓存中得到数据，进而从数据库读取数据；&lt;/li>
+&lt;li>进程B从数据库成功获取数据，然后将数据更新到了缓存。&lt;/li>
+&lt;/ol>
+&lt;p>最终，缓存和数据库的数据是一致的，但仍然是旧的数据。而我们的期望是二者数据一致，并且是新的数据。&lt;/p>
+&lt;h3 id="你要如何设计redis的过期时间">你要如何设计Redis的过期时间？&lt;/h3>
+&lt;ol>
+&lt;li>热点数据不设置过期时间，使其达到“物理”上的永不过期，可以避免缓存击穿问题；&lt;/li>
+&lt;li>在设置过期时间时，可以附加一个随机数，避免大量的key同时过期，导致缓存雪崩。&lt;/li>
+&lt;/ol>
+&lt;h2 id="redis性能优化">Redis性能优化：&lt;/h2>
+&lt;h3 id="redis常见性能问题有哪些">Redis常见性能问题有哪些？&lt;/h3>
+&lt;p>Redis常见性能问题包括内存使用过高、网络延迟过高、持久化性能不佳等。&lt;/p>
+&lt;h3 id="redis的操作是原子性的吗">Redis的操作是原子性的吗？&lt;/h3>
+&lt;p>Redis的操作是原子性的，是因为它采用了单线程模型，每个操作都是原子性的，保证了数据的一致性。&lt;/p>
+&lt;h3 id="redis事务包括哪些命令">Redis事务包括哪些命令？&lt;/h3>
+&lt;p>Redis事务包括MULTI、EXEC、DISCARD和WATCH等命令。&lt;/p>
+&lt;h3 id="redis常见性能问题的解决方案有哪些">Redis常见性能问题的解决方案有哪些？&lt;/h3>
+&lt;p>Redis常见性能问题的解决方案包括优化数据结构、优化网络配置、优化持久化配置等。&lt;/p>
+&lt;h3 id="redis的同步机制有哪些">Redis的同步机制有哪些？&lt;/h3>
+&lt;p>Redis的同步机制包括主从复制和哨兵机制。&lt;/p>
+&lt;p>20、Pipeline的好处是什么？&lt;/p>
+&lt;p>Pipeline的好处包括减少网络延迟、提高吞吐量等，需要使用时可以将多个命令打包发送到Redis服务器上执行。&lt;/p>
+&lt;p>Redis集群：&lt;/p>
+&lt;p>21、Redis需要把所有数据放到内存中吗？&lt;/p>
+&lt;p>是的，Redis需要把所有数据放到内存中，是因为它采用了基于内存的数据存储方式，可以快速读写数据。&lt;/p>
+&lt;p>22、Redis集群的原理是什么？&lt;/p>
+&lt;p>Redis集群的原理是将数据分散到多个节点上存储，通过主从复制和哨兵机制保证数据的可用性和一致性。&lt;/p>
+&lt;p>23、Redis集群会导致整个集群不可用的情况有哪些？&lt;/p>
+&lt;p>Redis集群会导致整个集群不可用的情况包括节点故障、网络分区等。&lt;/p>
+&lt;p>24、Redis支持的Java客户端有哪些？&lt;/p>
+&lt;p>Redis支持的Java客户端包括Jedis、Lettuce、Redisson等，官方推荐使用Lettuce。&lt;/p>
+&lt;p>25、Jedis与Redisson对比的优缺点有哪些？&lt;/p>
+&lt;p>Jedis与Redisson对比的优缺点包括性能、功能、易用性等方面。&lt;/p>
+&lt;p>26、Redis的密码可以通过哪些方式设置和验证？&lt;/p>
+&lt;p>Redis的密码可以通过配置文件设置，验证密码可以使用AUTH命令。&lt;/p>
+&lt;p>27、Redis哈希槽的概念是什么？&lt;/p>
+&lt;p>Redis哈希槽的概念是将所有的key分散到不同的槽中存储，每个槽对应一个节点，通过哈希算法计算key所在的槽。&lt;/p>
+&lt;p>28、Redis集群的主从复制模型是什么？&lt;/p>
+&lt;p>Redis集群的主从复制模型是将数据分散到多个节点上存储，每个节点都可以作为主节点或从节点，通过主从复制保证数据的可用性和一致性。&lt;/p>
+&lt;p>29、Redis集群不会有写操作丢失吗？&lt;/p>
+&lt;p>Redis集群不会有写操作丢失，因为它采用了主从复制和哨兵机制，可以保证数据的可用性和一致性。&lt;/p>
+&lt;p>30、Redis集群之间如何进行数据复制和故障转移？&lt;/p>
+&lt;p>Redis集群之间通过主从复制和哨兵机制进行数据复制和故障转移。&lt;/p>
+&lt;p>31、Redis集群最大节点个数是多少？&lt;/p>
+&lt;p>Redis集群最大节点个数是16384。&lt;/p>
+&lt;p>32、Redis集群可以选择不同的数据库吗？&lt;/p>
+&lt;p>Redis集群可以选择不同的数据库，通过SELECT命令进行切换。&lt;/p>
+&lt;p>33、如何测试Redis的连通性？&lt;/p>
+&lt;p>可以使用PING命令测试Redis的连通性。&lt;/p>
+&lt;p>Redis其他问题：&lt;/p>
+&lt;p>34、Redis事务是什么？&lt;/p>
+&lt;p>Redis事务是一组命令的集合，可以保证这组命令的原子性。&lt;/p>
+&lt;p>35、Redis key的过期时间可以通过哪些命令设置？&lt;/p>
+&lt;p>Redis key的过期时间可以通过EXPIRE命令设置，永久有效可以通过PERSIST命令设置。&lt;/p>
+&lt;p>36、如何进行内存优化？&lt;/p>
+&lt;p>可以通过优化数据结构、设置合理的过期时间、使用持久化机制等方式进行内存优化。&lt;/p>
+&lt;p>37、Redis回收进程是什么？&lt;/p>
+&lt;p>Redis回收进程会定期扫描内存中的数据，将过期的数据删除。&lt;/p>
+&lt;p>38、Redis的内存用完了会导致什么问题？&lt;/p>
+&lt;p>Redis的内存用完了会导致写操作失败，读操作仍然可以正常进行。&lt;/p>
+&lt;p>39、一个Redis实例最多能存放多少个keys？&lt;/p>
+&lt;p>一个Redis实例最多能存放约43亿个keys，List、Set、Sorted Set它们最多能存放约21亿个元素。&lt;/p>
+&lt;p>40、如何保证Redis中的数据都是热点数据？&lt;/p>
+&lt;p>可以使用热点数据分析和缓存预热等方式保证Redis中的数据都是热点数据。&lt;/p>
+&lt;p>41、Redis最适合的场景是什么？&lt;/p>
+&lt;p>Redis最适合的场景包括高并发、高性能、高可用性的应用场景，如电商、社交、游戏等。&lt;/p>
+&lt;p>42、如何扫描所有的key？&lt;/p>
+&lt;p>可以使用SCAN命令扫描所有的key，然后通过字符串匹配找出以某个固定的已知的前缀开头的key。&lt;/p>
+&lt;p>43、大量的key需要设置同一时间过期时需要注意什么？&lt;/p>
+&lt;p>需要注意的是，大量的key需要设置同一时间过期时，需要合理设置过期时间，避免过期时间集中在同一时间点。&lt;/p>
+&lt;p>44、如何使用Redis做异步队列？&lt;/p>
+&lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
+&lt;p>45、Redis分布式锁是什么？&lt;/p>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;h3 id="列数据库是什么">&lt;strong>列数据库是什么&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>列数据库&lt;/strong>是将传统的表格形式拆分为单列存储，&lt;strong>存储方式&lt;/strong>是列数据库与传统数据库的最大差别。这个差别同时&lt;strong>带给了列数据库高效的查询性能&lt;/strong>。&lt;/p>
+&lt;p>即每一列的数据的存储在一个连续空间的,且有序,因此只要找到了主键在第几个位置,就可以快速找到其他属性的元素.&lt;/p>
+&lt;h3 id="redismemcachemongodb特点和区别">&lt;strong>Redis、memcache、mongoDb特点和区别&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>Redis&lt;/strong>&lt;/p>
+&lt;p>内存型KV数据库，适合&lt;strong>读多写少&lt;/strong>的业务场景。很适合做缓存。&lt;/p>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>支持&lt;strong>多种数据类型&lt;/strong> string、list、set、zset、hash&lt;/li>
+&lt;li>&lt;strong>读写性能优异&lt;/strong>。&lt;/li>
+&lt;li>数据可以&lt;strong>持久化&lt;/strong>保持（AOF、快照），写入硬盘，&lt;/li>
+&lt;li>支持&lt;strong>灾难恢复，主从复制&lt;/strong>。主机会自动将数据同步到从机，可以进行读写分离。&lt;/li>
+&lt;/ul>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>redis较&lt;strong>难支持在线扩容&lt;/strong>，当集群数据达到上限在线扩容变得复杂。&lt;/li>
+&lt;li>&lt;strong>主从宕机&lt;/strong> 会导致前端读写失败，主从数据复制过程中，数据未完全复制到从机，会出现数据不一致。&lt;/li>
+&lt;/ul>
+&lt;p>应用场景：&lt;/p>
+&lt;ul>
+&lt;li>在程序和关系型数据库&lt;strong>中间做高速缓存&lt;/strong>&lt;/li>
+&lt;li>缓存&lt;strong>高频数据,降低IO次数&lt;/strong>&lt;/li>
+&lt;li>分布式架构中做&lt;strong>session共享&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>例子：&lt;/p>
+&lt;ul>
+&lt;li>比如微信token每两小时刷新一次，就比较适合用redis存储，读也比较方便；&lt;/li>
+&lt;li>在线游戏排行榜；计时达到一定时间后显示相关广告；按照用户投票和时间排序，更新新闻；&lt;/li>
+&lt;li>统计在某段特点时间里有多少特定用户访问了某个特定资源，统计哪些特定用户访问了某篇的文章；&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Memcache&lt;/strong>&lt;/p>
+&lt;p>高性能的&lt;strong>分布式内存对象缓存&lt;/strong>系统，基于一个&lt;strong>存储键/值对&lt;/strong>的hashmap&lt;/p>
+&lt;p>优点, 基于其&lt;strong>分布式特性&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>均衡请求&lt;/strong>&lt;/li>
+&lt;li>增加&lt;strong>缓存容量&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>部分容灾&lt;/strong>:多台MC服务器使用哈希一致性算法,当有一台挂掉时,能保留部分请求.&lt;/li>
+&lt;/ul>
+&lt;p>缺点&lt;/p>
+&lt;ul>
+&lt;li>只支持&lt;strong>简单的key/value数据&lt;/strong>结构，不像Redis可以支持丰富的数据类型。&lt;/li>
+&lt;li>&lt;strong>无法进行持久化&lt;/strong>，数据不能备份，只能用于缓存使用，且重启后数据全部丢失。&lt;/li>
+&lt;/ul>
+&lt;p>应用场景：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>分布式缓存&lt;/strong>&lt;/li>
+&lt;li>数据库前段缓存&lt;/li>
+&lt;li>服务器间数据共享&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>MongoDB&lt;/strong>&lt;/p>
+&lt;p>是&lt;strong>文档型&lt;/strong>的非关系型数据库，使用&lt;strong>json结构&lt;/strong>。&lt;/p>
+&lt;p>优点&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>查询功能&lt;/strong>强大：json文档结构的存储方式，能够更便捷的获取数据&lt;/li>
+&lt;li>能存储&lt;strong>海量数据&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>海量数据下性能优越&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>缺点&lt;/p>
+&lt;ul>
+&lt;li>占用&lt;strong>内存过大&lt;/strong> 。&lt;/li>
+&lt;li>&lt;strong>不支持事务&lt;/strong>。&lt;/li>
+&lt;li>模式自由,自由灵活的文件存储&lt;strong>格式带来的数据错误&lt;/strong>&lt;/li>
+&lt;li>MongoDB没有成熟的&lt;strong>维护工具&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>应用场景:&lt;/p>
+&lt;ul>
+&lt;li>存放&lt;strong>评论等半结构化数据&lt;/strong>&lt;/li>
+&lt;li>适合&lt;strong>存储json&lt;/strong>类型数据&lt;/li>
+&lt;li>&lt;strong>不经常变化&lt;/strong>,朋友圈,日志,直播礼物&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>应用场景&lt;/strong>&lt;/p>
+&lt;p>redis: 数据量较&lt;strong>小的更性能操作和运算&lt;/strong>上。&lt;/p>
+&lt;p>memcache: 用于在&lt;strong>动态系统中减少数据库负载&lt;/strong>，提升性能;做缓存，提高性能（适合读多写少，对于数据量比较大，可以采用sharding）。&lt;/p>
+&lt;p>MongoDB:主要解决&lt;strong>海量数据的访问效率&lt;/strong>问题。&lt;/p>
+&lt;h3 id="数据仓库">&lt;strong>数据仓库&lt;/strong>&lt;/h3>
+&lt;p>主要功能是 将OLTP经年累月所累积的大量数据，通过&lt;strong>数据仓库特有的数据储存架构进行 OLAP&lt;/strong>，最终帮助决策者能快速有效地从大量数据中，分析出有价值的信息，提供决策支持. &lt;strong>仍然是结构化数据&lt;/strong>&lt;/p>
+&lt;p>与数据库的区别: 数据库面向的是OLTP.，数据仓库面向OLAP&lt;/p>
+&lt;p>数据仓库是一个用以更好地支持企业决策分析处理的、面向主题的、集成的、不可更新的、随时间不断变化的数据集合&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>面向主题&lt;/strong>：主题是个抽象的概念，是&lt;strong>在较高层次上将企业信息系统中的数据综合、归类并进行分析利用&lt;/strong>的抽象，比如对于商场而言，主题就包括供应商、商品、顾客等&lt;/li>
+&lt;li>&lt;strong>集成&lt;/strong>的：数据仓库的数据是&lt;strong>从原有分散的数据库数据中抽取的&lt;/strong>，因此数据在进入前必然经过加工与集成，同一与综合&lt;/li>
+&lt;li>&lt;strong>不可更新&lt;/strong>的：所涉及的数据操作主要是数据查询，一般不会修改操作&lt;/li>
+&lt;li>随&lt;strong>时间变化&lt;/strong>：不可更新是指数据仓库的&lt;strong>用户&lt;/strong>进行分析处理是&lt;strong>不进行数据更新操作&lt;/strong>的，但不代表数据仓库的&lt;strong>整个生存周期中数据集合&lt;/strong>是不变的&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据湖">&lt;strong>数据湖&lt;/strong>:&lt;/h3>
+&lt;p>企业希望把**所有数据(结构化与非结构化)**都完整保存下来，进行有效管理与集中治理，挖掘和探索数据价值。&lt;/p>
+&lt;p>数据湖是一个集中存储各类&lt;strong>结构化和非结构化&lt;/strong>数据的大型数据仓库，它可以存储来自&lt;strong>多个数据源、多种数据类型&lt;/strong>的&lt;strong>原始数据&lt;/strong>，数据&lt;strong>无需经过结构化处理&lt;/strong>，就可以进行存取、处理、分析和传输。&lt;/p>
+&lt;p>对于数据仓库与数据湖的不同之处，可以类比为仓库和湖泊的区别：仓库存储着来自特定来源的货物；而湖泊的水来自河流、溪流和其他来源，&lt;strong>并且是原始数据&lt;/strong>。&lt;/p>
+&lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
+&lt;p>sql语句是分为动态部分和静态部分的。而动态部分在一般的情况下，对执行计划的影响是微乎其微的。&lt;/p>
+&lt;p>&lt;strong>同一个sql语句有不同动态部分生成的执行计划是相同的。&lt;/strong>&lt;/p>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>使用动态绑定，可以&lt;strong>减少sql的解析&lt;/strong>，从而减少了数据库引擎在sql解析上资源的消耗。&lt;/li>
+&lt;li>提高了&lt;strong>执行效率和可靠性&lt;/strong>。减少对数据库的访问实际上就是减少了数据库的工作量&lt;/li>
+&lt;/ul>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>可能长时间使用动态sql，由于参数的不同。可能sql的&lt;strong>执行效率不同&lt;/strong>；&lt;/li>
+&lt;li>&lt;strong>使用不当会有安全问题 sql注入&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="实现数据安全性控制的常用方法和技术">&lt;strong>实现数据安全性控制的常用方法和技术&lt;/strong>&lt;/h3>
+&lt;p>数据库管理系统提供的安全措施主要包括&lt;/p>
+&lt;ul>
+&lt;li>用户&lt;strong>身份鉴别&lt;/strong>&lt;/li>
+&lt;li>自主存取控制 Discretionary Access Control&lt;/li>
+&lt;li>强制存取控制 Mandatory Access Control&lt;/li>
+&lt;li>&lt;strong>视图&lt;/strong>机制&lt;/li>
+&lt;li>&lt;strong>审计&lt;/strong>&lt;/li>
+&lt;li>数据&lt;strong>加密&lt;/strong>存储和加密传输等&lt;/li>
+&lt;/ul>
+&lt;h3 id="登记日志的原则运行记录优先原则是什么为什么">&lt;strong>登记日志的原则（运行记录优先原则）是什么，为什么&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>运行记录优先原则&lt;/strong>:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>登记的次序严格按并发事务执行的时间次序&lt;/strong>&lt;/li>
+&lt;li>必须&lt;strong>先写日志文件，后写数据库&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>如果先写了数据库修改，而在运行记录中没有登记下这个修改，则以后就&lt;strong>无法恢复这个修改&lt;/strong>了。&lt;/p>
+&lt;p>如果先写日志，但没有修改数据库，按日志文件恢复时只不过是多执行一次&lt;strong>不必要的UNDO操作&lt;/strong>，并&lt;strong>不会影响数据库的正确性&lt;/strong>。&lt;/p>
+&lt;p>所以为了安全，一定要先写日志文件，即首先把日志记录写到日志文件中，然后写数据库的修改。这就是**“先写日志文件”的原则**&lt;/p>
+&lt;h3 id="sql-语句的执行过程并简单对各个步骤的所花费的代价大小进行描述和比较">SQL 语句的执行过程，并简单对各个步骤的所花费的代价大小进行描述和比较。&lt;/h3>
+&lt;ol>
+&lt;li>语法分析：确保语句的正确性和有效性。代价很小，语法分析器已预先定义了所有合法的 SQL 语法。&lt;/li>
+&lt;li>语义分析：需要检查语句中的&lt;strong>对象是否存在&lt;/strong>、&lt;strong>用户是否有访问权限&lt;/strong>等信息。代价比语法分析高一些。&lt;/li>
+&lt;li>解析（软解析和硬解析）：将 SQL 语句转换成执行计划，比语义分析高。需要进行语法转换、查询优化等复杂操作。
+&lt;ol>
+&lt;li>在软解析过程中，DBMS 会查找已经编译好的执行计划缓存，如果找到了对应的执行计划就直接使用.&lt;/li>
+&lt;li>否则会进行硬解析，生成新的执行计划，此时代价最大。&lt;/li>
+&lt;li>执行计划生成：生成最优的执行计划，以最小化查询的代价。代价最高，需要进行大量的计算和查询优化。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>查询执行：按照执行计划执行查询，并从磁盘中读取数据、对数据进行排序、过滤和聚合等操作，可能还需要进行大量的磁盘和内存交换。代价取决于查询本身的复杂度以及所涉及的数据量。&lt;/li>
+&lt;/ol>
+&lt;p>综合来看，SQL 语句的执行过程中，查询优化和查询执行往往是代价最大的两个步骤。在实际应用中，可以通过&lt;strong>优化查询语句的结构&lt;/strong>、&lt;strong>创建合适的索引&lt;/strong>、&lt;strong>优化查询计划&lt;/strong>等手段来提高查询性能，从而减少查询优化和查询执行所需的代价。&lt;/p>
+&lt;h3 id="sql-优化原理是什么优化的逻辑是怎样的对此经验之谈">&lt;strong>SQL 优化原理是什么？优化的逻辑是怎样的？对此经验之谈&lt;/strong>&lt;/h3>
+&lt;p>SQL 优化的原理：&lt;/p>
+&lt;ul>
+&lt;li>通过&lt;strong>优化查询的执行计划&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>减少查询的时间和资源消耗&lt;/strong>&lt;/li>
+&lt;li>提高数据库系统的&lt;strong>性能&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>SQL 优化的逻辑一般可以分为以下几个步骤：&lt;/p>
+&lt;ol>
+&lt;li>优化&lt;strong>查询语句&lt;/strong>：对查询语句进行优化，包括&lt;strong>重写查询语句&lt;/strong>、&lt;strong>使用索引&lt;/strong>、&lt;strong>避免全表扫描&lt;/strong>等。&lt;/li>
+&lt;li>优化&lt;strong>数据库结构&lt;/strong>：根据业务需求优化数据库中表的&lt;strong>结构、索引、分区&lt;/strong>等，以提高查询和更新操作的性能。&lt;/li>
+&lt;li>优化&lt;strong>硬件环境&lt;/strong>：优化数据库所在的硬件环境，包括 CPU、内存、磁盘、网络等，以提高数据库系统的整体性能。&lt;/li>
+&lt;/ol>
+&lt;p>对于 SQL 优化的经验之谈，以下是一些常见的建议：&lt;/p>
+&lt;ol>
+&lt;li>将&lt;strong>过滤条件进行排序&lt;/strong>,好的过滤条件先做&lt;/li>
+&lt;li>使用&lt;strong>join来暗示表连接顺序&lt;/strong>，当有多表连接操作时，考虑使用&lt;strong>exists和in操作来优化&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>避免过度连接表&lt;/strong>，将多维度的查询进行降维处理，一次连接的表不要超过3张，超过就将非关联子查询变成内嵌视图。
+&lt;ul>
+&lt;li>聚合子查询转化为JOIN&lt;/li>
+&lt;li>非关联子查询变成内嵌视图&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>避免在高层使用distinct&lt;/strong>，用exists和in来处理&lt;/li>
+&lt;li>*&lt;em>避免在高层使用select &lt;em>&lt;strong>, 这样会产生&lt;/strong>冗余的结果集，降低性能&lt;/em>&lt;/em>&lt;/li>
+&lt;li>&lt;strong>不要滥用子查询&lt;/strong>. 子查询有如下好处,除这些好处外,不要用
+&lt;ol>
+&lt;li>分辨过滤条件的好坏&lt;/li>
+&lt;li>避免顶层的distinct&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>总之，SQL 优化需要根据具体的情况进行分析和优化，需要综合考虑查询的复杂度、数据的规模和类型、硬件环境等因素。&lt;/p>
+&lt;h3 id="sql有什么优化策略从硬件系统应用上分析">&lt;strong>SQL有什么优化策略，从硬件、系统、应用上分析&lt;/strong>&lt;/h3>
+&lt;p>这个优化法则归纳为5个层次：&lt;/p>
+&lt;ul>
+&lt;li>减少数据访问（&lt;strong>减少磁盘访问&lt;/strong>）系统上
+&lt;ul>
+&lt;li>正确使用&lt;strong>索引&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>优化执行计划&lt;/strong>&lt;/li>
+&lt;li>尽量使用&lt;strong>自带函数&lt;/strong>,慎用自定义函数.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>减少服务器CPU开销（&lt;strong>减少CPU&lt;/strong>及内存开销）
+&lt;ul>
+&lt;li>使用&lt;strong>绑定变量&lt;/strong>&lt;/li>
+&lt;li>合理使用&lt;strong>排序&lt;/strong>&lt;/li>
+&lt;li>减少&lt;strong>模糊查找&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>返回&lt;strong>更少数据&lt;/strong>（减少网络传输或磁盘访问）应用上
+&lt;ul>
+&lt;li>数据&lt;strong>分页&lt;/strong>处理&lt;/li>
+&lt;li>返回&lt;strong>只需要的字段&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>减少交互次数（减少网络传输）应用上
+&lt;ul>
+&lt;li>一次连接批量处理数据&lt;/li>
+&lt;li>使用存储过程.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>利用更多资源（硬件上）
+&lt;ul>
+&lt;li>扩大内存&lt;/li>
+&lt;li>增加CPU&lt;/li>
+&lt;li>更快的硬盘&lt;/li>
+&lt;li>更高速的网络&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="b树与b树的结构">&lt;strong>B树与B+树的结构&lt;/strong>&lt;/h3>
+&lt;p>B树是&lt;strong>多关键字平衡树&lt;/strong>,且节点内的关键字是有序的.每个节点都存储其关键字指向的具体数据地址.&lt;/p>
+&lt;p>B+树是在B树的基础上, 非叶子节点仅指向其多个子节点的地址 , 只有叶子节点指向具体以堆文件形式存放的数据块地址. 相邻叶子节点也通过指针连接. 方便快速范围查询.&lt;/p>
+&lt;p>不同之处:&lt;/p>
+&lt;ul>
+&lt;li>层数更低: 相比于B树, B+树的非叶子节点全部用于索引,使得B+树的层数更低,&lt;/li>
+&lt;li>效率稳定, B+树一定只能在叶子节点找到数据的具体地址, 每次查询的路径长度基本一致.&lt;/li>
+&lt;li>范围查询: B+树的叶子节点有next指针, 使得范围查询效率更高.&lt;/li>
+&lt;/ul>
+&lt;h3 id="为什么不用其他数据结构做索引而用b树或b树">&lt;strong>为什么不用其他数据结构做索引，而用B树或B+树&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>链表, 链表的查询速度是O（N），每次查询都得从链表头开始查询，例如上面查询“xiaxia”，如果xiaxia在1000的位置，那么需要遍历1000次才能查找到。&lt;/li>
+&lt;li>数组:查询速度O（1），但删除插入是O(n), 且数据必须存在于内存, 索引过大时无法存储.&lt;/li>
+&lt;li>平衡二叉树
+&lt;ul>
+&lt;li>二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少. 但在树形结构下,影响查询效率的因素主要是树的深度, B树的深度远比平衡二叉树小。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="b树索引的适用范围">&lt;strong>B树索引的适用范围&lt;/strong>:&lt;/h3>
+&lt;ul>
+&lt;li>全键值匹配&lt;/li>
+&lt;li>匹配最左前缀
+匹配列前缀&lt;/li>
+&lt;li>匹配范围值
+精确匹配某一列并范围匹配另外一列
+只访问索引的查询&lt;/li>
+&lt;/ul>
+&lt;h3 id="什么时候使用b树索引--b树的索引可用性">&lt;strong>什么时候使用B树索引 / B树的索引可用性&lt;/strong>:&lt;/h3>
+&lt;p>1、只需要获取少量的行;(确保使用索引比不使用索引更高效)&lt;/p>
+&lt;p>2、即便获取很多行，但是可以只使用索引不使用基本表。(索引中包含整个表)&lt;/p>
+&lt;h3 id="索引分类">&lt;strong>索引分类&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>按照数据存放的&lt;strong>物理位置为顺序&lt;/strong>的索引结构，聚集索引的叶子节点包含了整个数据行。&lt;/li>
+&lt;li>每个表&lt;strong>只能有一个聚集索引&lt;/strong>，它对应的索引键值也是表的主键或唯一约束条件。&lt;/li>
+&lt;li>通过聚集索引，我们可以快速地按照主键或唯一约束条件查询和排序表中的数据, &lt;strong>提高多行检索速度&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>非聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>索引顺序与数据&lt;strong>物理列排序无关&lt;/strong>，&lt;strong>叶节点仍然是索引节点(指向主键)&lt;/strong>&lt;/li>
+&lt;li>每个表可以有&lt;strong>多个非聚集索引&lt;/strong>，这些索引可以覆盖&lt;strong>多个数据列&lt;/strong>，以满足不同的查询需求。&lt;/li>
+&lt;li>通过非聚集索引，快速地&lt;strong>定位表中符合查询条件的记录的主键&lt;/strong>，然后进行(回表查询)。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>覆盖索引&lt;/strong>: 如果&lt;strong>非聚簇符合索引&lt;/strong>已经能够得到&lt;strong>查询的所有信息&lt;/strong>了，就&lt;strong>无需再回表&lt;/strong>，即只按照条件&lt;strong>找主键&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>联合索引&lt;/strong>：同时对&lt;strong>多列创建索引&lt;/strong>，&lt;strong>叶子节点会同时包含每个索引列的值&lt;/strong>，并且同时&lt;strong>根据多列排序&lt;/strong>，这个排序和我们所理解的字典序类似。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>哈希索引&lt;/strong>&lt;/p>
+&lt;p>所有的数据类型，通过哈希函数变成一个&lt;strong>等长的哈希值&lt;/strong>。&lt;/p>
+&lt;p>将这个&lt;strong>等长的哈希值&lt;/strong>作为&lt;strong>组织成索引的结构 —— 哈希链表&lt;/strong>。&lt;/p>
+&lt;p>哈希链表的结点上，&lt;strong>储存哈希值&lt;/strong> 和 &lt;strong>指向记录哈希值的地址 uid（索引行的地址）&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>哈希索引能做什么不能做什么？&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>哈希索引只能用来进行&lt;strong>全键值&lt;/strong>的查询
+&lt;ul>
+&lt;li>不能前缀查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引只支持&lt;strong>击中运算符&lt;/strong>
+&lt;ul>
+&lt;li>击中运算符：= , != , in&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持范围查询&lt;/strong>&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持对字段排序&lt;/strong>(因为只支持击中运算符)&lt;/li>
+&lt;li>哈希索引&lt;strong>读取效率高于B树索引&lt;/strong>
+&lt;ul>
+&lt;li>哈希索引结构非常&lt;strong>紧凑&lt;/strong>.&lt;/li>
+&lt;li>哈希索引&lt;strong>使用数值的比较&lt;/strong>,远&lt;strong>高于字符串比较&lt;/strong>速度.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>函数索引&lt;/strong>&lt;/p>
+&lt;p>B树索引是对一个字段构建索引,而函数索引是对&lt;strong>这个字段上的一个函数值&lt;/strong>构建索引.&lt;/p>
+&lt;p>&lt;strong>结构同样是B+树索引,只是节点的关键字是函数的值而不是字段值.&lt;/strong>&lt;/p>
+&lt;p>是最具创造力的索引结构,用得好可用解决并发冲突,优化存储结构.等很多事情.&lt;/p>
+&lt;p>&lt;strong>能用在哪&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>不区分大小写&lt;/strong>查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>T、F比例巨大差异&lt;/strong>的查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>项目表有两个状态, active和inactive.&lt;/p>
+&lt;p>要求active的项目,必须要有唯一名. 而inactive没有这个要求.&lt;/p>
+&lt;p>解决方法: &lt;strong>函数索引上构建唯一索引&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>位图索引&lt;/strong>&lt;/p>
+&lt;p>用一个&lt;strong>索引键条目（01图）存储指向多行&lt;/strong>的指针。&lt;/p>
+&lt;p>&lt;strong>位图索引适合&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>相异基数(distinct cardinality)低&lt;/strong>的字段进行快速查询 (复合查询)
+&lt;ul>
+&lt;li>可以取的值的范围小: 性别、真假,年龄段 等.&lt;/li>
+&lt;li>使用B树索引,需要复合索引时 组合数多. 且共同的值多, 可能使得叶子结点远少于索引结点.&lt;/li>
+&lt;li>使用哈希索引,碰撞率贼高.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>大量&lt;strong>临时查询的聚合&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>位图索引对于写操作非常不友好&lt;/strong>/位图索引&lt;strong>不能应用在OLTP&lt;/strong>应用中的原因&lt;/p>
+&lt;p>&lt;strong>原因&lt;/strong>: 位图索引的&lt;strong>键值指向多行&lt;/strong>, 如果一个session修改了一个索引的数据,则&lt;strong>该索引指向的所有行都会被查找到&lt;/strong>.无法锁定单独一个条目,&lt;strong>可能在修改时要锁住整个目录&lt;/strong>,导致并发性下降严重 几乎变成串行化.&lt;/p>
+&lt;p>&lt;strong>位图连结索引&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>允许使用&lt;strong>另外某个表的列&lt;/strong> 对 &lt;strong>一个给定表&lt;/strong> 建立索引。&lt;/li>
+&lt;li>实际上，这就是允许&lt;strong>对一个索引结构&lt;/strong>(而不是表本身)中的数据进行&lt;strong>逆规范化&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>位图联结索引的&lt;strong>前提条件&lt;/strong>:&lt;/p>
+&lt;p>&lt;strong>必须连接到另一张表的主键/唯一键&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>反向键索引或叫避向索引“eseindex)&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>将键值反向插入，以免并发插入时都插入到同一个块。&lt;/li>
+&lt;li>此时进程将竞争同一个索引页,插入并发性大幅度下降&lt;/li>
+&lt;/ol>
+&lt;h3 id="索引的5种优点">&lt;strong>索引的5种优点&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>可以大大加快数据的&lt;strong>检索&lt;/strong>速度&lt;/li>
+&lt;li>可以加速表和表之间的&lt;strong>连接&lt;/strong>，特别是在实现数据的参照完整性方面特别有意义&lt;/li>
+&lt;li>在使用分组和排序子句进行数据检索式，同样可以显著减少查询中&lt;strong>分组和排序&lt;/strong>的时间&lt;/li>
+&lt;li>通过创建&lt;strong>唯一性&lt;/strong>索引，可以保证数据库表中每一行数据的唯一性&lt;/li>
+&lt;li>通过使用索引，可以在查询的过程中，使用&lt;strong>优化隐藏器&lt;/strong>，提高系统的性能&lt;/li>
+&lt;/ul>
+&lt;h3 id="系统对外键建立索引很普遍为什么要对外键建立索引">&lt;strong>系统对外键建立索引很普遍。为什么要对外键建立索引？&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>加快对于父表和子表的&lt;strong>连接查询&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>删除操作&lt;/strong>时，可以快速通过外键的索引找到&lt;strong>主表中&lt;/strong>要删除的行。&lt;/li>
+&lt;li>&lt;strong>避免死锁&lt;/strong>, 有外键时会导致两个表都要上锁.
+&lt;ul>
+&lt;li>添加索引能够让&lt;strong>上锁后操作的时间变短&lt;/strong>, .并发时需要 A表加锁/B表加锁。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="不加索引的外键情况">&lt;strong>不加索引的外键情况&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>子表不容易&lt;/strong>修改
+&lt;ul>
+&lt;li>不从子表中删除记录&lt;/li>
+&lt;li>是一个字典表,不容易被修改.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一般&lt;strong>不进行父表和子表的连接查询&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="建立索引的条件--请解释数据库管理员如何为数据库建立一组好的索引">&lt;strong>建立索引的条件 / 请解释数据库管理员如何为数据库建立一组好的索引&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>经常搜索&lt;/strong>的列&lt;/li>
+&lt;li>经常&lt;strong>使用where子句&lt;/strong>的列上，加快条件的判断速度&lt;/li>
+&lt;li>经常进行&lt;strong>范围搜索&lt;/strong>的列上，因为索引已经排序了，其指定的范围是连续的.&lt;/li>
+&lt;li>&lt;strong>唯一性&lt;/strong>的列:在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li>
+&lt;li>经常&lt;strong>需要排序&lt;/strong>的列上，因为索引已经排序了，查询可以利用索引的排序，加速排序查询时间.&lt;/li>
+&lt;li>&lt;strong>经常用在连接的列&lt;/strong>，这些列&lt;strong>主要是外键&lt;/strong>，可以加快连接速度&lt;/li>
+&lt;li>&lt;strong>数据分布较广的列&lt;/strong>:&lt;/li>
+&lt;/ul>
+&lt;h3 id="哪些列上不应该加索引">&lt;strong>哪些列上不应该加索引&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>很少使用&lt;/strong>或者参考的列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>很少的数据值&lt;/strong>列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>text,image,bit数据类型&lt;/strong>的列不应该加索引。
+&lt;ul>
+&lt;li>比较和排序的开销大.&lt;/li>
+&lt;li>因为这些列要么数据量很大，要么很小，不利于使用索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>修改需求大&lt;/strong>的列.&lt;/li>
+&lt;/ul>
+&lt;h3 id="为什么数据库管理员一般不会给所有单个属性都建立索引请写出两条原因">&lt;strong>为什么数据库管理员一般不会给所有单个属性都建立索引，请写出两条原因&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>过多的索引会&lt;strong>加重优化器&lt;/strong>查找最优查询计划的负担&lt;/li>
+&lt;li>会增加数据库&lt;strong>维护索引的负担&lt;/strong>.&lt;/li>
+&lt;li>一旦聚集索引改变，&lt;strong>所有非聚集索引都会跟着改变&lt;/strong>&lt;/li>
+&lt;li>该列是&lt;strong>属于不该建立索引&lt;/strong>的列时.&lt;/li>
+&lt;/ul>
+&lt;h3 id="为什么没有使用我的索引">&lt;strong>为什么没有使用我的索引&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>使用B+树索引&lt;/strong>，但&lt;strong>没有使用索引的最前列&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>不能为NULL建立索引条目&lt;/strong>
+&lt;ul>
+&lt;li>&lt;strong>COUNT(*)&lt;/strong>， 包括NULL, t会引起&lt;strong>全表扫描&lt;/strong>，&lt;/li>
+&lt;li>is not NULL&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>函数查询&lt;/strong>时不使用索引&lt;/li>
+&lt;li>&lt;strong>隐形函数查询&lt;/strong>，比如**&amp;lt;&amp;gt;不等于符**，会&lt;strong>引起全表扫描&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>隐式类型转换&lt;/strong>，如字符串转成数值来比较&lt;/li>
+&lt;li>如果用了我的索引，实际反而会更慢。
+&lt;ul>
+&lt;li>即查询&lt;strong>优化器发现有比使用你的索引更快的访问方式&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>没有正确的统计信息&lt;/strong>，造成CBO无法做出正确的选择&lt;/li>
+&lt;li>两个条件用 &lt;strong>or 连接&lt;/strong>，一个有索引一个没索引&lt;/li>
+&lt;/ul>
+&lt;p>总结成两条：&lt;/p>
+&lt;ul>
+&lt;li>“不能使用索引，使用索引会返回不正确的结果”&lt;/li>
+&lt;li>“不该使用索引，如果使用了索引就会变得更慢”&lt;/li>
+&lt;/ul>
+&lt;h3 id="索引带来的问题负面的使用索引会降低查询效率的情况">&lt;strong>索引带来的问题（负面的）,使用索引会降低查询效率的情况&lt;/strong>：&lt;/h3>
+&lt;ul>
+&lt;li>总是&lt;strong>存在索引不被使用&lt;/strong>的情况。
+&lt;ul>
+&lt;li>存在索引时, 创建索引会带来系统的维护和空间的开销.&lt;/li>
+&lt;li>因此索引如果不被使用反而会降低效率.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>当&lt;strong>一次查询的结果集较大&lt;/strong>时，索引会影响效率。
+&lt;ul>
+&lt;li>因为&lt;strong>索引是针对点查询&lt;/strong>的，而不是针对某个范围查询的。此时有可能不使用索引反而效率更高.&lt;/li>
+&lt;li>一般结果集在10%以下可以考虑使用索引。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对于&lt;strong>修改需求大的表&lt;/strong>中，使用索引会严重影响数据库更新操作的效率。&lt;/li>
+&lt;li>太多索引会让&lt;strong>设计不稳定&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="设计索引时需要考虑的主要因素">&lt;strong>设计索引时需要考虑的主要因素&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>在&lt;strong>适合加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>不在&lt;strong>不应该加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>不要加&lt;strong>过多&lt;/strong>的索引&lt;/li>
+&lt;li>确保建立该索引后&lt;strong>能够被使用&lt;/strong>&lt;/li>
+&lt;li>确保索引带来的&lt;strong>好处大于索引带来的问题&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="请描述oracle中iot的物理存储结构和读取数据的方式并与堆文件的物理存储结构和读取数据的方式进行比较后解释iot的适用范围">&lt;strong>请描述Oracle中IOT的物理存储结构和读取数据的方式，并与堆文件的物理存储结构和读取数据的方式进行比较后解释IOT的适用范围。&lt;/strong>&lt;/h3>
+&lt;p>IOT（&lt;strong>Index-Organized&lt;/strong> Table）索引组织表 是一种基于B+树的索引类型，它的索引键包括表的主键和数据列。IOT的数据访问和索引访问是一体化的。&lt;/p>
+&lt;p>IOT通常用于&lt;strong>需要频繁地使用主键查询&lt;/strong>的表，因为IOT将主键值和对应的数据行存储在同一个B+树节点中，可以减少磁盘I/O操作的次数，从而提高查询性能。&lt;/p>
+&lt;p>与堆文件的存储结构相比。&lt;/p>
+&lt;ul>
+&lt;li>堆文件的存储是&lt;strong>随机存储&lt;/strong>的，而IOT使用的B树结构是&lt;strong>根据主键按照一定顺序存储&lt;/strong>的。&lt;/li>
+&lt;li>堆文件的读取是需要&lt;strong>遍历整个堆文件数据&lt;/strong>的，而IOT则可以&lt;strong>通过主键的信息&lt;/strong>快速定位到相关节点，读取数据。&lt;/li>
+&lt;/ul>
+&lt;p>IOT适用范围：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>主键很少更新&lt;/strong>。因为主键更新会导致B树结构的重新调整。&lt;/li>
+&lt;li>&lt;strong>多用主键查询&lt;/strong>。因为IOT是以主键为节点构造B树的，以主键信息查询能较快找到对应节点。&lt;/li>
+&lt;li>&lt;strong>很少插入新数据&lt;/strong>。插入新数据会导致B树重新调整。&lt;/li>
+&lt;li>希望数据已某种特定的&lt;strong>顺序物理存储&lt;/strong>，那也适合用IOT&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IOT的优点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>记录排序&lt;/strong>，查询效率贼强&lt;/li>
+&lt;li>&lt;strong>节约磁盘空间开销&lt;/strong>，主键没有空间开销，索引就是数据&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IOT缺点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>插入效率也许低于堆文件&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于&lt;strong>经常更新的表不适合用IOT&lt;/strong>，因为维护的索引代价大，更何况是多字段索引&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="聚簇索引--clustered-index-或者--clustering-index">&lt;strong>聚簇索引 -clustered index 或者 -clustering index&lt;/strong>&lt;/h3>
+&lt;p>为了使得&lt;strong>表中数据有序&lt;/strong>, 很多数据库使用了&lt;strong>聚簇索引&lt;/strong>.&lt;/p>
+&lt;p>聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，这个叶子节点也被称为数据页。每张表只能拥有一个聚簇索引。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>范围查询效率非常高&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>代价: &lt;strong>非范围查询也要进行范围扫描&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>主键更新会导致记录的重新排序，从而导致记录物理位置的变化&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>为了更加安全, 聚簇索引可以和索引组织表一样，根据主键来定义. 因为主键被更新的概率小,或者说不应该被更新.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>聚簇索引&lt;strong>也可以是非主键索引,这是和索引组织表不一样的地方&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>聚簇索引和IOT的区别在于索引键的选择和存储方式。&lt;/p>
+&lt;ul>
+&lt;li>聚簇索引只包括表的主键，并将表的数据按照主键值的顺序存储在硬盘上；&lt;/li>
+&lt;li>IOT包括表的主键和数据列，并将数据和索引存储在同一个结构中。&lt;/li>
+&lt;/ul>
+&lt;h3 id="分区的作用与类型">分区的作用与类型&lt;/h3>
+&lt;p>&lt;strong>分区的作用&lt;/strong>: 提高&lt;strong>并发性和并行性&lt;/strong>，从而增强系统架构的&lt;strong>可伸缩性&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>分区的类型&lt;/strong>（不一定是方式）&lt;/p>
+&lt;p>循环分区：&lt;strong>不受数据影响&lt;/strong>的内部机制。分区定义为各个磁盘的存储区域；可以看作是随意散布数据的机制；保持更改带来的磁盘I/O操作的平衡&lt;/p>
+&lt;p>数据驱动分区：根据**一个或多个字段中的值(分区键)**来定义分区。是一种手工分区，一般叫分区视图.&lt;/p>
+&lt;h3 id="数据驱动分区的实现方式">&lt;strong>数据驱动分区的实现方式&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>哈希分区(Hash-partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>对&lt;strong>分区键进行哈希运算&lt;/strong>，根据运算结果进行分区.&lt;/li>
+&lt;li>能保证&lt;strong>根据分区键可以快速找到记录&lt;/strong>，但对范围搜索没有任何帮助。&lt;/li>
+&lt;li>其实更接近与循环分区, 只是它还能&lt;strong>负载均衡提高并发&lt;/strong>的能力.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>范围分区(Range- partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>滑动窗口，就是范围分区，&lt;strong>根据连续数据的范围&lt;/strong>对数据进行分区。&lt;/li>
+&lt;li>&lt;strong>非常适合处理历史数据&lt;/strong>，每一个分区专门用来存储&lt;strong>特定范围内的数据&lt;/strong>。&lt;/li>
+&lt;li>一般系统还会设定&lt;strong>else分区&lt;/strong>,来存储所有&lt;strong>可能漏网的数据&lt;/strong>(其他)&lt;/li>
+&lt;li>应用: 时间范围, 字母范围&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>列表分区(List-partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>是一种最具手工风格的分区类型，适合&lt;strong>定制某种特殊的解决方案&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>分区键必须明确指定&lt;/strong>，但&lt;strong>分区键只能有一列&lt;/strong>，不能像范围或者哈希分区那样同时指定多个列做为分区键，但它的&lt;strong>单个分区对应值可以是多个&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>一旦插入的列值不在分区范围内，则插入/更新就会失败.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因此
+通常建议使用列表分区时，要创建一个&lt;strong>default分区&lt;/strong>存储那些&lt;strong>不在指定列表内的记录&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>复合分区&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>很多数据库中分区可以嵌套，即分区可以再建立子分区，叫sub partition.子分区是分区内的分区。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>一种二位分区处理的方法，比如在时间的分区中，建立哈希分区,范围-哈希分区、范围-列表分区等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>OB把它叫做二级分区&lt;/strong>，再举个例子，&lt;strong>类似于用户账单领域，会按照user id做哈希分区，按照账单创建时间做范围分区&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>数据驱动的分区是最常使用的分区方式，用数据值本身作为分区的基础，这时候&lt;strong>数据分区最具有开发使用的价值&lt;/strong>。&lt;/p>
+&lt;h3 id="分区是如何提高查询效率">&lt;strong>分区是如何提高查询效率&lt;/strong>&lt;/h3>
+&lt;p>分区后，逻辑上表仍然是一张完整的表，只是将表中的数据在物理上存放到多个表空间（物理文件上），利于高速检索，&lt;strong>查询数据时，不至于每次都扫描整张表&lt;/strong>.&lt;/p>
+&lt;h3 id="分区的优点和缺点">&lt;strong>分区的优点和缺点&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>优点&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>增强&lt;strong>可用性&lt;/strong>：如果表的某个分区出现故障，表在其他分区的数据仍然可用；&lt;/li>
+&lt;li>&lt;strong>维护&lt;/strong>方便：如果表的某个分区出现故障，需要修复数据，只修复该分区即可；&lt;/li>
+&lt;li>&lt;strong>均衡I/O&lt;/strong>：可以把不同的分区映射到磁盘以平衡I/O，改善整个系统性能；&lt;/li>
+&lt;li>改善&lt;strong>查询性能&lt;/strong>：对分区对象的查询可以仅搜索自己关心的分区，提高检索速度。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>缺点&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>除了堆文件之外的任何存储方法，都会&lt;strong>带来复杂性&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>选错存储方式&lt;/strong>会带来大幅度的性能降低&lt;/li>
+&lt;li>降低了并发个数，但如果&lt;strong>涉及数据量非常庞大&lt;/strong>，&lt;strong>降低并发所带来的缺陷远远小于分区所带来的性能提高&lt;/strong>&lt;/li>
+&lt;li>由于&lt;strong>强制的部分数据聚合&lt;/strong>可能会&lt;strong>导致其他数据的分散&lt;/strong>，所以不同的查询请求也可能会形成性能上的矛盾&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据分区的最佳方法">&lt;strong>数据分区的最佳方法&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>当&lt;strong>数据分区键均匀分布时&lt;/strong>，分区表查询收益最大&lt;/li>
+&lt;li>&lt;strong>避免更新分区键&lt;/strong>, 更新分区键会影响数据移动&lt;/li>
+&lt;li>&lt;strong>不在更新数据频繁时使用分区&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>考虑整体&lt;/strong>,当有多个处理执行时，解决方案就不应该过度偏袒其中任何一个&lt;/li>
+&lt;/ul>
+&lt;h3 id="面向对象中可持久化类的父类子类继承关系如何映射到关系数据库中有哪几种情况-每种情况下的表结构设计是怎姓的层次结构">&lt;strong>面向对象中可持久化类的父类子类继承关系，如何映射到关系数据库中，有哪几种情况, 每种情况下的表结构设计是怎姓的。(层次结构)&lt;/strong>&lt;/h3>
+&lt;p>例子:&lt;/p>
+&lt;p>指挥官和士兵&lt;/p>
+&lt;p>每人都有唯一的ID, 名字(name), 描述(description)&lt;/p>
+&lt;p>&lt;strong>邻接模型&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>层次中&lt;strong>父记录ID&lt;/strong>作为子记录(childrow) 的一个属性。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>设计直观简单,但会导致&lt;strong>递归的查询&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>原理&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>在邻接表中&lt;/strong>，所有的数据均拥有一个Parent字段，用来存储它的父节点。&lt;/li>
+&lt;li>当前节点为根节点的话，它的父节点则为NULL。&lt;/li>
+&lt;li>在遍历的时候，可以使用递归来实现查询整棵树，从根节点开始，不断寻找子节点（父节点-&amp;gt;子节点-&amp;gt;父节点-&amp;gt;子节点）&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>优点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>快速获取直接父子节点&lt;/strong>，很容易&lt;strong>插入新节点&lt;/strong>。&lt;/li>
+&lt;li>容易实现
+&lt;ul>
+&lt;li>使用Connect by容易实现&lt;/li>
+&lt;li>递归实现，用oracle的with，表示出树的层次&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>三种树状模型中&lt;strong>性能最高&lt;/strong>，每秒返回的查询记录最多；只需要遍历一次，&lt;strong>但不是基于关系的处理&lt;/strong>，性能最好&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>缺点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>为了避免多次交互,&lt;strong>每次获得整张表&lt;/strong>
+&lt;ul>
+&lt;li>比如查询后代节点树，需要用到递归，要发送多次的请求，与数据库交互多次。&lt;/li>
+&lt;li>一般&lt;strong>为了避免递归给数据库发送sql&lt;/strong>，采用&lt;strong>一次性读取整个表&lt;/strong>的数据，然后在应用端构建树的方法。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>查询子树性能不好&lt;/strong>
+&lt;ul>
+&lt;li>只需要某一个子树，仍然要把整个树加载出来，性能上并不好；&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>删除中间节点&lt;/strong>
+&lt;ul>
+&lt;li>要删除中间层结点时，需要同时删除该节点下的所有节点，否则会出现孤立节点；&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>举例&lt;/strong>:&lt;/p>
+&lt;p>表结构定义 : model(&lt;strong>id&lt;/strong>,parent_id,description,commander)&lt;/p>
+&lt;p>&lt;strong>自顶向下SQL&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">select level,* from model
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">connect by parent_id = prior.id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">start with commander = &amp;#34;Root Commander&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不用connect by时，需要使用with as来递归&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="o">//&lt;/span>&lt;span class="err">定义起点&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">commader&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;Root Commander&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="err">定义递归体&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parant&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parent&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">parent_id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parent&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">recursive_query&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">as&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">commader&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;Root Commander&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">union&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">all&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parant&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">recursive_query&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parent&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">child&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">parent_id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">parent&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="o">//&lt;/span>&lt;span class="err">但这是层次遍历&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">recursive_query&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>自底向上SQL&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">level&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">connect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">prior&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">parent_id&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">start&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">with&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;%Highland%&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="err">无法看到树&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">因为无法存储中间结果集&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>物化路径模型&lt;/strong>&lt;/p>
+&lt;p>每一个节点都存储节点的&lt;strong>完整路径&lt;/strong>，一般用字符串存，它允许节点之间有顺序.&lt;/p>
+&lt;p>每个节点保存的结构信息里包括&lt;/p>
+&lt;ul>
+&lt;li>祖先各节点的路径&lt;/li>
+&lt;li>后代节点路径的一部分&lt;/li>
+&lt;li>兄弟节点路径的长度&lt;/li>
+&lt;li>节点所在层次等等。&lt;/li>
+&lt;/ul>
+&lt;p>1代表第一章;&lt;/p>
+&lt;p>1.2代表第一章第二节;
+1.2.3代表第一章第二节
+第三小节。&lt;/p>
+&lt;p>&lt;strong>优点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>性能良好&lt;/strong>，借助了unix文件目录的思想，主要是&lt;strong>以空间换时间&lt;/strong>；&lt;/li>
+&lt;li>&lt;strong>可靠性&lt;/strong>（&lt;strong>容易实现&lt;/strong>，不容易出bug）&lt;/li>
+&lt;li>&lt;strong>可维护性&lt;/strong>（简单、不需要依赖大量额外的处理逻辑）&lt;/li>
+&lt;li>并且通过&lt;strong>比较路径字符串长度&lt;/strong>也容易知道树的深浅&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>缺点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>不能实现无限深度的树&lt;/strong>，每个节点的子节点数有上限；&lt;/li>
+&lt;li>而且深度越大，路径越长，还要解决操作过程中&lt;strong>节点路径的唯一性&lt;/strong>；&lt;/li>
+&lt;li>树的深度要自己&lt;strong>写函数计算&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>物化路径不应该是KEY&lt;/strong>，即使他们有唯一性，因为主键最好不更新原则。&lt;/li>
+&lt;li>数据库&lt;strong>无法确保路径格式正确&lt;/strong>，只能&lt;strong>由应用程序来验证&lt;/strong>&lt;/li>
+&lt;li>查询&lt;strong>复杂度主要在路径字符串的处理&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>与邻接模型的差别&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>邻接模型的&lt;strong>子节点是平等&lt;/strong>的,且可以&lt;strong>无限扩展&lt;/strong>。&lt;/li>
+&lt;li>物化路径模型可以指出&lt;strong>兄弟的排名&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>影响物化路径模型的因素&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>计算&lt;strong>深度&lt;/strong>
+计算两个&lt;strong>字符串函数的差&lt;/strong>，所带来的代价;&lt;/li>
+&lt;li>&lt;strong>缩排&lt;/strong>函数
+物化路径模型需&lt;strong>不断地处理字符串&lt;/strong>，在where子句中不断的执行字符串操作，处理速度比邻接模型更慢。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>表结构定义&lt;/strong> : model(&lt;strong>path&lt;/strong>,description,commander)&lt;/p>
+&lt;p>&lt;strong>自顶向下查询&lt;/strong>:&lt;/p>
+&lt;p>自定义函数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">create&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">function&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">m_depth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">varchar&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">returns&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">int&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">begin&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">replace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;.&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="s1">&amp;#39;&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">end&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mp_depth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;%&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;Root Commander&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">order&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>自底向上查询&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mp_depth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mp_depth&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">||&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;%&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">decription&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;%Highland%&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">order&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">desc&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>嵌套集合模型&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>每一个节点都有一个左编号(left_num)和右编号(right_num)，包含其所有的子节点的左右数字.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>确定这二个值的方法是对树进行一次深度优先遍历，在逐层深入的过程中依次递增地分配left_num的值，并在返回时依次递增地分配right_num的值&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>数据元素之间不再是点和线的关系，而是以&lt;strong>容纳和被容纳&lt;/strong>的方式&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>优点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>易理解&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>查找某一个节点的子节点很容易&lt;/strong>，&lt;/li>
+&lt;li>删除一个非叶子节点时，它的&lt;strong>后代会自动替代被删除的节点&lt;/strong>，成为其直接祖先节点的直接后代；&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>缺点：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>但是对&lt;strong>结果集排序不好操作&lt;/strong>，缩排无法处理&lt;/li>
+&lt;li>数据&lt;strong>更新、插入、删除&lt;/strong>开销大&lt;/li>
+&lt;li>&lt;strong>计算量大，对存储程序要求高&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>影响嵌套集合模型性能的因素&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>找后代方面胜于其他两个模型&lt;/strong>，但为&lt;strong>缩排付出更大代价&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>额外的连接&lt;/strong>，以及group by所做的&lt;strong>深度&lt;/strong>有关&lt;/li>
+&lt;li>&lt;strong>改善嵌套集合模型性能代价巨大,但引入冗余&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>应用场景：&lt;/strong>&lt;/p>
+&lt;p>如果&lt;strong>简单快速的查询是最重要的功能&lt;/strong>，那么可以使用嵌套集合。&lt;/p>
+&lt;p>然而，在嵌套集中&lt;strong>插入和移动节点是复杂&lt;/strong>的，因为需要&lt;strong>重新分配左右值&lt;/strong>，因此嵌套集不适合需要频繁插入和删除节点的应用场景&lt;/p>
+&lt;p>&lt;strong>表结构定义&lt;/strong>: model(&lt;u>left_num&lt;/u>,&lt;u>right_num&lt;/u>,commander,description)&lt;/p>
+&lt;p>&lt;strong>自顶向下查询&lt;/strong>:&lt;/p>
+&lt;p>找后代直接,找范围就可以. 排序不可以&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;Root Commander&amp;#34;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">between&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">right_num&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找level,需要再加一个 a b中间加一个c&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">depth&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">depth&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;Root Commander&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">between&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">right_num&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">between&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">right_num&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">group&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">order&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;strong>自底向上查询&lt;/strong>:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="n">b是a的父亲&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">通过&lt;/span>&lt;span class="n">b找包括自己的所有父亲数量来定义深度&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lpad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">length&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">6&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">depth&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">distinct&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">commander&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">select&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">count&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">between&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">c&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">right_num&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">depth&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">model&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">like&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;%Highland%&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">between&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">right_num&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">and&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">order&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">by&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">left_num&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">desc&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>动态计算深度依旧是个问题·&lt;/li>
+&lt;li>不要显示人造根节点&lt;/li>
+&lt;li>硬编码最大深度 (为了缩排显示)&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>嵌套间隔模型(nested interval)&lt;/strong>&lt;/p>
+&lt;p>思想是以两个数字为特定节点的&lt;strong>路径编码&lt;/strong>，这两个数字被解释成有理数(就是分数)的&lt;strong>分子和分母&lt;/strong>。 太复杂了不讲.&lt;/p>
+&lt;p>多父节点模型?&lt;/p>
+&lt;p>**闭包表模型：**闭包表是一个简单、优雅模型，它记录了树中所有节点的关系，将树中任何具有祖先与后代关系的节点对，都存储在 TreePaths 中，同时我们也把指向节点自身的关系也存储在这张表；为了方便查询某个节点直接父节点或直接子节点，我们还增加一个 path_length 字段，自我引用的节点该值为 0，直接子节点为 1&lt;/p>
+&lt;p>**优点：**它需要一张额外的表来存储关系，是一种典型的采用空间来换时间的方案，查询、插入、删除都比较简单&lt;/p>
+&lt;p>&lt;strong>缺点&lt;/strong>：占用太多空间；&lt;/p>
+&lt;p>&lt;strong>三种层次模型的查询效率比较&lt;/strong>&lt;/p>
+&lt;p>自顶向下查询：Vandamme查询&lt;/p>
+&lt;p>效率：邻接模型&amp;gt;物化模型&amp;gt;嵌套集合模型&lt;/p>
+&lt;ul>
+&lt;li>邻接模型
+&lt;ul>
+&lt;li>利用了&lt;strong>递归&lt;/strong>&lt;/li>
+&lt;li>内部connect by是用&lt;strong>过程化方法&lt;/strong>实现的，&lt;strong>未利用关系模型实现&lt;/strong>。&lt;/li>
+&lt;li>是进行&lt;strong>字符比较&lt;/strong>，并且置于内存中进行计算，比较快速;&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>物化路径
+&lt;ul>
+&lt;li>利用&lt;strong>关系模型进行表联接&lt;/strong>，通过字符串前缀比较确定是否是父子关系。&lt;/li>
+&lt;li>效率低下的主要原因是&lt;strong>字符串操作，比如字符串拆分&lt;/strong>（物化路径如果解决了用&lt;strong>字符型代替字符串型表示目录时，效率会大大提高&lt;/strong>）&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>嵌套模型
+&lt;ul>
+&lt;li>&lt;strong>虽然找出子节点很容易&lt;/strong>，&lt;/li>
+&lt;li>但确定子节点的&lt;strong>深度&lt;/strong>，对子节点&lt;strong>排序&lt;/strong>以及缩排比较&lt;strong>复杂&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>自底向上访问：Highland查询&lt;/p>
+&lt;ul>
+&lt;li>邻接表模型&lt;/li>
+&lt;li>不管是自底向上的查询还是自顶向下查询，效率都是一样的。&lt;/li>
+&lt;li>物化路径
+&lt;ul>
+&lt;li>因为&lt;strong>自底向上需要遍历很多节点&lt;/strong>，而&lt;strong>自顶向下只需要遍历一个节点&lt;/strong>，自底向上查询远远低于自定上下查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>嵌套集合模型
+&lt;ul>
+&lt;li>自顶向下查询与自底向上查询效率&lt;strong>差不多&lt;/strong>&lt;/li>
+&lt;li>但多了排序过程，&lt;strong>排序比较耗时&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>效率：邻接模型&amp;gt;物化模型&amp;gt;嵌套集合模型&lt;/p>
+&lt;p>&lt;strong>物化路径模型&lt;/strong>是&lt;strong>最通用的最均衡&lt;/strong>的树状结构设计方案&lt;/p>
+&lt;p>&lt;strong>自底向上查询慢于自顶向下查询的原因&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>自顶向下查询只有一个起点;,&lt;strong>自底向上查询可能有多个出发点&lt;/strong>。
+·多个记录都包含highland查询。&lt;/li>
+&lt;li>&lt;strong>不能使用索引&lt;/strong>,导致完整地表扫描&lt;/li>
+&lt;/ul>
+&lt;h3 id="反范式与打破范式要考虑的因素">反范式与打破范式要考虑的因素&lt;/h3>
+&lt;p>&lt;strong>反范式&lt;/strong>: 引入&lt;strong>受控的冗余&lt;/strong>，通过放松规范化规则来&lt;strong>提高系统的性能,降低数据模型的复杂度&lt;/strong>. 通常包括将多个表合并成一个表，增加冗余数据，以及创建复合索引等技术手段。&lt;/p>
+&lt;p>&lt;strong>打破范式需要考虑的三因素&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>规范弱化使得&lt;strong>实现变得更加复杂&lt;/strong>，因为需要&lt;strong>手动保持数据的完整性&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>规范弱化会&lt;strong>降低灵活性&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>规范弱化会加快元组检索的速度，但却会&lt;strong>使更新速度变慢&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="判断是否应该使用逆范式的条件什么时候可以不遵守范式">&lt;strong>判断是否应该使用逆范式的条件/什么时候可以不遵守范式&lt;/strong>：&lt;/h3>
+&lt;ul>
+&lt;li>数据&lt;strong>表非常大&lt;/strong>或&lt;strong>查询非常频繁&lt;/strong>，导致查询性能严重下降；
+&lt;ul>
+&lt;li>大型电商网站, 订单读取非常频繁,把订单和订单详细信息合并提高效率&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>存在大量连接操作&lt;/strong>，导致查询复杂度极高；
+&lt;ul>
+&lt;li>社交媒体软件,用户的关系复杂. 经常需要使用用户的关系信息.把关系信息合并到用户信息中.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>需要&lt;strong>快速读取大量数据&lt;/strong>，而&lt;strong>不需要强制保证数据的实时性&lt;/strong>；&lt;/li>
+&lt;li>&lt;strong>修改频率非常低&lt;/strong>，数据更新的代价相对较小。
+&lt;ul>
+&lt;li>博客网站,文章和评论都很多时,只需要最新的数据,且不容易修改.&lt;/li>
+&lt;li>可以把新的播客信息和评论合并成一个表.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="打破范式的步骤">&lt;strong>打破范式的步骤&lt;/strong>:&lt;/h3>
+&lt;ol>
+&lt;li>画好ER模型&lt;/li>
+&lt;li>分辨一对一、一对多和多对多关系&lt;/li>
+&lt;li>构建三范式表结构设计。&lt;/li>
+&lt;li>考虑打破范式&lt;/li>
+&lt;/ol>
+&lt;h3 id="七大反范式pattern">&lt;strong>七大反范式Pattern&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>Pattern 1&lt;/strong> &lt;strong>合并一对一关系&lt;/strong>&lt;/p>
+&lt;p>合并：基于全部参与的实体为主，引入部分参与的表。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>会产生大量空值&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>若两边都部分参与则不能合并&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>如，将“员工”和“员工地址”表合并为一个表，其中包含员工和他们的地址信息。&lt;/p>
+&lt;p>&lt;strong>Pattern 2&lt;/strong> &lt;strong>一对N的关系复制非键值减少连接&lt;/strong>&lt;/p>
+&lt;p>适用条件：两表连接时最主要的事务都与某非键值相关&lt;/p>
+&lt;ul>
+&lt;li>最需要关注更新，可能需要&lt;strong>使用触发器&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>如：查询学生信息以及学生所在学院&lt;/p>
+&lt;p>例如，在“订单”和“订单行项目”表之间的一对多关系中，将订单头信息（如客户名称、订单日期等）复制到订单行项目表中。&lt;/p>
+&lt;p>&lt;strong>Pattern 3&lt;/strong> &lt;strong>在一对N关系中复制外键来减少JOIN表数量&lt;/strong>&lt;/p>
+&lt;p>为减少或删除常用或关键查询的连接，复制关系中一个或多个外键列来提高
+查询的效率。&lt;/p>
+&lt;p>例如，在“订单”和“订单行项目”表之间的一对多关系中，将订单表的外键（如客户id）复制到订单行项目表中。&lt;/p>
+&lt;p>&lt;strong>Pattern 4&lt;/strong> &lt;strong>多对多关系中复制属性来减少JOIN表数量&lt;/strong>&lt;/p>
+&lt;p>把两张表中经常需要的属性都拷贝到同一关系表中&lt;/p>
+&lt;p>在“学生”和“课程”之间的多对多关系中，将学生和课程的属性（如姓名、课程名称等）复制到“选课”关联表中&lt;/p>
+&lt;p>&lt;strong>Pattern 5&lt;/strong> &lt;strong>引入重复组&lt;/strong>&lt;/p>
+&lt;p>通常对于一个多值属性，值不太多（小于等于10），且不会经常变，可以在表中见多个有关属性列&lt;/p>
+&lt;p>如一个人有地址一、地址二、地址三&lt;/p>
+&lt;p>将学生的多个地址存储在一个单一字段中，并将其标记为重复组。&lt;/p>
+&lt;p>&lt;strong>Pattern 6&lt;/strong> &lt;strong>建立提取表&lt;/strong>&lt;/p>
+&lt;p>将查询慢的表需要连接成大表并储存下来。&lt;/p>
+&lt;p>查询可以访问派生数据并在同一组基表上执行多表联接。&lt;/p>
+&lt;p>不能做实时计算，得到数据可能是&lt;strong>相对静态&lt;/strong>
+的，也可能不一定是最新的。&lt;/p>
+&lt;p>好处大，缺点非常大&lt;/p>
+&lt;p>带来非常大的复杂性，导致数据库中存在各种同步的、异步的、有用的没用的提取表。
+数据更新耗费后续人员极长时间.&lt;/p>
+&lt;p>&lt;strong>Pattern 7&lt;/strong> &lt;strong>分区&lt;/strong>&lt;/p>
+&lt;p>将大型表分割为更小的逻辑部分，以便更好地管理和查询数据。&lt;/p>
+&lt;p>例如，将“销售记录”表分成按日期、地理区域或销售代表等逻辑分区。&lt;/p>
+&lt;h3 id="范式的价值或者作用">&lt;strong>范式的价值或者作用&lt;/strong>&lt;/h3>
+&lt;p>1NF 每个属性不可再分， 确保&lt;strong>原子性&lt;/strong>，具有原子性的价值&lt;/p>
+&lt;p>2NF 主键可以唯一标识记录. 非主属性完全依赖候选键.检查对键的完全依赖，价值在于&lt;strong>控制数据冗余和查询性能&lt;/strong>&lt;/p>
+&lt;p>3NF 消除对主属性的传递依赖,非主键属性之间不能相互依赖，检查&lt;strong>属性的独立性&lt;/strong>&lt;/p>
+&lt;p>BCNF: 每一个函数依赖的决定因素都包含候选键&lt;/p>
+&lt;p>四范式:消除多值依赖.&lt;/p>
+&lt;p>所以范式的价值在于：&lt;/p>
+&lt;ul>
+&lt;li>降低&lt;strong>冗余&lt;/strong>&lt;/li>
+&lt;li>消除&lt;strong>操作异常&lt;/strong>&lt;/li>
+&lt;li>合理规范化的模式&lt;strong>可应对需求变更&lt;/strong>；&lt;/li>
+&lt;/ul>
+&lt;h3 id="为什么要加锁">&lt;strong>为什么要加锁&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>多个应用程序&lt;strong>同时对相同数据进行访问&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>保证数据库的完整性和一致性&lt;/strong>，就必须要有一定的机制用于控制数据记录的读取、插入、删除和更新。&lt;/li>
+&lt;li>通过对数据库对象加锁，我们可以&lt;strong>避免由于并发更改造成数据的丢失&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与提交">&lt;strong>加锁与提交&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>想要使加锁时间最短，必须&lt;strong>频繁的提交&lt;/strong>&lt;/li>
+&lt;li>但如果每个逻辑单元完成后都提交&lt;strong>会增加大量开销&lt;/strong>&lt;/li>
+&lt;li>对于批处理程序，并发控制不是问题，&lt;strong>避免频繁提交才是明智的做法&lt;/strong>。&lt;/li>
+&lt;li>对于用户交互程序，则需要&lt;strong>高频提交，加快释放锁&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与可伸缩性">&lt;strong>加锁与可伸缩性&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>与表级锁相比，行级锁能产生更佳的&lt;strong>吞吐量&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>行级锁大都性能曲线很快达到极限&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁处理的原则">&lt;strong>加锁处理的原则&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>不要随便使用表级锁&lt;/strong>&lt;/li>
+&lt;li>尽量&lt;strong>缩短加锁时间&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>索引也需要维护&lt;/strong>&lt;/li>
+&lt;li>编程上的原则(语句性能高，未必程序性能高（下面有4点）)
+&lt;ul>
+&lt;li>避免SQL语句上的&lt;strong>循环处理&lt;/strong>&lt;/li>
+&lt;li>减少程序和数据库之间的&lt;strong>交互次数&lt;/strong>&lt;/li>
+&lt;li>充分利用DBMS提供的机制，使&lt;strong>跨机器交互的次数&lt;/strong>降至最少&lt;/li>
+&lt;li>把所有&lt;strong>不重复不必要的SQL语句放在逻辑工作单元&lt;/strong>之外&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="锁的分类">锁的分类&lt;/h3>
+&lt;p>悲观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据很可能会被其他并发操作所修改&lt;/strong>.
+&lt;ul>
+&lt;li>因此在**进行操作之前，先加锁，**确保数据不会被其他操作修改。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁适用于并发写操作多，&lt;strong>读操作少&lt;/strong>的场景
+&lt;ul>
+&lt;li>例如&lt;strong>银行转账等涉及到账户余额变动&lt;/strong>的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁的缺点是在&lt;strong>并发量高时，会导致大量的阻塞和等待&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>乐观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据不会被其他并发操作所修改.&lt;/strong>
+&lt;ul>
+&lt;li>因此在进行操作之前，不加锁，但在&lt;strong>提交数据时，检查数据是否被其他操作所修改，如果没有修改，则提交成功，否则返回错误信息&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁适用于并发读操作多，&lt;strong>写操作少&lt;/strong>的场景.
+&lt;ul>
+&lt;li>例如商品库存等只需要查询不需要修改的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁的优点是可以&lt;strong>大大降低阻塞和等待&lt;/strong>，但是需要在提交数据时进行额外的校验，&lt;strong>增加了程序开发和维护的难度&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>共享锁（Shared Lock）：&lt;/p>
+&lt;ul>
+&lt;li>共享锁适用于多个事务&lt;strong>只读同一份数据&lt;/strong>的场景。&lt;/li>
+&lt;li>适用于读多写少的场景，例如在线图书馆、新闻网站等需要大量读取数据的应用，可以使用共享锁来&lt;strong>提高并发读取的能力，避免写操作的阻塞&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>排他锁（Exclusive Lock）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>只允许一个事务进行写操作&lt;/strong>，其他事务&lt;strong>不能进行读写操作&lt;/strong>。&lt;/li>
+&lt;li>适用于写多读少的场景，&lt;/li>
+&lt;li>例如银行转账、在线购物等需要对数据进行修改的应用，可以使用排他锁来保证操作的原子性，&lt;strong>避免读写冲突和数据不一致性&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>行级锁（Row Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中的某一行数据进行加锁，&lt;strong>只有在访问该行数据时才会加锁&lt;/strong>，这样可以&lt;strong>提高并发性能&lt;/strong>。&lt;/li>
+&lt;li>例如社交网络、在线游戏等需要&lt;strong>频繁更新数据,高并发&lt;/strong>的应用，可以使用行级锁来控制并发更新，提高系统的并发能力和性能。&lt;/li>
+&lt;/ul>
+&lt;p>间隙锁（Gap Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中&lt;strong>不存在的数据进行加锁&lt;/strong>，可以防止其他事务在这个间隙中插入数据。&lt;/li>
+&lt;li>适用于对数据表中不存在的数据进行加锁的场景，例如对于需要&lt;strong>进行范围查询或者范围删除的应用&lt;/strong>，可以使用间隙锁来避免其他事务在查询或删除操作中插入数据，保证数据的一致性和正确性。(避免幻读)&lt;/li>
+&lt;/ul>
+&lt;p>意向锁（Intention Lock）：&lt;/p>
+&lt;ul>
+&lt;li>在加行级锁和表级锁&lt;strong>之前，先进行意向锁的判断&lt;/strong>，以&lt;strong>提高加锁效率&lt;/strong>。&lt;/li>
+&lt;li>例如在多个事务同时请求对同一数据行进行更新时，可以使用意向锁来提前判断需要加的锁类型，&lt;strong>避免不必要的锁竞争和死锁问题&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="必须由程序员利用程序语言控制并发更新的情况">&lt;strong>必须由程序员利用程序语言控制并发更新的情况:&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>业务规则&lt;strong>复杂的更新&lt;/strong>：如果更新操作需要依赖多个表或者多个条件，并且需要保证操作的原子性，就需要使用事务来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>分布式系统中的数据更新&lt;/strong>：在分布式系统中，不同节点之间可能会同时更新同一份数据，如果不加控制，就会导致数据的不一致性。因此，在分布式系统中，需要使用分布式锁来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>批量数据更新&lt;/strong>：如果需要批量更新数据，而且更新的数据量很大，可能会导致数据库锁表或者死锁等问题。因此，需要&lt;strong>将批量更新操作分批进行&lt;/strong>，或者&lt;strong>使用分布式锁&lt;/strong>来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>大量并发更新&lt;/strong>：如果并发更新的请求数量非常大，可能会导致数据库性能下降或者崩溃。因此，&lt;strong>需要使用连接池、缓存等技术来优化数据库性能，或者使用分布式锁来分散并发更新的压力。&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="资源竞争解决方案有哪些">&lt;strong>资源竞争解决方案有哪些&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>DBA解决方案：针对事务空间、可用列表&lt;/p>
+&lt;ul>
+&lt;li>增加分配给储物条目的空间缓解冲突&lt;/li>
+&lt;li>让&lt;strong>insert分配到不同的物理块&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>架构解决方案：分区、逆序索引、索引组织表&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>开发解决方案：&lt;/p>
+&lt;ul>
+&lt;li>调节&lt;strong>并发数&lt;/strong>
+&lt;ul>
+&lt;li>限制session个数为最高性能的session个数，使周转更快&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>不使用系统产生值&lt;/strong>
+&lt;ul>
+&lt;li>连续值只在范围查询中使用，在连续值本身毫无现实意义的情况下，范围查询的场景也不多见;&lt;/li>
+&lt;li>可以只使用随机数来做主键，遇到随机数碰撞，就再生成一个随机数.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>总结：&lt;strong>与加锁不同，数据库竞争是可以改善的&lt;/strong>。架构师、开发者和DBA都可以从各自的角度改善竞争&lt;/p>
+&lt;h3 id="并发操作主要解决哪三个问题">&lt;strong>并发操作主要解决哪三个问题&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>丢失修改&lt;/strong>：T1和T2读入同一数据并修改，T2提交的结果破坏了T1的提交，导致T1修改被丢失&lt;/li>
+&lt;li>&lt;strong>读脏数据&lt;/strong>：T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1由于某种原因被撤销，数据也做了恢复，此时T2读的数据和数据库里的数据不一致，T2读到脏数据，即不正确数据&lt;/li>
+&lt;li>&lt;strong>不可重复读&lt;/strong>：T1读数据后，T2对其修改，T1无法再现前一次读取结果&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务的隔离级别">事务的隔离级别&lt;/h3>
+&lt;p>未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。&lt;/p>
+&lt;p>提交读（Read Committed）：是大都是 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。&lt;/p>
+&lt;p>可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。&lt;/p>
+&lt;p>可串行化（Serializable）：是最高的隔离级别。强制事务串行执行，会在读取的每一行数据上加锁，这样虽然能避免幻读的问题，但也可能导致大量的超时和锁争用的问题。很少会应用到这种级别，只有在非常需要确保数据的一致性且可以接受没有并发的应用场景下才会考虑。&lt;/p>
+&lt;p>MySql实现的哪种隔离级别&lt;/p>
+&lt;p>可重复读&lt;/p></description></item></channel></rss>

@@ -1,1 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计网 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/index.xml" rel="self" type="application/rss+xml"/><description>计网</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>计网</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link></image></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计网 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/index.xml" rel="self" type="application/rss+xml"/><description>计网</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>计网</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
+&lt;p>TCP:
+User Datagram Protocol 用户数据报协议&lt;/p>
+&lt;ul>
+&lt;li>提供一种面向连接的、可靠交付的面向字节流服务&lt;/li>
+&lt;li>TPDU: TCP 报文段(segment)&lt;/li>
+&lt;li>传输开销大、报文头部大&lt;/li>
+&lt;li>全双工&lt;/li>
+&lt;/ul>
+&lt;p>UDP：
+User Datagram Protocol 用户数据报协议&lt;/p>
+&lt;ul>
+&lt;li>提供面向事务的简单不可靠信息传送服务&lt;/li>
+&lt;li>TPDU: UDP 报文或用户数据报。&lt;/li>
+&lt;li>传输开销小、报文头部小 8字节&lt;/li>
+&lt;li>不面向连接没有双工的说法&lt;/li>
+&lt;/ul>
+&lt;h3 id="tcp握手">TCP握手&lt;/h3>
+&lt;p>三次握手为什么不是四次呢&lt;/p>
+&lt;p>服务器的回复和请求可以并成一次。&lt;/p>
+&lt;p>第三次可以携带数据吗&lt;/p>
+&lt;p>可以&lt;/p>
+&lt;p>TCP四次挥手可以三次吗&lt;/p>
+&lt;p>不可以，服务器那个时候可能还要发送数据。&lt;/p>
+&lt;p>最后一次要等两个ttl，&lt;/p>
+&lt;p>14.tcp为什么慢&lt;/p>
+&lt;p>如重传机制，确认机制，拥塞控制机制&lt;/p>
+&lt;p>15.udp的切包&lt;/p>
+&lt;p>IP分片的概念
+在TCP/IP分层中，数据链路层用MTU（Maximum Transmission Unit，最大传输单元）来限制所能传输的数据包大小，MTU是指一次传送的数据最大长度，不包括数据链路层数据帧的帧头，如以太网的MTU为1500字节，实际上数据帧的最大长度为1514字节，其中以太网数据帧的帧头为14字节&lt;/p>
+&lt;p>当发送的IP数据包的大小超过了MTU时，IP层就需要对数据进行分片，否则数据将无法发送成功&lt;/p>
+&lt;p>IP层是没有超时重传机制的，如果IP层对一个数据包进行了分片，只要有一个分片丢失了，只能依赖于传输层进行重传，结果是所有的分片都要重传一遍，这个代价有点大；公网传输，需要经过多个网络设备，IP分片容易造成丢包&lt;/p>
+&lt;p>由此可见，IP分片会大大降低传输层传送数据的成功率，所以我们要避免IP分片&lt;/p>
+&lt;p>33.了解一些常用的RPC框架吗&lt;/p>
+&lt;p>RPC（Remote Procedure Call，远程服务调用），用来实现部署在不同机器之间系统的方法调用，使程序像当问本地系统资源一样，通过网络传出资源.&lt;/p>
+&lt;p>dubbo：基于Netty的高性能RPC框架，是阿里巴巴开源的&lt;/p>
+&lt;p>Netty介绍
+Netty是一个异步的、基于事件驱动的网络应用框架，用以快速开发高性能、高可靠性的网络IO程序。
+Netty主要针对在TCP协议下，面向Clients端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输的应用。
+Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场景。&lt;/p></description></item></channel></rss>

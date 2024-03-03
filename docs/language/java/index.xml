@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/index.xml" rel="self" type="application/rss+xml"/><description>java</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>java</title><link>https://ysyyhhh.github.io/docs/language/java/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E4%BC%98%E5%8C%96/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/</guid><description>&lt;h4 id="介绍自己学的技术">介绍自己学的技术&lt;/h4>
+&lt;h4 id="介绍一下springboot">介绍一下springboot&lt;/h4>
+&lt;p>简化spring应用的创建及部署&lt;/p>
+&lt;p>Spring Boot通过自动配置功能，降低了复杂性，同时支持基于JVM的多种开源框架，可以缩短开发时间，使开发更加简单和高效。&lt;/p>
+&lt;h4 id="3mvc的dispatcherservlet的分派原理">3.mvc的dispatcherservlet的分派原理&lt;/h4>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="4.13%e6%bb%b4%e6%bb%b4%e5%87%86%e5%a4%87/img/image-20230413193651300.png" alt="image-20230413193651300" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ol>
+&lt;li>用户发送 请求到 前端控制器（DispatcherServlet）。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>处理器映射器&lt;/strong>（HandlerMapping）去 查找 处理器（Handler）。&lt;/li>
+&lt;li>找到以后 处理器映射器（HandlerMappering）向 前端控制器 返回 执行链（HandlerExecutionChain）。&lt;/li>
+&lt;li>前端控制器（DispatcherServlet）调用 &lt;strong>处理器适配器&lt;/strong>（HandlerAdapter） 去执行 处理器（Handler）。&lt;/li>
+&lt;li>处理器适配器 去执行 处理器Handler。&lt;/li>
+&lt;li>处理器 执行完给 处理器适配器 返回ModelAndView。&lt;/li>
+&lt;li>&lt;strong>处理器适配器&lt;/strong> 向 前端控制器 返回ModelAndView。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>视图解析器&lt;/strong>（ViewResolver）去进行 视图解析。&lt;/li>
+&lt;li>视图解析器 向 前端控制器返回View。&lt;/li>
+&lt;li>前端控制器 对 &lt;strong>视图进行渲染&lt;/strong>。&lt;/li>
+&lt;li>前端控制器 向用户&lt;strong>响应结果&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;h4 id="restful风格在mvc的分派如何解析参数这个我不知道瞎答的">restful风格在mvc的分派，如何解析参数（这个我不知道瞎答的）&lt;/h4>
+&lt;p>restful 即 URL表示资源， + GET POST PUT DELETE 表示行为&lt;/p>
+&lt;p>Restful风格的请求是使用 &lt;strong>url+请求方式&lt;/strong> 表示一次请求目的的，并且规范了一些的状态码，使得看到接口就知道请求要干嘛。&lt;/p>
+&lt;p>RequestMappingURL&lt;/p>
+&lt;p>PathVariable 获取参数&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>@Controller&lt;/code>声名一个处理请求的控制器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestMapping&lt;/code>请求映射地址，它存在几个子注解对于实现&lt;code>REST&lt;/code>风格来说更加具有语义性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;ul>
+&lt;li>&lt;code>GETMapping&lt;/code> GET请求&lt;/li>
+&lt;li>&lt;code>PUTMapping&lt;/code> PUT请求&lt;/li>
+&lt;li>&lt;code>POSTMapping&lt;/code> POST请求&lt;/li>
+&lt;li>&lt;code>DELETEMapping&lt;/code> DELETE请求&lt;code>sponseBody&lt;/code> 将响应内容转换为&lt;code>JSON&lt;/code>格式&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestBody&lt;/code> 请求内容转换为&lt;code>JSON&lt;/code>格式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@PathVariable(&amp;quot;id&amp;quot;)&lt;/code>用于绑定一个参数&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RESTController&lt;/code> 等同于&lt;code>@Controller&lt;/code>+&lt;code>@ResponseBody&lt;/code>在类上写了这个注解，标识这个类的所有方法只返回数据，而不进行视图跳转&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="java集合体系">Java集合体系&lt;/h4>
+&lt;h4 id="hashmap原理">HashMap原理&lt;/h4>
+&lt;p>数组+链表+红黑树。&lt;/p>
+&lt;p>那么在jdk1.8的HashMap中，当链表的长度超过8时，链表会自动转化为红黑树，优化查询速度。&lt;/p>
+&lt;p>put原理&lt;/p>
+&lt;p>同时还有一个区别：发生“hash冲突”时，我们上面的做法是“头插法”，这是jdk1.7的做法，而在jdk1.8中，使用的是“尾插法”。&lt;/p>
+&lt;h4 id="concurrenthashmap原理">ConcurrentHashMap原理&lt;/h4>
+&lt;p>红黑树可用别的数据结构代替吗&lt;/p>
+&lt;p>跳表与红黑树比较&lt;/p>
+&lt;p>线程安全的类有哪些，为什么线程安全&lt;/p>
+&lt;p>索引原理&lt;/p>
+&lt;p>B+查询过程&lt;/p>
+&lt;p>聚簇索引与非聚簇索引&lt;/p>
+&lt;p>快排思想&lt;/p>
+&lt;p>快排时间复杂度&lt;/p>
+&lt;p>线程池&lt;/p>
+&lt;p>线程池的使用&lt;/p>
+&lt;p>1个10G大小文件，如何得前100个最大数字&lt;/p>
+&lt;h1 id="java">Java&lt;/h1>
+&lt;h2 id="集合类">集合类&lt;/h2>
+&lt;h4 id="操作字符串用什么类">操作字符串用什么类&lt;/h4>
+&lt;p>Java中提供了String类和StringBuilder类来操作字符串。String类是不可变的，每次对字符串进行修改都会创建一个新的字符串对象，而StringBuilder类是可变的，可以在原字符串上进行修改。&lt;/p>
+&lt;h4 id="常用集合类">常用集合类&lt;/h4>
+&lt;p>Java中常用的集合类包括List、Set、Map等。HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
+&lt;h4 id="hashmap底层实现">hashmap底层实现&lt;/h4>
+&lt;p>HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
+&lt;p>具体来说，HashMap中的每个元素都是一个键值对，其中键和值都可以为null。当向HashMap中添加元素时，首先根据键的哈希值计算出该元素在数组中的位置，如果该位置上已经有元素了，则需要使用链表（或红黑树）来解决哈希冲突。如果链表（或红黑树）中已经存在该键，则更新该键对应的值，否则将该键值对添加到链表（或红黑树）的末尾。&lt;/p>
+&lt;p>当链表（或红黑树）的长度超过一定阈值时，链表（或红黑树）会被转换为红黑树（或链表），以提高查询效率。当链表（或红黑树）的长度小于等于6时，会使用链表来存储元素，当长度大于6时，会使用红黑树来存储元素。&lt;/p>
+&lt;p>在HashMap中，数组的长度是2的幂次方，这是为了使哈希值的高位和低位都能够参与到计算中，提高哈希值的均匀性。同时，数组的长度也决定了HashMap中哈希桶的数量，当哈希桶的数量过少时，容易导致哈希冲突，影响查询效率；当哈希桶的数量过多时，会浪费内存空间。因此，在创建HashMap时，需要根据实际情况来选择合适的数组长度。&lt;/p>
+&lt;h4 id="hashmap17和18区别">hashmap1.7和1.8区别&lt;/h4>
+&lt;p>HashMap1.7和1.8的主要区别在于底层实现方式的改变。1.7中使用的是数组+链表的方式来解决哈希冲突，而1.8中引入了红黑树来优化链表过长的情况，提高了查询效率。此外，1.8中还引入了一些新的方法和特性，如forEach()方法、Lambda表达式等。&lt;/p>
+&lt;h4 id="hashmap怎么让他线程安全的方法">hashmap怎么让他线程安全的方法&lt;/h4>
+&lt;p>HashMap本身是非线程安全的，如果需要在多线程环境下使用HashMap，可以使用以下几种方法来保证线程安全：&lt;/p>
+&lt;ol>
+&lt;li>使用Collections.synchronizedMap()方法将HashMap转换为线程安全的Map。&lt;/li>
+&lt;li>使用ConcurrentHashMap代替HashMap，ConcurrentHashMap是一种线程安全的Map实现。&lt;/li>
+&lt;li>使用读写锁来保证HashMap的线程安全性，即使用ReentrantReadWriteLock来控制读写操作的并发访问。&lt;/li>
+&lt;/ol>
+&lt;h4 id="hashset了解过吗">hashset了解过吗&lt;/h4>
+&lt;p>HashSet是一种基于哈希表的Set实现，其底层实现与HashMap类似，只不过HashSet中存储的是不重复的元素。HashSet中的元素是无序的，不保证元素的插入顺序和遍历顺序一致。&lt;/p>
+&lt;h4 id="判断某对象是否在set中存在需要重写哪些方法">判断某对象是否在set中存在，需要重写哪些方法&lt;/h4>
+&lt;p>为了判断某个对象是否在Set中存在，需要重写该对象的hashCode()和equals()方法。hashCode()方法用于计算对象的哈希值，equals()方法用于比较两个对象是否相等。在重写这两个方法时，需要保证相等的对象具有相同的哈希值，否则会导致Set中出现重复元素。&lt;/p>
+&lt;h2 id="jvm的内存模型">jvm的内存模型&lt;/h2>
+&lt;h3 id="integer-a--128b128两个相等吗">integer a = 128,b=128，两个相等吗&lt;/h3>
+&lt;p>&lt;a href="https://blog.csdn.net/qq_42208194/article/details/117536553" target="_blank" rel="noopener">https://blog.csdn.net/qq_42208194/article/details/117536553&lt;/a>&lt;/p>
+&lt;p>在Java中，对于Integer类型的对象，如果其值在-128到127之间，会被缓存到常量池中，因此当创建值在该范围内的Integer对象时，会直接从常量池中获取已有的对象。而对于值不在该范围内的Integer对象，则会创建新的对象。&lt;/p>
+&lt;p>因此，对于Integer a = 128, b = 128，由于128不在-128到127之间，因此会创建两个不同的Integer对象，即a和b不相等。而对于Integer a = 127, b = 127，由于127在-128到127之间，因此会从常量池中获取同一个Integer对象，即a和b相等。&lt;/p>
+&lt;h3 id="什么叫零拷贝">什么叫零拷贝&lt;/h3>
+&lt;p>零拷贝（Zero Copy）是一种数据传输技术，它可以在不需要将数据从一个缓冲区复制到另一个缓冲区的情况下，将数据从一个地方传输到另一个地方。在零拷贝技术中，数据可以直接从磁盘、网络或其他设备中读取，然后通过DMA（Direct Memory Access）技术直接写入内存中，从而避免了数据的多次复制，提高了数据传输的效率。&lt;/p>
+&lt;p>在Java中，零拷贝技术可以通过NIO（New I/O）来实现。NIO提供了一种基于通道（Channel）和缓冲区（Buffer）的I/O模型，可以直接将数据从通道中读取到缓冲区中，或者将缓冲区中的数据直接写入通道中，从而避免了数据的多次复制。&lt;/p>
+&lt;h3 id="为什么用常量池有哪些常量池">为什么用常量池，有哪些常量池&lt;/h3>
+&lt;p>&lt;a href="https://blog.csdn.net/qq_41376740/article/details/80338158" target="_blank" rel="noopener">https://blog.csdn.net/qq_41376740/article/details/80338158&lt;/a>&lt;/p>
+&lt;p>常量池是Java中的一种特殊的内存区域，用于存储常量和符号引用。在Java中，常量池主要有以下几种：&lt;/p>
+&lt;ol>
+&lt;li>字面量常量池：用于存储字符串、数字等字面量常量。&lt;/li>
+&lt;li>符号引用常量池：用于存储类、方法、字段等符号引用。&lt;/li>
+&lt;li>运行时常量池：用于存储在类加载时解析的常量池信息，包括字面量常量池和符号引用常量池中的内容。&lt;/li>
+&lt;/ol>
+&lt;p>使用常量池的主要目的是为了提高程序的性能和减少内存的占用。由于常量池中的常量是唯一的，因此可以避免重复创建相同的常量对象，从而减少内存的占用。同时，由于常量池中的常量是在编译期间就确定的，因此可以在运行时直接使用，避免了重复计算和创建对象的开销，提高了程序的性能。&lt;/p>
+&lt;h2 id="线程">线程&lt;/h2>
+&lt;h4 id="java创建线程的方法">Java创建线程的方法&lt;/h4>
+&lt;p>Java中创建线程的方法主要有两种：&lt;/p>
+&lt;ol>
+&lt;li>继承Thread类并重写run()方法。&lt;/li>
+&lt;li>实现Runnable接口并实现run()方法，然后将其作为参数传递给Thread类的构造方法。&lt;/li>
+&lt;/ol>
+&lt;h4 id="查看线程的执行结果怎么拿到">查看线程的执行结果，怎么拿到&lt;/h4>
+&lt;p>可以通过线程的join()方法来等待线程执行完毕，并获取线程的执行结果。join()方法会阻塞当前线程，直到被调用的线程执行完毕。&lt;/p>
+&lt;p>另外，可以通过线程的返回值来获取线程的执行结果。如果线程需要返回结果，可以在run()方法中返回一个值，然后在调用线程的地方通过Thread对象的get()方法获取返回值。&lt;/p>
+&lt;h4 id="有哪些实现好的线程池既然他们不推荐为什么java官方还要给你">有哪些实现好的线程池，既然他们不推荐，为什么Java官方还要给你&lt;/h4>
+&lt;p>Java中提供了多种线程池实现，包括ThreadPoolExecutor、ScheduledThreadPoolExecutor、ForkJoinPool等。这些线程池实现都是经过优化和测试的，可以满足大部分场景的需求。&lt;/p>
+&lt;p>虽然Java官方不推荐直接使用这些线程池实现，但是它们提供了一种可靠、高效的线程池实现，可以作为开发者自己实现线程池的参考。&lt;/p>
+&lt;h4 id="阻塞队列有哪些">阻塞队列有哪些&lt;/h4>
+&lt;p>Java中提供了多种阻塞队列实现，包括ArrayBlockingQueue、LinkedBlockingQueue、SynchronousQueue等。这些阻塞队列实现都是线程安全的，可以在多线程环境下使用。&lt;/p>
+&lt;h4 id="线程池的工作流程">线程池的工作流程&lt;/h4>
+&lt;p>线程池的工作流程如下：&lt;/p>
+&lt;ol>
+&lt;li>当有任务需要执行时，线程池会从线程池中获取一个空闲线程来执行任务。&lt;/li>
+&lt;li>如果线程池中没有空闲线程，则会根据线程池的配置创建新的线程来执行任务。&lt;/li>
+&lt;li>当任务执行完毕后，线程会返回线程池，并等待下一次任务的分配。&lt;/li>
+&lt;/ol>
+&lt;h4 id="线程池拒绝策略有哪些">线程池拒绝策略有哪些&lt;/h4>
+&lt;p>线程池的拒绝策略主要有以下几种：&lt;/p>
+&lt;ol>
+&lt;li>AbortPolicy：直接抛出RejectedExecutionException异常。&lt;/li>
+&lt;li>CallerRunsPolicy：将任务交给调用线程来执行。&lt;/li>
+&lt;li>DiscardPolicy：直接丢弃任务，不做任何处理。&lt;/li>
+&lt;li>DiscardOldestPolicy：丢弃队列中最老的任务，然后尝试重新提交任务。&lt;/li>
+&lt;/ol>
+&lt;h4 id="线程池的参数有哪些">线程池的参数有哪些&lt;/h4>
+&lt;p>线程池的参数主要包括以下几个：&lt;/p>
+&lt;ol>
+&lt;li>corePoolSize：核心线程数，即线程池中保留的线程数。&lt;/li>
+&lt;li>maximumPoolSize：最大线程数，即线程池中允许的最大线程数。&lt;/li>
+&lt;li>keepAliveTime：线程空闲时间，即当线程池中的线程空闲时间超过该值时，多余的线程会被销毁。&lt;/li>
+&lt;li>unit：时间单位，用于指定keepAliveTime的时间单位。&lt;/li>
+&lt;li>workQueue：任务队列，用于存储等待执行的任务。&lt;/li>
+&lt;li>threadFactory：线程工厂，用于创建新的线程。&lt;/li>
+&lt;li>handler：拒绝策略，用于处理无法处理的任务。&lt;/li>
+&lt;/ol>
+&lt;h2 id="jwt">JWT&lt;/h2>
+&lt;h3 id="jwt里面有什么httpsblogcsdnnetweixin_36378232articledetails113022878">jwt&lt;a href="https://blog.csdn.net/weixin_36378232/article/details/113022878" target="_blank" rel="noopener">里面有什么&lt;/a>&lt;/h3>
+&lt;p>JWT主要由三个部分组成(前两部分可以通过base64解密得到)：头部(HEADER)，载荷(PAYLOAD)，签证(SIGNATURE)。&lt;/p>
+&lt;ul>
+&lt;li>头部描述该JWT的最基本信息，主要包含两个部分：声明类型 JWT 和声明加密算法(通常直接使用HMAC，SHA256)。
+&lt;ul>
+&lt;li>&lt;code>{ &amp;quot;alg&amp;quot;: &amp;quot;HS256&amp;quot;, //第三段字符串的不可逆加密类型HS256 &amp;quot;typ&amp;quot;: &amp;quot;JWT&amp;quot; //token类型JWT }&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>载荷主要是存放有效信息为自定义值，这些信息按照职能可以分成三个部分
+&lt;ul>
+&lt;li>标准的注册声明
+&lt;ul>
+&lt;li>人:签发者,jwt面向用户,接收jwt的一方.&lt;/li>
+&lt;li>时间相关,过期时间,不可用时间.签发时间&lt;/li>
+&lt;li>唯一标识, 可用于一次性token&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>公共的声明:公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息。但不建议添加敏感信息，因为该部分在客户端可解密。&lt;/li>
+&lt;li>私有的声明:私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为BASE64是对称解密的，意味着该部分信息可以归类为明文信息。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>签证
+&lt;ul>
+&lt;li>先将第一段和第二段的密文&lt;strong>拼接&lt;/strong>起来&lt;/li>
+&lt;li>对拼接起来的密文字符串和自定义的盐进行上边&lt;strong>指定的HS256加密&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>对HS256加密后的密文再做base64加密&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="要是想要传输密码怎么解决盐值怎么存储">要是想要传输密码，怎么解决？盐值怎么存储？&lt;/h3>
+&lt;p>SHA,&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/biubiubiubibibi/article/details/127579426" target="_blank" rel="noopener">BCryptPasswordEncoder&lt;/a>&lt;/p>
+&lt;p>盐存在密文里.&lt;/p>
+&lt;p>status字段是什么类型&lt;/p>
+&lt;p>函数的返回值类型。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/jvm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/jvm/</guid><description/></item></channel></rss>

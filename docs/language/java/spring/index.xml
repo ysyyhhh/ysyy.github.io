@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/spring/</link><atom:link href="https://ysyyhhh.github.io/docs/language/spring/index.xml" rel="self" type="application/rss+xml"/><description>spring</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>spring</title><link>https://ysyyhhh.github.io/docs/language/spring/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;h5 id="service层的返回值">Service层的返回值&lt;/h5>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/spring/index.xml" rel="self" type="application/rss+xml"/><description>spring</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>spring</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;h5 id="service层的返回值">Service层的返回值&lt;/h5>
 &lt;p>service 做校验，如果非法，直接抛异常 + 全局异常处理&lt;/p>
 &lt;p>controller 正常就是组合 service ，返回前端需要的数据。&lt;/p>
 &lt;p>java异常效率低下是因为抛出异常会遍历所有涉及堆栈，具体代码在基类Throwable的fillInStackTrace()方法里。但其实可以通过在自定义异常中重写fillInStackTrace()来大幅度提高异常效率。&lt;/p>
 &lt;p>&lt;a href="https://segmentfault.com/q/1010000020840854" target="_blank" rel="noopener">https://segmentfault.com/q/1010000020840854&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://blog.csdn.net/qq_41107231/article/details/115874974" target="_blank" rel="noopener">https://blog.csdn.net/qq_41107231/article/details/115874974&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/spring/spring-cloud-alibaba/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/spring/spring-cloud-alibaba/</guid><description>&lt;h1 id="微服务">微服务&lt;/h1>
+&lt;p>&lt;a href="https://blog.csdn.net/qq_41107231/article/details/115874974" target="_blank" rel="noopener">https://blog.csdn.net/qq_41107231/article/details/115874974&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring-cloud-alibaba/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring-cloud-alibaba/</guid><description>&lt;h1 id="微服务">微服务&lt;/h1>
 &lt;p>各个springboot&lt;/p>
 &lt;h1 id="nacos注册中心">Nacos注册中心&lt;/h1>
 &lt;h4 id="核心功能">核心功能&lt;/h4>
@@ -83,7 +83,7 @@
 &lt;h4 id="网关限流">网关限流&lt;/h4>
 &lt;p>用sentinel&lt;/p>
 &lt;h2 id="mq消息队列">MQ消息队列&lt;/h2>
-&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
+&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.jianshu.com/p/38d247f02724
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="安全">安全&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/qq_37023928/article/details/116777630
@@ -106,7 +106,7 @@
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Views -&amp;gt; Tool Windows -&amp;gt; Services
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="spring容器中找不到servletwebserverfactory类出现的异常">&lt;strong>Spring容器中找不到ServletWebServerFactory类出现的异常&lt;/strong>&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://cloud.tencent.com/developer/article/1893349
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</guid><description>&lt;h2 id="实体类命名">实体类命名&lt;/h2>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</guid><description>&lt;h2 id="实体类命名">实体类命名&lt;/h2>
 &lt;p>1.分层领域模型规约：&lt;/p>
 &lt;pre>&lt;code>• DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。
 • DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。
@@ -121,7 +121,7 @@
 • 数据传输对象：xxxDTO，xxx为业务领域相关的名称。
 • 展示对象：xxxVO，xxx一般为网页名称。 • POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。
 &lt;/code>&lt;/pre>
-&lt;h1 id="restful-接口风格">Restful 接口风格&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid><description>&lt;p>jar包启动&lt;/p>
+&lt;h1 id="restful-接口风格">Restful 接口风格&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid><description>&lt;p>jar包启动&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M jar包名.jar
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>nacos启动&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sh /home/tmp/nacos/bin/startup.sh -m standalone
