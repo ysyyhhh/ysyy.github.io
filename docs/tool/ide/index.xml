@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>ide | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/ide/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/ide/index.xml" rel="self" type="application/rss+xml"/><description>ide</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>ide</title><link>https://ysyyhhh.github.io/docs/tool/ide/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/ide/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/ide/vscode%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%85%A8/</guid><description>&lt;h1 id="工作学习流vscode快捷键">工作学习流(vscode快捷键)&lt;/h1>
+&lt;h2 id="markdown-快捷键">markdown 快捷键&lt;/h2>
+&lt;p>删除线: &lt;code>alt + s&lt;/code>&lt;/p>
+&lt;p>待办事项勾选/取消勾选: &lt;code>alt + c&lt;/code>&lt;/p>
+&lt;h2 id="terminal">terminal&lt;/h2>
+&lt;p>命令行创建: &lt;code>Ctrl + Shift + ~&lt;/code>&lt;/p>
+&lt;p>命令行切换: &lt;code>Ctrl + fn + upArrow/downArrow&lt;/code>&lt;/p>
+&lt;h2 id="view">view&lt;/h2>
+&lt;h2 id="run">Run&lt;/h2>
+&lt;p>Run python file in terminal: &lt;code>Ctrl + F5&lt;/code>&lt;/p></description></item></channel></rss>

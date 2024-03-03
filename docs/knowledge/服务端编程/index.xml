@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>服务端编程 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/index.xml" rel="self" type="application/rss+xml"/><description>服务端编程</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>服务端编程</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%9C%8D%E5%8A%A1%E7%AB%AF%E7%BC%96%E7%A8%8B/io%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="io模型">I/O模型&lt;/h1>
+&lt;h2 id="一什么是io模型-及-io模型的分类">一、什么是I/O模型 及 I/O模型的分类&lt;/h2>
+&lt;h2 id="二io-多路复用">二、I/O 多路复用&lt;/h2>
+&lt;h2 id="三实际应用">三、实际应用&lt;/h2>
+&lt;h3 id="reactor模式">Reactor模式&lt;/h3>
+&lt;h3 id="proactor模式">Proactor模式&lt;/h3>
+&lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3></description></item></channel></rss>

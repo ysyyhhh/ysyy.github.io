@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>nginx | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/nginx/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/nginx/index.xml" rel="self" type="application/rss+xml"/><description>nginx</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>nginx</title><link>https://ysyyhhh.github.io/docs/tool/nginx/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/nginx/nginx/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/nginx/nginx/</guid><description>&lt;h1 id="nginx">nginx&lt;/h1>
+&lt;h2 id="nginx安装">nginx安装&lt;/h2>
+&lt;h3 id="1-安装依赖">1. 安装依赖&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">yum install -y gcc gcc-c++ autoconf automake make
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yum install -y pcre pcre-devel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yum install -y zlib zlib-devel
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">yum install -y openssl openssl-devel
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2-转发后端图片">2. 转发后端图片&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1. 创建目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkdir -p /data/nginx/cache
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2. 修改目录权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">chown -R nginx:nginx /data/nginx/cache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="nginx-命令">nginx 命令&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重启, 重新加载配置文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s reload
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 停止&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -s stop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 测试配置文件是否正确&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -t
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

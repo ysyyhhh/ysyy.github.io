@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>maven | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/maven/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/maven/index.xml" rel="self" type="application/rss+xml"/><description>maven</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>maven</title><link>https://ysyyhhh.github.io/docs/tool/maven/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/maven/maven/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/maven/maven/</guid><description>&lt;h1 id="maven">maven&lt;/h1>
+&lt;h2 id="打包">打包&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">mvn clean package -Dmaven.test.skip&lt;span class="o">=&lt;/span>&lt;span class="nb">true&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="常见问题">常见问题&lt;/h2>
+&lt;h3 id="找不到主类">找不到主类&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">Error: Could not find or load main class com.xxx.xxx.xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Caused by: java.lang.ClassNotFoundException: com.xxx.xxx.xxx
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决方法：在pom.xml中添加如下配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

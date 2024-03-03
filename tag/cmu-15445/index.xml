@@ -1,0 +1,1784 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Cmu-15445 | Ysyy's</title><link>https://ysyyhhh.github.io/tag/cmu-15445/</link><atom:link href="https://ysyyhhh.github.io/tag/cmu-15445/index.xml" rel="self" type="application/rss+xml"/><description>Cmu-15445</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><lastBuildDate>Fri, 01 Mar 2024 00:00:00 +0000</lastBuildDate><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>Cmu-15445</title><link>https://ysyyhhh.github.io/tag/cmu-15445/</link></image><item><title>P0 [C++ Primer](https://15445.courses.cs.cmu.edu/fall2022/project0/)</title><link>https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/</link><pubDate>Fri, 01 Mar 2024 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/</guid><description>&lt;h1 id="l1-relational-model--relational-algebra">L1 Relational Model &amp;amp; Relational Algebra&lt;/h1>
+&lt;h2 id="11-databases">1.1 Databases&lt;/h2>
+&lt;p>数据库：an organized collection of inter-related data that models some aspect of the real-world&lt;/p>
+&lt;p>数据库管理系统 DBMS：the software that manages a database&lt;/p>
+&lt;h2 id="12-flat-file-strawman">1.2 Flat File Strawman&lt;/h2>
+&lt;p>数据库常常以CSV(comma-separated value)文件的形式存储，由DBMS进行管理。每次应用程序要读取或者更新记录时，都必须解析文件(parse files)。&lt;/p>
+&lt;h2 id="13-database-management-system">1.3 Database Management System&lt;/h2>
+&lt;ul>
+&lt;li>A general-purpose(通用) &lt;strong>DBMS&lt;/strong> is designed to allow the definition, creation, querying, update, and administration of databases in accordance with some &lt;strong>data model&lt;/strong>.&lt;/li>
+&lt;li>A &lt;strong>data model&lt;/strong> is a collection of concepts for describing the data in database
+&lt;ul>
+&lt;li>Examples: &lt;strong>relational&lt;/strong> (most common), NoSQL (&lt;strong>key/value&lt;/strong>, graph), array/matrix/vectors&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>A &lt;strong>schema&lt;/strong>(模式) is a description of a particular collection of data based on a &lt;strong>data model&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>早期，数据库应用很难建立和维护，因为逻辑层和物理层之间存在着紧密的耦合。&lt;/p>
+&lt;ul>
+&lt;li>逻辑层： 描述了数据库有哪些实体和属性。&lt;/li>
+&lt;li>物理层： 是这些实体和属性的存储方式。&lt;/li>
+&lt;/ul>
+&lt;p>所以早期的数据库，一旦改变了物理层，逻辑层也得跟着变。&lt;/p>
+&lt;h2 id="14-relational-model">1.4 Relational Model&lt;/h2>
+&lt;p>人们每次改变物理层都要重新写数据管理系统，故Ted Codd注意到后提出了关系模型。&lt;/p>
+&lt;p>The relational model defines a database abstraction based on relations to avoid &lt;strong>maintenance overhead&lt;/strong>(维护开销).&lt;/p>
+&lt;p>三要点:&lt;/p>
+&lt;ul>
+&lt;li>Store database in simple data structures (relations).&lt;/li>
+&lt;li>Access data through high-level language, DBMS &lt;strong>figures out&lt;/strong>(找出) best execution strategy.&lt;/li>
+&lt;li>Physical storage &lt;strong>left up to&lt;/strong>(取决于) the DBMS implementation.&lt;/li>
+&lt;/ul>
+&lt;p>三概念&lt;/p>
+&lt;p>The relational data model defines three concepts:&lt;/p>
+&lt;ul>
+&lt;li>Structure: The definition of relations and their contents. This is the attributes the relations have and the values that those attributes can hold.&lt;/li>
+&lt;li>&lt;strong>Integrity&lt;/strong>(完整性): Ensure the database’s contents satisfy constraints.
+&lt;ul>
+&lt;li>实体完整性 entity integrity:主属性不能为空&lt;/li>
+&lt;li>参照完整性 referential integrity: 外键的值必须存在&lt;/li>
+&lt;li>用户定义的完整性
+&lt;ul>
+&lt;li>An example constraint would be that any value for the year attribute has to be a number.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Manipulation: How to access and modify a database’s contents.&lt;/li>
+&lt;/ul>
+&lt;p>关系:&lt;/p>
+&lt;p>&lt;strong>A relation&lt;/strong> is an &lt;strong>unordered&lt;/strong> set that contains the relationship of attributes that represent entities. So the DBMS can store them in any way it wants, allowing for &lt;strong>optimization&lt;/strong>(允许优化).&lt;/p>
+&lt;p>元组:&lt;/p>
+&lt;p>&lt;strong>A tuple&lt;/strong> is a set of &lt;strong>attribute values&lt;/strong> (also known as its &lt;strong>domain&lt;/strong> 域 一组相同数据类型的值的集合) in the relation. &lt;strong>Originally&lt;/strong>, values had to be atomic or scalar(标量), but &lt;strong>now&lt;/strong> values can also be lists or &lt;strong>nested&lt;/strong>(嵌套) data structures. Every attribute can be a special value, &lt;strong>NULL&lt;/strong>, which means for a given tuple the attribute is &lt;strong>undefined&lt;/strong>.&lt;/p>
+&lt;p>关系:&lt;/p>
+&lt;p>&lt;strong>A relation&lt;/strong> with n attributes is called &lt;strong>an n-ary relation&lt;/strong>.&lt;/p>
+&lt;p>键&lt;/p>
+&lt;p>&lt;strong>A relation’s primary key&lt;/strong> uniquely identifies a single tuple.&lt;/p>
+&lt;ul>
+&lt;li>Some DBMSs automatically create an internal primary key if you do not define one.&lt;/li>
+&lt;li>A lot of DBMSs have support for autogenerated keys so an application does not have to &lt;strong>manually increment&lt;/strong>(手动增加) the keys, but a primary key is still required for some DBMSs.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>A foreign key&lt;/strong> specifies that an attribute from one relation has to map to a tuple in another relation.&lt;/p>
+&lt;h2 id="15-data-manipulation-languages-dmls">1.5 Data Manipulation Languages (DMLs)&lt;/h2>
+&lt;p>Methods to store and retrieve information from a database.&lt;/p>
+&lt;p>There are two classes of languages for this:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Procedural&lt;/strong>(程序上的): The query &lt;strong>specifies the (high-level) strategy&lt;/strong> the DBMS should use to find &lt;strong>the desired result based on sets / bags.&lt;/strong> (relational &lt;strong>algebra&lt;/strong> 代数)&lt;/li>
+&lt;li>Non-Procedural (&lt;strong>Declarative&lt;/strong> 声明): The query specifies only what data is wanted and not how to find it. (relational &lt;strong>calculus&lt;/strong> 微积分/关系演算)&lt;/li>
+&lt;/ul>
+&lt;p>一般现在都是用第二种的，我不管DBMS用什么&lt;strong>策略&lt;/strong>，我只需要你给我我想要的数据。&lt;/p>
+&lt;h2 id="16-relational-algebra-关系代数">1.6 Relational Algebra 关系代数&lt;/h2>
+&lt;p>&lt;strong>Relational Algebra&lt;/strong> is a set of fundamental operations to &lt;strong>retrieve&lt;/strong>(检索) and manipulate tuples in a relation.&lt;/p>
+&lt;p>Each operator &lt;strong>takes in&lt;/strong>(需要) one or more relations as inputs, and outputs a new relation. To write queries we can “&lt;strong>chain&lt;/strong>(链)” these operators together to create more complex operations.&lt;/p>
+&lt;p>5种基本&lt;strong>关系操作&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>选择,投影,并,差,笛卡儿积&lt;/li>
+&lt;/ul>
+&lt;p>传统&lt;strong>集合运算&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>二目运算: 并,差,交,笛卡尔积&lt;/li>
+&lt;/ul>
+&lt;p>专门的&lt;strong>关系运算&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>选择selection ,投影projection,连接 join,除 dividen&lt;/li>
+&lt;/ul>
+&lt;p>选择:在&lt;strong>关系R&lt;/strong>中,选择符合条件的&lt;strong>元组&lt;/strong>,是从行的角度进行运算.&lt;/p>
+&lt;p>投影:在&lt;strong>关系R&lt;/strong>中,选择出&lt;strong>若干属性列&lt;/strong>组成新的关系,从列的角度&lt;/p>
+&lt;p>连接:两个关系的&lt;strong>笛卡尔积&lt;/strong>中,选取属性中满足一定条件的元组&lt;/p>
+&lt;ul>
+&lt;li>自然连接 内连接: 不保留悬浮元组.&lt;/li>
+&lt;li>外连接 outer join : 保留&lt;strong>悬浮元组&lt;/strong>(填NULL)的连接&lt;/li>
+&lt;li>左连接 left outer join: 只保留&lt;strong>左边关系R&lt;/strong>中的悬浮空组.&lt;/li>
+&lt;li>右连接 right outer join: 只保留&lt;strong>右边关系R&lt;/strong>中的悬浮空组.&lt;/li>
+&lt;/ul>
+&lt;p>除: R除以S得到T, 则T包含所有&lt;strong>在R而不在S&lt;/strong>的&lt;strong>属性及其值&lt;/strong>. 且T和S的所有组合都在R中.&lt;/p>
+&lt;h1 id="l2-modern-sql">L2 Modern SQL&lt;/h1>
+&lt;h2 id="21-relation-languages">2.1 Relation Languages&lt;/h2>
+&lt;p>用户只需要使用声明性语言（即SQL）来指定他们想要的结果。DBMS 负责确定产生该答案的最有效计划。&lt;/p>
+&lt;p>关系代数基于 sets (unordered, no duplicates)。 SQL基于 bags (unordered, allows duplicates)&lt;/p>
+&lt;h2 id="22-sql-history">2.2 SQL History&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>SEQUEL Structured English Query Language&lt;/p>
+&lt;p>SQL Structured Query Language&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>该语言由不同类别的命令组成：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>DML&lt;/strong> Data Manipulation Language &lt;code>SELECT, INSERT, UPDATE, DELETE&lt;/code>&lt;/li>
+&lt;li>&lt;strong>DDL&lt;/strong> Data Definition Language Schema definitions for tables, indexes, views, and other objects.&lt;/li>
+&lt;li>&lt;strong>DCL&lt;/strong> Data Control Language Security, access controls.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>SQL仍在不断发展的&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="23-join">2.3 Join&lt;/h2>
+&lt;p>结合一个或多个表的列，产生一个新的表。用来表达涉及跨越多个表的数据的查询&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">CREATE TABLE student (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sid INT PRIMARY KEY,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name VARCHAR(16),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> login VARCHAR(32) UNIQUE,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> age SMALLINT,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> gpa FLOAT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CREATE TABLE course (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cid VARCHAR(32) PRIMARY KEY,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name VARCHAR(32) NOT NULL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CREATE TABLE enrolled (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sid INT REFERENCES student (sid),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> cid VARCHAR(32) REFERENCES course (cid),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> grade CHAR(1)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">找出在15-721拿到A的学术
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT s.name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM enrolled AS e, student AS s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WHERE e.grade = &amp;#39;A&amp;#39; AND e.cid = &amp;#39;15-721&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">AND e.sid = s.sid;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="24-aggregates-聚合函数">2.4 Aggregates 聚合函数&lt;/h2>
+&lt;p>聚合函数接受一组列表，然后产生一个单一的标量值作为其输出。基本上只能在SELECT输出列表中使用！&lt;/p>
+&lt;p>函数：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>AVG&lt;/code>&lt;/li>
+&lt;li>&lt;code>MIN&lt;/code>&lt;/li>
+&lt;li>&lt;code>MAX&lt;/code>&lt;/li>
+&lt;li>&lt;code>COUNT&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>当使用goup时,聚合函数输出为每个组的输出.&lt;/p>
+&lt;p>having 在聚合计算的基础过滤输出结果.而不是where&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT AVG(s.gpa) AS avg_gpa, e.cid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM enrolled AS e, student AS s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WHERE e.sid = s.sid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GROUP BY e.cid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">HAVING avg_gpa &amp;gt; 3.9;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="25-sting-operation">2.5 Sting Operation&lt;/h2>
+&lt;p>&lt;strong>SQL标准&lt;/strong>是&lt;strong>区分大小写&lt;/strong>的，而且只能是&lt;strong>单引号&lt;/strong>！有一些函数可以处理字符串，可以在查询的任何部分使用。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>Pattern Matching&lt;/strong>:&lt;/p>
+&lt;p>Like 关键字&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>%&lt;/code> : matches any substrings (including empty).&lt;/li>
+&lt;li>&lt;code>_&lt;/code> : matches any one character&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>String Function:&lt;/strong> &lt;code>SUBSTRING(S, B, E)&lt;/code> &lt;code>UPPER(S)&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Concatenation&lt;/strong>(连接) : &lt;code>||&lt;/code> concatenate two or more strings together into a single string&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="26-date-and-time">2.6 Date and Time&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>时间函数&lt;/p>
+&lt;ul>
+&lt;li>当前日期时间 &lt;code>NOW()&lt;/code>, &lt;code>CURRENT_TIMESTAMP()&lt;/code>&lt;/li>
+&lt;li>当前UNIX时间戳 &lt;code>UNIX_TIMESTAMP()&lt;/code>&lt;/li>
+&lt;li>当前日期 &lt;code>CURRENT_DATE()&lt;/code>&lt;/li>
+&lt;li>当前时间 &lt;code>CURRENT_TIME()&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>日期时间转换函数&lt;/p>
+&lt;ul>
+&lt;li>当前时间戳转换为北京时间 &lt;code>FROM_UNIXTIME()&lt;/code>&lt;/li>
+&lt;li>北京时间转换为时间戳 &lt;code>UNIX_TIMESTAMP()&lt;/code>&lt;/li>
+&lt;li>时间中解析年月日时间 &lt;code>DATE_FORMAT(date, format)&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">select DATE_FORMAT(&amp;#39;2021-01-01 08:30:50&amp;#39;,&amp;#39;%Y-%m-%d&amp;#39;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>日期时间运算函数&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>在某个时间的基础上加上或者减去某个时间 &lt;code>DATE_ADD(date,INTERVAL expr unit)&lt;/code> &lt;code>DATE_SUB(date,INTERVAL expr unit)&lt;/code>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>返回两个日期值之间的天数 &lt;code>DATEDIFF(expr1,expr2))&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">select DATEDIFF(&amp;#39;2021-01-02&amp;#39;,&amp;#39;2021-01-01&amp;#39;)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>时间差函数 &lt;code>TIMESTAMPDIFF(unit,datetime_expr1,datetime_expr2)&lt;/code>&lt;/p>
+&lt;p>unit：天(DAY)、小时(HOUR），分钟(MINUTE)和秒(SECOND)，TIMESTAMPDIFF函数比DATEDIFF函数用起来更加灵活&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="27-output-redirection">2.7 Output Redirection&lt;/h2>
+&lt;p>你可以告诉DBMS将查询结果存储到另一个表中，而不是将查询结果返回给客户端（例如，终端）。结果存储到另一个表中。然后你可以在随后的查询中访问这些数据&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>New Table: 将查询的输出存储到一个新的（永久）表中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT DISTINCT cid INTO CourseIds FROM enrolled;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>Exustubg Table:&lt;/p>
+&lt;p>将&lt;strong>查询的输出存储到数据库中已经存在的表&lt;/strong>中。该表 目标表必须有与目标表相同数量和相同类型的列，但输出查询中的列名不需要匹配。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">INSERT INTO CourseIds (SELECT DISTINCT cid FROM enrolled)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="28-output-control">2.8 Output Control&lt;/h2>
+&lt;p>可以用ORDER BY来对输出进行排序,后面可以加&lt;code>DESC&lt;/code>, &lt;code>ASC&lt;/code>来指定排序策略&lt;/p>
+&lt;p>输出的数量可以用&lt;code>LIMIT n&lt;/code> 进行指定,当然也可以用&lt;code>OFFSET&lt;/code> 来提供一个bias。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">ELECT sid, grade FROM enrolled WHERE cid = &amp;#39;15-721&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ORDER BY grade;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT sid, name FROM student WHERE login LIKE &amp;#39;%@cs&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">LIMIT 20 OFFSET 10;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="29-nested-queries">2.9 Nested Queries&lt;/h2>
+&lt;p>在其他查询中调用查询，在单个查询中执行更复杂的逻辑。嵌套查询往往难以优化。&lt;/p>
+&lt;p>外部查询的范围包括在内部查询中（即&lt;strong>内部查询可以访问来自外部查询&lt;/strong>），反之不行。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>内部查询几乎可以出现在一个查询的任何部分。&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;code>SELECT&lt;/code> Output Targets&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT (SELECT 1) AS one FROM student;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;code>FROM&lt;/code> &lt;strong>Clause&lt;/strong>(条件):&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM student AS s, (SELECT sid FROM enrolled) AS e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE s.sid = e.sid;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="3">
+&lt;li>&lt;code>WHERE&lt;/code> Clause&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT name FROM student
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE sid IN ( SELECT sid FROM enrolled );
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>例子： 获取在15-445中注册的学生名字&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT name FROM student
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE sid IN (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SELECT sid FROM enrolled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE cid = &amp;#39;15-445&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>请注意，根据它在查询中出现的位置，sid有不同的范围。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>例子： 找到注册了至少一门课的最大的学生id&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT student.sid, name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM student
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> JOIN (SELECT MAX(sid) AS sid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM enrolled) AS max_e
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ON student.sid = max_e.sid;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h3 id="nested-query-results-expressions">Nested Query Results Expressions:&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>关键字：&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>ALL&lt;/code> Must satisfy expression for all rows in sub-query&lt;/li>
+&lt;li>&lt;code>ANY&lt;/code> Must satisfy expression for at least one row in sub-query.&lt;/li>
+&lt;li>&lt;code>IN&lt;/code> Equivalent to =ANY().&lt;/li>
+&lt;li>&lt;code>EXISTS&lt;/code> At least one row is returned.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>例子： 找到所有没有学生注册的课&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT * FROM course
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE NOT EXISTS(
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SELECT * FROM enrolled
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE course.cid = enrolled.cid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">);
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h2 id="210-window-functions">2.10 Window Functions&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>函数： 窗口函数可以是我们上面讨论的任何一个聚合函数。也有一些特殊的窗口函数。&lt;/p>
+&lt;ol>
+&lt;li>&lt;code>ROW_NUMBER&lt;/code>: 当前列的数字&lt;/li>
+&lt;li>&lt;code>RANK&lt;/code>: 当前列的顺序&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>Grouping: &lt;strong>OVER子句指定了在计算窗口函数时如何对图元进行分组&lt;/strong>。使用&lt;strong>PARTITION BY&lt;/strong>来指定分组&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT cid, sid, ROW_NUMBER() OVER (PARTITION BY cid)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM enrolled ORDER BY cid;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我们也可以在OVER中放入ORDER BY，以确保结果的确定性排序，即使数据库内部发生变化。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT *, ROW_NUMBER() OVER (ORDER BY cid)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM enrolled ORDER BY cid;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>重要提示：&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>DBMS在窗函数排序后计算&lt;code>RANK&lt;/code>，而在排序前计算&lt;code>ROW_NUMBER&lt;/code>。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>找到每门课程中成绩第二高的学生&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT * FROM (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SELECT *, RANK() OVER (PARTITION BY cid
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ORDER BY grade ASC) AS rank
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> FROM enrolled) AS ranking
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WHERE ranking.rank = 2;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="211-commom-table-expressions">2.11. Commom Table Expressions&lt;/h2>
+&lt;p>在编写更复杂的查询时，通用表表达式（CTE）是窗口或嵌套查询的一种替代方法。复杂的查询时，可以替代窗口或嵌套查询。它们提供了一种方法来为用户在一个更大的查询中编写辅助语句.&lt;/p>
+&lt;p>可以理解为一个辅助表。&lt;/p>
+&lt;p>&lt;code>WITH&lt;/code>子句将内部查询的输出与一个具有该名称的临时结果绑定。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>例子： 生成一个名为cteName的CTE，其中包含一个单一属性设置为 &amp;ldquo;1 &amp;ldquo;的元组。从这个CTE中选择所有属性。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">WITH cteName AS (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SELECT 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT * FROM cteName;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>我们可以在AS之前将输出列绑定到名称上&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">WITH cteName (col1, col2) AS (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> SELECT 1, 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT col1 + col2 FROM cteName;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>一个查询可能包含多个CTE声明&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">WITH cte1 (col1) AS (SELECT 1), cte2 (col2) AS (SELECT 2)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT * FROM cte1, cte2;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;li>
+&lt;p>递归能力 在WITH后面&lt;strong>添加RECURSIVE关键字&lt;/strong>允许CTE引用自己。这使得在SQL查询中可以实现递归。有了递归的CTE，SQL被证明是图灵完备的，这意味着它在计算上的表现力不亚于更多的通用编程语言&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>例子：打印从1到10的数字&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">WITH RECURSIVE cteSource (counter) AS (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ( SELECT 1 )
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> UNION
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> ( SELECT counter + 1 FROM cteSource
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> WHERE counter &amp;lt; 10 )
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">SELECT * FROM cteSource;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;/li>
+&lt;/ul>
+&lt;h1 id="homework-1---sql">Homework #1 - SQL&lt;/h1>
+&lt;p>CASE 语句&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT name,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> CASE
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> when died is not null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> then died-born
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> else &amp;#39;2022&amp;#39; - born
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> END as age
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM people
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">where born &amp;gt;= &amp;#39;1900&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ORDER by age DESC,name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">LIMIT 20;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>CAST AS TEXT 转换成字符串，字符串连接用 ||&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">select
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CAST(titles.premiered/10*10 AS TEXT) || &amp;#39;s&amp;#39; as decade,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">round(avg(rating),2) as avg,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">max(rating) as top,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">min(rating) as min,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">count(*) as NUM_RELEASES
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from ratings
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">join titles on titles.title_id = ratings.title_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">where decade is not null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GROUP by decade
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">order by avg DESC,decade
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">limit 20;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>第一个with后，用,隔开&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">with person_title as (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> select people.name,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> people.person_id,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> crew.title_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> from people
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> join crew on crew.person_id = people.person_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> join titles on titles.title_id = crew.title_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> where born = 1955 and titles.type = &amp;#34;movie&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">person_avg as (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> select person_title.name,round(avg(rating),2) as avg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> from RATINGS
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> join person_title on person_title.title_id = ratings.title_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> group by person_title.person_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">),
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">quantiles as (
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> select * ,NTILE(10) OVER (ORDER BY avg ASC) as QuantileRating from person_avg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">select
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">name,avg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">from quantiles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">where QuantileRating = 9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">order by avg DESC,name;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>把表格数据压缩成一行，用，隔开&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">with p as(
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> select akas.title as dubbed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> from titles
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> join akas on akas.title_id = titles.title_id
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> where primary_title = &amp;#34;House of the Dragon&amp;#34; and type = &amp;#34;tvSeries&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> group by primary_title,dubbed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> order by dubbed
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">select GROUP_CONCAT(dubbed,&amp;#39;, &amp;#39;) from p;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="l3--4database-storage">L3 -4Database Storage&lt;/h1>
+&lt;h2 id="31-storage">3.1 Storage&lt;/h2>
+&lt;p>The DBMS assumes that the primary storage location of the database is on non-volatile disk.&lt;/p>
+&lt;p>The DBMS&amp;rsquo;s components manage the movement of data between non-volatile and volatile storage.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222153223421" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153223421_hud22ed9fb7e05b813d6f8ec53aae116f9_88815_5cb0075bf1c94b9519597682f898623e.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153223421_hud22ed9fb7e05b813d6f8ec53aae116f9_88815_25d36e1da19b804aeaf0d87a056222ff.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153223421_hud22ed9fb7e05b813d6f8ec53aae116f9_88815_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153223421_hud22ed9fb7e05b813d6f8ec53aae116f9_88815_5cb0075bf1c94b9519597682f898623e.webp"
+width="760"
+height="456"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Volatile Devices:&lt;/p>
+&lt;ul>
+&lt;li>Volatile means that if you pull the power from the machine, then the data is lost.&lt;/li>
+&lt;li>Volatile storage supports fast &lt;strong>random access&lt;/strong> with byte-addressable locations. This means that the program can jump to any byte address and get the data that is there.&lt;/li>
+&lt;li>For our purposes, we will always refer to this storage class as “memory.”&lt;/li>
+&lt;/ul>
+&lt;p>Non-Volatile Devices:&lt;/p>
+&lt;ul>
+&lt;li>Non-volatile means that the storage device does not require continuous power in order for the device to retain the bits that it is storing.&lt;/li>
+&lt;li>It is also block/page addressable. This means that &lt;strong>in order to read a value at a particular offset&lt;/strong>, the program &lt;strong>first has to load the 4 KB page into memory&lt;/strong> that holds the value the program wants to read.&lt;/li>
+&lt;li>Non-volatile storage is &lt;strong>traditionally better at sequential access&lt;/strong> (reading multiple contiguous chunks of data at the same time).&lt;/li>
+&lt;li>We will refer to this as “disk.” We will not make a (major) distinction between solid-state storage (SSD) and spinning hard drives (HDD).&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222153508116" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153508116_hu2bfa840c291ed983668d96ded6216345_109474_09dd1725ed7f8adc8264af1eee03297d.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153508116_hu2bfa840c291ed983668d96ded6216345_109474_86de3de50577edcb256e34e8562b58cb.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153508116_hu2bfa840c291ed983668d96ded6216345_109474_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222153508116_hu2bfa840c291ed983668d96ded6216345_109474_09dd1725ed7f8adc8264af1eee03297d.webp"
+width="746"
+height="467"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="32-disk-oriented-dbms-overview">3.2 Disk-Oriented DBMS Overview&lt;/h2>
+&lt;p>The database is &lt;strong>all on disk&lt;/strong>, and the data in database files is organized into pages, with the first page being the directory page.&lt;/p>
+&lt;p>To operate on the data, the DBMS needs to bring the data into memory. It does this by &lt;strong>having a buffer pool&lt;/strong> that &lt;strong>manages the data movement back and forth&lt;/strong> between disk and memory&lt;/p>
+&lt;p>The DBMS also has an &lt;strong>execution engine&lt;/strong> that will execute queries. The execution engine will &lt;strong>ask the buffer pool for a specific page&lt;/strong>, and the buffer pool will take care of bringing that page into memory and &lt;strong>giving the execution engine a pointer&lt;/strong> to that page in memory.&lt;/p>
+&lt;p>The buffer pool manager will &lt;strong>ensure&lt;/strong> that &lt;strong>the page is there while the execution engine operates on that part of memory&lt;/strong>.&lt;/p>
+&lt;h2 id="33-dbms-vs-os">3.3 DBMS vs OS&lt;/h2>
+&lt;ul>
+&lt;li>DBMS的一个&lt;strong>高级设计目标是支持超过可用内存量&lt;/strong>的数据库。因为访问disk的代价很大，所以使用disk应该要小心。我们不希望从磁盘上访问数据时停顿太久，从而拖慢其他一切。我们希望DBMS能够处理在等待从磁盘获取数据时，能够处理其他查询。&lt;/li>
+&lt;li>这个高层次的设计目标就像虚拟内存一样，有一个大的地址空间和一个供操作系统从磁盘引入页面的地方。&lt;/li>
+&lt;li>实现这种虚拟内存的方法之一是使用mmap来映射进程地址空间中的文件内容，这使得操作系统负责在磁盘和内存之间来回移动页面。 但不幸的是，如果&lt;strong>mmap遇到页面故障，进程将会被阻塞&lt;/strong>。
+&lt;ul>
+&lt;li>如果你需要写入，你永远不想在你的DBMS中使用mmap。&lt;/li>
+&lt;li>DBMS（几乎）总是想自己控制事情，而且可以做得更好，因为它知道更多关于被访问的数据和被处理的查询。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>可以通过使用操作系统：
+&lt;ul>
+&lt;li>&lt;code>madvise&lt;/code>: 告诉操作系统你打算何时读某些页面。&lt;/li>
+&lt;li>&lt;code>mlock&lt;/code>: 告诉操作系统不要把内存范围换到磁盘上。&lt;/li>
+&lt;li>&lt;code>msync&lt;/code>: 告诉操作系统将内存范围刷新到磁盘。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>出于正确性和性能的考虑，我们不建议在DBMS中使用&lt;/strong>&lt;code>mmap&lt;/code>。&lt;/p>
+&lt;h2 id="34-file-storage">3.4 File Storage&lt;/h2>
+&lt;ul>
+&lt;li>在其最基本的形式中，DBMS将&lt;strong>数据库存储为磁盘上的文件&lt;/strong>。有些可能使用文件层次结构，有些则可能使用单个文件&lt;/li>
+&lt;li>操作系统对这些文件的内容一无所知。&lt;strong>只有DBMS知道如何解读它们的内容&lt;/strong>，因为它是以DBMS特有的方式编码的。&lt;/li>
+&lt;li>DBMS的存储管理器负责管理数据库的文件。它将文件表示为一个 页的集合。它还跟踪哪些数据被读和写到了页面上，以及这些页面有多少可用空间。这些页面中还有多少可用空间。&lt;/li>
+&lt;/ul>
+&lt;h2 id="35-database-pages">3.5 Database Pages&lt;/h2>
+&lt;ul>
+&lt;li>DBMS将数据库组织在&lt;strong>一个或多个文件中的固定大小的数据块&lt;/strong>，称为页。页面可以包含不同种类的数据（tuple、indexes等）。&lt;/li>
+&lt;/ul>
+&lt;blockquote>
+&lt;ul>
+&lt;li>大多数系统不会将这些类型混合在一页中。 有些系统会要求页面是自成一体（self-contained）的，也就是说，阅读每个页面所需的所有信息都在页面本身。读取每一页的所有信息都在页面本身&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;ul>
+&lt;li>Each page is given a unique identifier.
+&lt;ul>
+&lt;li>The DBMS uses an indirection layer to map page IDs to physical locations.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>There are three different &lt;strong>notions&lt;/strong> of &amp;ldquo;pages&amp;rdquo; in a DBMS:&lt;/p>
+&lt;ul>
+&lt;li>Hardware Page (usually 4KB)&lt;/li>
+&lt;li>OS Page (usually 4KB)&lt;/li>
+&lt;li>Database Page (512B-16KB)&lt;/li>
+&lt;/ul>
+&lt;p>存储设备保证写的操作是atomic 原子的。 这意味着，如果我们的数据库页面比我们的硬件页面大，DBMS将不得不采取额外的措施 以确保数据被安全地写出来。 因为当系统崩溃时，程序可能已经完成了将数据库页面写入磁盘的一部分&lt;/p>
+&lt;p>Different DBMSs manage pages in files on disk in different ways.&lt;/p>
+&lt;ul>
+&lt;li>Heap File Organization&lt;/li>
+&lt;li>Tree File Organization&lt;/li>
+&lt;li>Sequential / Sorted File Organization (ISAM)&lt;/li>
+&lt;li>Hashing File Organization&lt;/li>
+&lt;/ul>
+&lt;p>At this point in the &lt;strong>hierarchy&lt;/strong>(层次结构) we don&amp;rsquo;t need to know anything about what is inside of the pages.&lt;/p>
+&lt;h2 id="36-database-heap">3.6 Database Heap&lt;/h2>
+&lt;p>A &lt;strong>heap file&lt;/strong> is an &lt;strong>unordered&lt;/strong> collection of pages with tuples that are stored in random order.&lt;/p>
+&lt;ul>
+&lt;li>Create / Get / Write / Delete Page&lt;/li>
+&lt;li>Must also support iterating over all pages.&lt;/li>
+&lt;/ul>
+&lt;p>DBMS可以通过使用页面的链接列表或页面目录在磁盘上找到一个给定的页面ID&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Linked List: Header page持有指向自由页列表和数据页列表的指针。然而，如果 DBMS正在寻找一个特定的页面，它必须在数据页列表上进行顺序扫描，直到它找到它要找的页面。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Page Directory:&lt;/p>
+&lt;p>DBMS维护特殊的页面，跟踪数据页的位置以及每页的可用空间。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222155657027" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155657027_hue6ceeb2c876f7e8bb9567dc43df03885_128348_19e1f258c1eaffbced6c82db8733249f.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155657027_hue6ceeb2c876f7e8bb9567dc43df03885_128348_c485bf2a46a3ac3c1a373535423f72ae.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155657027_hue6ceeb2c876f7e8bb9567dc43df03885_128348_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155657027_hue6ceeb2c876f7e8bb9567dc43df03885_128348_19e1f258c1eaffbced6c82db8733249f.webp"
+width="760"
+height="413"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222155526907" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155526907_hu2514056af22ca82486386cbb9fdb114c_40697_179a9702190fbffc038bb147ea6b13d3.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155526907_hu2514056af22ca82486386cbb9fdb114c_40697_3a0493d5dbdbc9057477b0943ccd7e23.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155526907_hu2514056af22ca82486386cbb9fdb114c_40697_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222155526907_hu2514056af22ca82486386cbb9fdb114c_40697_179a9702190fbffc038bb147ea6b13d3.webp"
+width="760"
+height="214"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Need &lt;strong>meta-data&lt;/strong> to keep track of what pages exist in multiple files and which ones have free space.&lt;/p>
+&lt;h2 id="37-page-layout">3.7 Page Layout&lt;/h2>
+&lt;ul>
+&lt;li>每个页面都包括一个header，记录关于页面内容的元数据。
+&lt;ul>
+&lt;li>Page size&lt;/li>
+&lt;li>Checksum&lt;/li>
+&lt;li>DBMS version&lt;/li>
+&lt;li>Transaction visibility&lt;/li>
+&lt;li>Self-containment(自成一体) (Some systems like Oracle require this.)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>For any page storage architecture, we now need to decide &lt;strong>how to organize the data inside of the page.&lt;/strong>&lt;/p>
+&lt;p>We are still assuming that we are only storing &lt;strong>tuples&lt;/strong>.&lt;/p>
+&lt;p>Two approaches:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Tuple&lt;/strong>-oriented (其实是 &lt;strong>slotted-page&lt;/strong>)
+&lt;ul>
+&lt;li>页面将slots映射到offsets,slot array 记录对应tuple的便宜量&lt;/li>
+&lt;li>Header keeps track of the number of used slots, the offset of the starting location of the last used slot, and a slot array, which keeps track of the location of the start of each tuple.&lt;/li>
+&lt;li>To add a tuple, the slot array will grow from the beginning to the end, and the data of the tuples will grow from end to the beginning. The page is considered full when the slot array and the tuple data meet&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Log-structured&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161048229" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161048229_hub44ae70f4f7c00c2718018a74f4c1d06_119403_a6fd6f2414dd48c987770212b2738c6c.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161048229_hub44ae70f4f7c00c2718018a74f4c1d06_119403_8f4f905424d552352ad3eae80f9367af.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161048229_hub44ae70f4f7c00c2718018a74f4c1d06_119403_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161048229_hub44ae70f4f7c00c2718018a74f4c1d06_119403_a6fd6f2414dd48c987770212b2738c6c.webp"
+width="760"
+height="412"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="38-tuple-layout">3.8 Tuple Layout&lt;/h2>
+&lt;p>tuple 内部的结构&lt;/p>
+&lt;p>tuples本质上是一个字节序列。DBMS的工作是将这些字节解释为属性类型和值。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Tuple Header：包含了tuple的元数据&lt;/p>
+&lt;ul>
+&lt;li>DBMS的并发控制协议的可见性信息。关于哪个事务创建/修改了该元组&lt;/li>
+&lt;li>NULL值的位图。&lt;/li>
+&lt;li>注意，DBMS不需要在这里存储关于数据库模式的元数据。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Tuple Data：数据的实际属性&lt;/p>
+&lt;ul>
+&lt;li>属性通常按照你创建表时指定的顺序存储&lt;/li>
+&lt;li>大多数DBMS不允许一个tuple超过一个页面的大小。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Unique Identifier&lt;/p>
+&lt;ul>
+&lt;li>数据库中的每个tuple都被分配一个唯一的标识符&lt;/li>
+&lt;li>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161450033" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161450033_hu3bd19195469812a461a7fa0e1b7190f8_46490_e95fc6290195b3eb2c3331929231fd6e.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161450033_hu3bd19195469812a461a7fa0e1b7190f8_46490_e384fcb96492f2d64c31cba4265d83d8.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161450033_hu3bd19195469812a461a7fa0e1b7190f8_46490_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161450033_hu3bd19195469812a461a7fa0e1b7190f8_46490_e95fc6290195b3eb2c3331929231fd6e.webp"
+width="315"
+height="415"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/li>
+&lt;li>一般是：&lt;code>page_id + (offset or slow)&lt;/code>&lt;/li>
+&lt;li>一个应用程序&lt;strong>不能&lt;/strong>依赖这些ID来表示任何东西&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>De-normalized Tuple Data:&lt;/p>
+&lt;p>如果两个表是相关的，DBMS可以 &amp;ldquo;pre-join&amp;quot;它们，所以这些表最终会出现在 在同一个页面上。这使得读取速度加快，因为DBMS只需要加载一个页面而不是两个 独立的页面。然而，这使得更新更加昂贵，因为DBMS需要更多的空间给每个 tuples&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161346650" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161346650_hu37427914b57f6d5043c3ef126690e110_173412_a754a7e3373b1eff757670a5400a061e.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161346650_hu37427914b57f6d5043c3ef126690e110_173412_0911b0c56d26d1b17e1b5084d21fb464.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161346650_hu37427914b57f6d5043c3ef126690e110_173412_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161346650_hu37427914b57f6d5043c3ef126690e110_173412_a754a7e3373b1eff757670a5400a061e.webp"
+width="760"
+height="401"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="39-log-structured-storage">3.9 Log-Structured Storage&lt;/h2>
+&lt;p>（也叫Append-only Sequence of Data） 参考: &lt;a href="https://www.cnblogs.com/muzhongjiang/p/15151758.html" target="_blank" rel="noopener">Log-Structured 结构&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>与Slotted-Page Design有关的问题是：
+&lt;ul>
+&lt;li>
+&lt;p>Fragmentation: 删除tuple会在page中留下空隙。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Useless Disk I/O:&lt;/p>
+&lt;p>由于非易失性存储的block-oriented的性质，需要读取整个块来获取tuple。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Random Disk I/O: 磁盘阅读器可能不得不跳到20个不同的地方来更新20个不同的tuples，这可能会非常慢。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>如果我们在一个&lt;strong>只允许创建新数据而不允许覆盖&lt;/strong>的系统上工作呢？日志结构的存储模型与这个假设相配合，解决了上面列出的一些问题。&lt;/p>
+&lt;p>&lt;strong>Log-Structured Storage:&lt;/strong> DBMS不存储tuples，&lt;strong>只存储日志记录&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>将数据库如何被修改的记录存储到文件中（放入和删除）。每条日志包含tuples的唯一标识符&lt;/li>
+&lt;li>要读取一条记录，DBMS会&lt;strong>从最新的到最旧的逆向扫描日志文件&lt;/strong>，并 &amp;ldquo;重新创建 &amp;ldquo;这个 tuple。&lt;/li>
+&lt;li>写的快，读的可能慢。磁盘写入是连续的，现有的页面是不可改变的，这导致了随机磁盘I/O的减少。&lt;/li>
+&lt;li>在append-only的存储上工作得很好，因为DBMS不能回溯并更新数据。&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161821846" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161821846_hua80a0ff1847a6d1a6c9d3b75314bb106_64825_2925de20dcd852f9471f48dabd0fcb23.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161821846_hua80a0ff1847a6d1a6c9d3b75314bb106_64825_00586507062e203fe557843ecc7f1243.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161821846_hua80a0ff1847a6d1a6c9d3b75314bb106_64825_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161821846_hua80a0ff1847a6d1a6c9d3b75314bb106_64825_2925de20dcd852f9471f48dabd0fcb23.webp"
+width="424"
+height="434"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>The log will grow forever. The DBMS needs to periodically &lt;strong>compact&lt;/strong>(紧凑) pages to reduce wasted space.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161836461" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161836461_hub1621e620434fb3b865eb5d8264521d8_64617_c2cf10f301cf5187656ce3f081399858.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161836461_hub1621e620434fb3b865eb5d8264521d8_64617_bfd0edee3f66195e04817c5518a68003.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161836461_hub1621e620434fb3b865eb5d8264521d8_64617_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161836461_hub1621e620434fb3b865eb5d8264521d8_64617_c2cf10f301cf5187656ce3f081399858.webp"
+width="760"
+height="276"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>由于不再需要时间信息，数据库可以&lt;strong>将日志压缩到一个按id排序的表&lt;/strong>中。这些被称为分类字符串表（SSTables），它们可以使tuple搜索非常快。&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222161958064" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161958064_hu853b98a7ab66e59b808393c705129b31_31074_1b4c2521981b41a66e203eaaadb83c6b.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161958064_hu853b98a7ab66e59b808393c705129b31_31074_dad1be2109155288503ef62dd1a9cd30.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161958064_hu853b98a7ab66e59b808393c705129b31_31074_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222161958064_hu853b98a7ab66e59b808393c705129b31_31074_1b4c2521981b41a66e203eaaadb83c6b.webp"
+width="350"
+height="325"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>紧凑化的问题是，DBMS最终会出现写入放大的情况。(&lt;strong>它一次又一次地重写相同的数据&lt;/strong>）。&lt;/li>
+&lt;/ul>
+&lt;p>Compaction coalesces larger log files into smaller files by removing unnecessary records.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222162056924" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162056924_hu94b5ec96540e02aacf1a9c4b3c0322af_57974_acfb438b8cbb51498683bf00bf750498.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162056924_hu94b5ec96540e02aacf1a9c4b3c0322af_57974_c3c50f7856f5ce4ae6704e9031d1a8c1.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162056924_hu94b5ec96540e02aacf1a9c4b3c0322af_57974_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162056924_hu94b5ec96540e02aacf1a9c4b3c0322af_57974_acfb438b8cbb51498683bf00bf750498.webp"
+width="760"
+height="234"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Log-structured storage managers are more common today. This is partly due to the &lt;strong>proliferation&lt;/strong>(扩散) of RocksDB.&lt;/p>
+&lt;h2 id="311-data-representation">3.11 Data Representation&lt;/h2>
+&lt;p>A tuple is essentially a sequence of bytes.&lt;/p>
+&lt;p>It&amp;rsquo;s the job of the DBMS to &lt;strong>interpret&lt;/strong> those bytes into attribute types and values.&lt;/p>
+&lt;p>The DBMS&amp;rsquo;s &lt;strong>catalogs&lt;/strong>(目录) contain the schema information about tables(数据表示方案) that the system uses to figure out the tuple&amp;rsquo;s layout.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222162403262" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162403262_hu70eda27e5caa1f7624547d63d7ed8d9b_93868_badd799e61d26959ac3480d2740cf2b7.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162403262_hu70eda27e5caa1f7624547d63d7ed8d9b_93868_9db2e901358ffcc4e60ebb67fda9624d.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162403262_hu70eda27e5caa1f7624547d63d7ed8d9b_93868_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222162403262_hu70eda27e5caa1f7624547d63d7ed8d9b_93868_badd799e61d26959ac3480d2740cf2b7.webp"
+width="640"
+height="327"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>INTEGER, BIGINT, SMALLINT, TINYINT.&lt;/strong> (Integers)大多数DBMS使用IEEE-754标准规定的 &amp;ldquo;native &amp;ldquo;C/C++类型来存储整数。这些值是&lt;strong>固定长度&lt;/strong>的。&lt;/li>
+&lt;li>&lt;strong>FLOAT, REAL&lt;/strong> (Variable Precision Numbers) 这些是不精确的、可变精度的数字类型, &amp;ldquo;native &amp;ldquo;C/C++类型,这些值也是&lt;strong>固定长度&lt;/strong>的。
+&lt;ul>
+&lt;li>&lt;strong>变精度数的运算比任意精度数的运算更快&lt;/strong>，因为CPU可以直接对其执行指令。然而，在进行计算时&lt;strong>可能会出现精度损失&lt;/strong>！&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>NUMERIC, DECIMAL.&lt;/strong>(Fixed-Point Precision Numbers) 通常&lt;strong>以精确的、可变长度&lt;/strong>的二进制表示法（像一个字符串）来存储.带有&lt;strong>额外的元数据&lt;/strong>，这些数据将告诉系统诸如&lt;strong>数据的长度和小数点应该在哪里&lt;/strong>。&lt;/li>
+&lt;li>当误差不可接受的时候，DBMS就要付出性能的代价来提高精度。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>VARCHAR, VARBINARY, TEXT, BLOB&lt;/strong> Variable-Length Data&lt;/p>
+&lt;ul>
+&lt;li>代表任意长度的数据类型。它们通常是用一个header来存储的，这个header可以追踪到字符串的长度，以便于跳转到下一个值。它还可能包含一个数据的校验和。&lt;/li>
+&lt;li>&lt;strong>大多数DBMS不允许一个tuple超过一个页面的大小。&lt;/strong> &lt;strong>但是！那些允许的系统将数据存储在一个特殊的 &amp;ldquo;溢出 &amp;ldquo;页&lt;/strong>上，并让tuple包含一个对该页的引用。这些溢出页可以包含指向其他溢出页的指针，直到所有的数据都可以被存储。(类似分级页表)&lt;/li>
+&lt;li>有些系统会让你把这些大的数值存储在一个外部文件中，然后元组会包含一个指向该文件的指针。例如，如果数据库存储的是照片信息，DBMS可以将照片存储在外部文件中，而不是让它们占用DBMS中的大量空间。这样做的一个缺点是，DBMS&lt;strong>不能操作这个文件的内容&lt;/strong>。因此，No durability protections. No transaction protections.没有耐久性或交易保护。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>TIME, DATE, TIMESTAMP.&lt;/strong> Dates and Times 不同的系统对日期/时间的表示方法不同。通常情况下，它们被表示为一些单位时间 (自unix时代的（微/毫）秒）。&lt;/p>
+&lt;p>&lt;strong>System Catalogs&lt;/strong>&lt;/p>
+&lt;p>为了使DBMS能够识别tuple的内容，它维护了 INFORMATION_SCHEMA&lt;strong>内部目录&lt;/strong>来告诉它关于数据库的元数据。&lt;strong>元数据将包含关于数据库有哪些表和列的信息&lt;/strong>，以及它们的类型和值的顺序。&lt;/p>
+&lt;p>大多数DBMS将其目录以其表的格式存储在自己的内部。他们使用 特殊代码来 &amp;ldquo;bootstrap &amp;ldquo;这些目录表。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222163207453" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163207453_hu1de67d00dd19777e263b680b12012894_58781_72c0389207336ff887aa4ac718aef10b.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163207453_hu1de67d00dd19777e263b680b12012894_58781_d8d8d09727a46772250e13fef7222bf5.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163207453_hu1de67d00dd19777e263b680b12012894_58781_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163207453_hu1de67d00dd19777e263b680b12012894_58781_72c0389207336ff887aa4ac718aef10b.webp"
+width="651"
+height="380"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222163222109" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163222109_hucc8f4beb738041586f0e722c881afc7a_61914_602903fb3f3eac4fe1e67a69f5be2ced.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163222109_hucc8f4beb738041586f0e722c881afc7a_61914_52129ab6a3c2ed22b595f15cf049d390.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163222109_hucc8f4beb738041586f0e722c881afc7a_61914_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222163222109_hucc8f4beb738041586f0e722c881afc7a_61914_602903fb3f3eac4fe1e67a69f5be2ced.webp"
+width="661"
+height="367"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h1 id="l5-storage-models--compression">L5 Storage Models &amp;amp; Compression&lt;/h1>
+&lt;h2 id="51-database-workloads">5.1 Database Workloads&lt;/h2>
+&lt;p>OLTP: Online Transaction Processing&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>An OLTP workload is characterized by &lt;strong>fast, short running operations&lt;/strong>, simple queries that &lt;strong>operate on single entity at a time&lt;/strong>, and &lt;strong>repetitive operations&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>An OLTP workload will typically handle &lt;strong>more writes than reads&lt;/strong>.&lt;/p>
+&lt;blockquote>
+&lt;p>An example of an OLTP workload is the Amazon storefront. Users can add things to their cart, they can make purchases, but the actions only affect their account.&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;p>OLAP: Online Analytical Processing&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>An OLAP workload is characterized by &lt;strong>long running(长期运行), complex queries, reads on large portions&lt;/strong> of the database.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>In OLAP workloads, the database system is analyzing and &lt;strong>deriving&lt;/strong>(推导/添加) new data from existing data collected on the OLTP side.&lt;/p>
+&lt;blockquote>
+&lt;p>An example of an OLAP workload would be Amazon computing the most bought item in Pittsburgh on a day when its raining.&lt;/p>
+&lt;/blockquote>
+&lt;/li>
+&lt;/ul>
+&lt;p>HTAP: Hybrid Transaction + Analytical Processing&lt;/p>
+&lt;p>A new type of workload which has become popular recently is HTAP, which is like &lt;strong>a combination which tries to do OLTP and OLAP together&lt;/strong> on the same database.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222165717923" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165717923_hub0e80189cc2c5cb3a5257af30c0344c9_131577_0292e6a043d9305c6b098fefcb4dc65d.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165717923_hub0e80189cc2c5cb3a5257af30c0344c9_131577_1519b8a1f5640119d79da7b248547314.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165717923_hub0e80189cc2c5cb3a5257af30c0344c9_131577_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165717923_hub0e80189cc2c5cb3a5257af30c0344c9_131577_0292e6a043d9305c6b098fefcb4dc65d.webp"
+width="760"
+height="421"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="52-storage-models">5.2 Storage Models&lt;/h2>
+&lt;h3 id="n-ary-storage-model-nsm">N-Ary Storage Model (NSM)&lt;/h3>
+&lt;p>In the n-ary storage model, the DBMS &lt;strong>stores all of the attributes for a single tuple contiguously in a single page&lt;/strong>&lt;/p>
+&lt;p>This approach is &lt;strong>ideal for OLTP workloads&lt;/strong> where requests are insert-heavy and transactions tend to operate only an individual entity.&lt;/p>
+&lt;p>It is ideal because it takes only one fetch to be able to get all of the attributes for a single tuple.&lt;/p>
+&lt;p>Advantages:&lt;/p>
+&lt;ul>
+&lt;li>Fast inserts, updates, and deletes.&lt;/li>
+&lt;li>Good for queries that need the entire tuple.&lt;/li>
+&lt;/ul>
+&lt;p>Disadvantages:&lt;/p>
+&lt;ul>
+&lt;li>Not good for &lt;strong>scanning large portions of the table&lt;/strong> and/or &lt;strong>a subset of the attributes.&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222164813494" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222164813494_huba6e0bab0a29c92faf18ea4e71a32e29_109880_c9725ffe5d520ec47aac014c07067a7a.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222164813494_huba6e0bab0a29c92faf18ea4e71a32e29_109880_e35880066c5994e6f0c71713fa0c4c6d.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222164813494_huba6e0bab0a29c92faf18ea4e71a32e29_109880_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222164813494_huba6e0bab0a29c92faf18ea4e71a32e29_109880_c9725ffe5d520ec47aac014c07067a7a.webp"
+width="684"
+height="464"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="decomposition-分解-storage-model-dsm">Decomposition 分解 Storage Model (DSM)&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222165051507" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165051507_hu9c03f1f657567e7c08df7e4576dd36b4_88960_0c0e1f70958b4350817e058ba88859a2.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165051507_hu9c03f1f657567e7c08df7e4576dd36b4_88960_84ee7de04f474641008f5079f01fa063.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165051507_hu9c03f1f657567e7c08df7e4576dd36b4_88960_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165051507_hu9c03f1f657567e7c08df7e4576dd36b4_88960_0c0e1f70958b4350817e058ba88859a2.webp"
+width="712"
+height="388"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>This model is &lt;strong>ideal for OLAP&lt;/strong> workloads with many read-only queries that perform large scans over a subset of the table’s attributes.&lt;/p>
+&lt;p>Advantages:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Reduces the amount of I/O wasted&lt;/strong> because the DBMS only reads the data that it needs for that query.&lt;/li>
+&lt;li>Better query processing and data compression&lt;/li>
+&lt;/ul>
+&lt;p>Disadvantages:&lt;/p>
+&lt;ul>
+&lt;li>Slow for point queries, inserts, updates, and deletes because of tuple splitting/&lt;strong>stitching&lt;/strong>(缝合).&lt;/li>
+&lt;/ul>
+&lt;p>To &lt;strong>put the tuples back together&lt;/strong> when using a column store,there are two common approaches:&lt;/p>
+&lt;p>fixed-length offsets(most common): Each value is the same length for an attribute&lt;/p>
+&lt;p>Embedded Tuple Ids:Each value is stored with its tuple id in a column&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222165430923" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165430923_hu884be268e032fdeb7a677f672b846f24_81619_b2995747ad547db94d64a161da8089db.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165430923_hu884be268e032fdeb7a677f672b846f24_81619_1a31b3560becd543e3983206645f3cf7.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165430923_hu884be268e032fdeb7a677f672b846f24_81619_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222165430923_hu884be268e032fdeb7a677f672b846f24_81619_b2995747ad547db94d64a161da8089db.webp"
+width="760"
+height="377"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="53-database-compression">5.3 Database Compression&lt;/h2>
+&lt;blockquote>
+&lt;ul>
+&lt;li>
+&lt;p>压缩操作被在&lt;strong>disk-based&lt;/strong> DBMSs广泛应用。因为disk的I/O总是瓶颈，所以压缩可以让系统提升性能，尤其是只读analyt Managical workloads上。&lt;/p>
+&lt;p>如果事先对tuples进行了压缩，DBMS可以获取更多有用的tuple，但代价是要付出更大的压缩和解压的计算开销。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>内存中的DBMS更加复杂，因为它们不必从磁盘中获取数据来执行一个查询。 内存比磁盘快得多，但压缩数据库可以减少DRAM需求和处理。&lt;/p>
+&lt;p>而且必须在速度和压缩率中取得一个平衡。压缩数据库可以减少DRAM的需求和查询执行过程中的CPU成本。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>如果数据集是完全随机的bits，那么我们没有办法进行压缩。然而，现实世界中的数据集有一些key properties 是可以进行压缩的。&lt;/p>
+&lt;ul>
+&lt;li>数据集往往具有高度倾斜的属性值分布（例如，Brown语料库的Zipfian分布）。&lt;/li>
+&lt;li>数据集往往在同一元组的属性之间有很高的相关性（例如，邮政编码到城市。订单日期与发货日期）。 Manag&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/blockquote>
+&lt;p>Given this, we want a database compression scheme to have the following properties:&lt;/p>
+&lt;ul>
+&lt;li>Must produce &lt;strong>fixed-length values&lt;/strong>. The only exception is var-length data stored in separate pools. This because the DBMS should follow word-&lt;strong>alignment&lt;/strong>(对齐) and be able to access data using offsets.&lt;/li>
+&lt;li>Allow the DBMS to &lt;strong>postpone&lt;/strong>(推迟) decompression as long as possible during query execution (late materialization).&lt;/li>
+&lt;li>Must be &lt;strong>a lossless scheme&lt;/strong> because people do not like losing data. Any kind of lossy compression has to be performed at the application level.&lt;/li>
+&lt;/ul>
+&lt;h3 id="compression-granularity">Compression Granularity&lt;/h3>
+&lt;p>在给DBMS增加压缩功能之前，我们需要决定我们要压缩什么样的数据。这个决定决定了压缩方案的可用性。有四个级别的压缩 Manag颗粒度（granularity）&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Block Level: 压缩同一张表的tuple块。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Tuple Level: 压缩整个tuples的内容（仅NSM）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Attribute Level: 在一个tuple内压缩单个属性值。可以针对同一tuple的多个属性。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Columnar Level:&lt;/p>
+&lt;p>为多个tuple存储的一个或多个属性压缩多个值 (只限于DSM)。这允许更复杂的压缩方案。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="54-naive-compression">5.4 Naive Compression&lt;/h2>
+&lt;p>DBMS使用一个&lt;strong>通用的算法&lt;/strong>对数据进行压缩 (e.g., gzip, LZO, LZ4, Snappy, Brotli, Oracle OZIP, Zstd)。 尽管DBMS可以使用几种压缩算法，但工程师们往往选择那些经常提供较低压缩率以换取更快的压缩/解压的算法。&lt;/p>
+&lt;p>naive compression例子： &lt;strong>MySQL InnoDB&lt;/strong>&lt;/p>
+&lt;p>DBMS对磁盘页面进行压缩，将其压缩到2KB的幂数，并将其存储到缓冲池中。然而，每次DBMS试图读取数据时，缓冲池中的压缩数据必须被解压&lt;/p>
+&lt;p>缺点:&lt;/p>
+&lt;ul>
+&lt;li>由于访问数据&lt;strong>需要对压缩的数据进行解压&lt;/strong>，这就限制了压缩方案的范围。 如果目标是将整个表压缩成一个巨大的块，使用naive compression 方案是不可能的，因为每次访问都需要对整个表进行压缩/解压缩。 因此，对于MySQL来说，由于压缩范围有限，它将表分解成更小的块状。&lt;/li>
+&lt;li>naive方案也没有考虑到数据的高级含义或语义。 该算法既不考虑数据的结构，也不考虑查询打算如何访问 数据。因此，这就&lt;strong>失去了利用late materialization 的机会&lt;/strong>，因为DBMS不能知道它何时能够延迟数据的解压。&lt;/li>
+&lt;/ul>
+&lt;h2 id="55-columnar-compression-柱状压缩">5.5 Columnar Compression 柱状压缩**&lt;/h2>
+&lt;h3 id="run-length-encoding">Run-length Encoding&lt;/h3>
+&lt;p>Compress runs of the same value in a single column into triplets:&lt;/p>
+&lt;ul>
+&lt;li>The value of the attribute.&lt;/li>
+&lt;li>The start position in the column segment.&lt;/li>
+&lt;li>The # of elements in the run.&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222170534215" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170534215_hua4e94f5df4190ac6a4cb2081ee5bae21_52535_205fac9c1d51344ba77ad176c2aa57d7.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170534215_hua4e94f5df4190ac6a4cb2081ee5bae21_52535_7c1f361f36253fa4c36314fb1dc5291d.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170534215_hua4e94f5df4190ac6a4cb2081ee5bae21_52535_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170534215_hua4e94f5df4190ac6a4cb2081ee5bae21_52535_205fac9c1d51344ba77ad176c2aa57d7.webp"
+width="727"
+height="383"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Requires the columns to be sorted &lt;strong>intelligently&lt;/strong>(智能) to maximize compression opportunities.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222170706032" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170706032_hua84612ef4007d4d9946188cfd8be97bb_36555_064b5f70fed9b64ec4039b8dc8cff6b5.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170706032_hua84612ef4007d4d9946188cfd8be97bb_36555_a76950044ff733e9d5d314b23132fd6c.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170706032_hua84612ef4007d4d9946188cfd8be97bb_36555_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170706032_hua84612ef4007d4d9946188cfd8be97bb_36555_064b5f70fed9b64ec4039b8dc8cff6b5.webp"
+width="693"
+height="406"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="bit-packing-encoding">Bit-Packing Encoding&lt;/h3>
+&lt;p>When values for an attribute are &lt;strong>always less than the value&amp;rsquo;s declared largest size,&lt;/strong> &lt;strong>store them as smaller data type&lt;/strong>.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222170800172" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170800172_hu46b31a996c3f521c96953fd3435620cc_45759_a9f1efec0e024234e7aaefe39722348b.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170800172_hu46b31a996c3f521c96953fd3435620cc_45759_8042099dbf818e90140c64761452fefb.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170800172_hu46b31a996c3f521c96953fd3435620cc_45759_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170800172_hu46b31a996c3f521c96953fd3435620cc_45759_a9f1efec0e024234e7aaefe39722348b.webp"
+width="760"
+height="189"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Bit-packing variant that uses a &lt;strong>special marker&lt;/strong> to indicate when a value exceeds largest size and then maintain a look-up table to store them.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222170818530" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170818530_hu97c6f66a875eded62edadc7467f078a1_46217_2eb479e5b8191b0f95d3234bcb4ad1bc.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170818530_hu97c6f66a875eded62edadc7467f078a1_46217_a8ee8ad03b3461e63dbce31825e184fd.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170818530_hu97c6f66a875eded62edadc7467f078a1_46217_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222170818530_hu97c6f66a875eded62edadc7467f078a1_46217_2eb479e5b8191b0f95d3234bcb4ad1bc.webp"
+width="760"
+height="187"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="bitmap-encoding">Bitmap Encoding&lt;/h3>
+&lt;p>Store a separate bitmap for each unique value for an attribute where &lt;strong>an offset in the vector corresponds to a tuple.&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>The i th position in the Bitmap corresponds to the i th tuple in the table.&lt;/li>
+&lt;li>Typically segmented into chunks to avoid allocating large blocks of contiguous memory. Only practical &lt;strong>if the value cardinality(基数) is low&lt;/strong>. Some DBMSs provide bitmap indexes.&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222171138540" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171138540_huab479fb3d05c1d9c70bb01c8efde26f2_64903_cafe57d1b3648b09128cc49a5ff8d6bc.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171138540_huab479fb3d05c1d9c70bb01c8efde26f2_64903_201d70af675d42e783e8b5b81b093844.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171138540_huab479fb3d05c1d9c70bb01c8efde26f2_64903_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171138540_huab479fb3d05c1d9c70bb01c8efde26f2_64903_cafe57d1b3648b09128cc49a5ff8d6bc.webp"
+width="760"
+height="387"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="delta-encoding">Delta Encoding&lt;/h3>
+&lt;p>&lt;strong>Recording the difference&lt;/strong> between values that follow each other in the same column.&lt;/p>
+&lt;ul>
+&lt;li>Store base value in-line or in a separate look-up table.&lt;/li>
+&lt;li>&lt;strong>Combine with RLE to get even better compression ratios.&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222171254392" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171254392_hu4544ac5a826f509c4a673c460def9e0a_55990_331f471414a83ff3627dfa2947d69f3e.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171254392_hu4544ac5a826f509c4a673c460def9e0a_55990_221ed394c99859231a398861ca0b947d.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171254392_hu4544ac5a826f509c4a673c460def9e0a_55990_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171254392_hu4544ac5a826f509c4a673c460def9e0a_55990_331f471414a83ff3627dfa2947d69f3e.webp"
+width="760"
+height="230"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="incremental-encoding">Incremental Encoding&lt;/h3>
+&lt;p>Type of delta encoding that &lt;strong>avoids duplicating common prefixes/suffixes between consecutive tuples&lt;/strong>. This works best with sorted data.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222171338403" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171338403_hu7a5d9e6f86d19720fec133f61e26c137_73268_c5451d5937c6ba6a785ee7b45203b98d.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171338403_hu7a5d9e6f86d19720fec133f61e26c137_73268_c74575a2c57aff662bede8e943f027a9.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171338403_hu7a5d9e6f86d19720fec133f61e26c137_73268_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171338403_hu7a5d9e6f86d19720fec133f61e26c137_73268_c5451d5937c6ba6a785ee7b45203b98d.webp"
+width="760"
+height="212"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="dictionary-encoding">Dictionary Encoding&lt;/h3>
+&lt;p>Build a data structure that &lt;strong>maps variable-length values to a smaller integer identifier.&lt;/strong>&lt;/p>
+&lt;p>Replace those values with their corresponding identifier in the dictionary data structure.&lt;/p>
+&lt;ul>
+&lt;li>Need to support fast encoding and decoding.
+&lt;ul>
+&lt;li>Encode/Locate: For a given uncompressed value, convert it into its compressed form.&lt;/li>
+&lt;li>Decode/Extract: For a given compressed value, convert it back into its original form.&lt;/li>
+&lt;li>No magic hash function will do this for us.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Need to also support range queries.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Most widely used compression scheme in DBMSs.&lt;/strong>&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img alt="image-20230222171632448" srcset="
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171632448_hu85d19909300784701cd1e9eb06f25528_107171_4ff0b43f8b662b8b02b04023a05900b5.webp 400w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171632448_hu85d19909300784701cd1e9eb06f25528_107171_46026c2a80f2ac66b89e41dd7a419b8b.webp 760w,
+/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171632448_hu85d19909300784701cd1e9eb06f25528_107171_1200x1200_fit_q85_h2_lanczos_3.webp 1200w"
+src="https://ysyyhhh.github.io/blog/p0-c-primerhttps/15445.courses.cs.cmu.edu/fall2022/project0/img/image-20230222171632448_hu85d19909300784701cd1e9eb06f25528_107171_4ff0b43f8b662b8b02b04023a05900b5.webp"
+width="760"
+height="357"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h1 id="homework-2-storage--indexeshttps15445coursescscmuedufall2022fileshw2-cleanpdf">Homework #2 &lt;a href="https://15445.courses.cs.cmu.edu/fall2022/files/hw2-clean.pdf" target="_blank" rel="noopener">Storage &amp;amp; Indexes&lt;/a>&lt;/h1>
+&lt;h2 id="question-1-storage-models">Question 1: Storage Models&lt;/h2>
+&lt;p>a database with a single table &lt;strong>R(q_id,txns,total,failed)&lt;/strong>, where q_id is the &lt;strong>primary key&lt;/strong>, and &lt;strong>all attributes are the same fixed width.&lt;/strong>&lt;/p>
+&lt;p>Suppose R has 20,000 tuples that fit into 100 pages, &lt;strong>Ignore any additional storage&lt;/strong> overhead for the table (e.g., page headers, tuple headers).&lt;/p>
+&lt;p>Assumptions:&lt;/p>
+&lt;ul>
+&lt;li>The DBMS does &lt;strong>not have any additional meta-data&lt;/strong> (e.g., sort order, zone maps).&lt;/li>
+&lt;li>R does &lt;strong>not have any indexes&lt;/strong> (including for primary key q_id)&lt;/li>
+&lt;li>&lt;strong>None&lt;/strong> of R’s pages are already &lt;strong>in the buffer pool&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SELECT total - failed FROM R
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WHERE q id = 96 AND txns &amp;gt; 420;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="a-suppose-the-dbms-uses-the-decomposition-storage-model-dsm-with-implicit-offsets">(a) Suppose the DBMS uses the decomposition storage model (DSM) with implicit offsets&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>i What is the &lt;strong>minimum number of pages&lt;/strong> that the DBMS will potentially have to read from disk to answer this query?&lt;/p>
+&lt;p>题意是存在这样一条记录,找到该条记录最少的磁盘读次数.&lt;/p>
+&lt;p>官方解答是: 4 pages. 1 to find the primary key, + 3 to access txns, total, failed at their corresponding offsets.&lt;/p>
+&lt;p>因为使用分解存储模式DSM, 按列存储.&lt;/p>
+&lt;p>因此找到主键后就可以通过偏移量找其他属性的值. 读盘次数的限制在找主键上.&lt;/p>
+&lt;p>显然,找主键至少需要一次读盘.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ii What is the &lt;strong>maximum number of pages&lt;/strong> that the DBMS will potentially have to read from disk to answer this query?&lt;/p>
+&lt;p>官方解答: 28 pages. &lt;strong>There are 25 pages per attribute.&lt;/strong> In the worst case, we scan through all 25 pages to find the primary key, and then + 3 to access txns, total, failed at their corresponding offsets.&lt;/p>
+&lt;p>上题可知,找主键次数决定了读盘次数.&lt;/p>
+&lt;p>也就是当q_id = 96的记录越靠后, 找主键次数越多.&lt;/p>
+&lt;p>因为没有顺序,所以96是无用的信息.&lt;/p>
+&lt;p>同时因为&lt;strong>有四个属性,且所有属性大小固定&lt;/strong>. 所以当每个属性都占25页时,且q_id=26所在的记录是最后一个(25),找主键次数最大为25次.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="bsuppose-the-dbms-uses-the-n-ary-storage-model-nsm">(b)Suppose the DBMS uses the N-ary storage model (NSM)&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>i. What is the minimum number of pages that the DBMS will potentially have to read from disk to answer this query?&lt;/p>
+&lt;p>Solution: We find the tuple with the matching primary key on the first page. No need to look in other pages since all attributes are stored together.&lt;/p>
+&lt;p>在第一页&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ii. [4 points] What is the maximum number of pages that the DBMS will potentially have to read from disk to answer this query?&lt;/p>
+&lt;p>在最后一页 100&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="question-2-cuckoo-hashing">Question 2: Cuckoo Hashing&lt;/h2>
+&lt;p>几道哈希表计算的题目,较简单&lt;/p>
+&lt;p>2进制：0b，8进制：0o，10进制：无前缀，16进制：0x&lt;/p>
+&lt;h2 id="question-3-extendible-hashing">Question 3: Extendible Hashing&lt;/h2>
+&lt;p>Consider an extendible hashing structure such that:&lt;/p>
+&lt;ul>
+&lt;li>Each bucket can hold up to two records.&lt;/li>
+&lt;li>The hashing function uses the lowest g bits, where g is the global depth.&lt;/li>
+&lt;/ul>
+&lt;p>题目是一个二进制可扩展哈希. 哈希函数是二进制最低g位.&lt;/p>
+&lt;p>每个哈希值对应一个桶, 每个桶最多两个, 所有刚好就是二进制.&lt;/p>
+&lt;h3 id="a-starting-from-an-empty-table-insert-keys-15-14-23-11-9">(a) Starting from an empty table, insert keys 15, 14, 23, 11, 9.&lt;/h3>
+&lt;p>二进制表示&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">15: 00001111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">14: 00001110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23: 00010111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11: 00001011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">9 : 00001001
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>插入步骤(括号内为局部深度,全局深度为最大局部深度)&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">插入15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 1; 桶 1(1):15
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 1; 桶 1(1):15 ; 0(1):14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 1; 桶 1(1):15,23; 0(1):14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 1; 桶 1(1):15,23,11; 0(1):14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">桶1此时有三条记录,需要扩展深度,扩展为2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 2; 桶 11(2):15,23,11; 01(2):; 0(1):14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">桶11此时有三条记录,需要扩展深度,扩展为3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 3; 桶 111(3):15,23; 011(3):11;01(2):; 0(1):14
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 3; 桶 111(3):15,23; 011(3):11; 0(1):14; 01(2):9;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>i. What is the global depth of the resulting table?&lt;/p>
+&lt;p>显然,当g至少等于3的时候才能使得同一个哈希值最多对应两个记录.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ii. [4 points] What is the local depth the bucket containing 15?&lt;/p>
+&lt;p>为3&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>iii. [4 points] What is the local depth of the bucket containing 14?&lt;/p>
+&lt;p>为1&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="b-starting-from-the-result-in-a-you-insert-keys-12-5-7-13-2">(b) Starting from the result in (a), you insert keys 12, 5, 7, 13, 2.&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">15: 00001111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">14: 00001110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23: 00010111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11: 00001011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">9 : 00001001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">此时 全局: 3; 桶 111(3):15,23; 011(3):11; 0(1):14; 01(2):9;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">12: 00001010
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5 : 00000101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 : 00000111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">13: 00001101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2 : 00000010
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">12
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 3; 桶 111(3):15,23; 011(3):11; 0(1):14,12; 01(2):9;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 3; 桶 111(3):15,23; 011(3):11; 0(1):14,12; 01(2):9;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 3; 桶 111(3):15,23; 011(3):11; 0(1):14,12; 1(1):9,5;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">此时111桶有3个,增加深度为4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 4; 桶 1111(4):15;0111(4):23,7; 011(3):11; 0(1):14,12; 1(1):9,5;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">13
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 4; 桶 1111(4):15;0111(4):23,7; 011(3):11; 0(1):14,12; 1(1):9,5;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">01(2):13;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局: 4; 桶 1111(4):15;0111(4):23,7; 011(3):11; 0(1):14,12; 1(1):9,5;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">01(2):13;01(2):2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>
+&lt;p>i. [4 points] Which key will first cause a split (without doubling the size of the table)?&lt;/p>
+&lt;p>这里的split操作指的是&lt;strong>增加桶的数量&lt;/strong>,而不double.也就是不增加全局深度.(增加全局深度会翻一倍)&lt;/p>
+&lt;p>所以是13第一个增加了桶的数量.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>ii. [4 points] Which key will first make the table double in size?&lt;/p>
+&lt;p>7&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="c-now-consider-the-table-below-along-with-the-following-deletion-rules">(c) Now consider the table below, along with the following deletion rules:&lt;/h3>
+&lt;ol>
+&lt;li>If two buckets satisfy the following:&lt;/li>
+&lt;/ol>
+&lt;p>(a) They have the same local depth d&lt;/p>
+&lt;p>(b) They share the first d − 1 bits of their indexes (e.g. b010 and b110 share the first 2 bits)&lt;/p>
+&lt;p>(c) Their constituent elements fit in a single bucket. Then they can be merged into a single bucket with local depth d − 1.&lt;/p>
+&lt;ol start="2">
+&lt;li>If the global depth g becomes strictly greater than all local depths, then the table can be halved in size. The resulting global depth is g − 1.&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">25:11001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">22:10110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">18:10010
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">27:11011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Starting from the table above, delete keys 25, 18, 22, 27, 7.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">delete 25
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">22:10110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">18:10010
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">27:11011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">delete 18
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">22:10110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">27:11011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">delete 22
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">27:11011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">此时00 和 10可进行合并
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">27:11011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">delete 27
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">此时 011 和 111可合并为11,一次合并最多减少1, 此时global depth = 2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7 :00111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">delete 7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">28:11100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8 :01000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">30:11110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">11:01011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">23:10111
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>i. Which deletion first causes a reduction in a local depth.&lt;/li>
+&lt;/ul>
+&lt;p>22&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>ii. Which deletion first causes a reduction in global depth.&lt;/p>
+&lt;p>27&lt;/p>
+&lt;p>Solution: Deleting 27 from bucket b011 allows it to merge with b111. Since these two buckets are the only ones of depth d = 3, this merge reduces the global depth to d = 2&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="question-4-btree">Question 4: B+Tree&lt;/h2>
+&lt;p>还行,就是有个奇怪的点. 索引节点的值一般会出现在叶子节点上.&lt;/p>
+&lt;p>最后一题是找出指定的节点 非法的地方.&lt;/p>
+&lt;h1 id="p1">P1&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">1: 0001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">2: 0010
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3: 0011
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">4: 0100
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5: 0101
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6: 0110
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7: 0111
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8: 1000
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">9: 1001
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">1 2 3 4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局1 1(1):1,3;0(1):2,4;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局1 1(1):1,3,5;0(1):2,4;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局2 01(2):1,5;11(2)3;0(1):2,4;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局2 01(2):1,5;11(2)3;00(2):4;10(2):2,6;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">7
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局2 01(2):1,5;11(2)3,7;00(2):4;10(2):2,6;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局2 01(2):1,5;11(2)3,7;00(2):4,8;10(2):2,6;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局2 01(2):1,5,9;11(2)3,7;00(2):4,8;10(2):2,6;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">全局3 001(3):1,9;101(3):5;11(2)3,7;00(2):4,8;10(2):2,6;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="lru-k">LRU-K&lt;/h2>
+&lt;p>The LRU-K algorithm &lt;strong>evicts&lt;/strong>(剔除) a frame whose &lt;strong>backward k-distance&lt;/strong> is maximum of all frames in the replacer.&lt;/p>
+&lt;p>&lt;strong>Backward k-distance&lt;/strong> is computed as the &lt;strong>difference&lt;/strong> in time between current timestamp and the timestamp of kth previous access.&lt;/p>
+&lt;p>A frame with less than k historical accesses is given +inf as its backward k-distance. When &lt;strong>multipe frames have +inf backward k-distance&lt;/strong>, the replacer evicts the frame &lt;strong>with the earliest timestamp&lt;/strong>.&lt;/p>
+&lt;p>先弄清楚逻辑在写，不要把时间花在无意义的bug上。&lt;/p>
+&lt;h1 id="p2-btree">P2 B+Tree&lt;/h1>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;p>内部节点：索引作用&lt;/p>
+&lt;p>叶子节点：包含真正的数据实体&lt;/p>
+&lt;p>由于树是动态增长和收缩，所以要处理 split 和 merge&lt;/p>
+&lt;blockquote>
+&lt;p>Since the tree structure grows and shrink dynamically, you are required to handle the logic of split and merge.&lt;/p>
+&lt;/blockquote>
+&lt;p>&lt;strong>Checkpoint #1 — Due Date: Oct 11 @ 11:59pm&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-pages" target="_blank" rel="noopener">Task #1 - B+Tree Pages&lt;/a>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-structure" target="_blank" rel="noopener">Task #2 - B+Tree Data Structure (Insertion, Deletion, Point Search)&lt;/a>&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Checkpoint #2 — Due Date: Oct 26 @ 11:59pm&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#index-iterator" target="_blank" rel="noopener">Task #3 - Index Iterator&lt;/a>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#concurrent_index" target="_blank" rel="noopener">Task #4 - Concurrent Index&lt;/a>&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>该project 要依赖于上一个 buffer pool 的正确实现。&lt;/p>
+&lt;p>由于第一个检查点与第二个检查点密切相关，在第二个检查点中，您将在现有的B+索引中实现索引抓取，因此我们传入了一个名为transaction的指针参数，其默认值为nullptr。在任务#4之前，您不需要更改或调用与参数相关的任何函数。&lt;/p>
+&lt;h2 id="task-1---btree-pages">Task #1 - B+Tree Pages&lt;/h2>
+&lt;ul>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-page" target="_blank" rel="noopener">B+Tree Parent Page&lt;/a>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-internal-page" target="_blank" rel="noopener">B+Tree Internal Page&lt;/a>&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-leaf-page" target="_blank" rel="noopener">B+Tree Leaf Page&lt;/a>&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="btree-parent-page">B+Tree Parent Page&lt;/h3>
+&lt;p>ParenPage 被 Internal Page 和 Leaf Page所继承。&lt;/p>
+&lt;p>并且只包含了 子类 所共享的信息。&lt;/p>
+&lt;p>&lt;strong>可以规定&lt;/strong> &lt;code>parent_page_id_&lt;/code> 为 &lt;code>INVALID_PAGE_ID&lt;/code> 表示根节点。&lt;/p>
+&lt;p>| Variable Name | Size | Description | | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; | &amp;mdash;- | &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash; | | page_type_ | 4 | Page Type (internal or leaf) | | lsn_ | 4 | Log sequence number (Used in Project 4) | | size_ | 4 | Number of Key &amp;amp; Value pairs in page | | max_size_ | 4 | Max number of Key &amp;amp; Value pairs in page | | parent_page_id_ | 4 | Parent Page Id | | page_id_ | 4 | Self Page Id |&lt;/p>
+&lt;h3 id="btree-internal-page">B+Tree Internal Page&lt;/h3>
+&lt;ul>
+&lt;li>不存储真实数据。只存储 m个有序 key和m+1个child 指针。&lt;/li>
+&lt;li>因为key的数量和指针数量不相等。第一个key被设定为invalid。所有方法需要从第二个key开始（下标为1）&lt;/li>
+&lt;li>实际存储如下&lt;/li>
+&lt;li>键,指针,键,指针,&amp;hellip;,键,指针.&lt;/li>
+&lt;li>此时有m+1个键,为了保证只有m个键,所以第一个键设置为无效的.&lt;/li>
+&lt;/ul>
+&lt;p>key的数量限制&lt;/p>
+&lt;ul>
+&lt;li>在任何时间，最少装了一半（half-full）。&lt;/li>
+&lt;li>删除时，两个 half-full可以被joined 成为一个合法的 Internal Page
+&lt;ul>
+&lt;li>或者被重新分配来避免merge&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>当插入到一个fullpage时，可以被split成两个。&lt;/li>
+&lt;li>This is an example of one of the many design choices that you will make in the implementation of the B+ Tree.&lt;/li>
+&lt;/ul>
+&lt;p>三个泛型 KeyType, ValueType, KeyComparator。&lt;/p>
+&lt;p>&lt;strong>KeyType&lt;/strong> 不一定直接可用大于小于号比较，所以引入了 KeyComparator，从 cpp 文件中的实例化可以看出用的是 GenericKey 和 GenericComparator，查看二者源码可以得到以下信息：&lt;/p>
+&lt;p>&lt;strong>GenericKey&lt;/strong> 可以调用 ToString() 函数得到其 int64 表示，然后用 **%ld 格式符打印。**这对我们后面调试时非常重要。 GenericComparator 的比较规则是：左边小于右边时，返回 -1；左边大于右边时，返回 1；相等返回 0。&lt;/p>
+&lt;p>&lt;strong>ValueType&lt;/strong> 代表的是指向子页面的指针，从实例化可以看出实际只用了 page_id_t，也就是 &lt;strong>int&lt;/strong>。&lt;/p>
+&lt;p>数据存储上，其理论结构应为 &amp;lt;指针，键，指针，键…，键，指针&amp;gt;，为方便存储，实际上&lt;strong>在头部多补了一个无效键&lt;/strong>，从而可以用一个 pair 的数组存储：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#define MappingType std::pair&amp;lt;KeyType, ValueType&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class BPlusTreeInternalPage : public BPlusTreePage {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">private:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // Flexible array member for page data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> MappingType array_[1];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>array_[1] 等价与 pair类型的指针.指向pair数组. 数组的每一个元素是&amp;lt;键,值&amp;gt;&lt;/p>
+&lt;p>在内部节点中,值代表指针.(第一个元素的键是无效的,但值是存在的).&lt;/p>
+&lt;p>因为节点对象使用的是预先分配好的固定空间，array_ 可以控制从该位置开始到 Page 的 data 结束为止的这一段空间。&lt;/p>
+&lt;p>因此，节点对象的生命周期也不是由 new 和 delete，而是由 BufferPoolManager 管理.&lt;/p>
+&lt;ul>
+&lt;li>取一个页面，用 FetchPage；&lt;/li>
+&lt;li>使用结束归还一个页面，用 UnpinPage。&lt;/li>
+&lt;li>page_id_ 不仅是 B+ 树中节点的编号，同时也是这个节点使用的 Page 在 BufferPool 中的编号。&lt;/li>
+&lt;/ul>
+&lt;h3 id="btree-leaf-page">B+Tree Leaf Page&lt;/h3>
+&lt;ul>
+&lt;li>存储 m个有序key，m个 value 实体&lt;/li>
+&lt;li>在这次实现中，value 仅仅是64位的record_id, 被用于定位真实的tuples的存储位置.
+&lt;ul>
+&lt;li>see &lt;code>RID&lt;/code> class defined under in &lt;code>src/include/common/rid.h&lt;/code>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对于键值对的数量限制与Internal Page一致.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>重要&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>尽管叶子节点和内部节点有相同类型的key.但他们值的类型不一样.
+&lt;ul>
+&lt;li>所以&lt;strong>max_size 也应该是不同的&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>每个节点的 &lt;strong>data_&lt;/strong>,都是从buffer pool 中fetch得到的 内存页面.
+&lt;ul>
+&lt;li>所以当写或读时,要先使用唯一的page_id,从buffer pool 中fetch 出来.&lt;/li>
+&lt;li>然后使用 reinterpret cast, 转换成 叶子节点或内部节点.&lt;/li>
+&lt;li>并且要在读或写操作结束后,unpin这个页面.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="task-2---btree-data-structure">Task #2 - B+Tree Data Structure&lt;/h2>
+&lt;ul>
+&lt;li>只支持 unique keys. 也就是说,当有重复的key插入时, 不进行任何操作并返回false&lt;/li>
+&lt;li>同时当删除操作导致 页面key数量低于阈值时, 需要正确地执行 merge 和 redistribute(也叫做 coalescing) 操作.&lt;/li>
+&lt;/ul>
+&lt;p>对于checkpoint , B+Tree Index 只需要支持 &lt;strong>insertions&lt;/strong> (&lt;code>Insert()&lt;/code>), &lt;strong>point search&lt;/strong> (&lt;code>GetValue()&lt;/code>), and &lt;strong>deletes&lt;/strong> (&lt;code>Delete()&lt;/code>)&lt;/p>
+&lt;p>插入操作 引起 split操作的情况:&lt;/p>
+&lt;ul>
+&lt;li>插入操作后, 叶子节点中 pair的数量 等于 max_size&lt;/li>
+&lt;li>插入 操作前, 内部节点 孩子数量等于 max_size&lt;/li>
+&lt;/ul>
+&lt;p>因为写操作会导致, root_page_id的改变,所以也要在 &lt;strong>header page&lt;/strong> 同时更新 root_page_id (&lt;code>src/include/storage/page/header_page.h&lt;/code>).&lt;/p>
+&lt;p>更新的方法是调用 &lt;code>UpdateRootPageId&lt;/code> (已经提供了)&lt;/p>
+&lt;p>需要隐藏类型和比较.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">template &amp;lt;typename KeyType,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> typename ValueType,
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> typename KeyComparator&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">class BPlusTree{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">};
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;code>KeyType&lt;/code>: 索引中key的类型,只可能是 &lt;code>GenericKey&lt;/code>.
+&lt;ul>
+&lt;li>GeneriKey真实的size是特定的.&lt;/li>
+&lt;li>是通过模板参数指定和实例化的，并取决于索引属性的数据类型.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;code>ValueType&lt;/code>: 索引中值的类型. 只可能是 64-bit RID.&lt;/li>
+&lt;li>&lt;code>KeyComparator&lt;/code>: 用来比较两个KeyType实例 大小关系. 左边小于右边时，返回 -1；左边大于右边时，返回 1；相等返回 0。&lt;/li>
+&lt;/ul>
+&lt;h2 id="checkpoint-1查找插入和删除">Checkpoint 1：查找，插入和删除&lt;/h2>
+&lt;h3 id="约定">约定&lt;/h3>
+&lt;p>这里约定 内部节点array中key 与子节点的关系.&lt;/p>
+&lt;ul>
+&lt;li>左子节点的keys &amp;lt;= 父节点的keys&lt;/li>
+&lt;li>右子节点的keys &amp;gt; 父节点的keys&lt;/li>
+&lt;/ul>
+&lt;h3 id="查找">查找&lt;/h3>
+&lt;p>给定key，返回查找的页面。&lt;/p>
+&lt;p>页面的数据存在叶子节点中。&lt;/p>
+&lt;p>因此要从根节点开始，一层一层往下找&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="n">findValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">const&lt;/span> &lt;span class="n">Page&lt;/span> &lt;span class="n">page&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">KeyType&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//二分查找 page的array中,找到最大的小于等于key的 pair
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span> &lt;span class="n">pair&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">GetLeaf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Page&lt;/span> &lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">KeyType&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Page&lt;/span> &lt;span class="n">now&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">root&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">while&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">type&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="n">leaf&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">now&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">findValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">now&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">GetValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">KeyType&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Page&lt;/span> &lt;span class="n">now&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetLeaf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//现在now为叶子节点,在叶子节点中找对应的值.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">findValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">now&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//如果返回值的key不相等则没找到.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//相等则返回找到
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="插入叶子节点">插入(叶子节点)&lt;/h3>
+&lt;p>因为以下的操作都基于至少有一个根节点的情况.&lt;/p>
+&lt;p>因此在最开始要判断是否为空树,如为空树则创建根, 直接返回&lt;/p>
+&lt;p>首先看键存不存在,如果已经存在,则直接返回.&lt;/p>
+&lt;p>因为B+树的真实数据存在叶子节点中. 因此插入的第一步就是在找到对应叶子节点,并**插入(叶子节点)**到对应位置.&lt;/p>
+&lt;p>此后可能会引起分裂.&lt;/p>
+&lt;ol>
+&lt;li>先直接**插入(叶子节点)**到叶子节点中.&lt;/li>
+&lt;li>当发现**插入(叶子节点)**后, 叶子节点的pair数量等于max_size时进行分裂.&lt;/li>
+&lt;/ol>
+&lt;p>split(page) 操作&lt;strong>这里不分内部叶子节点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>当前节点是full page,因此可以将当前节点分裂成 (左子节点 half full, 新父节点 , half full)&lt;/li>
+&lt;li>其中新父节点的值是左子节点的最后一个.&lt;/li>
+&lt;li>新父节点 需要 &lt;strong>插入(内部节点)&lt;/strong> 到原来的父节点中.
+&lt;ul>
+&lt;li>&lt;strong>插入(内部节点)前&lt;/strong>, 要判断 &lt;strong>原父节点的孩子数量是否等于max_size&lt;/strong>&lt;/li>
+&lt;li>如果等于, 则先&lt;strong>将原父节点分裂&lt;/strong> 后.&lt;/li>
+&lt;li>再执行当前的**插入(内部节点)**操作.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>特殊的. 如果page是根节点, 即没有原父亲节点.
+&lt;ul>
+&lt;li>则将 根节点 更新成新父节点后, 返回即可.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>插入(内部节点)&lt;/strong> : 因为在插入前已经处理好了插入操作的合法性,因此直接插入即可.&lt;/p>
+&lt;p>伪代码:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="n">SetRoot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page_id&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">root_page_id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">page_id&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//一定要调用 UpdateRootPageId
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//分裂出下面三个节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">left_page&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">right_page&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_parent_page&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="c1">//key为左节点的最后一个key, value为指向左节点的指针
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//判断是否为根节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">type&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">rootType&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SetRoot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_parent_page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">page_id&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//获取父亲节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">parent_page&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parent_page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">isFull&lt;/span>&lt;span class="p">()){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">parent_page&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//将new_parent_page 插入到 parent_page中
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">parent_page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">insert&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Insert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//判断是否为空树
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">valid&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">Page&lt;/span> &lt;span class="n">new_page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">Page&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">SetRoot&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">newpage&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">page_id&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//先查找
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">Page&lt;/span> &lt;span class="n">leaf_page&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">GetLeaf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//直接调用叶子节点的插入
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">leaf_page&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">Insert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">leaf_page&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">Page&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">page&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">LeafPage&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Insert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Page&lt;/span> &lt;span class="n">new_page&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//直接插入,同时只需要更新指向 new_page 和 new_page的 next
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//满了就分裂.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">isFull&lt;/span>&lt;span class="p">()){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">split&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">InternalPage&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">Insert&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Page&lt;/span> &lt;span class="n">new_page&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//直接插入,但array中key的有效位置是从1开始
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">//上面代码还需要考虑
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">//页面的创建和释放
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="删除">删除&lt;/h3>
+&lt;p>B+树最难的地方。但比起splay来说还是简单太多了。并且因为B+树只有叶子节点存值。在内部节点的删除上比B树简单了很多。&lt;/p>
+&lt;p>删除的核心操作：&lt;/p>
+&lt;ol>
+&lt;li>叶子节点/内部节点删除元素后;
+若小于下限,则按下面的优先级考虑;&lt;/li>
+&lt;li>如相邻兄弟结点丰满（即 元素个数 大于 下限+1），则向兄弟结点&lt;strong>借&lt;/strong>一个元素。（具体是 先从相邻方向上的父亲结点变成借来的元素左右(这里具体要看借左边还是右边)，而后对应相邻的兄弟补回这个元素）。否则：&lt;/li>
+&lt;li>与相邻的兄弟结点 &lt;strong>合并&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>父亲节点被删除后, 需要继续执行上面的操作.&lt;/p>
+&lt;p>叶子节点和内部节点的差异:&lt;/p>
+&lt;ul>
+&lt;li>借
+&lt;ul>
+&lt;li>内部节点和B树操作一样, 先&lt;strong>从相邻方向上的父亲结点拿一个元素&lt;/strong>，而后&lt;strong>对应相邻的兄弟补回这个元素&lt;/strong>&lt;/li>
+&lt;li>叶子节点的父亲只是索引节点,因此 把兄弟节点的元素拿来后, 父亲节点的值根据 从左边/右边拿 变成相应的合法的值即可.&lt;/li>
+&lt;li>借的操作都&lt;strong>不会涉及父亲节点的删除&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>合并
+&lt;ul>
+&lt;li>内部节点和B树操作一样, 将兄弟和父亲节点一起合并. (也相当于删除了父亲节点)下限+(下限-1) + 1 等于上限,因此合法&lt;/li>
+&lt;li>叶子节点是 两个叶子节点合并后直接删除父亲节点.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>特殊地,如果删除的是根节点的元素，且根结点只有一个元素，则&lt;strong>下降一层&lt;/strong>退出。&lt;/p>
+&lt;ul>
+&lt;li>因为只有一个待删除的元素，说明目前只有一个儿子结点（刚刚合并了）。&lt;/li>
+&lt;li>直接将儿子结点作为根节点。&lt;/li>
+&lt;/ul>
+&lt;p>伪代码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">//tree的Remove操作
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">Remove&lt;/span>&lt;span class="p">(){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//1.判断是否为空
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">empty&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//返回
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//2.找到叶子结点，并在叶子结点中删除该元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">leaf_page&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="c1">//找到叶子节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//TODO 删除元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.判断叶子结点元素个数是是否小于下限
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span> &lt;span class="err">小于&lt;/span> &lt;span class="err">下限&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">UnderFlow&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">Underflow&lt;/span>&lt;span class="p">(){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.0 判断是否为根节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">IsRoot&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//根节点的下限是1.说明应该减少一层.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.0.1a找到根节点唯一的子节点.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//该子节点变为根节点.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.0.1b 根节点没有子节点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//直接删除,树变成空树.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1a. 找兄弟节点借
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">Borrow&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1a.1a找左兄弟节点借
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">borrow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left_&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1a.1b左兄弟不能借，就找右兄弟节点借
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">borrow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">right_&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1b.借失败了，就准备合并
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">union&lt;/span>&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1b.1a 左兄弟结点存在,就找左兄弟节点合并
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">have&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">left&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> &lt;span class="k">union&lt;/span>&lt;span class="err">(&lt;/span>&lt;span class="nc">left_&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//3.1b.1b 没有左兄弟节点, 找右兄弟节点合并.(除根节点外肯定至少有一个兄弟节点)
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">union&lt;/span>&lt;span class="err">(&lt;/span>&lt;span class="nc">right_&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">borrow&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">bro_page&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//如果兄弟节点的 size &amp;lt;= 下限,不能借
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">bro_page&lt;/span> &lt;span class="n">size&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="err">下限&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//否则可以借
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//是叶子结点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//直接拿 对应兄弟结点最靠近的元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//是内部结点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//加入的元素 = 中间父亲结点对应的元素
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//中间父亲结点对应的元素 = 兄弟结点最靠近的元素.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//兄弟结点最靠近的元素删除
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">union&lt;/span>&lt;span class="err">(&lt;/span>&lt;span class="nc">bro_page&lt;/span>&lt;span class="p">){&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//是叶子结点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//两个结点合并成一个结点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//是内部结点
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//好像都是直接把右合并到左就可以.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">//删除父亲结点中间的元素.
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//如果父亲结点size 小于等于 下限
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="c1">//父亲结点采取下溢操作
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

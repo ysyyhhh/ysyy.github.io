@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>git | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/git/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/git/index.xml" rel="self" type="application/rss+xml"/><description>git</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>git</title><link>https://ysyyhhh.github.io/docs/tool/git/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/git/git/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/git/git/</guid><description>&lt;h1 id="git">git&lt;/h1>
+&lt;h2 id="git-常用命令">git 常用命令&lt;/h2>
+&lt;h3 id="git-基本配置">git 基本配置&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git config --global user.name &lt;span class="s2">&amp;#34;your name&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email &lt;span class="s2">&amp;#34;your email&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="git-基本操作">git 基本操作&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git init &lt;span class="c1"># 初始化仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add . &lt;span class="c1"># 添加所有文件到暂存区&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;commit message&amp;#34;&lt;/span> &lt;span class="c1"># 提交到本地仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push -u origin master &lt;span class="c1"># 推送到远程仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git pull origin master &lt;span class="c1"># 拉取远程仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone &lt;span class="c1"># 克隆远程仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git status &lt;span class="c1"># 查看当前状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log &lt;span class="c1"># 查看提交日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff &lt;span class="c1"># 查看修改内容&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch &lt;span class="c1"># 查看分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -b branch_name &lt;span class="c1"># 创建并切换到新分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout branch_name &lt;span class="c1"># 切换分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git merge branch_name &lt;span class="c1"># 合并分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -d branch_name &lt;span class="c1"># 删除分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset --hard HEAD^ &lt;span class="c1"># 回退到上一个版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset --hard commit_id &lt;span class="c1"># 回退到指定版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reflog &lt;span class="c1"># 查看命令历史&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git rm file_name &lt;span class="c1"># 删除文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash &lt;span class="c1"># 暂存当前修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash list &lt;span class="c1"># 查看暂存列表&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash apply &lt;span class="c1"># 恢复暂存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash drop &lt;span class="c1"># 删除暂存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash pop &lt;span class="c1"># 恢复并删除暂存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote -v &lt;span class="c1"># 查看远程仓库地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote set-url origin new_url &lt;span class="c1"># 修改远程仓库地址&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin --delete branch_name &lt;span class="c1"># 删除远程分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin :branch_name &lt;span class="c1"># 删除远程分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag &lt;span class="c1"># 查看标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag tag_name &lt;span class="c1"># 创建标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag tag_name commit_id &lt;span class="c1"># 指定提交创建标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag -a tag_name -m &lt;span class="s2">&amp;#34;tag message&amp;#34;&lt;/span> &lt;span class="c1"># 创建带有说明的标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag -d tag_name &lt;span class="c1"># 删除标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin tag_name &lt;span class="c1"># 推送标签到远程&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin --tags &lt;span class="c1"># 推送所有标签到远程&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin :refs/tags/tag_name &lt;span class="c1"># 删除远程标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin --delete tag tag_name &lt;span class="c1"># 删除远程标签&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -- file_name &lt;span class="c1"># 撤销工作区修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset HEAD file_name &lt;span class="c1"># 撤销暂存区修改&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset --hard HEAD^ &lt;span class="c1"># 撤销本地提交&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset --hard commit_id &lt;span class="c1"># 撤销本地提交&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.st status &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.co checkout &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.ci commit &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.br branch &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.unstage &lt;span class="s1">&amp;#39;reset HEAD&amp;#39;&lt;/span> &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.last &lt;span class="s1">&amp;#39;log -1&amp;#39;&lt;/span> &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global alias.lg &lt;span class="s2">&amp;#34;log --color --graph --pretty=format:&amp;#39;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&amp;lt;%an&amp;gt;%Creset&amp;#39; --abbrev-commit&amp;#34;&lt;/span> &lt;span class="c1"># 设置别名&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="git-子模块">git 子模块&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule add &lt;span class="c1"># 添加子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加子模块并自定义子模块目录名称和分支&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule add &amp;lt;repository&amp;gt; &lt;span class="o">[&lt;/span>&amp;lt;path&amp;gt;&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule init &lt;span class="c1"># 初始化子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule update &lt;span class="c1"># 更新子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule foreach git pull &lt;span class="c1"># 更新所有子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1. 删除.gitmodules中对应子模块的条目&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2. 删除.git/config中对应子模块的条目&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. 执行git rm --cached path/to/submodule&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4. 执行rm -rf .git/modules/path/to/submodule&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 5. 执行rm -rf path/to/submodule&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/git/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/git/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>&lt;p>多个笔记之间存在关联, 可以先在mind-wings内笔记搜索, 再搜索百度.&lt;/p>
+&lt;p>笔记格式为&lt;/p>
+&lt;ul>
+&lt;li>指令集&lt;/li>
+&lt;li>名称解释&lt;/li>
+&lt;li>学习步骤&lt;/li>
+&lt;/ul>
+&lt;p>其中指令集和名称解释是将学习步骤的内容做一个简要整理, 即备忘录. 目的是方便快速搜索.&lt;/p>
+&lt;p>如果是初学者,直接跳过指令集和名词解释.&lt;/p>
+&lt;h1 id="指令集">指令集&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git init # 初始化本地git仓库（创建新仓库）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.name &amp;#34;xxx&amp;#34; # 配置用户名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email &amp;#34;xxx@xxx.com&amp;#34; # 配置邮件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global color.ui true # git status等命令自动着色
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global color.status auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global color.diff auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global color.branch auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global color.interactive auto
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global --unset http.proxy # remove proxy configuration on git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git clone git+ssh://git@192.168.53.168/VT.git # clone远程仓库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git status # 查看当前版本状态（是否修改）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add xyz # 添加xyz文件至index
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git add . # 增加当前子目录下所有更改过的文件至index
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &amp;#39;xxx&amp;#39; # 提交
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit --amend -m &amp;#39;xxx&amp;#39; # 合并上一次提交（用于反复修改）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -am &amp;#39;xxx&amp;#39; # 将add和commit合为一步
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git rm xxx # 删除index中的文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git rm -r * # 递归删除
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log # 显示提交日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log -1 # 显示1行日志 -n为n行
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log -5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log --stat # 显示提交日志及相关变动文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log -p -m
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show dfb02e6e4f2f7b573337763e5c0013802e392818 # 显示某个提交的详细内容
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show dfb02 # 可只用commitid的前几位
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show HEAD # 显示HEAD提交日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show HEAD^ # 显示HEAD的父（上一个版本）的提交日志 ^^为上两个版本 ^5为上5个版本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag # 显示已存在的tag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git tag -a v2.0 -m &amp;#39;xxx&amp;#39; # 增加v2.0的tag
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show v2.0 # 显示v2.0的日志及详细内容
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log v2.0 # 显示v2.0的日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff # 显示所有未添加至index的变更
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff --cached # 显示所有已添加index但还未commit的变更
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff HEAD^ # 比较与上一个版本的差异
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff HEAD -- ./lib # 比较与HEAD版本lib目录的差异
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff origin/master..master # 比较远程分支master上有本地分支master上没有的
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git diff origin/master..master --stat # 只显示差异的文件，不显示具体内容
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git remote add origin git+ssh://git@192.168.53.168/VT.git # 增加远程定义（用于push/pull/fetch）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch # 显示本地分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch --contains 50089 # 显示包含提交50089的分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -a # 显示所有分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -r # 显示所有原创分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch --merged # 显示所有已合并到当前分支的分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch --no-merged # 显示所有未合并到当前分支的分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -m master master_copy # 本地分支改名
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -b master_copy # 从当前分支创建新分支master_copy并检出
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -b master master_copy # 上面的完整版
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout features/performance # 检出已存在的features/performance分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout --track hotfixes/BJVEP933 # 检出远程分支hotfixes/BJVEP933并创建本地跟踪分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout v2.0 # 检出版本v2.0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -b devel origin/develop # 从远程分支develop创建新本地分支devel并检出
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git checkout -- README # 检出head版本的README文件（可用于修改错误回退）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git merge origin/master # 合并远程master分支至当前分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git cherry-pick ff44785404a8e # 合并提交ff44785404a8e的修改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin master # 将当前分支push到远程master分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin :hotfixes/BJVEP933 # 删除远程仓库的hotfixes/BJVEP933分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push --tags # 把所有tag推送到远程仓库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git fetch # 获取所有远程分支（不更新本地分支，另需merge）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git fetch --prune # 获取所有原创分支并清除服务器上已删掉的分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git pull origin master # 获取远程分支master并merge到当前分支
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git mv README README2 # 重命名文件README为README2
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reset --hard HEAD # 将当前版本重置为HEAD（通常用于merge失败回退）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git rebase
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -d hotfixes/BJVEP933 # 删除分支hotfixes/BJVEP933（本分支修改已合并到其他分支）
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git branch -D hotfixes/BJVEP933 # 强制删除分支hotfixes/BJVEP933
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git ls-files # 列出git index包含的文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show-branch # 图示当前分支历史
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show-branch --all # 图示所有分支历史
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git whatchanged # 显示提交历史对应的文件修改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git revert dfb02e6e4f2f7b573337763e5c0013802e392818 # 撤销提交dfb02e6e4f2f7b573337763e5c0013802e392818
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git ls-tree HEAD # 内部命令：显示某个git对象
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git rev-parse v2.0 # 内部命令：显示某个ref对于的SHA1 HASH
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git reflog # 显示所有提交，包括孤立节点
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show HEAD@{5}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show master@{yesterday} # 显示master分支昨天的状态
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git log --pretty=format:&amp;#39;%h %s&amp;#39; --graph # 图示提交日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show HEAD~3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git show -s --pretty=raw 2be7fcb476
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash # 暂存当前修改，将所有至为HEAD状态
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash list # 查看所有暂存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash show -p stash@{0} # 参考第一次暂存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git stash apply stash@{0} # 应用第一次暂存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git grep &amp;#34;delete from&amp;#34; # 文件中搜索文本“delete from”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git grep -e &amp;#39;#define&amp;#39; --and -e SORT_DIRENT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git gc
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git fsck
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="名词解释">名词解释&lt;/h1>
+&lt;p>repo&lt;/p>
+&lt;h1 id="git概述">Git概述&lt;/h1>
+&lt;h2 id="简要介绍">简要介绍&lt;/h2>
+&lt;h2 id="安装与检查">安装与检查&lt;/h2>
+&lt;p>安装命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sudo apt-get install git #Ubuntu
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo yum install git #Centos
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>检查安装是否成功&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git --version #检查版本号
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="配置">配置&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">git config --global user.name &amp;#34;username&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git config --global user.email &amp;#34;xxx@example.com&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>c++ | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/c++/</link><atom:link href="https://ysyyhhh.github.io/docs/language/c++/index.xml" rel="self" type="application/rss+xml"/><description>c++</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>c++</title><link>https://ysyyhhh.github.io/docs/language/c++/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/modern-c++/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/modern-c++/</guid><description>&lt;h1 id="modern-c">Modern C++&lt;/h1>
+&lt;h2 id="lambda表达式">lambda表达式&lt;/h2>
+&lt;p>描述:&lt;/p>
+&lt;ul>
+&lt;li>一个匿名函数对象&lt;/li>
+&lt;li>一个可调用的代码单元&lt;/li>
+&lt;li>一个函数对象的语法糖&lt;/li>
+&lt;/ul>
+&lt;p>语法规则:
+&lt;a href="">&lt;/a>{};&lt;br>
+[]: lambda表达式的引导符
+(): 参数列表&lt;/p>
+&lt;p>具体示例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="k">auto&lt;/span> &lt;span class="o">&amp;amp;&lt;/span>&lt;span class="kr">thread&lt;/span>&lt;span class="o">:&lt;/span> &lt;span class="n">threads&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">thread&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="kr">thread&lt;/span>&lt;span class="p">([&lt;/span>&lt;span class="o">&amp;amp;&lt;/span>&lt;span class="n">taskId&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">num_total_tasks&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">runnable&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">taskId&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">num_total_tasks&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">taskId&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">runnable&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">runTask&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">num_total_tasks&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">});&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在示例中, thread的初始化是一个lambda表达式, 该lambda表达式的参数列表为空, 函数体为&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">taskId&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">num_total_tasks&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">id&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">taskId&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">runnable&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">runTask&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">num_total_tasks&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样一个thread可以负载多个任务.&lt;/p>
+&lt;p>如果不用lambda表达式, 那么就需要定义一个函数, 然后将函数的地址传递给thread, 这样就会增加代码量.&lt;/p>
+&lt;p>也就是说实际上 thread的参数可以是一个函数对象, 也可以是一个函数指针, 也可以是一个lambda表达式.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">explicit
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">不能在传参时隐式调用构造函数。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="err">使用&lt;/span>&lt;span class="n">reset来用子类覆盖父类&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">auto&lt;/span> &lt;span class="n">new_node&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">TrieNodeWithValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="n">end_node&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end_node&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">reset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_node&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid><description>&lt;h1 id="多线程">多线程&lt;/h1>
+&lt;h2 id="锁">锁&lt;/h2>
+&lt;h3 id="unique_lock-和-lock_guard">unique_lock 和 lock_guard&lt;/h3>
+&lt;p>unique_lock 和 lock_guard 都是 RAII 的封装，都是用来管理 mutex 的，但是 unique_lock 比 lock_guard 更加灵活，可以随时 unlock 和 lock，而 lock_guard 只能在构造的时候 lock，在析构的时候 unlock。&lt;/p>
+&lt;p>unique_lock:&lt;/p>
+&lt;pre>&lt;code>```cpp
+std::mutex mtx;
+std::unique_lock&amp;lt;std::mutex&amp;gt; lck(mtx);
+lck.unlock();
+lck.lock();
+```
+&lt;/code>&lt;/pre>
+&lt;p>lock_guard:&lt;/p>
+&lt;pre>&lt;code>```cpp
+std::mutex mtx;
+std::lock_guard&amp;lt;std::mutex&amp;gt; lck(mtx);
+```
+&lt;/code>&lt;/pre>
+&lt;h4 id="和-condition_variable-使用时的区别">和 condition_variable 使用时的区别&lt;/h4>
+&lt;p>unique_lock 和 lock_guard 都可以和 condition_variable 一起使用，但是 unique_lock 更加灵活，可以随时 unlock 和 lock，而 lock_guard 只能在构造的时候 lock，在析构的时候 unlock。&lt;/p>
+&lt;p>unique_lock:&lt;/p>
+&lt;pre>&lt;code>```cpp
+std::mutex mtx;
+std::condition_variable cv;
+std::unique_lock&amp;lt;std::mutex&amp;gt; lck(mtx);
+cv.wait(lck);
+/*
+这部分仍然被锁住
+*/
+lck.unlock();
+lck.lock();
+```
+&lt;/code>&lt;/pre>
+&lt;p>lock_guard:&lt;/p>
+&lt;pre>&lt;code>```cpp
+std::mutex mtx;
+std::condition_variable cv;
+std::lock_guard&amp;lt;std::mutex&amp;gt; lck(mtx);
+cv.wait(lck);
+/*
+这部分已经被解锁
+*/
+```
+&lt;/code>&lt;/pre></description></item></channel></rss>

@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>guide | Ysyy's</title><link>https://ysyyhhh.github.io/docs/guide/</link><atom:link href="https://ysyyhhh.github.io/docs/guide/index.xml" rel="self" type="application/rss+xml"/><description>guide</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>guide</title><link>https://ysyyhhh.github.io/docs/guide/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/guide/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/guide/%E8%87%AA%E5%8A%A8%E5%8C%96%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</guid><description>&lt;h1 id="用hugo--github-pagesaction--py--任务计划程序-搭建-全自动化markdown笔记转博客">用Hugo + Github Pages/Action + py + 任务计划程序 搭建 全自动化markdown笔记转博客&lt;/h1>
+&lt;h4 id="tldr">TL;DR&lt;/h4>
+&lt;blockquote>
+&lt;ol>
+&lt;li>背景: 已使用nextcloud和typora写笔记&lt;/li>
+&lt;li>需求: 将笔记转换为博客.(且因为本人太懒,😂 所以需要全自动化)
+&lt;ol>
+&lt;li>在nextcloud中, 专门设置一个文件夹&amp;quot;笔记&amp;quot; 转换为博客文件夹&lt;/li>
+&lt;li>不能改变原来记笔记的方式&lt;/li>
+&lt;li>不能有任何新增的操作&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>方案:
+&lt;ol>
+&lt;li>使用hugo搭建博客&lt;/li>
+&lt;li>使用Github pages部署博客&lt;/li>
+&lt;li>使用Github Actions自动化部署&lt;/li>
+&lt;li>使用py脚本将笔记转换为博客&lt;/li>
+&lt;li>使用任务计划程序定时执行py脚本&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;/blockquote>
+&lt;h2 id="使用hugo搭建博客">使用hugo搭建博客&lt;/h2>
+&lt;p>参考:
+&lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">hugo官网&lt;/a>
+&lt;a href="https://zhuanlan.zhihu.com/p/568470172" target="_blank" rel="noopener">Hugo+Github Pages+Github Action博客方案之二&lt;/a>
+&lt;a href="https://zhuanlan.zhihu.com/p/568764664" target="_blank" rel="noopener">Hugo+Github Pages+Github Action博客方案之三&lt;/a>
+&lt;a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Installation" target="_blank" rel="noopener">PaperMod主题&lt;/a>&lt;/p>
+&lt;h4 id="创建github仓库">创建github仓库&lt;/h4>
+&lt;p>要创建两个仓库&lt;/p>
+&lt;ol>
+&lt;li>一个仓库用于存放博客源码&lt;/li>
+&lt;li>一个仓库用于存放博客静态文件&lt;/li>
+&lt;/ol>
+&lt;h6 id="创建博客静态文件仓库">创建博客静态文件仓库&lt;/h6>
+&lt;p>设置仓库名为: &lt;code>用户名.github.io&lt;/code>
+&lt;a href="https://github.com/ysyyhhh/ysyyhhh.github.io" target="_blank" rel="noopener">我的博客仓库&lt;/a>&lt;/p>
+&lt;h6 id="创建博客源码仓库">创建博客源码仓库&lt;/h6>
+&lt;p>设置仓库名为: &lt;code>hugo-blog&lt;/code> // 仓库名可以自定义
+&lt;a href="https://github.com/ysyyhhh/hugo-blog" target="_blank" rel="noopener">我的博客源码仓库&lt;/a>&lt;/p>
+&lt;h4 id="安装hugo">安装hugo&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">scoop install hugo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="创建hugo博客">创建hugo博客&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo new site hugo-blog
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="安装主题">安装主题&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> hugo-blog &lt;span class="c1">## 进入博客目录, 这个是博客源码仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git init
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule add --depth&lt;span class="o">=&lt;/span>&lt;span class="m">1&lt;/span> https://github.com/adityatelange/hugo-PaperMod.git themes/PaperMod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule update --init --recursive &lt;span class="c1">## needed when you reclone your repo (submodules may not get cloned automatically)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置主题">配置主题&lt;/h4>
+&lt;p>这里使用yaml格式的配置文件, 也可以使用toml格式的配置文件
+所以需要删除config.toml文件, 并创建config.yaml文件&lt;/p>
+&lt;p>config.yaml:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">baseURL&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ysyy&amp;#39;s blog&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">theme&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">PaperMod&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">languageCode&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">zh-cn&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://github.com/adityatelange/hugo-PaperMod/wiki/Installation#sample-configyml" target="_blank" rel="noopener">剩余配置参考&lt;/a>&lt;/p>
+&lt;h4 id="创建文章">创建文章&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo new posts/first/hello-world.md
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="本地预览">本地预览&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo server -D
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="生成静态文件">生成静态文件&lt;/h4>
+&lt;p>生成静态文件, 生成的静态文件在 &lt;code>public&lt;/code>文件夹中。
+之后我们将这个文件夹中复制到博客静态文件仓库中&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">hugo
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="部署到github-pages">部署到github pages&lt;/h4>
+&lt;p>创建静态文件夹&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git clone git@用户名.github.io.git
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">cd&lt;/span> 用户名.github.io
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -r hugo-blog/public/* ./
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>提交到github&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">git add .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git commit -m &lt;span class="s2">&amp;#34;first commit&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git push origin main
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="配置github-pages">配置github pages&lt;/h4>
+&lt;p>在github中的 &lt;code>用户名.github.io&lt;/code>仓库中,
+点击 &lt;code>Settings&lt;/code>选项卡, 找到 &lt;code>GitHub Pages&lt;/code>选项,
+将 &lt;code>Source&lt;/code>选项设置为 &lt;code>main&lt;/code>分支, 点击 &lt;code>Save&lt;/code>按钮,
+这样就可以通过 &lt;code>https://用户名.github.io&lt;/code>访问博客了&lt;/p>
+&lt;h2 id="使用github-actions自动化部署">使用Github Actions自动化部署&lt;/h2>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/568764664" target="_blank" rel="noopener">参考&lt;/a>&lt;/p>
+&lt;p>如果每一次更新/发布新博客都需要手动执行上面的步骤, 那么就太麻烦了, 所以我们需要自动化部署&lt;/p>
+&lt;p>在博客源码仓库的根目录下创建
+&lt;code>.github/workflows/deploy.yml&lt;/code>文件&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ysyyblog&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">push&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">branches&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">main&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">jobs&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build-deploy&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runs-on&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ubuntu-20.04&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># runs-on: macos-latest&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">steps&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">actions/checkout@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">submodules&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Fetch Hugo themes (true OR recursive)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">fetch-depth&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">0&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># Fetch all history for .GitInfo and .Lastmod&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Setup Hugo&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">peaceiris/actions-hugo@v2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">hugo-version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;latest&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># extended: true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Build&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">run&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">hugo --minify&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Deploy&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">uses&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">peaceiris/actions-gh-pages@v3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">with&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">personal_token&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">${{ secrets.PERSONAL_TOKEN }}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 另外还支持 deploy_token 和 github_token&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">external_repository&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ysyyhhh/ysyyhhh.github.io&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 修改为你的 静态文件GitHub Pages 仓库&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_dir&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">./public&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c"># keep_files: false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">publish_branch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">main&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># 如果使用自定义域名，还需要添加下面一行配置&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c"># cname: www&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="创建personal_token">创建personal_token&lt;/h3>
+&lt;p>在github主页的右上角点击头像, 点击 &lt;code>Settings&lt;/code>选项卡, 找到 &lt;code>Developer settings&lt;/code>选项,&lt;/p>
+&lt;p>找到 &lt;code>Personal access tokens&lt;/code>选项, 点击 &lt;code>Generate new token&lt;/code>按钮, 创建一个新的token&lt;/p>
+&lt;h3 id="配置personal_token">配置personal_token&lt;/h3>
+&lt;p>在hugo-blog仓库中, 点击 &lt;code>Settings&lt;/code>选项卡, 找到 &lt;code>Secrets&lt;/code>选项, 点击 &lt;code>New repository secret&lt;/code>按钮,&lt;/p>
+&lt;p>新增一个名为 &lt;code>PERSONAL_TOKEN&lt;/code>的secret, 值为上面创建的personal_token&lt;/p>
+&lt;h3 id="测试自动化部署">测试自动化部署&lt;/h3>
+&lt;p>在本地的hugo-blog仓库中, 修改 &lt;code>content/posts/first/hello-world.md&lt;/code>文件, 然后提交到github&lt;/p>
+&lt;p>可以在 &lt;code>Actions&lt;/code>选项卡中查看自动化部署的状态&lt;/p>
+&lt;p>如果在 &lt;code>Actions&lt;/code>选项卡中看到了 &lt;code>build-deploy&lt;/code>任务, 且状态为 &lt;code>success&lt;/code>, 那么就说明自动化部署成功了&lt;/p>
+&lt;p>可以在 &lt;code>用户名.github.io&lt;/code>仓库中查看是否已经更新.&lt;/p>
+&lt;h2 id="使用任务计划程序和py脚本实现全自动化">使用任务计划程序和py脚本实现全自动化&lt;/h2>
+&lt;p>上面的步骤已经让我们发布笔记的过程变成:&lt;/p>
+&lt;ol>
+&lt;li>使用hugo new / 直接编辑 content的文件 来创建笔记&lt;/li>
+&lt;li>提交到hugo-blog仓库&lt;/li>
+&lt;/ol>
+&lt;p>然后hugo-blog仓库就会自动部署到用户名.github.io仓库中&lt;/p>
+&lt;p>虽然已经只剩两步了,但遵循能自动化就自动化的原则, 我们还是要把这两步也自动化&lt;/p>
+&lt;h3 id="使用py脚本将笔记转换为博客">使用py脚本将笔记转换为博客&lt;/h3>
+&lt;p>安装python这些步骤就省去了,这里直接给出py脚本&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">每天定时更新博客内容
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">1.进入项目根目录: D:/program_about/hugo/hugo-blog
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">2. 将D:/nextcloud/笔记/下的文件同步到 ./content/posts/下
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">3. 执行./push.bat 或 git add . &amp;amp;&amp;amp; git commit -m &amp;#34;update&amp;#34; &amp;amp;&amp;amp; git push
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">os&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kn">import&lt;/span> &lt;span class="nn">shutil&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">create_index&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> name = A.md
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 在root下生成&amp;#39;A&amp;#39;文件夹
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 将A.md移动到A文件夹下，并重命名为index.md
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 如果 存在 root + &amp;#39;/img&amp;#39; 的文件夹
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 将 root + &amp;#39;/img&amp;#39; 复制到 root + &amp;#39;/A/img&amp;#39; 下
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> &amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 生成文件夹&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">dir_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">split&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.&amp;#39;&lt;/span>&lt;span class="p">)[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dir_name&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">mkdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dir_name&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 移动文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">shutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dir_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;index.md&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 处理img&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">exists&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;img&amp;#39;&lt;/span>&lt;span class="p">)):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">shutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">copytree&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;img&amp;#39;&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dir_name&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;img&amp;#39;&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">adjust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">dir&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">dir&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="s1">&amp;#39;&amp;#39;&amp;#39;
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 将所有下面的格式
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - A.md
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - img
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - A-1.png
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 转换成
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - A
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - index.md
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - img
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> - A-1.png
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> 如果遇到&amp;#34;.md&amp;#34;文件,直接删除
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="s1"> &amp;#39;&amp;#39;&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dirs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">files&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">walk&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">root&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="nb">dir&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">root&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;.md&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">remove&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">continue&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">endswith&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;.md&amp;#39;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">create_index&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">dirs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 递归调用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">adjust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">sync&lt;/span>&lt;span class="p">():&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">root_path&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s1">&amp;#39;D:/program_about/hugo/hugo-blog&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root_path&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 当文件已存在时，无法创建该文件。: &amp;#39;./content/posts/&amp;#39;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">shutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rmtree&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># git中也要删除&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git rm -r ./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">shutil&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">copytree&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;D:/nextcloud/笔记/&amp;#39;&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="s1">&amp;#39;./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 把所有文件夹和文件的名称大写转换为小写&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dirs&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">files&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">walk&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;.&amp;#34;&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">files&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lower&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">new_name&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">for&lt;/span> &lt;span class="n">name&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="n">dirs&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">new_name&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">lower&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">rename&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">name&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">path&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">join&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">new_name&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 调整文件夹结构&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">adjust&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">root_path&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="s1">&amp;#39;./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># 上传到git&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># os.chdir(&amp;#39;./content/posts/&amp;#39;)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;D:/program_about/hugo/hugo-blog&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git add ./content/posts/&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git commit -m &amp;#34;update&amp;#34;&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">system&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;git push&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">os&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">chdir&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;D:/program_about/hugo/hugo-blog&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s1">&amp;#39;sync done&amp;#39;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="vm">__name__&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s1">&amp;#39;__main__&amp;#39;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">sync&lt;/span>&lt;span class="p">()&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>将上面的路径修改为自己的路径, 然后保存为 &lt;code>sync.py&lt;/code>文件
+可以执行py脚本,测试一下&lt;/p>
+&lt;h4 id="关于图片路径问题">关于图片路径问题&lt;/h4>
+&lt;p>&lt;a href="https://discourse.gohugo.io/t/image-path-with-relative-urls/21970/3" target="_blank" rel="noopener">参考方案&lt;/a>&lt;/p>
+&lt;p>因为我平时的图片路径是&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> A.md
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> img
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">-&lt;/span> A-1.png
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>但是hugo会将A.md文件转换为A文件夹, 所以此时是无法访问A-1.png的.&lt;/p>
+&lt;p>这里是通过改变相对路径关系来解决的, 即代码中的adjust()&lt;/p>
+&lt;p>当然如果你有图床就不需要这么麻烦了&lt;/p>
+&lt;h3 id="使用任务计划程序定时执行py脚本">使用任务计划程序定时执行py脚本&lt;/h3>
+&lt;p>参考
+这里我使用的是win10自带的任务计划程序, 其他系统的任务计划程序也是类似的&lt;/p>
+&lt;p>以下步骤由Claude生成&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">下面是如何使用Windows任务计划程序来配置定时每天执行Python脚本的步骤:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">打开任务计划程序(Windows + R 输入taskschd.msc回车)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">点击&amp;#34;操作&amp;#34;栏中的&amp;#34;创建基本任务&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">输入任务名称,选择触发器为每天定时,设置执行时间
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">在操作栏中,点击“新建”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">选择“启动一个程序”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">在“程序/脚本”框中输入Python解释器的路径,例如C:\Python37\python.exe
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">在“添加参数(可选)”中输入python脚本文件的完整路径,例如C:\Users\username\script.py
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">点击“确定”保存此操作
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">在下一页中选择用户账号,例如“当前用户”
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">点击“确定”完成创建任务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">根据需要配置触发器记录和其他选项
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">点击“确定”保存任务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">任务将在设定的时间自动执行python脚本文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">每次修改脚本后需要停止原有任务,然后再新建一个相同的任务来加载修改后的脚本代码。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">需要注意python interpreter路径和脚本路径的正确性。定时执行格式也需要正确,这样就可以实现Windows系统中的自动定时任务执行Python脚本了。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

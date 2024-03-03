@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>docker | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/docker/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/docker/index.xml" rel="self" type="application/rss+xml"/><description>docker</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>docker</title><link>https://ysyyhhh.github.io/docs/tool/docker/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/docker/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/docker/docker/</guid><description>&lt;h1 id="docker-usage">docker Usage&lt;/h1>
+&lt;h2 id="多阶段构建docker镜像">多阶段构建docker镜像&lt;/h2>
+&lt;p>多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段&lt;/p>
+&lt;p>usages：&lt;/p>
+&lt;ul>
+&lt;li>第一阶段：编译/打包程序依赖&lt;/li>
+&lt;/ul>
+&lt;p>多阶段用途：&lt;/p>
+&lt;ul>
+&lt;li>缩小镜像体积&lt;/li>
+&lt;li>&lt;/li>
+&lt;/ul>
+&lt;h2 id="新系统build时出现cannot-autolaunch-d-bus-without-x11-display">新系统build时出现&lt;code>Cannot autolaunch D-Bus without X11 $DISPLAY&lt;/code>&lt;/h2>
+&lt;p>docker 拉取包时需要登录.&lt;/p>
+&lt;p>问题出在Linux缺少一个密码管理包gnupg，它用于加密，我们在登录时需要这个包将密码加密后才能完成，因此直接安装&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt install gnupg2 pass
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/docker/docker%E5%91%BD%E4%BB%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/docker/docker%E5%91%BD%E4%BB%A4/</guid><description>&lt;h1 id="docker命令">Docker命令&lt;/h1>
+&lt;h2 id="安装docker">安装docker&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">sudo apt -y update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt -y upgrade
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt -y full-upgrade
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装依赖&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install -y apt-transport-https ca-certificates curl software-properties-common gnupg lsb-release
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加官方GPG密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -fsSL https://download.docker.com/linux/ubuntu/gpg &lt;span class="p">|&lt;/span> sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#添加仓库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;deb [arch=&lt;/span>&lt;span class="k">$(&lt;/span>dpkg --print-architecture&lt;span class="k">)&lt;/span>&lt;span class="s2"> signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu &lt;/span>&lt;span class="k">$(&lt;/span>lsb_release -cs&lt;span class="k">)&lt;/span>&lt;span class="s2"> stable&amp;#34;&lt;/span> &lt;span class="p">|&lt;/span> sudo tee /etc/apt/sources.list.d/docker.list &amp;gt; /dev/null
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新apt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt -y update
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装docker&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install -y docker-ce docker-ce-cli containerd.io docker-compose-plugin
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装docker-compose&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo apt install -y docker-compose
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>centos 6.9 下安装docker&lt;/p>
+&lt;p>&lt;a href="https://medium.com/@zihansyu/centos-6-x-%E5%AE%89%E8%A3%9Ddocker-9e61354fd2ae" target="_blank" rel="noopener">https://medium.com/@zihansyu/centos-6-x-%E5%AE%89%E8%A3%9Ddocker-9e61354fd2ae&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/kinginblue/article/details/73527832" target="_blank" rel="noopener">https://blog.csdn.net/kinginblue/article/details/73527832&lt;/a>&lt;/p>
+&lt;h2 id="1镜像相关">1.镜像相关&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 构建镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker build &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;上下文路径/URL/-&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项: -f, --file=&amp;#34;&amp;#34; # 指定要使用的Dockerfile路径（默认为./Dockerfile）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --force-rm=false # 在构建过程中删除中间容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --no-cache=false # 始终使用缓存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --pull=false # 在构建过程中尝试去更新镜像的新版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --quiet=false # 安静模式，成功后只输出镜像ID&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --rm=true # 在构建成功后删除临时容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -t, --tag=[] # 镜像名称（默认值：&amp;lt;上下文路径&amp;gt;的基本名称）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --ulimit=[] # Ulimit配置&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 拉取镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker pull &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>Docker Registry 地址&lt;span class="o">[&lt;/span>:端口号&lt;span class="o">]&lt;/span>/&lt;span class="o">]&lt;/span>仓库名&lt;span class="o">[&lt;/span>:标签&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker images &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>仓库名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;镜像1&amp;gt; &lt;span class="o">[&lt;/span>&amp;lt;镜像2&amp;gt; ...&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看镜像历史&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker &lt;span class="nb">history&lt;/span> &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;镜像名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看镜像详细信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker inspect &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;镜像名&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="2容器相关">2.容器相关&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker run &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;镜像名&amp;gt; &lt;span class="o">[&lt;/span>命令&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#eg: docker run -d -p 8080:8080 --name tomcat tomcat:8.5.51&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">#选项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -d 后台运行容器，并返回容器ID&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -i 以交互模式运行容器，通常与 -t 同时使用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -t 为容器重新分配一个伪输入终端，通常与 -i 同时使用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -P 随机端口映射&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -p 指定端口映射，格式为：主机(宿主)端口:容器端口&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --name 指定容器名字&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --link 连接到其它容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --rm 容器退出后自动删除容器文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --volumes-from 从其它容器或数据卷挂载一些配置或其它文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --volume 挂载宿主机目录或文件，格式为：主机目录:容器目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --privileged=true 给容器内的root用户赋予最高权限，容器内的root用户就拥有了真正的root权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --restart&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># no 容器退出时不重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># on-failure[:max-retries] 容器故障退出（返回值非零）时重启，最多重启max-retries次&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># always 容器退出时总是重启&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># unless-stopped 容器退出时总是重启，但是不考虑在Docker守护进程启动时就已经停止了的容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --env-file 从指定文件读入环境变量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># eg:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># docker run -d -p 8080:8080 --name tomcat tomcat:8.5.51 --env-file ./env.list&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker ps &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动和创建容器的区别在于，启动容器是针对已经创建好的容器进行启动，而创建容器则是针对镜像进行的操作&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker start &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 停止容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker logs &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器内进程&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker top &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器详细信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker inspect &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker &lt;span class="nb">exec&lt;/span> &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt; &lt;span class="o">[&lt;/span>命令&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导出容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker &lt;span class="nb">export&lt;/span> &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导入容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker import &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重命名容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rename &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt; &amp;lt;新容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器使用的资源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stats &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器端口映射&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker port &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导出容器中的文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker cp &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;:&amp;lt;容器内路径&amp;gt; &amp;lt;宿主机路径&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项: -a, --archive=false # 归档模式(默认)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -L, --follow-link=false # 总是解析符号链接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -d, --device=false # 复制字符和块设备&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -r, --recursive=false # 递归复制整个目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -p, --pause=true # 暂停容器中的所有进程&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="docker-检查与排错">docker 检查与排错&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker logs &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项: -f, --follow=false # 跟踪日志输出&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --since=&amp;#34;&amp;#34; # 显示自某个timestamp之后的日志，或相对时间，如42m（即42分钟）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --tail=&amp;#34;all&amp;#34; # 从日志末尾显示多少行日志， 默认是all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -t, --timestamps=false # 显示时间戳&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --until=&amp;#34;&amp;#34; # 显示自某个timestamp之前的日志，或相对时间，如42m（即42分钟）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器占用&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stats &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项: --all=false # 显示所有容器（默认显示运行中的容器）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --format=&amp;#34;&amp;#34; # 使用Go模板显示&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --no-stream=false # 不显示实时流容器的统计信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --no-trunc=false # 不截断输出&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 停止所有容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop &lt;span class="k">$(&lt;/span>docker ps -a -q&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 移除所有容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rm &lt;span class="k">$(&lt;/span>docker ps -a -q&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 移除所有镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image rmi &lt;span class="k">$(&lt;/span>docker images -q&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空docker中所有的东西&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空缓存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune -f
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image prune -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker container prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的卷&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker volume prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的网络&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker network prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的构建缓存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker builder prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空未使用的数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune -a --volumes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 清空所有未使用的数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system prune -a --volumes --force
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="3容器日志">3.容器日志&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看容器日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker logs &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &amp;lt;容器名&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项: -f, --follow=false # 跟踪日志输出&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --since=&amp;#34;&amp;#34; # 显示自某个timestamp之后的日志，或相对时间，如42m（即42分钟）&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --tail=&amp;#34;all&amp;#34; # 从日志末尾显示多少行日志， 默认是all&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -t, --timestamps=false # 显示时间戳&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --until=&amp;#34;&amp;#34; # 显示自某个timestamp之前的日志，或相对时间，如42m（即42分钟）&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker-submodule">docker submodule&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 获取子模块&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">git submodule update --init --recursive
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker-compose">docker-compose&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 启动命令&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose up &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>服务名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 选项&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># -d 后台运行&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># --build 构建镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose rm &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>服务名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose down &lt;span class="o">[&lt;/span>选项&lt;span class="o">]&lt;/span> &lt;span class="o">[&lt;/span>服务名&lt;span class="o">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker私服的相关命令">docker私服的相关命令&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 登录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker login
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 上传&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker push &amp;lt;镜像名&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

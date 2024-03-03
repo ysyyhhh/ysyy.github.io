@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>k8s | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/k8s/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/k8s/index.xml" rel="self" type="application/rss+xml"/><description>k8s</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>k8s</title><link>https://ysyyhhh.github.io/docs/tool/k8s/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/k8s/k8s/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/k8s/k8s/</guid><description>&lt;h1 id="k8s">k8s&lt;/h1>
+&lt;p>&lt;strong>&lt;a href="https://kubernetes.io/zh-cn/docs/reference/kubectl/" target="_blank" rel="noopener">kubectl&lt;/a> 命令行工具&lt;/strong>&lt;/p>
+&lt;p>kubectl [command] [TYPE] [NAME] [flags]&lt;/p>
+&lt;p>- &lt;code>command&lt;/code>：指定要对一个或多个资源执行的操作，例如 &lt;code>create&lt;/code>、&lt;code>get&lt;/code>、&lt;code>describe&lt;/code>、&lt;code>delete&lt;/code>。&lt;/p>
+&lt;p>- &lt;code>TYPE&lt;/code>：指定&lt;a href="https://kubernetes.io/zh-cn/docs/reference/kubectl/#resource-types" target="_blank" rel="noopener">资源类型&lt;/a>。资源类型不区分大小写， 可以指定单数、复数或缩写形式。&lt;/p>
+&lt;p>- &lt;code>NAME&lt;/code>：指定资源的名称。名称区分大小写。 如果省略名称，则显示所有资源的详细信息。例如：&lt;/p>
+&lt;p>命令大全&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">- kubectl get:列出资源,比如 pod、deployment、service 等
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl describe:显示资源的详细信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl create:创建资源,比如 pod、deployment、service 等
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl delete:删除资源
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl apply:对资源进行配置更改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl rollout:管理资源的发布,比如 deployment 的发布
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl scale:扩缩 pod 副本数
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl expose:暴露资源为 service
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl logs:打印 pod 的日志
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl exec:在 pod 内执行命令
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl cp:在 pod 之间 copy 文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl port-forward:将 pod 的端口转发到本地
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl label:给资源加标签
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl annotate:给资源加注释
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl config:管理 kubeconfig 文件
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl cluster-info:显示集群信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl version:显示 CLI 版本和服务端版本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl api-versions:显示所支持的 API 版本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">- kubectl api-resources:显示每个API group下的资源列表
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>常用命令&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get 资源类型
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get pod -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get deployment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get deployment -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get namespace
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 指定查看某个命名空间下的pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get pod -n kube-system
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看所有命名空间下的pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl get pod -A -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe 资源类型
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe pod web-nginx-dep2-5f4fbd5bfb-jqw9z
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe pod -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe deployment
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe deployment -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe namespace
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 指定查看某个命名空间下的pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe pod -n kube-system
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看所有命名空间下的pod
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl describe pod -A -o wide
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl logs 显示pod中的容器中运行过程中产生的日志信息
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl logs ngx-dep3-64cfcc9ddc-92x9s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl logs injoi-5c9b8f98bd-trm95 | grep &amp;#34;capturing the emotions&amp;#34; -A 100 -B 100 搜索并查看上下文
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl run bx --image=busybox
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl exec -it nginx-dep1-6dd5d75f8b-mgndd /bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl exec -it pod对象 /bin/bash
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>&lt;a href="https://kubernetes.io/zh-cn/docs/" target="_blank" rel="noopener">https://kubernetes.io/zh-cn/docs/&lt;/a>&lt;/p>
+&lt;h1 id="container">container&lt;/h1>
+&lt;h1 id="pod">pod&lt;/h1>
+&lt;p>Pod 类似于共享名字空间并共享文件系统卷的一组容器。&lt;/p>
+&lt;h1 id="deployment">deployment&lt;/h1>
+&lt;h2 id="depploymentyaml">depployment.yaml&lt;/h2>
+&lt;p>① &lt;code>apiVersion&lt;/code> 是当前配置格式的版本。&lt;br>
+② &lt;code>kind&lt;/code> 是要创建的资源类型，这里是 &lt;code>Deployment&lt;/code>。&lt;br>
+③ &lt;code>metadata&lt;/code> 是该资源的元数据，&lt;code>name&lt;/code> 是必需的元数据项。&lt;br>
+④ &lt;code>spec&lt;/code> 部分是该 &lt;code>Deployment&lt;/code> 的规格说明。&lt;br>
+⑤ &lt;code>replicas&lt;/code> 指明副本数量，默认为 1。&lt;br>
+⑥ &lt;code>template&lt;/code> 定义 Pod 的模板，这是配置文件的重要部分。&lt;br>
+⑦ &lt;code>metadata&lt;/code> 定义 Pod 的元数据，至少要定义一个 label。label 的 key 和 value 可以任意指定。&lt;br>
+⑧ &lt;code>spec&lt;/code> 描述 Pod 的规格，此部分定义 Pod 中每一个容器的属性，&lt;code>name&lt;/code> 和 &lt;code>image&lt;/code> 是必需的。&lt;/p>
+&lt;h1 id="secret">secret&lt;/h1>
+&lt;p>Secret 是 Kubernetes 中的一种资源,用于存储敏感信息,比如密码、OAuth 令牌、SSH 密钥等。Secret 的数据是 base64 编码并存储在 etcd 中。Secret 有三种类型:1. Opaque:任意数据,用于存储密码、密钥等;base64 编码后存储。&lt;br>
+2. &lt;a href="http://kubernetes.io/service-account-token:%E6%9C%8D%E5%8A%A1%E8%B4%A6%E5%8F%B7%E4%BB%A4%E7%89%8C,%E7%94%B1" target="_blank" rel="noopener">kubernetes.io/service-account-token:服务账号令牌,由&lt;/a> Kubernetes 自动创建和更新。&lt;br>
+3. &lt;a href="http://kubernetes.io/dockercfg:Docker" target="_blank" rel="noopener">kubernetes.io/dockercfg:Docker&lt;/a> 配置文件,用来存储私有 Docker Registry 的认证信息。主要用途是:- 存储敏感数据,比如密码、密钥、认证信息等&lt;br>
+- 在 Pod 中设置环境变量&lt;br>
+- 用于拉取私有镜像仓库的镜像创建 Secret 有三种方式:1. 从文件中创建:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl create secret generic &amp;lt;secret-name&amp;gt; --from-file=path/to/file
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>2. 从字串中创建:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl create secret generic &amp;lt;secret-name&amp;gt; --from-literal=&amp;lt;key&amp;gt;=&amp;lt;value&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>3. 编写 YAML 文件创建:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">yaml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">apiVersion: v1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kind: Secret
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">metadata:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> name: mysecret
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">type: Opaque
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">data:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> username: YWRtaW4= # base64 编码后的密码或密钥
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> password: MWYyZDFlMmU2N2Rm # base64 编码后的密码或密钥
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在 Pod 中可以以三种方式使用 Secret:1. 设置环境变量的值 &lt;code>env&lt;/code>&lt;br>
+2. 以 Volume 文件的形式挂载,然后在 Volume 中访问&lt;br>
+3. 使用 kubectl 在本地执行工具中设置 Secret总的来说,Secret 用于在 Kubernetes 集群中存储敏感信息,有以下主要用途:- 存储密码、密钥、认证信息等敏感数据&lt;br>
+- 用于在 Pod 中设置环境变量的值&lt;br>
+- 用于在 Volume 中创建 config 文件&lt;br>
+- 拉取私有 Docker Registry 的镜像&lt;/p>
+&lt;h1 id="namespace">namespace&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/k8s/minikube/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/k8s/minikube/</guid><description>&lt;h1 id="minikube">minikube&lt;/h1>
+&lt;p>使用&lt;/p>
+&lt;p>进入pods的容器&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">kubectl &lt;span class="nb">exec&lt;/span> -it &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt; -- /bin/bash
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看对应容器的日志&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl logs -f &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="错误和解决方案">错误和解决方案&lt;/h2>
+&lt;h3 id="minikube-挂载-本地目录进minikube时作为mysql的数据目录但是mysql无法启动">minikube 挂载 本地目录进minikube时,作为mysql的数据目录,但是mysql无法启动&lt;/h3>
+&lt;p>挂载方式:
+在minikube正常启动后, 使用&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">minikube mount &amp;lt;本地目录&amp;gt;:&amp;lt;minikube目录&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>进行挂载&lt;/p>
+&lt;p>检查问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 进入pod 的 db容器内查看日志 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">kubectl logs -f &amp;lt;pod-name&amp;gt; -c &amp;lt;container-name&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出为&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">find: File system loop detected&lt;span class="p">;&lt;/span> &lt;span class="s1">&amp;#39;/var/lib/mysql/test&amp;#39;&lt;/span> is part of the same file system loop as &lt;span class="s1">&amp;#39;/var/lib/mysql/&amp;#39;&lt;/span>.
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>原因是挂载时发现循环&lt;/p>
+&lt;p>解决方案:&lt;/p>
+&lt;ol>
+&lt;li>关闭并&lt;strong>删除&lt;/strong>minikube&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">minikube stop
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">minikube delete
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>在minikube启动时就挂载&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">minikube start --mount --mount-string&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;&amp;lt;本地目录&amp;gt;:&amp;lt;minikube目录&amp;gt;&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>问题解决&lt;/p>
+&lt;h3 id="minikube-中-设置ingress未转发的问题">minikube 中 设置ingress未转发的问题&lt;/h3>
+&lt;p>参考&lt;a href="https://stackoverflow.com/questions/66275458/could-not-access-kubernetes-ingress-in-browser-on-windows-home-with-minikube" target="_blank" rel="noopener">Could not access Kubernetes Ingress in Browser on Windows Home with Minikube?&lt;/a>&lt;/p>
+&lt;p>问题1：
+当使用minikube时，设置ingress后，minikube ssh 内部可以通过ingress转发的服务端口访问。
+但127.0.0.1 或 minikube ip 在主机上无法访问。&lt;/p>
+&lt;p>解决方法：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">Set custom domain IP to 127.0.01 in %WINDIR%\System32\drivers\etc\hosts file, i.e. by adding line 127.0.0.1 my-k8s.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Get ingress pod name: kubectl get pods -n ingress-nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Start port forwarding: kubectl -n ingress-nginx port-forward pod/ingress-nginx-controller-5d88495688-dxxgw --address 0.0.0.0 80:80 443:443, where you should replace ingress-nginx-controller-5d88495688-dxxgw with your ingress pod name.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Enjoy using ingress on custom domain in any browser (but only when port forwarding is active)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>问题2:
+ingress中使用prefix的转发规则时,无法获取路径中的query&lt;/p>
+&lt;p>解决方法:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">apiVersion&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">networking.k8s.io/v1&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">kind&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">Ingress&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">metadata&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">minimal-ingress&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">annotations&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">nginx.ingress.kubernetes.io/use-regex&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s2">&amp;#34;true&amp;#34;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 需要添加这个&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">nginx.ingress.kubernetes.io/rewrite-target&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/$2&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">spec&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">defaultBackend&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">service&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">default-http-backend&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">number&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">80&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">rules&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">host&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">fuzzs-scene-sim-test.localhost&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">http&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">paths&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/FuzzsSceneSimTest(/|$)(.*)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c"># 后缀加上(/|$)(.*) 用于获取query&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">pathType&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">ImplementationSpecific &lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">backend&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">service&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">fuzzs-scene-sim-test&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">port&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">number&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="m">8089&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

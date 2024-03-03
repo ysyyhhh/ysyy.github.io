@@ -1,0 +1,313 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>tips | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tips/</link><atom:link href="https://ysyyhhh.github.io/docs/tips/index.xml" rel="self" type="application/rss+xml"/><description>tips</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>tips</title><link>https://ysyyhhh.github.io/docs/tips/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tips/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/docker/</guid><description>&lt;h1 id="docker相关技巧">docker相关技巧&lt;/h1>
+&lt;h2 id="记把深度学习项目装入docker">记把深度学习项目装入docker&lt;/h2>
+&lt;p>安装时出现选项&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Dockerfile" data-lang="Dockerfile">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># RUN apt-get install libglib2.0-dev -y&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="c"># 由于安装libglib2.0-dev的时候，bash会有交互操作叫你选择对应的时区，在docker build的时候没有交互的，所以需要加上DEBIAN_FRONTEND=&amp;#34;noninteractive&amp;#34;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> &lt;span class="nv">DEBIAN_FRONTEND&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;noninteractive&amp;#34;&lt;/span> apt -y install libglib2.0-dev&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker清理">docker清理&lt;/h2>
+&lt;p>在win10下，docker是基于wsl2的，所以docker的镜像和容器都是在wsl2的文件系统中。
+所以在清理完docker的镜像和容器后，需要对wsl的盘进行压缩。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 停止所有的容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker stop &lt;span class="k">$(&lt;/span>docker ps -aq&lt;span class="k">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除所有未使用的容器&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker volume prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除所有未使用的镜像&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker image prune -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除缓存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker builder prune
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看当前占用的空间&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker system df
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>对wsl2的盘进行压缩&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">wsl --shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看wsl2的盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --list -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 使用diskpart压缩&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">diskpart
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># open window Diskpart&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">select&lt;/span> vdisk &lt;span class="nv">file&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s2">&amp;#34;D:\ubuntu\wsl\docker-desktop-data\ext4.vhdx&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">attach vdisk &lt;span class="nb">readonly&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">compact vdisk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">detach vdisk
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">exit&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker中安装conda">docker中安装conda&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Dockerfile" data-lang="Dockerfile">&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="c"># 安装conda&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> apt-get install -y wget&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="c"># yhyu13 : donwload anaconda package &amp;amp; install&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> wget &lt;span class="s2">&amp;#34;https://repo.anaconda.com/archive/Anaconda3-2023.03-1-Linux-x86_64.sh&amp;#34;&lt;/span> &lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> sh Anaconda3-2023.03-1-Linux-x86_64.sh -b -p /opt/conda&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="c"># RUN rm /anaconda.sh &lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">RUN&lt;/span> &lt;span class="nb">echo&lt;/span> &lt;span class="s2">&amp;#34;. /opt/conda/etc/profile.d/conda.sh&amp;#34;&lt;/span> &amp;gt;&amp;gt; ~/.bashrc&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="c"># yhyu13 : add conda to path &lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>&lt;span class="k">ENV&lt;/span> PATH /opt/conda/bin:/opt/conda/condabin:&lt;span class="nv">$PATH&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker-compose-使用gpu">docker-compose 使用gpu&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">version&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;3.7&amp;#39;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">services&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">pytorch&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">build&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">.&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">runtime&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">nvidia&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">environment&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">NVIDIA_VISIBLE_DEVICES=all&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">NVIDIA_DRIVER_CAPABILITIES=all&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">volumes&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">.:/workspace&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">ports&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;8888:8888&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="s2">&amp;#34;6006:6006&amp;#34;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">command&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">bash -c &amp;#34;jupyter notebook --ip&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="wsl-盘迁移到非系统盘">wsl 盘迁移到非系统盘&lt;/h2>
+&lt;p>一般情况下 wsl盘的位置在
+&lt;code>C:\Users\&amp;lt;用户名&amp;gt;\AppData\Local\Docker\wsl&lt;/code>&lt;/p>
+&lt;p>docker的盘在
+&lt;code>C:\Users\&amp;lt;用户名&amp;gt;\AppData\Local\Docker\wsl\data&lt;/code>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 1. 停止wsl&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --shutdown
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 2. 查看wsl状态&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --list -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 可以看到docker有两个wsl，一个是docker-desktop-data，一个是docker-desktop&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 只需要迁移docker-desktop-data即可,另一个很小&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. 迁移wsl&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --export Ubuntu-20.04 D:&lt;span class="se">\u&lt;/span>buntu&lt;span class="se">\w&lt;/span>sl&lt;span class="se">\U&lt;/span>buntu-20.04.tar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4. 删除wsl&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --unregister Ubuntu-20.04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 5. 查看是否删除成功&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --list -v
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 6. 导入wsl&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --import Ubuntu-20.04 D:&lt;span class="se">\u&lt;/span>buntu&lt;span class="se">\w&lt;/span>sl&lt;span class="se">\U&lt;/span>buntu-20.04 D:&lt;span class="se">\u&lt;/span>buntu&lt;span class="se">\w&lt;/span>sl&lt;span class="se">\U&lt;/span>buntu-20.04.tar --version &lt;span class="m">2&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 7. 查看是否导入成功&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">wsl --list -v
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker-中设置特定版本的python">docker 中设置特定版本的python&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建一个基础镜像 &lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM ubuntu:20.04
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 重置apt-get&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN rm -rf /etc/apt/sources.list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装conda&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># yhyu13 : install additional packages&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置apt的源为tsinghua镜像源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN sed -i &lt;span class="s1">&amp;#39;s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span> /etc/apt/sources.list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN apt-get update &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> apt-get install -y curl wget
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 安装conda&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN curl -O https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> bash Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda &lt;span class="se">\
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="se">&lt;/span> &lt;span class="o">&amp;amp;&amp;amp;&lt;/span> rm Miniconda3-latest-Linux-x86_64.sh
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建conda环境并安装python&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN /opt/conda/bin/conda create -n py38 &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.8.5
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ENV PATH /opt/conda/envs/py38/bin:&lt;span class="nv">$PATH&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="docker中使用display">docker中使用display&lt;/h2>
+&lt;p>在启动时需要设置环境变量DISPLAY&lt;/p>
+&lt;h3 id="win下的情况">win下的情况&lt;/h3>
+&lt;p>参考&lt;a href="https://www.cnblogs.com/larva-zhh/p/10531824.html" target="_blank" rel="noopener">在Docker for Windows中运行GUI程序&lt;/a>&lt;/p>
+&lt;h2 id="前后端项目静态资源转发">前后端项目静态资源转发&lt;/h2>
+&lt;p>后端 springboot时：
+把静态资源放在static目录下，然后在application中配置&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yaml" data-lang="yaml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">spring&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">mvc&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">static-path-pattern&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/static/**&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">resources&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">static-locations&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">classpath:/static/&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果设置了拦截器，需要在拦截器上加入&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Configuration&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">WebMvcConfig&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">implements&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">WebMvcConfigurer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CorsInterceptor&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">corsInterceptor&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CorsInterceptor&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">addInterceptors&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">InterceptorRegistry&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">registry&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">registry&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">addInterceptor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">corsInterceptor&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">addPathPatterns&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;/**&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">addResourceHandlers&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ResourceHandlerRegistry&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">registry&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">registry&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">addResourceHandler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;/static/**&amp;#34;&lt;/span>&lt;span class="p">).&lt;/span>&lt;span class="na">addResourceLocations&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;classpath:/static/&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;file:static/&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>jar 包和静态路径关系&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> .jar
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> static
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>前端，需要在nginx上加入转发后访问静态路径后缀。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-nginx" data-lang="nginx">&lt;span class="line">&lt;span class="cl"> &lt;span class="k">location&lt;/span> &lt;span class="s">/api&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">rewrite&lt;/span> &lt;span class="s">^/api(.*)&lt;/span> &lt;span class="nv">$1&lt;/span> &lt;span class="s">break&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_pass&lt;/span> &lt;span class="nv">$SERVER_URL&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_set_header&lt;/span> &lt;span class="s">Host&lt;/span> &lt;span class="nv">$host&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_set_header&lt;/span> &lt;span class="s">X-Real-IP&lt;/span> &lt;span class="nv">$remote_addr&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_set_header&lt;/span> &lt;span class="s">X-Forwarded-For&lt;/span> &lt;span class="nv">$proxy_add_x_forwarded_for&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_set_header&lt;/span> &lt;span class="s">X-Forwarded-Photo&lt;/span> &lt;span class="nv">$scheme&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">location&lt;/span> &lt;span class="p">~&lt;/span>&lt;span class="sr">*.+\.(jpg|jpeg|gif|png|ico|css|js|pdf|txt|swf|xml|woff|woff2|ttf|eot|svg)$&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">rewrite&lt;/span> &lt;span class="s">^/api(.*)&lt;/span> &lt;span class="nv">$1&lt;/span> &lt;span class="s">break&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_pass&lt;/span> &lt;span class="nv">$SERVER_URL&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kn">proxy_redirect&lt;/span> &lt;span class="no">off&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/linux/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
+&lt;h2 id="系统资源相关">系统资源相关&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看内存&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">free -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看cpu&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /proc/cpuinfo
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看cpu使用情况&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">top
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看GPU使用情况&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nvidia-smi
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看磁盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">df -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看系统版本&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /etc/os-release
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看系统信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">uname -a
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 列出所有文件夹和文件 显示占用空间&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看文件夹大小&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh folder_name
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看文件大小&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">du -sh file_name
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="用户相关">用户相关&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">useradd -m -s /bin/bash -d /home/username username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 解释: -m 创建用户目录, -s 指定shell, -d 指定用户目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置密码&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">passwd username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">userdel -r username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加用户的sudo权限&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 编辑sudoers文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">vi /etc/sudoers
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 在root ALL=(ALL) ALL下面添加&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">username &lt;span class="nv">ALL&lt;/span>&lt;span class="o">=(&lt;/span>ALL&lt;span class="o">)&lt;/span> ALL
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看用户组&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">groups username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 修改用户组&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">usermod -g groupname username
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看所有用户&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat /etc/passwd
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="目录挂载">目录挂载&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看挂载&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">df -h
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sdb1 /home/username/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 卸载目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">umount /home/username/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载硬盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 查看硬盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fdisk -l
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 格式化硬盘&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">fdisk /dev/sdb
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 格式化为ext4&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mkfs.ext4 /dev/sdb1
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>挂载目录并立即生效&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 挂载目录&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount /dev/sdb1 /home/username/data
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 立即生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mount -a
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="文件">文件&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 带权限复制&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cp -rp &lt;span class="nb">source&lt;/span> dest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 远程连接复制文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scp -r username@ip:/home/username/data /home/username/data
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="工具">工具&lt;/h2>
+&lt;h3 id="压缩解压缩">压缩解压缩&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 压缩&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -czvf filename.tar.gz foldername
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 解压&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tar -xzvf filename.tar.gz
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">### 定时脚本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">```shell
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 查看定时脚本
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">crontab -l
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="curl">curl&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 下载文件&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">curl -o filename url
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="系统路径变量">系统路径/变量&lt;/h2>
+&lt;p>持久化添加/改变系统路径/变量&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 添加到系统路径&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">echo&lt;/span> &lt;span class="s1">&amp;#39;export PATH=$PATH:/home/username/bin&amp;#39;&lt;/span> &amp;gt;&amp;gt; /etc/profile
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 立即生效&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="nb">source&lt;/span> /etc/profile
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="tool">tool&lt;/h2>
+&lt;h3 id="ssh">ssh&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 生成密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ssh-keygen -t rsa -C &lt;span class="s2">&amp;#34;{email}&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看密钥&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">cat ~/.ssh/id_rsa.pub
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="apt">apt&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置tsinghua源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo sed -i &lt;span class="s1">&amp;#39;s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span> /etc/apt/sources.list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新源&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">s
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/piplineaction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/piplineaction/</guid><description>&lt;p>&lt;a href="https://docs.github.com/en/actions/migrating-to-github-actions/manual-migrations/migrating-from-gitlab-cicd-to-github-actions" target="_blank" rel="noopener">github action&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">gitlab pipline&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/server/</guid><description>&lt;h1 id="服务器">服务器&lt;/h1>
+&lt;h2 id="scp传输文件">scp传输文件&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 本地到远程&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">scp -r /home/username/data username@ip:/home/username/data
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/windows%E4%B8%8B%E7%9A%84%E5%AD%90%E7%B3%BB%E7%BB%9F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/windows%E4%B8%8B%E7%9A%84%E5%AD%90%E7%B3%BB%E7%BB%9F/</guid><description>&lt;h1 id="windows-下的子系统">windows 下的子系统&lt;/h1>
+&lt;h2 id="wsl">wsl&lt;/h2>
+&lt;p>pass&lt;/p>
+&lt;h2 id="适用于android的windows子系统">适用于Android的Windows子系统&lt;/h2></description></item></channel></rss>

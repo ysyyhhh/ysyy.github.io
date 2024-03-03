@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>开发 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/guide/%E5%BC%80%E5%8F%91/</link><atom:link href="https://ysyyhhh.github.io/docs/guide/%E5%BC%80%E5%8F%91/index.xml" rel="self" type="application/rss+xml"/><description>开发</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>开发</title><link>https://ysyyhhh.github.io/docs/guide/%E5%BC%80%E5%8F%91/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/guide/%E5%BC%80%E5%8F%91/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/guide/%E5%BC%80%E5%8F%91/%E5%BC%80%E5%8F%91%E6%B5%81%E7%A8%8B/</guid><description>&lt;h2 id="git">git&lt;/h2>
+&lt;p>测试环境&lt;/p>
+&lt;ul>
+&lt;li>自动化部署&lt;/li>
+&lt;li>一键转移到生成环境&lt;/li>
+&lt;/ul>
+&lt;h2 id="部署">部署&lt;/h2>
+&lt;h2 id="项目代码">项目代码&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>测试代码&lt;/p>
+&lt;ul>
+&lt;li>编码风格测试&amp;amp;修正&lt;/li>
+&lt;li>功能测试&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>Dockerfile&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>docker-compose&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>测试脚本&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>部署脚本&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="前端代码结构">前端代码结构&lt;/h2>
+&lt;h3 id="优点">优点&lt;/h3>
+&lt;p>接口可以根据环境自动替换:&lt;/p>
+&lt;ul>
+&lt;li>开发环境的接口&lt;/li>
+&lt;li>生产环境&lt;/li>
+&lt;/ul>
+&lt;h3 id="1docker-runsh">1.docker-run.sh&lt;/h3>
+&lt;p>描述: 部署脚本在git clone之后运行的脚本&lt;/p>
+&lt;p>内容: 包括docker的构建和运行&lt;/p>
+&lt;p>示例&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker-compose down
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker rmi digitalmapadmin-frontend
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker build -t digitalmapadmin-frontend .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose pull
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker-compose up -d
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="2docker-composeyaml">2.docker-compose.yaml&lt;/h3>
+&lt;p>描述: docker-run.sh 会用到docker-compose指令&lt;/p>
+&lt;p>内容:&lt;/p>
+&lt;ul>
+&lt;li>Dockerfile 路径&lt;/li>
+&lt;li>端口&lt;/li>
+&lt;li>环境变量
+&lt;ul>
+&lt;li>&lt;strong>生产环境下的后端接口&lt;/strong> # 这样可以在部署时 自动替换成生产环境的后端接口.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-dockerfile" data-lang="dockerfile">&lt;span class="line">&lt;span class="cl">version: &lt;span class="s1">&amp;#39;3.0&amp;#39;&lt;/span>&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span>services:&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> frontend:&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> build:&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> context: .&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> dockerfile: ./Dockerfile&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> ports:&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> - 8004:80&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> environment:&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> - &lt;span class="nv">NODE_ENV&lt;/span>&lt;span class="o">=&lt;/span>production&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> - &lt;span class="nv">VITE_APP_TITLE&lt;/span>&lt;span class="o">=&lt;/span>数据资源管理平台&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> - &lt;span class="nv">VITE_APP_BASE_API&lt;/span>&lt;span class="o">=&lt;/span>/api&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">&lt;/span> - &lt;span class="nv">VITE_SERVE&lt;/span>&lt;span class="o">=&lt;/span>http://121.40.252.139:8089/&lt;span class="err">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="3dockerfile">3.Dockerfile&lt;/h3>
+&lt;p>描述: 根据项目构建docker 镜像&lt;/p>
+&lt;p>内容:&lt;/p>
+&lt;ul>
+&lt;li>获取dist:
+&lt;ul>
+&lt;li>安装 npm: 并进行npm install&lt;/li>
+&lt;li>npm run build&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>用nginx运行项目
+&lt;ul>
+&lt;li>配置nginx&lt;/li>
+&lt;li>启动项目&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">FROM node:lts-alpine
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">WORKDIR /app
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 先将package.json和package-lock.json拷贝到工作目录中
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY package*.json ./
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN npm install
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将当前目录下的所有文件拷贝到工作目录中
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY . .
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN npm run build
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">FROM nginx:alpine
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 将打包后的dist目录下全部文件拷贝到nginx的html/目录下
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># COPY ./dist/ /usr/share/nginx/html/
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY --from=0 /app/dist /usr/share/nginx/html
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 删除nginx中之前的配置
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">RUN rm /etc/nginx/conf.d/default.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 拷贝当前的文件到nginx中
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY nginx.conf /etc/nginx/nginx.conf
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">COPY default.conf.template /etc/nginx/conf.d
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"># 启动nginx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">CMD /bin/sh -c &amp;#34;envsubst &amp;#39;80&amp;#39; &amp;lt; /etc/nginx/conf.d/default.conf.template &amp;gt; /etc/nginx/conf.d/default.conf&amp;#34; &amp;amp;&amp;amp; nginx -g &amp;#39;daemon off;&amp;#39;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>&lt;/li>
+&lt;/ul></description></item></channel></rss>

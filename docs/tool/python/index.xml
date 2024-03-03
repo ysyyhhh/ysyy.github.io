@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>python | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/python/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/python/index.xml" rel="self" type="application/rss+xml"/><description>python</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>python</title><link>https://ysyyhhh.github.io/docs/tool/python/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/python/conda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/python/conda/</guid><description>&lt;h1 id="conda">conda&lt;/h1>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda env list
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 创建环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda create -n py3 &lt;span class="nv">python&lt;/span>&lt;span class="o">=&lt;/span>3.6
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 通过yml文件创建环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda env create -f environment.yml
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 激活环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda activate py3
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 退出环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda deactivate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除环境&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda remove -n py3 --all
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="迁移时可能会出现pip问题">迁移时可能会出现pip问题&lt;/h2>
+&lt;p>可以在yml的pip:上面加上pip&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">py3&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">channels&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">defaults&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nt">dependencies&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">python=3.6&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="l">pip&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- &lt;span class="nt">pip&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>- -&lt;span class="l">r requirements.txt&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/python/poetry/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/python/poetry/</guid><description>&lt;h1 id="poetry">poetry&lt;/h1>
+&lt;h2 id="poetry-出现的错误及解决方法">poetry 出现的错误及解决方法&lt;/h2>
+&lt;h3 id="poetry-install-时failed-to-create-the-collection-prompt-dismissed">poetry install 时Failed to create the collection: Prompt dismissed&lt;/h3>
+&lt;p>解决方案: 关闭keyring&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">python3 -m keyring --disable
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>原因:
+&lt;a href="https://github.com/python-poetry/poetry/issues/1917" target="_blank" rel="noopener">https://github.com/python-poetry/poetry/issues/1917&lt;/a>&lt;/p></description></item></channel></rss>

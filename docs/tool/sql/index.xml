@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>sql | Ysyy's</title><link>https://ysyyhhh.github.io/docs/tool/sql/</link><atom:link href="https://ysyyhhh.github.io/docs/tool/sql/index.xml" rel="self" type="application/rss+xml"/><description>sql</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>sql</title><link>https://ysyyhhh.github.io/docs/tool/sql/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/tool/sql/mongodb/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/sql/mongodb/</guid><description>&lt;h1 id="mongodb">mongoDB&lt;/h1>
+&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 连接&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">mongosh ip&lt;span class="o">[&lt;/span>:port&lt;span class="o">]&lt;/span>/database -u username -p password
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">show dbs
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 切换数据库&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">use database
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看集合&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">show collections
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># file&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看集合数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.find&lt;span class="o">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 按条件查看集合数据&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## pid=1&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.find&lt;span class="o">({&lt;/span>pid:1&lt;span class="o">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 限制4条&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.find&lt;span class="o">()&lt;/span>.limit&lt;span class="o">(&lt;/span>4&lt;span class="o">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 只显示其中一个字段&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.find&lt;span class="o">({}&lt;/span>, &lt;span class="o">{&lt;/span>name:1&lt;span class="o">})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 统计数量&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.find&lt;span class="o">()&lt;/span>.count&lt;span class="o">()&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 全部删除&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.&lt;span class="o">{&lt;/span>collection&lt;span class="o">}&lt;/span>.remove&lt;span class="o">({})&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## 插入或更新数据&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/sql/mysql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/sql/mysql/</guid><description>&lt;h1 id="mysql">MySQL&lt;/h1>
+&lt;h2 id="mysql常用命令">MySql常用命令&lt;/h2>
+&lt;h5 id="修改用户">修改用户&lt;/h5>
+&lt;p>修改密码&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">alter user &amp;#39;root&amp;#39;@&amp;#39;localhost&amp;#39; identified with mysql_native_password by &amp;#39;123456&amp;#39;;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>修改用户host&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">update&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mysql&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">host&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;%&amp;#39;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">user&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s1">&amp;#39;root
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="刷新权限">刷新权限&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">flush privileges;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="添加一个远程用户">添加一个远程用户&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">create user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; identified by &amp;#39;password&amp;#39;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">GRANT all ON *.* TO &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">grant all privileges on *.* to &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39; with grant option;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">*.*所有数据库下的所有表
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="删除用户">删除用户&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">drop user &amp;#39;remote&amp;#39;@&amp;#39;%&amp;#39;;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="创建数据库并设定中文编码">创建数据库并设定中文编码&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-mysql" data-lang="mysql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">CREATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DATABASE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="n">db_name&lt;/span>&lt;span class="o">`&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">DEFAULT&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">CHARACTER&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">SET&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">utf8&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">COLLATE&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">utf8_general_ci&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="登录格式">登录格式&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">mysql -h #{数据库IP} -P 3306 -u #{用户名} -p -D #{数据库名}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="自增id-不连续时">自增id 不连续时&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">SET @auto_id = 0;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">UPDATE 表名 SET 自增字段名 = (@auto_id := @auto_id + 1);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">ALTER TABLE 表名 AUTO_INCREMENT = 1;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="文件">文件&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">source
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="数据库">数据库&lt;/h4>
+&lt;p>设置数据库的字符集&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="k">alter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">database&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">数据库名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nb">character&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">utf8&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="表">表&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">添加一列&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">alter&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">table&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">add&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">column&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">列名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">类型&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="数据">数据&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-sql" data-lang="sql">&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">插入数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">insert&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">into&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">字段&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">字段&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">values&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="err">值&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">值&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">更新数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">update&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">set&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">字段&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="err">值&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="err">字段&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="err">值&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">条件&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="o">#&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">删除数据&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="k">delete&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">from&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">表名&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">where&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="err">条件&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="时间处理">时间处理&lt;/h3>
+&lt;p>Date&lt;/p>
+&lt;h3 id="条件语句">条件语句&lt;/h3>
+&lt;p>CASE&lt;/p>
+&lt;p>强制转换&lt;/p>
+&lt;p>CAST&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/sql/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/sql/redis/</guid><description>&lt;h1 id="redis">redis&lt;/h1>
+&lt;p>flushall 清空&lt;/p></description></item></channel></rss>
