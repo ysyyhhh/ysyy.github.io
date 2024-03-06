@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>c++ | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/c++/</link><atom:link href="https://ysyyhhh.github.io/docs/language/c++/index.xml" rel="self" type="application/rss+xml"/><description>c++</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>c++</title><link>https://ysyyhhh.github.io/docs/language/c++/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/modern-c++/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/modern-c++/</guid><description>&lt;h1 id="modern-c">Modern C++&lt;/h1>
-&lt;h2 id="lambda表达式">lambda表达式&lt;/h2>
+&lt;h2 id="面向对象">面向对象&lt;/h2>
+&lt;h3 id="c多态">C++多态&lt;/h3>
+&lt;p>多态分为两种，一种是运行时的多态，一种是编译时的多态。
+前者称为动态绑定，后者称为静态绑定。动态绑定时由虚函数来实现，静态绑定是由函数重载来实现。&lt;/p>
+&lt;h2 id="语法">语法&lt;/h2>
+&lt;h3 id="lambda表达式">lambda表达式&lt;/h3>
 &lt;p>描述:&lt;/p>
 &lt;ul>
 &lt;li>一个匿名函数对象&lt;/li>
@@ -30,20 +35,20 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="err">使用&lt;/span>&lt;span class="n">reset来用子类覆盖父类&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">auto&lt;/span> &lt;span class="n">new_node&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">TrieNodeWithValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="n">end_node&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end_node&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">reset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_node&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="stl">STL&lt;/h3>
-&lt;h4 id="vector">vector&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="stl">STL&lt;/h2>
+&lt;h3 id="vector">vector&lt;/h3>
 &lt;p>可变长数组，用倍增的思想。&lt;/p>
 &lt;p>vector在push_back以成倍增长可以在均摊后达到O(1)的事件复杂度&lt;/p>
 &lt;p>2倍 gcc&lt;/p>
 &lt;p>1.5倍 vs2019&lt;/p>
 &lt;p>以2倍的方式扩容，导致&lt;strong>下一次申请的内存必然大于之前分配内存的总和&lt;/strong>，导致&lt;strong>之前分配的内存不能再被使用&lt;/strong>，所以最好倍增长因子设置为(1,2)之间.&lt;/p>
-&lt;h4 id="map">map&lt;/h4>
+&lt;h3 id="map">map&lt;/h3>
 &lt;p>map底层红黑树&lt;/p>
 &lt;p>unordered_map底层哈希&lt;/p>
 &lt;h3 id="bitset">bitset&lt;/h3>
 &lt;p>二进制数组，bool类型的数组。&lt;/p>
 &lt;p>可以加速到/64&lt;/p>
-&lt;h4 id="迭代器失效的情况以及解决方法">迭代器失效的情况，以及解决方法&lt;/h4>
+&lt;h3 id="迭代器失效的情况以及解决方法">迭代器失效的情况，以及解决方法&lt;/h3>
 &lt;ol>
 &lt;li>对于序列容器vector，deque来说，使用erase后，后边的每个元素的迭代器都会失效，后边每个元素都往前移动一位，&lt;strong>erase返回下一个有效的迭代器&lt;/strong>。&lt;/li>
 &lt;li>对于关联容器map，set来说，使用了erase后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素，不会影响下一个元素的迭代器，所以&lt;strong>在调用erase之前，记录下一个元素的迭代器&lt;/strong>即可。&lt;/li>

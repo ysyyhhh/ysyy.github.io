@@ -234,7 +234,7 @@
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
 &lt;h3 id="列数据库是什么">&lt;strong>列数据库是什么&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>列数据库&lt;/strong>是将传统的表格形式拆分为单列存储，&lt;strong>存储方式&lt;/strong>是列数据库与传统数据库的最大差别。这个差别同时&lt;strong>带给了列数据库高效的查询性能&lt;/strong>。&lt;/p>
 &lt;p>即每一列的数据的存储在一个连续空间的,且有序,因此只要找到了主键在第几个位置,就可以快速找到其他属性的元素.&lt;/p>
