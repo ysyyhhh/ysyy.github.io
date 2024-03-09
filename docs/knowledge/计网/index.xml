@@ -1,4 +1,55 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计网 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/index.xml" rel="self" type="application/rss+xml"/><description>计网</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>计网</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计网 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/index.xml" rel="self" type="application/rss+xml"/><description>计网</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>计网</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
+&lt;h2 id="基础">基础&lt;/h2>
+&lt;p>请求报文结构&lt;/p>
+&lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
+&lt;p>请求报文结构：&lt;/p>
+&lt;p>第一行是包含了请求方法、URL、协议版本；
+接下来的多行都是请求首部 Header，每个首部都有一个首部名称，以及对应的值。
+一个空行用来分隔首部和内容主体 Body
+最后是请求的内容主体&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">GET http://www.example.com/ HTTP/1.1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Accept-Encoding: gzip, deflate
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Accept-Language: zh-CN,zh;q=0.9,en;q=0.8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cache-Control: max-age=0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Host: www.example.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If-Modified-Since: Thu, 17 Oct 2019 07:18:26 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">If-None-Match: &amp;#34;3147526947+gzip&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Proxy-Connection: keep-alive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Upgrade-Insecure-Requests: 1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User-Agent: Mozilla/5.0 xxx
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">param1=1&lt;span class="err">&amp;amp;&lt;/span>param2=2
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>响应报文结构&lt;/p>
+&lt;p>第一行包含协议版本、状态码以及描述，最常见的是 200 OK 表示请求成功了
+接下来多行也是首部内容
+一个空行分隔首部和内容主体
+最后是响应的内容主体&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl">HTTP/1.1 200 OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Age: 529651
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Cache-Control: max-age=604800
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Connection: keep-alive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Content-Encoding: gzip
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Content-Length: 648
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Content-Type: text/html; charset=UTF-8
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Date: Mon, 02 Nov 2020 17:53:39 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Etag: &amp;#34;3147526947+ident+gzip&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Expires: Mon, 09 Nov 2020 17:53:39 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Keep-Alive: timeout=4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Last-Modified: Thu, 17 Oct 2019 07:18:26 GMT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Proxy-Connection: keep-alive
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Server: ECS (sjc/16DF)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Vary: Accept-Encoding
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">X-Cache: HIT
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&amp;lt;!doctype html&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">head&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">&amp;lt;&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>Example Domain&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">title&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 省略...
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
 &lt;p>TCP:
 User Datagram Protocol 用户数据报协议&lt;/p>
 &lt;ul>
@@ -43,14 +94,12 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;h2 id="三实际应用">三、实际应用&lt;/h2>
 &lt;h3 id="reactor模式">Reactor模式&lt;/h3>
 &lt;h3 id="proactor模式">Proactor模式&lt;/h3>
-&lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;p>选择题：理解各内容，网络地址分类等&lt;/p>
-&lt;p>名词解释：英文的名词解释&lt;/p>
-&lt;p>简答题：各种 工作机制 / 原理。&lt;/p>
-&lt;h1 id="1概述">1.概述&lt;/h1>
+&lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h2 id="1概述">1.概述&lt;/h2>
 &lt;p>LAN：Local Area Network，局域网&lt;/p>
 &lt;p>WAN：Wide Area Network，广域网&lt;/p>
 &lt;p>&lt;strong>ISP&lt;/strong> Internet Service Provider 因特网服务提供商&lt;/p>
-&lt;h2 id="1服务与协议">&lt;strong>1.服务与协议&lt;/strong>&lt;/h2>
+&lt;h3 id="1服务与协议">&lt;strong>1.服务与协议&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>协议&lt;/strong>是&lt;strong>水平&lt;/strong>的，&lt;strong>对等实体&lt;/strong>之间的&lt;strong>通信规则&lt;/strong>。&lt;strong>对等实体&lt;/strong>是指&lt;strong>同一层&lt;/strong>级&lt;strong>可发送接收&lt;/strong>信息的硬件或软件进程.&lt;/p>
 &lt;p>&lt;strong>服务&lt;/strong>是&lt;strong>垂直&lt;/strong>的，是由下层为上层通过&lt;strong>层间接口&lt;/strong>提供的. 下层实现的&lt;strong>所有功能不都是服务&lt;/strong>,只有能够&lt;strong>被上层看得见的&lt;/strong>功能才是服务. 上层使用下层的&lt;strong>SAP&lt;/strong>访问下层的服务.&lt;/p>
 &lt;p>&lt;strong>SAP Service Access Point&lt;/strong>:服务接入点.同⼀节点相邻两层交换信息的连接点.数据链路层的SAP是MAC地址，网络层的SAP是IP地址，传输层的SAP是端口.&lt;/p>
@@ -79,7 +128,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/li>
 &lt;li>应答服务与不应答服务&lt;/li>
 &lt;/ul>
-&lt;h2 id="2模型">2.模型&lt;/h2>
+&lt;h3 id="2模型">2.模型&lt;/h3>
 &lt;p>&lt;strong>层次模型的好处：&lt;/strong>&lt;/p>
 &lt;ol>
 &lt;li>降低复杂度；&lt;/li>
@@ -87,7 +136,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;li>灵活性好;&lt;/li>
 &lt;li>易于实现和维护&lt;/li>
 &lt;/ol>
-&lt;h3 id="21-osi七层模型">&lt;strong>2.1 OSI七层模型&lt;/strong>&lt;/h3>
+&lt;h4 id="21-osi七层模型">&lt;strong>2.1 OSI七层模型&lt;/strong>&lt;/h4>
 &lt;table>
 &lt;thead>
 &lt;tr>
@@ -150,7 +199,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;h3 id="22tcpip四层模型">2.2TCP/IP四层模型&lt;/h3>
+&lt;h4 id="22tcpip四层模型">2.2TCP/IP四层模型&lt;/h4>
 &lt;p>
 &lt;figure >
 &lt;div class="flex justify-center ">
@@ -161,17 +210,17 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;p>&lt;strong>网际互联层&lt;/strong>:网络层&lt;/p>
 &lt;p>&lt;strong>传输层&lt;/strong>&lt;/p>
 &lt;p>&lt;strong>应用层&lt;/strong>&lt;/p>
-&lt;h3 id="23五层模型">2.3五层模型&lt;/h3>
+&lt;h4 id="23五层模型">2.3五层模型&lt;/h4>
 &lt;p>①物理层:物理层&lt;/p>
 &lt;p>②数据链路层:数据链路层。&lt;/p>
 &lt;p>③⽹络层:⽹络层&lt;/p>
 &lt;p>④传输层:传输层&lt;/p>
 &lt;p>⑤应⽤层:会话层+表⽰层+应⽤层。&lt;strong>处理高级协议，显示问题，编码和会话控制等问题&lt;/strong>&lt;/p>
-&lt;h3 id="25各层设备">2.5各层设备&lt;/h3>
+&lt;h4 id="25各层设备">2.5各层设备&lt;/h4>
 &lt;p>&lt;strong>物理层设备&lt;/strong>:集线器Hub、中继器&lt;/p>
 &lt;p>&lt;strong>数据链路层设备&lt;/strong>: 网卡、交换机、网桥&lt;/p>
 &lt;p>&lt;strong>网络层设备&lt;/strong>:路由&lt;/p>
-&lt;h2 id="3物理网络拓扑结构">3.物理网络拓扑结构&lt;/h2>
+&lt;h3 id="3物理网络拓扑结构">3.物理网络拓扑结构&lt;/h3>
 &lt;p>
 &lt;figure >
 &lt;div class="flex justify-center ">
@@ -194,7 +243,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;li>优点:连通性和可靠性好&lt;/li>
 &lt;li>缺点:介质的连接和数量无法控制.&lt;/li>
 &lt;/ul>
-&lt;h1 id="2物理层">2.物理层&lt;/h1>
+&lt;h2 id="2物理层">2.物理层&lt;/h2>
 &lt;p>&lt;strong>传输介质&lt;/strong>:&lt;/p>
 &lt;ul>
 &lt;li>UTP Unshielded Twisted Pair 非屏蔽双绞线&lt;/li>
@@ -211,6 +260,13 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;li>单⼯/ &lt;strong>simple&lt;/strong> Transmission:单向信号只能在⼀个⽅向上传播。(收⾳机)&lt;/li>
 &lt;li>半双⼯/ &lt;strong>half-Duplex&lt;/strong> Transmission：信号可双向传播，但不能同时传播。(对讲机)&lt;/li>
 &lt;li>全双⼯/ &lt;strong>full-Duplex&lt;/strong> Transmission：信号可以同时在两个⽅向上传播。(电话)&lt;/li>
+&lt;/ul>
+&lt;p>通道复用技术：&lt;/p>
+&lt;ul>
+&lt;li>频分复用（FDM，Frequency Division Multiplexing）：不同用户在不同频带，所用用户在同样时间占用不同带宽资源&lt;/li>
+&lt;li>时分复用（TDM，Time Division Multiplexing）：不同用户在同一时间段的不同时间片，所有用户在不同时间占用同样的频带宽度&lt;/li>
+&lt;li>波分复用（WDM，Wavelength Division Multiplexing）：光的频分复用&lt;/li>
+&lt;li>码分复用（CDM，Code Division Multiplexing）：不同用户使用不同的码，可以在同样时间使用同样频带通信&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>三种数据传输方式&lt;/strong>：&lt;/p>
 &lt;ul>
@@ -282,9 +338,14 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;li>ADSL采用&lt;strong>频分复用&lt;/strong>技术把普通的电话线分成了电话、上行和下行三个相对独立的信道，从而避免了相互之间的干扰。即使边打电话边上网，也不会发生上网速率和通话质量下降的 情况。&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>FTTx&lt;/strong> Fiber To The X：实现宽带居民接入网的方案。这里字母 x 可代表不同意思。&lt;/p>
-&lt;h1 id="3数据链路层">3.数据链路层&lt;/h1>
-&lt;h2 id="1九大功能">1.九大功能&lt;/h2>
-&lt;h3 id="11为网络层提供服务">1.1为网络层提供服务&lt;/h3>
+&lt;h2 id="3数据链路层">3.数据链路层&lt;/h2>
+&lt;p>主要信道：&lt;/p>
+&lt;ul>
+&lt;li>点对点信道&lt;/li>
+&lt;li>广播信道&lt;/li>
+&lt;/ul>
+&lt;h3 id="1九大功能">1.九大功能&lt;/h3>
+&lt;h4 id="11为网络层提供服务">1.1为网络层提供服务&lt;/h4>
 &lt;ul>
 &lt;li>无确认的无连接&lt;/li>
 &lt;li>有确认的无连接
@@ -298,14 +359,14 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="12链路管理">1.2链路管理&lt;/h3>
+&lt;h4 id="12链路管理">1.2链路管理&lt;/h4>
 &lt;p>管理建立、维持和释放链路的过程。&lt;/p>
-&lt;h3 id="13组帧-与-帧定界">1.3组帧 与 帧定界&lt;/h3>
+&lt;h4 id="13组帧-与-帧定界">1.3组帧 与 帧定界&lt;/h4>
 &lt;p>确定帧的&lt;strong>首部尾部&lt;/strong>等&lt;strong>控制信息&lt;/strong>的&lt;strong>界限&lt;/strong>。&lt;/p>
-&lt;h3 id="131字符计数法">1.3.1字符计数法&lt;/h3>
+&lt;h4 id="131字符计数法">1.3.1字符计数法&lt;/h4>
 &lt;p>&lt;strong>帧的头部&lt;/strong> 使用 &lt;strong>计数字段&lt;/strong> 标明帧内字符数&lt;/p>
 &lt;p>&lt;strong>缺点:&lt;/strong> 计数字段出错,会导致不能划分帧边界。&lt;/p>
-&lt;h3 id="132字符填充的首尾界符法">1.3.2字符填充的首尾界符法&lt;/h3>
+&lt;h4 id="132字符填充的首尾界符法">1.3.2字符填充的首尾界符法&lt;/h4>
 &lt;p>用于异步传输&lt;/p>
 &lt;p>当&lt;strong>信息字段中&lt;/strong>出现：&lt;/p>
 &lt;ul>
@@ -313,14 +374,14 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;li>7D转义标记 转成 5D&lt;/li>
 &lt;li>ASCII码字符（小于0x20的） 前面加入7D并改变编码&lt;/li>
 &lt;/ul>
-&lt;h3 id="133比特填充首尾标志法">1.3.3比特填充首尾标志法&lt;/h3>
+&lt;h4 id="133比特填充首尾标志法">1.3.3比特填充首尾标志法&lt;/h4>
 &lt;p>用于同步传输,用硬件来实现.&lt;/p>
 &lt;p>每5个0后面加1个1.&lt;/p>
-&lt;h3 id="14帧同步">1.4帧同步&lt;/h3>
+&lt;h4 id="14帧同步">1.4帧同步&lt;/h4>
 &lt;p>在二进制比特流中，&lt;strong>确定帧的开始和结束位置&lt;/strong>。&lt;/p>
-&lt;h3 id="15透明传输">1.5透明传输&lt;/h3>
+&lt;h4 id="15透明传输">1.5透明传输&lt;/h4>
 &lt;p>不管什么样的比特流都能在链路上传输。&lt;/p>
-&lt;h3 id="16差错控制">1.6差错控制&lt;/h3>
+&lt;h4 id="16差错控制">1.6差错控制&lt;/h4>
 &lt;p>确认发送的数据帧是否被&lt;strong>正确&lt;/strong>接受。&lt;/p>
 &lt;ul>
 &lt;li>检错编码
@@ -335,32 +396,32 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="17流量控制">1.7流量控制&lt;/h3>
+&lt;h4 id="17流量控制">1.7流量控制&lt;/h4>
 &lt;p>由接收方控制发送方的流量。&lt;/p>
-&lt;h4 id="171停等流量控制">1.7.1停等流量控制&lt;/h4>
+&lt;h5 id="171停等流量控制">1.7.1停等流量控制&lt;/h5>
 &lt;p>与可靠传输中一致&lt;/p>
-&lt;h4 id="172滑动窗口流量控制">1.7.2滑动窗口流量控制&lt;/h4>
-&lt;h3 id="18可靠传输">1.8可靠传输&lt;/h3>
+&lt;h5 id="172滑动窗口流量控制">1.7.2滑动窗口流量控制&lt;/h5>
+&lt;h4 id="18可靠传输">1.8可靠传输&lt;/h4>
 &lt;p>ARQ法 : Automatic Repeat reQuest 重传出错的帧.&lt;/p>
 &lt;p>本质上是使用&lt;strong>确认&lt;/strong>机制和&lt;strong>超时重传&lt;/strong>机制&lt;/p>
 &lt;p>ARQ分为&lt;/p>
-&lt;h4 id="181停等协议">1.8.1停等协议&lt;/h4>
+&lt;h5 id="181停等协议">1.8.1停等协议&lt;/h5>
 &lt;p>发送方发送一个帧之后,必须要等待对方确认后才可以发送下一个帧.&lt;/p>
 &lt;p>若等待时间超过规定时间,则发送方超时,重传原始帧.&lt;/p>
-&lt;h4 id="182gbn-后退n帧协议">1.8.2GBN 后退N帧协议&lt;/h4>
+&lt;h5 id="182gbn-后退n帧协议">1.8.2GBN 后退N帧协议&lt;/h5>
 &lt;ul>
 &lt;li>发送方发送完一个帧后,可以继续再发送若干帧. 发送方若收到确认帧,则可以继续发送.&lt;/li>
 &lt;li>对于每一个帧,发送方判断超时时,重传该帧即之后的所有帧(&lt;strong>包括被确认的帧&lt;/strong>).&lt;/li>
 &lt;li>接收方发现某个帧出错, 则&lt;strong>丢弃该帧和后续所有帧&lt;/strong>( &lt;strong>不返回否定帧&lt;/strong> ).&lt;/li>
 &lt;/ul>
-&lt;h4 id="183sr选择重传机制">1.8.3SR选择重传机制&lt;/h4>
+&lt;h5 id="183sr选择重传机制">1.8.3SR选择重传机制&lt;/h5>
 &lt;p>发送方只重传 &lt;strong>超时&lt;/strong> 或 &lt;strong>被出错(返回否定)&lt;/strong> 的帧.&lt;/p>
 &lt;p>接收方应当&lt;strong>加大接收窗口&lt;/strong> 来 接收&lt;strong>不连续但是未出现差错&lt;/strong>的帧,等重新收到出错帧的重传帧后⼀并提交给主机。&lt;/p>
-&lt;h3 id="19介质访问控制-局域网">1.9介质访问控制 局域网&lt;/h3>
+&lt;h4 id="19介质访问控制-局域网">1.9介质访问控制 局域网&lt;/h4>
 &lt;p>应用在&lt;strong>广播信道&lt;/strong>当中.&lt;/p>
 &lt;p>介质访问控制：使得 &lt;strong>使用信道的结点&lt;/strong> 隔离 &lt;strong>其他结点发送的信号&lt;/strong>,以协调活动结点的传输,&lt;/p>
 &lt;p>&lt;strong>介质访问控制协议处于MAC&lt;/strong>层。&lt;/p>
-&lt;h4 id="191信道划分">1.9.1信道划分&lt;/h4>
+&lt;h5 id="191信道划分">1.9.1信道划分&lt;/h5>
 &lt;p>通过&lt;strong>多路复用技术&lt;/strong>,把多个信号组合传入同一个物理信道.&lt;/p>
 &lt;ul>
 &lt;li>FDM 频分多路复用 将物理信道&lt;strong>根据频率&lt;/strong>划分 成 多个子信道,&lt;strong>每个子信道&lt;/strong>传输一种信号.&lt;/li>
@@ -373,7 +434,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="192随机访问">1.9.2随机访问&lt;/h4>
+&lt;h5 id="192随机访问">1.9.2随机访问&lt;/h5>
 &lt;p>通过&lt;strong>检测冲突&lt;/strong>的方法来实现介质访问控制.&lt;/p>
 &lt;ul>
 &lt;li>纯ALOHA协议 ：不检测直接发送,&lt;strong>若超时&lt;/strong>则随机时间重发.&lt;/li>
@@ -416,14 +477,14 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="193轮询访问">1.9.3轮询访问&lt;/h4>
+&lt;h5 id="193轮询访问">1.9.3轮询访问&lt;/h5>
 &lt;p>适用于环型总线.&lt;/p>
 &lt;p>令牌传递协议:在环形⽹络中，只有得到令牌的主机才能够发送数据。&lt;/p>
 &lt;p>FDDI环(光纤分布式数据接口): 令牌环形网络的一种。&lt;/p>
-&lt;h2 id="2使用的协议">2.使用的协议&lt;/h2>
+&lt;h3 id="2使用的协议">2.使用的协议&lt;/h3>
 &lt;p>&lt;strong>WAN(广域网)&lt;/strong>:覆盖范围很广的&lt;strong>长距离网络&lt;/strong>，由具有&lt;strong>存储转发功能的结点交换机&lt;/strong>和&lt;strong>连接链路&lt;/strong>组成。采用&lt;strong>交换&lt;/strong>技术。&lt;/p>
 &lt;p>&lt;strong>LAN(局域网)&lt;/strong>:某一较&lt;strong>小区域内&lt;/strong>由多台计算机相互连成的计算机网络。采用&lt;strong>广播&lt;/strong>技术。&lt;/p>
-&lt;h3 id="21-广域网的协议使用点对点信道">2.1 广域网的协议（使用点对点信道）&lt;/h3>
+&lt;h4 id="21-广域网的协议使用点对点信道">2.1 广域网的协议（使用点对点信道）&lt;/h4>
 &lt;p>&lt;strong>PPP Point To Point Protocol 点对点协议&lt;/strong>：&lt;/p>
 &lt;p>面向&lt;strong>字节&lt;/strong>的数据链路层协议，应用于&lt;strong>直接连接在两个节点的链路&lt;/strong>上，通过&lt;strong>拨号&lt;/strong>或者&lt;strong>专线&lt;/strong>方式，&lt;strong>建立点对点连接&lt;/strong>发送数据。&lt;/p>
 &lt;p>&lt;strong>HDLC High-Level Data Link Control 高级数据链路控制协议&lt;/strong>&lt;/p>
@@ -444,7 +505,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;p>&lt;strong>IPCP(网际协议控制协议)&lt;/strong>：用于&lt;strong>建立、配置&lt;/strong>和&lt;strong>检测&lt;/strong>数据链路连接的连接控制协议&lt;strong>LCP&lt;/strong> 以及 用于&lt;strong>建立和&lt;/strong>
 &lt;strong>配置&lt;/strong>不同网络层协议的网络控制协议&lt;strong>NCP协议簇&lt;/strong>。&lt;/p>
-&lt;h4 id="322-ppp-协议的帧格式">3.2.2 PPP 协议的帧格式&lt;/h4>
+&lt;h5 id="322-ppp-协议的帧格式">3.2.2 PPP 协议的帧格式&lt;/h5>
 &lt;p>PPP 是面向字节的，所有的 PPP 帧的长度都是整数字节。&lt;/p>
 &lt;p>
 &lt;figure >
@@ -506,7 +567,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;p>&lt;strong>通信完毕&lt;/strong>时，&lt;strong>NCP&lt;/strong> 释放&lt;strong>网络层连接&lt;/strong>，&lt;strong>收回&lt;/strong>原来分配出去的 &lt;strong>IP&lt;/strong> 地址。接着，&lt;strong>LCP&lt;/strong>释放&lt;strong>数据链路层连接&lt;/strong>。&lt;strong>最后释放&lt;/strong>的是&lt;strong>物理层连接&lt;/strong>。&lt;/p>
 &lt;/li>
 &lt;/ol>
-&lt;h3 id="22以太网协议使用广播信道">2.2以太网协议（使用广播信道）&lt;/h3>
+&lt;h4 id="22以太网协议使用广播信道">2.2以太网协议（使用广播信道）&lt;/h4>
 &lt;p>&lt;strong>局域网的特点&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>范围有限，站点有限&lt;/li>
@@ -580,8 +641,8 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;p>&lt;strong>以太网重要特性&lt;/strong>：&lt;/p>
 &lt;p>使用 CSMA/CD 协议的以太网&lt;strong>不能进行全双工通信&lt;/strong>而&lt;strong>只能进行双向交替通信（半双工通信）&lt;/strong>。&lt;/p>
 &lt;p>发送的不确定性使整个以太网的平均通信量远小于以太网的最高数据率。&lt;/p>
-&lt;h2 id="3设备及其特点">3.设备及其特点&lt;/h2>
-&lt;h3 id="31网桥">3.1网桥&lt;/h3>
+&lt;h3 id="3设备及其特点">3.设备及其特点&lt;/h3>
+&lt;h4 id="31网桥">3.1网桥&lt;/h4>
 &lt;p>&lt;strong>用于连接多个以太网(局域网)&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>
@@ -622,7 +683,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="32交换机">3.2交换机&lt;/h3>
+&lt;h4 id="32交换机">3.2交换机&lt;/h4>
 &lt;p>&lt;strong>交换式集线器&lt;/strong>常称为&lt;strong>以太网交换机(switch)&lt;strong>或&lt;/strong>第二层交换机&lt;/strong>.&lt;/p>
 &lt;p>以太网交换机:有十几个接口,实质上就是一个多接口的网桥。&lt;/p>
 &lt;p>以太网交换机的&lt;strong>每个接口都直接与主机相连&lt;/strong>，并且一般都工作在&lt;strong>全双工&lt;/strong>方式。&lt;/p>
@@ -630,12 +691,18 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;p>&lt;strong>工作原理与透明网桥一致&lt;/strong>&lt;/p>
 &lt;p>可用来实现VLAN&lt;/p>
 &lt;p>&lt;strong>VLAN(虚拟局域网)&lt;/strong>: 网络中的站点&lt;strong>不拘泥于所处的物理位置&lt;/strong>，而可以根据需要灵活地加入不同的逻辑子网中的一种网络技术。&lt;/p>
-&lt;h3 id="33特点">3.3特点&lt;/h3>
+&lt;h4 id="33特点">3.3特点&lt;/h4>
 &lt;ul>
 &lt;li>数据链路层设备&lt;strong>能够隔离冲突域&lt;/strong>但&lt;strong>不能隔离广播域&lt;/strong>。&lt;/li>
 &lt;li>都&lt;strong>按MAC地址转发&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;h1 id="4网络层">4.网络层&lt;/h1>
+&lt;h2 id="4网络层">4.网络层&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e7%bd%91%e7%bb%9c%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
 &lt;p>&lt;strong>网络层提供的两种服务&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>
@@ -763,7 +830,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;p>10.0.0.0 到 10.255.255.255&lt;/p>
 &lt;p>172.16.0.0 到 172.31.255.255&lt;/p>
 &lt;p>192.168.0.0 到 192.168.255.255&lt;/p>
-&lt;h2 id="41路由协议">4.1路由协议&lt;/h2>
+&lt;h3 id="41-路由协议igp-rip-ospf-bgp">4.1 路由协议(IGP RIP OSPF, BGP)&lt;/h3>
 &lt;p>&lt;strong>静态路由与动态路由&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>静态路由&lt;/strong>：非自适应路由，指由网络管理员&lt;strong>手工配置的路由&lt;/strong>信息。&lt;strong>简单开销小&lt;/strong>，但&lt;strong>不能及时适应&lt;/strong>网络变化。&lt;/li>
@@ -872,7 +939,7 @@ BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统
 &lt;/ul>
 &lt;p>&lt;strong>ACL&lt;/strong>: 访问控制列表Access Control Lists
 一些告诉路由哪些包该拒绝哪些包能通过的序列集。可以根据源地址，目的地址，链路协议来决定。如果包没有在ACL找到相应的条目，则会被丢弃。&lt;/p>
-&lt;h2 id="42ip多播组播">4.2IP多播/组播&lt;/h2>
+&lt;h3 id="42-ip多播组播igmpnat">4.2 IP多播/组播(IGMP,NAT)&lt;/h3>
 &lt;p>&lt;strong>多播/组播&lt;/strong>: 主机之间 &lt;strong>一对一组&lt;/strong>的通讯模式，同组的主机可接收此组内所有数据. 发送者只需要发送一次, &lt;strong>组播路由器&lt;/strong>只向有需求者复制并转发其所需数据。&lt;/p>
 &lt;p>&lt;strong>组播地址&lt;/strong>: 使用D类地址 224.0.0.0 ~ 239.255.255.255.每个D类地址标识一个组.&lt;/p>
 &lt;p>&lt;strong>IGMP&lt;/strong>:&lt;/p>
@@ -899,11 +966,12 @@ BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统
 &lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>VPN&lt;/strong>: 基于TCP/IP的虚拟专用网,分为内联网和外联网,使用&lt;strong>内网地址&lt;/strong>.&lt;/p>
-&lt;p>&lt;strong>NAT&lt;/strong>:Network Address Translation 网络地址转换:实现&lt;strong>专用网络地址和公用网络地址&lt;/strong>之间的转化。当私有网和公网主机通信的私有IP经过NAT时，将IP包中的私有IP与NAT的公有IP进行转换。&lt;/p>
+&lt;p>&lt;strong>NAT&lt;/strong>:Network Address Translation 网络地址转换:实现&lt;strong>专用网络地址和公用网络地址&lt;/strong>之间的转化。当私有网和公网主机通信的私有IP经过NAT时，&lt;strong>将IP包中的私有IP与NAT的公有IP进行转换&lt;/strong>。&lt;/p>
 &lt;p>&lt;strong>NAT&lt;/strong> 软件 ：需要在&lt;strong>专用网连接到因特网&lt;/strong>的&lt;strong>路由器&lt;/strong>上安装 &lt;strong>NAT&lt;/strong> 软件&lt;/p>
 &lt;p>&lt;strong>NAT路由器&lt;/strong>：装有 NAT 软件的路由器叫做 NAT路由器，它至少有一个有效的外部全球地址 IP&lt;em>G&lt;/em>。&lt;/p>
 &lt;p>&lt;strong>PAT/NAPT(端口地址转换)&lt;/strong>:将本地网上的多个设备映射到一个单一的公共ip地址。&lt;/p>
-&lt;h2 id="43网际协议-ip">4.3网际协议 IP&lt;/h2>
+&lt;h3 id="43-网际协议-ip">4.3 网际协议 IP&lt;/h3>
+&lt;p>TCP/IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。&lt;/p>
 &lt;p>&lt;strong>三种IP地址的编址方法&lt;/strong>:&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>分类&lt;/strong>的 IP 地址（二级IP地址）。这是最基本的编址方法，&lt;/li>
@@ -1021,7 +1089,7 @@ BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统
 &lt;li>Split Horizon/&lt;strong>水平分割&lt;/strong>:路由器从某个接口接收到的更新信息&lt;strong>不允许再从这个接口发回去&lt;/strong>。&lt;/li>
 &lt;li>Hold-Down-Timers/抑制计时器器:如果一条路由更新的跳数大于路由表已记录的该路由的跳数，&lt;strong>启动计时器&lt;/strong>，在计时器超时前，路由器不再接收关于这条路由的更新信息。&lt;/li>
 &lt;/ul>
-&lt;h2 id="44协议">4.4协议&lt;/h2>
+&lt;h3 id="44-arp-rarp-dhcp">4.4 ARP RARP DHCP&lt;/h3>
 &lt;p>&lt;strong>ARP&lt;/strong>:&lt;/p>
 &lt;ul>
 &lt;li>ARP 地址解析协议：源主机在向目标主机&lt;strong>发送IP包前&lt;/strong>，通过&lt;strong>广播ARP请求包&lt;/strong>，将&lt;strong>目标主机的IP地址映射为MAC地址&lt;/strong>。&lt;/li>
@@ -1073,7 +1141,9 @@ RARP服务器的响应信息，表示初始化失败。&lt;/li>
 MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li>
 &lt;li>DHCP可以实现除静态分配以外的&lt;strong>动态IP地址分配&lt;/strong>以及&lt;strong>IP地址租期管理等&lt;/strong>复杂功能。&lt;/li>
 &lt;/ul>
+&lt;h3 id="45-icmp">4.5 ICMP&lt;/h3>
 &lt;p>&lt;strong>ICMP(英特网控制报文协议):&lt;/strong> 用来给&lt;strong>主机或路由器报告差错和异常&lt;/strong>情况。ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据报发送出去。&lt;/p>
+&lt;p>一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。&lt;/p>
 &lt;p>&lt;strong>ICMP种类&lt;/strong>：&lt;/p>
 &lt;ul>
 &lt;li>ICMP 差错报告报文
@@ -1107,9 +1177,9 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>Traceroute/Trace&lt;/strong>：工作在&lt;strong>网络层&lt;/strong>，使用了&lt;strong>时间超过报文&lt;/strong>&lt;/p>
-&lt;h2 id="45设备">4.5设备&lt;/h2>
+&lt;h3 id="45设备">4.5设备&lt;/h3>
 &lt;p>网络层设备 &amp;ndash; 路由器: &lt;strong>既能隔离冲突域又能隔离广播域&lt;/strong>&lt;/p>
-&lt;h1 id="5传输层">5.传输层&lt;/h1>
+&lt;h2 id="5传输层">5.传输层&lt;/h2>
 &lt;p>&lt;strong>传输层的功能&lt;/strong>:端到端的逻辑通信;收到的报文进行差错检测;提供面向连接的TCP和无连接的UDP.&lt;/p>
 &lt;p>&lt;strong>传输层提供的信道&lt;/strong>:&lt;/p>
 &lt;ul>
@@ -1234,44 +1304,26 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>&lt;strong>电路交换&lt;/strong>：是建立&lt;strong>真实&lt;/strong>存在的&lt;strong>物理连接&lt;/strong>。&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;h1 id="6应用层">6.应用层&lt;/h1>
-&lt;p>&lt;strong>DNS (Domain Name System)域名系统&lt;/strong>：因特网采用&lt;strong>层次结构的命名树&lt;/strong>作为主机的名字，并使用&lt;strong>分布式&lt;/strong>的域名系统 DNS。用来将域名转换为IP地址。&lt;/p>
-&lt;p>&lt;strong>域名服务器&lt;/strong>：&lt;strong>域名服务器程序在专&lt;/strong>设的结点上运行，运行该程序的机器称为&lt;strong>域名服务器&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>基础结构域名&lt;/strong>(infrastructure domain)：这种顶级域名只有一个，即 &lt;strong>arpa&lt;/strong>，用于&lt;strong>反向域名解析&lt;/strong>，因此又称为&lt;strong>反向域名&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>DNS查询方式 域名解析过程&lt;/strong>：&lt;/p>
+&lt;h2 id="6应用层">6.应用层&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="61-http">6.1 http&lt;/h3>
+&lt;p>&lt;strong>HTTP&lt;/strong>: HyperText Transfer Protocol 超文本传输协议&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>主机向本地域名服务器&lt;/strong>的查询一般都是采用&lt;strong>递归查询&lt;/strong>。
-&lt;ul>
-&lt;li>知道则回复。如本地域名服务器不知道，则本地域名服务器就以 &lt;strong>DNS 客户&lt;/strong>的身份，&lt;strong>向其他域名服务器&lt;/strong>继续发出查询请求报文。&lt;/li>
+&lt;li>&lt;strong>面向事务的(transaction-oriented)应用层&lt;/strong>协议。HTTP 使用 &lt;strong>TCP 连接进行可靠的&lt;/strong>传送。HTTP是客户端与服务端交互的协议。&lt;/li>
 &lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>本地域名服务器&lt;/strong>向&lt;strong>根域名服务器&lt;/strong>的查询通常是采用&lt;strong>迭代查询&lt;/strong>。
-&lt;ul>
-&lt;li>&lt;strong>根域名服务器要么&lt;/strong>给出所要查询的&lt;strong>IP 地址&lt;/strong>，要么告诉本地域名服务器：“你下一步&lt;strong>应当向哪一个域名服务器&lt;/strong>进行查询”。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>FTP&lt;/strong>：(文本传输协议File Transfer Protocol): 运行在TCP之上，用于在&lt;strong>异构网络&lt;/strong>中任意计算机之间传送文件。&lt;/p>
-&lt;p>&lt;strong>TFTP&lt;/strong>(简单文件传输协议 运行在UDP之上):用于在&lt;strong>客户端与服务端&lt;/strong>之间进行&lt;strong>简单文件传输&lt;/strong>。TFTP有自己的差错改正措施，不支持交互。&lt;/p>
-&lt;p>&lt;strong>FTP工作原理&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>使用&lt;strong>客户服务器&lt;/strong>方式。&lt;/li>
-&lt;li>可同时为多个客户进程提供服务。&lt;/li>
-&lt;li>FTP 的服务器进程由两大部分组成：&lt;strong>一个主进程&lt;/strong>，负责接受新的请求；另外有&lt;strong>若干个从属进程&lt;/strong>，负责处理单个请求。&lt;/li>
-&lt;li>使用两个TCP连接：
-&lt;ul>
-&lt;li>&lt;strong>控制连接&lt;/strong>在整个会话期间一直保持打开，FTP 客户发出的&lt;strong>传送请求&lt;/strong>通过控制连接&lt;strong>发送给&lt;/strong>服务器端的&lt;strong>控制进程&lt;/strong>。&lt;/li>
-&lt;li>用于传输文件的是“&lt;strong>数据连接&lt;/strong>”，被 控制连接 创建。&lt;strong>端口20&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>TELNET&lt;/strong>：简单的&lt;strong>远程终端协议&lt;/strong>，使用C/S方式，使用TCP连接。&lt;/p>
-&lt;p>&lt;strong>电子邮件协议&lt;/strong>：&lt;/p>
+&lt;p>&lt;strong>HTTPS&lt;/strong>：HTTP&lt;strong>通信接口部分用SSL和TLS协议代替&lt;/strong>。通常是HTTP直接和TCP通信，当使用SSL时，则演变为先和SSL通信，再由SSL和TCP通信了。&lt;/p>
+&lt;h3 id="62-电子邮件协议">6.2 &lt;strong>电子邮件协议&lt;/strong>&lt;/h3>
+&lt;p>都是基于TCP&lt;/p>
 &lt;ul>
 &lt;li>发送邮件的协议：SMTP&lt;/li>
 &lt;li>读取邮件的协议：POP3 和 IMAP&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>SMTP&lt;/strong>(简单邮件传输协议)：规定了两个相互通信的SMTP进程之间如何交换信息。&lt;/p>
+&lt;p>&lt;strong>SMTP&lt;/strong>(简单邮件传输协议)：规定了两个相互通信的SMTP进程之间如何交换信息&lt;/p>
 &lt;p>&lt;strong>MIME&lt;/strong>: 在SMTP协议的基础上&lt;strong>增加了邮件主体的结构&lt;/strong>，并定义了&lt;strong>传送非ASCII码&lt;/strong>的编码规则。&lt;/p>
 &lt;p>&lt;strong>POP3&lt;/strong>(&lt;strong>邮局版本协议&lt;/strong>3): 支持客户端&lt;strong>远程管理在服务器上的电子邮件&lt;/strong>，邮件发送到服务器上，&lt;strong>客户端调用邮件客户机程序以连接服务器&lt;/strong>，并&lt;strong>下载&lt;/strong>所有未阅读的电子邮件。&lt;/p>
 &lt;p>&lt;strong>IMAP&lt;/strong>： Internet Message Access Protocol 互联网邮件访问协议 是一个&lt;strong>联机协议&lt;/strong>。当用户 PC 机上的 IMAP 客户程序打开 IMAP 服务器的邮箱时，用户就可看到邮件的首部。&lt;/p>
@@ -1294,6 +1346,47 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>&lt;strong>发信人的用户代理&lt;/strong> 向 &lt;strong>源邮件服务器发送邮件&lt;/strong>，以及&lt;strong>源邮件服务器&lt;/strong> 向 &lt;strong>目的邮件服务器发送邮件&lt;/strong>，都是使用 &lt;strong>SMTP&lt;/strong> 协议。&lt;/li>
 &lt;li>而 &lt;strong>POP&lt;/strong> 协议或 &lt;strong>IMAP&lt;/strong> 协议则是&lt;strong>用户&lt;/strong> 从 &lt;strong>目的邮件服务器&lt;/strong>上 &lt;strong>读取邮件&lt;/strong>所使用的协议。&lt;/li>
 &lt;/ul>
+&lt;h3 id="62-ftp">6.2 FTP&lt;/h3>
+&lt;p>&lt;strong>FTP&lt;/strong>：(文本传输协议File Transfer Protocol): 运行在TCP之上，用于在&lt;strong>异构网络&lt;/strong>中任意计算机之间传送文件。FTP 是一种不安全的协议.&lt;/p>
+&lt;p>&lt;strong>TFTP&lt;/strong>(简单文件传输协议 运行在UDP之上):用于在&lt;strong>客户端与服务端&lt;/strong>之间进行&lt;strong>简单文件传输&lt;/strong>。TFTP有自己的差错改正措施，不支持交互。&lt;/p>
+&lt;p>&lt;strong>FTP工作原理&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>使用&lt;strong>客户服务器&lt;/strong>方式。&lt;/li>
+&lt;li>可同时为多个客户进程提供服务。&lt;/li>
+&lt;li>FTP 的服务器进程由两大部分组成：&lt;strong>一个主进程&lt;/strong>，负责接受新的请求；另外有&lt;strong>若干个从属进程&lt;/strong>，负责处理单个请求。&lt;/li>
+&lt;li>使用两个TCP连接：
+&lt;ul>
+&lt;li>&lt;strong>控制连接&lt;/strong>在整个会话期间一直保持打开，FTP 客户发出的&lt;strong>传送请求&lt;/strong>通过控制连接&lt;strong>发送给&lt;/strong>服务器端的&lt;strong>控制进程&lt;/strong>。&lt;/li>
+&lt;li>用于传输文件的是“&lt;strong>数据连接&lt;/strong>”，被 控制连接 创建。&lt;strong>端口20&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="63-telnet">6.3 Telnet&lt;/h3>
+&lt;p>&lt;strong>TELNET&lt;/strong>：简单的&lt;strong>远程终端协议&lt;/strong>，使用C/S方式，使用TCP连接。&lt;/p>
+&lt;p>Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。&lt;/p>
+&lt;h3 id="64-sshsecure-shell-protocol安全的网络传输协议">6.4 SSH（Secure Shell Protocol，安全的网络传输协议）&lt;/h3>
+&lt;p>基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务&lt;/p>
+&lt;h3 id="65-rtpreal-time-transport-protocol实时传输协议">6.5 RTP（Real-time Transport Protocol，实时传输协议）&lt;/h3>
+&lt;p>通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。&lt;/p>
+&lt;h3 id="66-dns-domain-name-system域名系统">6.6 DNS (Domain Name System)域名系统&lt;/h3>
+&lt;p>基于 UDP 协议，用于解决域名和 IP 地址的映射问题。&lt;/p>
+&lt;p>因特网采用&lt;strong>层次结构的命名树&lt;/strong>作为主机的名字，并使用&lt;strong>分布式&lt;/strong>的域名系统 DNS。用来将域名转换为IP地址。&lt;/p>
+&lt;p>&lt;strong>域名服务器&lt;/strong>：&lt;strong>域名服务器程序在专&lt;/strong>设的结点上运行，运行该程序的机器称为&lt;strong>域名服务器&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>基础结构域名&lt;/strong>(infrastructure domain)：这种顶级域名只有一个，即 &lt;strong>arpa&lt;/strong>，用于&lt;strong>反向域名解析&lt;/strong>，因此又称为&lt;strong>反向域名&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>DNS查询方式 域名解析过程&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>主机向本地域名服务器&lt;/strong>的查询一般都是采用&lt;strong>递归查询&lt;/strong>。
+&lt;ul>
+&lt;li>知道则回复。如本地域名服务器不知道，则本地域名服务器就以 &lt;strong>DNS 客户&lt;/strong>的身份，&lt;strong>向其他域名服务器&lt;/strong>继续发出查询请求报文。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>本地域名服务器&lt;/strong>向&lt;strong>根域名服务器&lt;/strong>的查询通常是采用&lt;strong>迭代查询&lt;/strong>。
+&lt;ul>
+&lt;li>&lt;strong>根域名服务器要么&lt;/strong>给出所要查询的&lt;strong>IP 地址&lt;/strong>，要么告诉本地域名服务器：“你下一步&lt;strong>应当向哪一个域名服务器&lt;/strong>进行查询”。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="65-其他概念">6.5 其他概念&lt;/h3>
 &lt;p>&lt;strong>WWW&lt;/strong>：&lt;/p>
 &lt;ul>
 &lt;li>万维网 WWW (World Wide Web)&lt;strong>并非某种特殊&lt;/strong>的&lt;strong>计算机网络&lt;/strong>。&lt;/li>
@@ -1302,13 +1395,22 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>&lt;strong>万维网服务器&lt;/strong>：&lt;strong>万维网文档&lt;/strong>所&lt;strong>驻留的计算机&lt;/strong>的&lt;strong>运行服务器程序&lt;/strong>&lt;/li>
 &lt;li>&lt;strong>页面&lt;/strong>(page)：在一个&lt;strong>客户程序主窗口上显示出&lt;/strong>的&lt;strong>万维网文档&lt;/strong>&lt;/li>
 &lt;/ul>
+&lt;p>&lt;strong>HTML&lt;/strong>(HyperText &lt;strong>Markup&lt;/strong> Language 超文本标记语言): &lt;strong>文档结构标记语言&lt;/strong>，使用约定的标记对页面上的信息进行描述。&lt;/p>
 &lt;p>&lt;strong>URL&lt;/strong>: 统一资源定位符Uniform Resource Locator， 标识万维网上的各种文档。每个文档在整个因特网都具有唯一的URL。&lt;/p>
 &lt;ul>
 &lt;li>格式：协议(ftp/http)://主机:端口/路径。&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>HTTP&lt;/strong>: HyperText Transfer Protocol 超文本传输协议&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/URL%e7%9a%84%e7%bb%84%e6%88%90.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
 &lt;ul>
-&lt;li>&lt;strong>面向事务的(transaction-oriented)应用层&lt;/strong>协议。HTTP 使用 &lt;strong>TCP 连接进行可靠的&lt;/strong>传送。HTTP是客户端与服务端交互的协议。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>HTML&lt;/strong>(HyperText &lt;strong>Markup&lt;/strong> Language 超文本标记语言): &lt;strong>文档结构标记语言&lt;/strong>，使用约定的标记对页面上的信息进行描述。&lt;/p>
-&lt;p>&lt;strong>HTTPS&lt;/strong>：HTTP&lt;strong>通信接口部分用SSL和TLS协议代替&lt;/strong>。通常是HTTP直接和TCP通信，当使用SSL时，则演变为先和SSL通信，再由SSL和TCP通信了。&lt;/p></description></item></channel></rss>
+&lt;li>协议。URL 的前缀通常表示了该网址采用了何种应用层协议，通常有两种——HTTP 和 HTTPS。当然也有一些不太常见的前缀头，比如文件传输时用到的ftp:。&lt;/li>
+&lt;li>域名。域名便是访问网址的通用名，这里也有可能是网址的 IP 地址，域名可以理解为 IP 地址的可读版本，毕竟绝大部分人都不会选择记住一个网址的 IP 地址。&lt;/li>
+&lt;li>端口。如果指明了访问网址的端口的话，端口会紧跟在域名后面，并用一个冒号隔开。&lt;/li>
+&lt;li>资源路径。域名（端口）后紧跟的就是资源路径，从第一个/开始，表示从服务器上根目录开始进行索引到的文件路径，上图中要访问的文件就是服务器根目录下/path/to/myfile.html。早先的设计是该文件通常物理存储于服务器主机上，但现在随着网络技术的进步，该文件不一定会物理存储在服务器主机上，有可能存放在云上，而文件路径也有可能是虚拟的（遵循某种规则）。&lt;/li>
+&lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
+&lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
+&lt;/ul></description></item></channel></rss>
