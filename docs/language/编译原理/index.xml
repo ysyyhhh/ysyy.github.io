@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>编译原理 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link><atom:link href="https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/index.xml" rel="self" type="application/rss+xml"/><description>编译原理</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>编译原理</title><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
+&lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>
+&lt;ul>
+&lt;li>词法分析：词法分析器将源程序中的字符序列转换成单词序列，单词是语言中的基本单位，如标识符、关键字、运算符、界符等。&lt;/li>
+&lt;li>语法分析：语法分析器将单词序列转换成语法树。&lt;/li>
+&lt;li>语义分析：语义分析器对语法树进行语义检查，如类型检查、作用域检查等。&lt;/li>
+&lt;li>中间代码生成：中间代码是一种抽象的机器语言，它比源程序更接近机器语言，但比机器语言更容易理解。&lt;/li>
+&lt;li>代码优化：代码优化器对中间代码进行优化，以提高程序的性能。&lt;/li>
+&lt;li>目标代码生成：目标代码生成器将中间代码转换成目标机器的机器语言。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://juejin.cn/post/7080832945136599077" target="_blank" rel="noopener">以Babel和V8来举例&lt;/a>&lt;/p>
+&lt;p>编译器的前端&lt;/p>
+&lt;ul>
+&lt;li>词法分析&lt;/li>
+&lt;li>语法分析&lt;/li>
+&lt;li>语义分析&lt;/li>
+&lt;li>中间代码(IR)生成&lt;/li>
+&lt;/ul>
+&lt;p>编译器的后端&lt;/p>
+&lt;ul>
+&lt;li>代码优化&lt;/li>
+&lt;li>目标代码生成&lt;/li>
+&lt;/ul>
+&lt;h2 id="编译器后端框架">编译器后端框架&lt;/h2>
+&lt;p>&lt;a href="https://freegeektime.com/100034101/153192/" target="_blank" rel="noopener">后端技术的重用：LLVM&lt;/a>&lt;/p>
+&lt;p>编译器后端功能&lt;/p>
+&lt;h3 id="编译优化">编译优化&lt;/h3>
+&lt;p>SSA&lt;/p>
+&lt;h3 id="目标代码生成">目标代码生成&lt;/h3>
+&lt;p>LLVM和GCC&lt;/p>
+&lt;ul>
+&lt;li>GCC是GNU Compiler Collection的缩写，是一个由GNU开发的编译器套件，它支持多种编程语言，如C、C++、Fortran、Java等。&lt;/li>
+&lt;li>LLVM是Low Level Virtual Machine的缩写，是一个编译器基础设施，它包括编译器、汇编器、链接器等，支持多种编程语言，如C、C++、Rust、Swift等。&lt;/li>
+&lt;li>LLVM和GCC都是开源软件，它们都是编译器后端的框架，可以用来开发编译器。&lt;/li>
+&lt;/ul>
+&lt;h3 id="llvm----low-level-virtual-machine">llvm &amp;ndash; Low Level Virtual Machine&lt;/h3></description></item></channel></rss>

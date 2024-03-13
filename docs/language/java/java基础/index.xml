@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java基础 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/index.xml" rel="self" type="application/rss+xml"/><description>java基础</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>java基础</title><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/java%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/java%E8%BF%90%E8%A1%8C%E8%BF%87%E7%A8%8B/</guid><description>&lt;h1 id="java--编译与解释共存的语言">Java&amp;ndash;编译与解释共存的语言&lt;/h1>
+&lt;p>&lt;a href="https://tech.meituan.com/2020/10/22/java-jit-practice-in-meituan.html" target="_blank" rel="noopener">基本功 | Java即时编译器原理解析及实践&lt;/a>&lt;/p>
+&lt;p>编译型语言：
+编译型语言是指在程序运行之前，需要先将源代码编译成机器码，然后再运行&lt;strong>编译后的机器码&lt;/strong>。编译型语言有C、C++、Rust、Go等。&lt;/p>
+&lt;p>解释型语言：
+解释型语言是指在程序运行时，需要通过解释器将源代码逐行解释成机器码，然后再运行机器码。解释型语言有Python、JavaScript、Ruby等。&lt;/p>
+&lt;p>而Java是一种编译与解释共存的语言，它的编译与解释过程如下：&lt;/p>
+&lt;ol>
+&lt;li>编译：Java源代码首先通过javac编译器&lt;strong>编译成字节码&lt;/strong>（.class文件）。&lt;/li>
+&lt;li>解释：然后通过Java虚拟机（JVM）将字节码解释成机器码，然后再运行机器码。&lt;/li>
+&lt;/ol>
+&lt;blockquote>
+&lt;p>字节码(.class文件)：Java源代码经过编译后生成的中间代码，它不是机器码，而是一种介于源代码和机器码之间的代码。字节码可以在任何支持Java虚拟机的平台上运行，因此Java具有“一次编译，到处运行”的特性。&lt;/p>
+&lt;/blockquote>
+&lt;p>因此在性能上Java介于编译型语言和解释型语言之间，它的性能比解释型语言要好，但比编译型语言要差。&lt;/p>
+&lt;h2 id="优化解释即时编译-jit-just-in-time-compilation技术">优化解释(即时编译 JIT, Just-In-Time Compilation)技术&lt;/h2>
+&lt;p>为了优化性能,在第二步的解释中,Java使用了即时编译（JIT，Just-In-Time Compilation）技术&lt;/p>
+&lt;p>当程序运行时，解释器首先发挥作用，代码可以直接执行。随着时间推移，即时编译器逐渐发挥作用，把越来越多的代码编译优化成本地代码，来获取更高的执行效率。&lt;/p>
+&lt;p>即时编译器与静态编译相比:&lt;/p>
+&lt;ul>
+&lt;li>可以选择热点代码进行编译，而不是整个程序&lt;/li>
+&lt;li>即时编译器已经非常成熟，可以进行更多的优化，比如内联、逃逸分析、栈上分配等&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Java%e5%9f%ba%e7%a1%80/Java%e7%a8%8b%e5%ba%8f%e5%8f%98%e4%b8%ba%e6%9c%ba%e5%99%a8%e7%a0%81.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>同样使用JIT技术的还有&lt;a href="https://zh.wikipedia.org/zh-cn/LLVM" target="_blank" rel="noopener">LLVM&lt;/a>、V8引擎等。&lt;/p>
+&lt;blockquote>
+&lt;p>AOT: Ahead-Of-Time Compilation，预编译，是指在程序运行之前，将源代码编译成机器码(属于静态编译)。
+JDK 9引入了AOT编译器。
+AOT 避免了 JIT 预热等各方面的开销，可以提高 Java 程序的启动速度，避免预热时间长。并且，AOT 还能减少内存占用和增强 Java 程序的安全性（AOT 编译后的代码不容易被反编译和修改），特别适合云原生场景。&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="aot和jit">AOT和JIT&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Java%e5%9f%ba%e7%a1%80/JITvsAOT.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>AOT 的主要优势在于启动时间、内存占用和打包体积。
+JIT 的主要优势在于具备更高的极限处理能力，可以降低请求的最大延迟。&lt;/p>
+&lt;blockquote>
+&lt;p>GraalVM 是一种高性能的 JDK（完整的 JDK 发行版本），它可以运行 Java 和其他 JVM 语言，以及 JavaScript、Python 等非 JVM 语言。 GraalVM 不仅能提供 AOT 编译，还能提供 JIT 编译。&lt;/p>
+&lt;/blockquote>
+&lt;p>AOT 更适合当下的云原生场景，对微服务架构的支持也比较友好。
+但AOT 编译无法支持 Java 的一些动态特性，如反射、动态代理、动态加载、JNI（Java Native Interface）等。而很多框架和库（如 Spring、CGLIB）都用到了这些特性。为了支持类似的动态特性，所以选择使用 JIT 即时编译器。&lt;/p>
+&lt;blockquote>
+&lt;p>如: CGLIB 动态代理使用的是 ASM 技术，而这种技术大致原理是运行时直接在内存中生成并加载修改后的字节码文件也就是 .class 文件，如果全部使用 AOT 提前编译，也就不能使用 ASM 技术了。&lt;/p>
+&lt;/blockquote></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>&lt;h1 id="基本概念">基本概念&lt;/h1>
+&lt;h2 id="javasejavaeejavame">JavaSE、JavaEE、JavaME&lt;/h2>
+&lt;ul>
+&lt;li>JavaSE（Java Platform, Standard Edition）：Java平台标准版，是Java的核心部分，包括Java语言、Java虚拟机、Java API等。&lt;/li>
+&lt;li>JavaEE（Java Platform, Enterprise Edition）：Java平台企业版，是JavaSE的扩展，用于开发企业级应用程序，包括Servlet、JSP、EJB等。&lt;/li>
+&lt;li>JavaME（Java Platform, Micro Edition）：Java平台微型版，用于开发嵌入式设备和移动设备上的应用程序。&lt;/li>
+&lt;/ul>
+&lt;h2 id="jdkjrejvm">JDK、JRE、JVM&lt;/h2>
+&lt;ul>
+&lt;li>JVM（Java Virtual Machine）：Java虚拟机，用于执行Java字节码。&lt;/li>
+&lt;li>JRE（Java Runtime Environment）：Java运行时环境，他包含了JVM和Java类库，用于运行Java程序。&lt;/li>
+&lt;li>JDK（Java Development Kit）：Java&lt;strong>开发&lt;/strong>工具包，它包含了JRE，同时还包含了编译器javac、调试器jdb、文档生成器javadoc等开发工具。
+&lt;ul>
+&lt;li>开发时必须安装JDK，运行时通常只需要安装JRE（除非需要使用Java特性的开发工具，如JSP转换为Servlet，反射等）。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>Java1.0 到 Java9: 对应JDK1.0 到 JDK1.9&lt;/p>
+&lt;p>Java10及之后: 对应JDK10及之后&lt;/p>
+&lt;p>最新描述：
+从JDK 9开始，不区分JDK和JRE，被模块系统取代：JDK（被重新组织成94个模块）和jlink工具。
+并且从JDK 11开始，不再提供JRE，只提供JDK。&lt;/p>
+&lt;h2 id="oracle-jdk-和-openjdk">Oracle JDK 和 OpenJDK&lt;/h2>
+&lt;ul>
+&lt;li>OpenJDK：由OpenJDK社区提供的JDK，是一个开源项目，不包含Oracle公司的商业特性，可以完全免费使用，基于GPLv2协议。&lt;/li>
+&lt;li>Oracle JDK：由Oracle公司提供的JDK，一般是3年免费使用，之后需要付费。
+&lt;ul>
+&lt;li>JDK原本是SUN公司的产品且开源，后来SUN公司被Oracle公司收购，Oracle公司继续维护JDK，并且提供了商业特性。&lt;/li>
+&lt;li>基于BCL/OTN协议。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>区别：&lt;/p>
+&lt;ul>
+&lt;li>更新频率：OpenJDK三个月更新一次，Oracle JDK每6个月更新一次。&lt;/li>
+&lt;li>稳定性：Oracle JDK更稳定，OpenJDK更先进。&lt;/li>
+&lt;/ul>
+&lt;h2 id="java和c比较">Java和C++比较&lt;/h2>
+&lt;p>不同点&lt;/p>
+&lt;ul>
+&lt;li>内存访问: Java是通过引用访问对象,内存更安全; 而C++是通过指针访问对象。&lt;/li>
+&lt;li>类的继承: Java只支持单继承, C++支持多继承。&lt;/li>
+&lt;li>运行环境: Java是跨平台的, C++不是。&lt;/li>
+&lt;li>内存管理: Java有垃圾回收机制, C++需要手动管理内存。&lt;/li>
+&lt;li>异常处理: Java使用异常处理机制, C++使用异常和错误码。&lt;/li>
+&lt;li>重载: Java不支持运算符重载, C++支持。&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E7%B1%BB/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E5%B8%B8%E8%A7%81%E5%B7%A5%E5%85%B7%E7%B1%BB/</guid><description>&lt;h1 id="常见的java工具类">常见的Java工具类&lt;/h1>
+&lt;h2 id="jwt">JWT&lt;/h2>
+&lt;h3 id="jwt里面有什么httpsblogcsdnnetweixin_36378232articledetails113022878">jwt&lt;a href="https://blog.csdn.net/weixin_36378232/article/details/113022878" target="_blank" rel="noopener">里面有什么&lt;/a>&lt;/h3>
+&lt;p>JWT主要由三个部分组成(前两部分可以通过base64解密得到)：头部(HEADER)，载荷(PAYLOAD)，签证(SIGNATURE)。&lt;/p>
+&lt;ul>
+&lt;li>头部描述该JWT的最基本信息，主要包含两个部分：声明类型 JWT 和声明加密算法(通常直接使用HMAC，SHA256)。
+&lt;ul>
+&lt;li>&lt;code>{ &amp;quot;alg&amp;quot;: &amp;quot;HS256&amp;quot;, //第三段字符串的不可逆加密类型HS256 &amp;quot;typ&amp;quot;: &amp;quot;JWT&amp;quot; //token类型JWT }&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>载荷主要是存放有效信息为自定义值，这些信息按照职能可以分成三个部分
+&lt;ul>
+&lt;li>标准的注册声明
+&lt;ul>
+&lt;li>人:签发者,jwt面向用户,接收jwt的一方.&lt;/li>
+&lt;li>时间相关,过期时间,不可用时间.签发时间&lt;/li>
+&lt;li>唯一标识, 可用于一次性token&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>公共的声明:公共的声明可以添加任何的信息，一般添加用户的相关信息或其他业务需要的必要信息。但不建议添加敏感信息，因为该部分在客户端可解密。&lt;/li>
+&lt;li>私有的声明:私有声明是提供者和消费者所共同定义的声明，一般不建议存放敏感信息，因为BASE64是对称解密的，意味着该部分信息可以归类为明文信息。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>签证
+&lt;ul>
+&lt;li>先将第一段和第二段的密文&lt;strong>拼接&lt;/strong>起来&lt;/li>
+&lt;li>对拼接起来的密文字符串和自定义的盐进行上边&lt;strong>指定的HS256加密&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>对HS256加密后的密文再做base64加密&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="要是想要传输密码怎么解决盐值怎么存储">要是想要传输密码，怎么解决？盐值怎么存储？&lt;/h3>
+&lt;p>SHA,&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/biubiubiubibibi/article/details/127579426" target="_blank" rel="noopener">BCryptPasswordEncoder&lt;/a>&lt;/p>
+&lt;p>盐存在密文里.&lt;/p>
+&lt;p>status字段是什么类型&lt;/p>
+&lt;p>函数的返回值类型。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid><description>&lt;h1 id="数据类型">数据类型&lt;/h1>
+&lt;p>八种基本数据类型:&lt;/p>
+&lt;p>byte/8
+char/16
+short/16
+int/32
+float/32
+long/64
+double/64
+boolean/~&lt;/p>
+&lt;p>基本类型都有对应的包装类型，基本类型与其对应的包装类型之间的赋值使用&lt;strong>自动装箱与拆箱完成&lt;/strong>。&lt;/p>
+&lt;h2 id="基本数据类型和包装类型的区别">基本数据类型和包装类型的区别&lt;/h2>
+&lt;ul>
+&lt;li>用途: 基本数据类型一般只用于常量和局部变量, 而包装类型可以用于类的成员变量, 方法参数和返回值&lt;/li>
+&lt;li>内存占用: 基本数据类型占用的内存较小, 包装类型占用的内存较大&lt;/li>
+&lt;li>默认值: 基本数据类型有默认值, 包装类型默认值为null&lt;/li>
+&lt;li>引用: 基本数据类型不是对象, 包装类型是对象&lt;/li>
+&lt;li>比较: 基本数据类型比较值, 包装类型&lt;strong>比较引用&lt;/strong>,比较内容需要使用equals方法&lt;/li>
+&lt;li>存储方式: 基本数据类型的存储位置取决于变量的作用域和声明方式, 包装类型存储在堆中.(几乎所有的对象都存储在堆中)&lt;/li>
+&lt;/ul>
+&lt;p>为什么说是几乎所有对象实例都存在于堆中呢？&lt;/p>
+&lt;p>这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存&lt;/p>
+&lt;p>&lt;strong>基本数据类型的存储位置取决于它们的作用域和声明方式。&lt;/strong>
+栈中:&lt;/p>
+&lt;ul>
+&lt;li>局部变量&lt;/li>
+&lt;/ul>
+&lt;p>堆中:&lt;/p>
+&lt;ul>
+&lt;li>成员变量(非static)&lt;/li>
+&lt;/ul>
+&lt;h2 id="自动装箱与拆箱">自动装箱与拆箱&lt;/h2>
+&lt;p>自动装箱: 将基本数据类型转换为包装类型&lt;/p>
+&lt;p>自动拆箱: 将包装类型转换为基本数据类型&lt;/p>
+&lt;p>都是调用包装类型的valueOf方法和基本类型的xxxValue方法完成的&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Integer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">2&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 装箱 调用了 Integer.valueOf(2)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 拆箱 调用了 X.intValue()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果频繁进行装箱和拆箱操作，会影响程序的性能.&lt;/p>
+&lt;h2 id="装箱时使用的缓冲池">装箱时使用的缓冲池&lt;/h2>
+&lt;p>new Integer(123) 与 Integer.valueOf(123) 的区别在于：&lt;/p>
+&lt;ul>
+&lt;li>new Integer(123) 每次都会新建一个对象；&lt;/li>
+&lt;li>Integer.valueOf(123) 会使用缓存池中的对象，多次调用会取得同一个对象的引用。&lt;/li>
+&lt;/ul>
+&lt;p>Java中的包装类型中，Integer、Byte、Short、Long、Character这几种包装类型默认会缓存-128到127之间的数值，这个区间的数值被缓存到了内部的缓冲池中，如果数值在这个区间内，就直接从缓冲池中获取对象，而不是重新创建一个新的对象。&lt;/p>
+&lt;p>基本类型对应的缓冲池如下：&lt;/p>
+&lt;p>boolean values true and false
+all byte values
+short values between -128 and 127
+int values between -128 and 127
+char in the range \u0000 to \u007F
+在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。&lt;/p>
+&lt;h2 id="自动拆箱引发的空指针异常">自动拆箱引发的空指针异常&lt;/h2>
+&lt;p>自动拆箱会引发空指针异常，当包装类型为null时，调用其xxxValue方法会引发空指针异常。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Integer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">y&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// NullPointerException&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>三目运算符中隐含的自动拆箱可能引发空指针异常&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Integer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// NullPointerException&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">//正确写法 保持两者类型一致&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">valueOf&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这是因为0是int类型，x会自动拆箱，而x为null，所以会引发空指针异常。&lt;/p>
+&lt;blockquote>
+&lt;p>阿里开发手册
+【强制】三目运算符 condition?表达式1:表达式2中,高度注意表达式1和2在类型对产时，可能抛出因自动拆箱导致的 NPE 异常。说明:以下两种场景会触发类型对齐的拆箱操作:
+1)表达式1或表达式2的值只要有一个是原始类型。
+2)表达式1或表达式2的值的类型不一致，会强制拆箱升级成表示范围更大的那个类型&lt;/p>
+&lt;/blockquote>
+&lt;h2 id="浮点数运算须使用bigdecimal">浮点数运算须使用BigDecimal&lt;/h2>
+&lt;p>Java中的浮点数运算时会有精度丢失的问题，这是因为浮点数是用二进制表示的，而二进制无法精确表示某些十进制小数，比如0.1。&lt;/p>
+&lt;p>而BigDecimal可以精确表示任意精度的十进制小数，因此在需要精确计算的场景下，应该使用BigDecimal来进行浮点数运算。&lt;/p>
+&lt;h3 id="初始化">初始化&lt;/h3>
+&lt;p>【强制】禁止使用构造方法 **BigDecimal(double)**的方式把 double 值转化为 BigDecimal 对象说明:BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。&lt;/p>
+&lt;p>如:BigDecimalg=new BigDecimal(0.1F);
+实际的存储值为:0.10000000149正例:优先推荐入参为 String 的构造方法，或使用 BigDecimal的valueOf方法，此方法内部其实执行之Double的 toString,而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。&lt;/p>
+&lt;p>BigDecimal recommend1 = new BigDecimal(&amp;ldquo;0.1&amp;rdquo;);
+BigDecimal recommend2 = BigDecimal.valueOf(0.1);&lt;/p>
+&lt;h3 id="比较">比较&lt;/h3>
+&lt;p>【强制】BigDecimal 的大小比较，推荐使用 compareTo 方法，equals 方法是同时比较值和精度，与预期不一致。说明:compareTo 方法是比较值，equals 方法是比较值和精度。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">BigDecimal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="c1">//false&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="超过long的数据应该用biginteger">超过Long的数据应该用BigInteger&lt;/h2>
+&lt;p>超过Long导致的溢出问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">long&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Long&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">MAX_VALUE&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// -9223372036854775808&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">l&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Long&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">MIN_VALUE&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// true&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>BigInteger可以表示任意精度的整数，因此在需要表示超过Long的整数时，应该使用BigInteger。&lt;/p>
+&lt;p>BigInteger内部是用int[]来存储数据的，因此可以表示任意精度的整数，但是由于是数组存储，因此在进行加减乘除等运算时，性能会比较差。&lt;/p></description></item></channel></rss>

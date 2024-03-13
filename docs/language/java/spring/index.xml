@@ -83,7 +83,59 @@
 &lt;h4 id="网关限流">网关限流&lt;/h4>
 &lt;p>用sentinel&lt;/p>
 &lt;h2 id="mq消息队列">MQ消息队列&lt;/h2>
-&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
+&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h4 id="介绍一下springboot">介绍一下springboot&lt;/h4>
+&lt;p>简化spring应用的创建及部署&lt;/p>
+&lt;p>Spring Boot通过自动配置功能，降低了复杂性，同时支持基于JVM的多种开源框架，可以缩短开发时间，使开发更加简单和高效。&lt;/p>
+&lt;h4 id="3mvc的dispatcherservlet的分派原理">3.mvc的dispatcherservlet的分派原理&lt;/h4>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="4.13%e6%bb%b4%e6%bb%b4%e5%87%86%e5%a4%87/img/image-20230413193651300.png" alt="image-20230413193651300" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ol>
+&lt;li>用户发送 请求到 前端控制器（DispatcherServlet）。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>处理器映射器&lt;/strong>（HandlerMapping）去 查找 处理器（Handler）。&lt;/li>
+&lt;li>找到以后 处理器映射器（HandlerMappering）向 前端控制器 返回 执行链（HandlerExecutionChain）。&lt;/li>
+&lt;li>前端控制器（DispatcherServlet）调用 &lt;strong>处理器适配器&lt;/strong>（HandlerAdapter） 去执行 处理器（Handler）。&lt;/li>
+&lt;li>处理器适配器 去执行 处理器Handler。&lt;/li>
+&lt;li>处理器 执行完给 处理器适配器 返回ModelAndView。&lt;/li>
+&lt;li>&lt;strong>处理器适配器&lt;/strong> 向 前端控制器 返回ModelAndView。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>视图解析器&lt;/strong>（ViewResolver）去进行 视图解析。&lt;/li>
+&lt;li>视图解析器 向 前端控制器返回View。&lt;/li>
+&lt;li>前端控制器 对 &lt;strong>视图进行渲染&lt;/strong>。&lt;/li>
+&lt;li>前端控制器 向用户&lt;strong>响应结果&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;h4 id="restful风格在mvc的分派如何解析参数这个我不知道瞎答的">restful风格在mvc的分派，如何解析参数（这个我不知道瞎答的）&lt;/h4>
+&lt;p>restful 即 URL表示资源， + GET POST PUT DELETE 表示行为&lt;/p>
+&lt;p>Restful风格的请求是使用 &lt;strong>url+请求方式&lt;/strong> 表示一次请求目的的，并且规范了一些的状态码，使得看到接口就知道请求要干嘛。&lt;/p>
+&lt;p>RequestMappingURL&lt;/p>
+&lt;p>PathVariable 获取参数&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>@Controller&lt;/code>声名一个处理请求的控制器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestMapping&lt;/code>请求映射地址，它存在几个子注解对于实现&lt;code>REST&lt;/code>风格来说更加具有语义性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;ul>
+&lt;li>&lt;code>GETMapping&lt;/code> GET请求&lt;/li>
+&lt;li>&lt;code>PUTMapping&lt;/code> PUT请求&lt;/li>
+&lt;li>&lt;code>POSTMapping&lt;/code> POST请求&lt;/li>
+&lt;li>&lt;code>DELETEMapping&lt;/code> DELETE请求&lt;code>sponseBody&lt;/code> 将响应内容转换为&lt;code>JSON&lt;/code>格式&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestBody&lt;/code> 请求内容转换为&lt;code>JSON&lt;/code>格式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@PathVariable(&amp;quot;id&amp;quot;)&lt;/code>用于绑定一个参数&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RESTController&lt;/code> 等同于&lt;code>@Controller&lt;/code>+&lt;code>@ResponseBody&lt;/code>在类上写了这个注解，标识这个类的所有方法只返回数据，而不进行视图跳转&lt;/p>
+&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.jianshu.com/p/38d247f02724
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="安全">安全&lt;/h5>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/qq_37023928/article/details/116777630
