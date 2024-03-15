@@ -1,26 +1,154 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>java | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/index.xml" rel="self" type="application/rss+xml"/><description>java</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>java</title><link>https://ysyyhhh.github.io/docs/language/java/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/javaio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/javaio/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</guid><description>&lt;h1 id="java集合体系">Java集合体系&lt;/h1>
+&lt;p>Java 集合， 也叫作容器，主要是由两大接口派生而来：一个是 Collection接口，主要用于存放单一元素；另一个是 Map 接口，主要用于存放键值对。对于Collection 接口，下面又有三个主要的子接口：List、Set 和 Queue。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Java%e9%9b%86%e5%90%88/Java%e9%9b%86%e5%90%88%e7%9a%84%e7%bb%93%e6%9e%84.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>List: 有序，可重复&lt;/p>
+&lt;ul>
+&lt;li>ArrayList: Object[] 数组, 查询快, 增删慢&lt;/li>
+&lt;li>Vector: Object[] 数组, 线程安全(与ArrayList区别)&lt;/li>
+&lt;li>LinkedList: 双向链表, 查询慢, 增删快&lt;/li>
+&lt;/ul>
+&lt;p>Set: 元素不可重复&lt;/p>
+&lt;ul>
+&lt;li>HashSet: 基于HashMap实现, 无序&lt;/li>
+&lt;li>TreeSet: 红黑树(自平衡的二叉查找树), 有序&lt;/li>
+&lt;li>LinkedHashSet: 基于LinkedHashMap实现, 是HashSet的子类, 有序&lt;/li>
+&lt;/ul>
+&lt;p>Queue: 有序，可重复, 用于存放队列元素&lt;/p>
+&lt;ul>
+&lt;li>PriorityQueue: 优先级队列, Object[] 数组&lt;/li>
+&lt;li>DelayQueue: 延迟队列, 用于存放延迟元素&lt;/li>
+&lt;li>ArrayDeque: 双端队列, Object[] 数组&lt;/li>
+&lt;/ul>
+&lt;p>Map: 无序，不可重复，键值对&lt;/p>
+&lt;ul>
+&lt;li>HashMap: JDK1.8之前是数组+链表, JDK1.8之后是数组+链表/红黑树&lt;/li>
+&lt;li>LinkedHashMap: 基于HashMap实现, 有序&lt;/li>
+&lt;li>TreeMap: 红黑树(自平衡的二叉查找树), 有序&lt;/li>
+&lt;li>Hashtable: 数组(主体)+链表(解决哈希冲突), 线程安全&lt;/li>
+&lt;/ul>
+&lt;p>如何选用集合&lt;/p>
+&lt;ul>
+&lt;li>要键值对 - Map
+&lt;ul>
+&lt;li>需要排序 - TreeMap&lt;/li>
+&lt;li>不需要排序 - HashMap&lt;/li>
+&lt;li>需要线程安全 - Hashtable&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>不需要键值对 - Collection
+&lt;ul>
+&lt;li>保证元素唯一 - Set
+&lt;ul>
+&lt;li>需要排序 - TreeSet&lt;/li>
+&lt;li>不需要排序 - HashSet&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>允许重复元素 - List
+&lt;ul>
+&lt;li>需要高效的增删 - LinkedList&lt;/li>
+&lt;li>需要高效的查询 - ArrayList&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="list">List&lt;/h2>
+&lt;p>ArrayList 与 Array比较&lt;/p>
+&lt;ul>
+&lt;li>ArrayList是数组的封装，可以动态扩容，而数组是静态的&lt;/li>
+&lt;li>ArrayList允许使用泛型&lt;/li>
+&lt;/ul>
+&lt;p>ArrayList 与 Vector比较&lt;/p>
+&lt;ul>
+&lt;li>ArrayList是非线程安全的，而Vector是线程安全的&lt;/li>
+&lt;li>ArrayList是JDK1.2引入的(主要实现类,新)，而Vector是JDK1.0引入的&lt;/li>
+&lt;/ul>
+&lt;p>ArrayList&lt;/p>
+&lt;ul>
+&lt;li>底层是数组,支持随机访问&lt;/li>
+&lt;li>可以添加null元素&lt;/li>
+&lt;li>插入:
+&lt;ul>
+&lt;li>头部插入: O(n)&lt;/li>
+&lt;li>尾部插入: O(1), 扩容时O(n),每次扩容是原来的1.5倍&lt;/li>
+&lt;li>指定位置插入: O(n)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>删除:
+&lt;ul>
+&lt;li>只有尾部删除是O(1), 其他都是O(n)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>LinkedList&lt;/p>
+&lt;ul>
+&lt;li>底层是双向链表, 不支持随机访问&lt;/li>
+&lt;li>头部和尾部的插入删除都是O(1)&lt;/li>
+&lt;li>一般不使用,作者都不使用&lt;/li>
+&lt;/ul>
+&lt;h2 id="set">Set&lt;/h2>
+&lt;p>对集合进行排序时,需要实现Comparable接口,重写compareTo方法&lt;/p>
+&lt;p>集合的不可重复性是通过equals方法来判断的, 需要重写equals方法和hashCode方法&lt;/p>
+&lt;h4 id="hashset了解过吗">hashset了解过吗&lt;/h4>
+&lt;p>HashSet是一种基于哈希表的Set实现，其底层实现与HashMap类似，只不过HashSet中存储的是不重复的元素。HashSet中的元素是无序的，不保证元素的插入顺序和遍历顺序一致。&lt;/p>
+&lt;h4 id="判断某对象是否在set中存在需要重写哪些方法">判断某对象是否在set中存在，需要重写哪些方法&lt;/h4>
+&lt;p>为了判断某个对象是否在Set中存在，需要重写该对象的hashCode()和equals()方法。hashCode()方法用于计算对象的哈希值，equals()方法用于比较两个对象是否相等。在重写这两个方法时，需要保证相等的对象具有相同的哈希值，否则会导致Set中出现重复元素。&lt;/p>
+&lt;h2 id="queue">Queue&lt;/h2>
+&lt;p>ArrayDeque 和 LinkedList的区别&lt;/p>
+&lt;ul>
+&lt;li>都实现了Deque接口&lt;/li>
+&lt;li>ArrayDeque是数组实现的双端队列, 随机访问快, 队列操作慢；LinkedList是双向链表实现的双端队列, 队列操作快&lt;/li>
+&lt;li>ArrayDeque不支持null元素, LinkedList支持&lt;/li>
+&lt;li>ArrayDeque存在扩容，但均摊快；LinkedList不存在，每次插入需要申请空间，均摊慢。&lt;/li>
+&lt;/ul>
+&lt;h3 id="priorityqueue">PriorityQueue&lt;/h3>
+&lt;p>JDK1.5 引入的&lt;/p>
+&lt;ul>
+&lt;li>底层是堆, 默认是小顶堆, 可以通过传入Comparator来实现大顶堆&lt;/li>
+&lt;li>是插入删除是O(logn)，查顶推是O(1)&lt;/li>
+&lt;li>是非线程安全的，不支持null元素&lt;/li>
+&lt;/ul>
+&lt;p>典型算法题的应用&lt;/p>
+&lt;ul>
+&lt;li>推排序&lt;/li>
+&lt;li>第k大数（不过这个一般用快排O(n)实现）&lt;/li>
+&lt;li>带权图的遍历&lt;/li>
+&lt;/ul>
+&lt;h3 id="blockingqueue-阻塞队列">BlockingQueue 阻塞队列&lt;/h3>
+&lt;p>是一个接口，继承于Qeueu。&lt;/p>
+&lt;p>阻塞的原因是，支持当队列没用元素时一直阻塞，直到有元素。
+如果队列已满，则等到队列有空间时再插入元素。&lt;/p>
+&lt;p>常用于生产者消费者模型。&lt;/p>
+&lt;h2 id="map">Map**&lt;/h2>
+&lt;h3 id="hashmap">HashMap&lt;/h3>
+&lt;p>HashMap 和 HashTable的区别&lt;/p>
+&lt;ul>
+&lt;li>HashMap是非线程安全的，而HashTable是线程安全的&lt;/li>
+&lt;li>HashMap允许使用null作为键和值，而HashTable不允许&lt;/li>
+&lt;li>效率：HashMap效率高，HashTable效率低&lt;/li>
+&lt;li>容量大小：HashMap默认大小为16，HashTable默认大小为11&lt;/li>
+&lt;li>扩容：HashMap扩容是原来的2倍，HashTable扩容是原来的2倍+1&lt;/li>
+&lt;li>底层数据结构：HashMap是数组+链表/红黑树，HashTable是数组+链表
+&lt;ul>
+&lt;li>JDK1.8 HashMap在链表长度超过8时，链表会自动转化为红黑树，优化查询速度&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>HashMap 和 TreeMap的区别&lt;/p>
+&lt;ul>
+&lt;li>HashMap是无序的，而TreeMap是有序的&lt;/li>
+&lt;/ul>
 &lt;h4 id="hashmap原理">HashMap原理&lt;/h4>
+&lt;p>HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
 &lt;p>数组+链表+红黑树。&lt;/p>
 &lt;p>那么在jdk1.8的HashMap中，当链表的长度超过8时，链表会自动转化为红黑树，优化查询速度。&lt;/p>
 &lt;p>put原理&lt;/p>
 &lt;p>同时还有一个区别：发生“hash冲突”时，我们上面的做法是“头插法”，这是jdk1.7的做法，而在jdk1.8中，使用的是“尾插法”。&lt;/p>
-&lt;h4 id="concurrenthashmap原理">ConcurrentHashMap原理&lt;/h4>
-&lt;p>红黑树可用别的数据结构代替吗&lt;/p>
-&lt;p>跳表与红黑树比较&lt;/p>
-&lt;p>线程安全的类有哪些，为什么线程安全&lt;/p>
-&lt;p>索引原理&lt;/p>
-&lt;p>B+查询过程&lt;/p>
-&lt;p>聚簇索引与非聚簇索引&lt;/p>
-&lt;p>快排思想&lt;/p>
-&lt;p>快排时间复杂度&lt;/p>
-&lt;p>线程池&lt;/p>
-&lt;p>线程池的使用&lt;/p>
-&lt;p>1个10G大小文件，如何得前100个最大数字&lt;/p>
-&lt;h2 id="集合类">集合类&lt;/h2>
-&lt;h4 id="操作字符串用什么类">操作字符串用什么类&lt;/h4>
-&lt;p>Java中提供了String类和StringBuilder类来操作字符串。String类是不可变的，每次对字符串进行修改都会创建一个新的字符串对象，而StringBuilder类是可变的，可以在原字符串上进行修改。&lt;/p>
-&lt;h4 id="常用集合类">常用集合类&lt;/h4>
-&lt;p>Java中常用的集合类包括List、Set、Map等。HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
 &lt;h4 id="hashmap底层实现">hashmap底层实现&lt;/h4>
 &lt;p>HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
 &lt;p>具体来说，HashMap中的每个元素都是一个键值对，其中键和值都可以为null。当向HashMap中添加元素时，首先根据键的哈希值计算出该元素在数组中的位置，如果该位置上已经有元素了，则需要使用链表（或红黑树）来解决哈希冲突。如果链表（或红黑树）中已经存在该键，则更新该键对应的值，否则将该键值对添加到链表（或红黑树）的末尾。&lt;/p>
@@ -35,10 +163,39 @@
 &lt;li>使用ConcurrentHashMap代替HashMap，ConcurrentHashMap是一种线程安全的Map实现。&lt;/li>
 &lt;li>使用读写锁来保证HashMap的线程安全性，即使用ReentrantReadWriteLock来控制读写操作的并发访问。&lt;/li>
 &lt;/ol>
-&lt;h4 id="hashset了解过吗">hashset了解过吗&lt;/h4>
-&lt;p>HashSet是一种基于哈希表的Set实现，其底层实现与HashMap类似，只不过HashSet中存储的是不重复的元素。HashSet中的元素是无序的，不保证元素的插入顺序和遍历顺序一致。&lt;/p>
-&lt;h4 id="判断某对象是否在set中存在需要重写哪些方法">判断某对象是否在set中存在，需要重写哪些方法&lt;/h4>
-&lt;p>为了判断某个对象是否在Set中存在，需要重写该对象的hashCode()和equals()方法。hashCode()方法用于计算对象的哈希值，equals()方法用于比较两个对象是否相等。在重写这两个方法时，需要保证相等的对象具有相同的哈希值，否则会导致Set中出现重复元素。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</guid><description>&lt;h2 id="线程">线程&lt;/h2>
+&lt;h3 id="concurrenthashmap">ConcurrentHashMap&lt;/h3>
+&lt;h4 id="concurrenthashmap原理">ConcurrentHashMap原理&lt;/h4>
+&lt;p>红黑树可用别的数据结构代替吗&lt;/p>
+&lt;p>跳表与红黑树比较&lt;/p>
+&lt;p>线程安全的类有哪些，为什么线程安全&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</guid><description>&lt;h1 id="java-多线程">Java 多线程&lt;/h1>
+&lt;p>一个Java程序的运行是一个进程，包括一个main线程和多个其他线程&lt;/p>
+&lt;p>Java的线程和操作系统的线程的区别&lt;/p>
+&lt;ul>
+&lt;li>JDK1.2之前使用的是JVM模拟的用户级线程，JDK1.2之后使用的是操作系统的内核级线程&lt;/li>
+&lt;/ul>
+&lt;p>用户级线程和内核级线程的区别&lt;/p>
+&lt;ul>
+&lt;li>用户线程：由用户空间程序管理和调度的线程，运行在用户空间（专门给应用程序使用）。&lt;/li>
+&lt;li>内核线程：由操作系统内核管理和调度的线程，运行在内核空间（只有内核程序可以访问）。&lt;/li>
+&lt;/ul>
+&lt;p>线程模型是用户线程和内核线程之间的关联方式，常见的线程模型有这三种：&lt;/p>
+&lt;ul>
+&lt;li>一对一（一个用户线程对应一个内核线程）&lt;/li>
+&lt;li>多对一（多个用户线程映射到一个内核线程）&lt;/li>
+&lt;li>多对多（多个用户线程映射到多个内核线程）&lt;/li>
+&lt;/ul>
+&lt;p>Java采用的是一对一的线程模型，即一个用户线程对应一个内核线程。这种线程模型的优点是可以充分利用多核处理器的性能，缺点是创建和销毁线程的开销较大。&lt;/p>
+&lt;p>JDK21正式引入了虚拟线程&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/JUC%28Java%e5%b9%b6%e5%8f%91%29/Java%e7%ba%bf%e7%a8%8b%e7%bb%93%e6%9e%84.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>线程池&lt;/p>
+&lt;p>线程池的使用&lt;/p>
+&lt;p>1个10G大小文件，如何得前100个最大数字&lt;/p>
+&lt;h2 id="线程">线程&lt;/h2>
 &lt;h4 id="java创建线程的方法">Java创建线程的方法&lt;/h4>
 &lt;p>Java中创建线程的方法主要有两种：&lt;/p>
 &lt;ol>
