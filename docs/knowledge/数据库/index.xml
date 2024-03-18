@@ -1,4 +1,12 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><description>数据库</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>数据库</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>数据库 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/index.xml" rel="self" type="application/rss+xml"/><description>数据库</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>数据库</title><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</guid><description>&lt;h1 id="mysql">MySQL&lt;/h1>
+&lt;p>39.Mysql的存储引擎有什么
+40.Innodb的特性
+41.Mysql有几种锁
+42.怎么避免锁全表
+43.Insert into和replace into有什么区别
+44.Union和union all的区别
+45.常用的几种连接
+46.Join和leftjoin什么区别&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
 &lt;h2 id="redis基础知识">Redis基础知识：&lt;/h2>
 &lt;h3 id="redis是什么有什么用">Redis是什么？有什么用？&lt;/h3>
 &lt;p>Redis是一个开源的内存数据结构存储系统。&lt;/p>
@@ -234,7 +242,7 @@
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
 &lt;h3 id="列数据库是什么">&lt;strong>列数据库是什么&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>列数据库&lt;/strong>是将传统的表格形式拆分为单列存储，&lt;strong>存储方式&lt;/strong>是列数据库与传统数据库的最大差别。这个差别同时&lt;strong>带给了列数据库高效的查询性能&lt;/strong>。&lt;/p>
 &lt;p>即每一列的数据的存储在一个连续空间的,且有序,因此只要找到了主键在第几个位置,就可以快速找到其他属性的元素.&lt;/p>

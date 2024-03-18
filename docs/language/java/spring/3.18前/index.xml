@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>3.18前 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/index.xml" rel="self" type="application/rss+xml"/><description>3.18前</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>3.18前</title><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;h5 id="service层的返回值">Service层的返回值&lt;/h5>
+&lt;p>service 做校验，如果非法，直接抛异常 + 全局异常处理&lt;/p>
+&lt;p>controller 正常就是组合 service ，返回前端需要的数据。&lt;/p>
+&lt;p>java异常效率低下是因为抛出异常会遍历所有涉及堆栈，具体代码在基类Throwable的fillInStackTrace()方法里。但其实可以通过在自定义异常中重写fillInStackTrace()来大幅度提高异常效率。&lt;/p>
+&lt;p>&lt;a href="https://segmentfault.com/q/1010000020840854" target="_blank" rel="noopener">https://segmentfault.com/q/1010000020840854&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://blog.csdn.net/qq_41107231/article/details/115874974" target="_blank" rel="noopener">https://blog.csdn.net/qq_41107231/article/details/115874974&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring-cloud-alibaba/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring-cloud-alibaba/</guid><description>&lt;h1 id="微服务">微服务&lt;/h1>
+&lt;p>各个springboot&lt;/p>
+&lt;h1 id="nacos注册中心">Nacos注册中心&lt;/h1>
+&lt;h4 id="核心功能">核心功能&lt;/h4>
+&lt;p>服务注册：&lt;/p>
+&lt;p>服务心跳：&lt;/p>
+&lt;p>服务同步：&lt;/p>
+&lt;p>服务发现：拿到微服务地址&lt;/p>
+&lt;p>服务调用：&lt;/p>
+&lt;p>服务健康检查：&lt;/p>
+&lt;h2 id="ribbon-负载均衡">Ribbon 负载均衡&lt;/h2>
+&lt;h2 id="feign-优雅地调用远程服务">feign 优雅地调用远程服务&lt;/h2>
+&lt;p>解决的是微服务之间调用问题&lt;/p>
+&lt;h2 id="sentinel-服务容错">sentinel 服务容错&lt;/h2>
+&lt;p>解决服务雪崩等问题&lt;/p>
+&lt;h2 id="服务网关">服务网关&lt;/h2>
+&lt;h3 id="解决的问题">解决的问题&lt;/h3>
+&lt;p>解决客户端访问微服务的问题：&lt;/p>
+&lt;ol>
+&lt;li>维护微服务的多个地址&lt;/li>
+&lt;li>认证 鉴权复杂&lt;/li>
+&lt;li>跨域问题&lt;/li>
+&lt;/ol>
+&lt;p>所谓的API网关，就是指系统的统一入口。对于客服端来说，它封装了应用程序的内部结构，为客户端提供统一服务，一些&lt;strong>与业务本身功能无关&lt;/strong>的&lt;strong>公共逻辑&lt;/strong>可以在这里实现，诸如&lt;strong>认证、鉴权、监控、路由转发&lt;/strong>等等。&lt;/p>
+&lt;h3 id="目前主流的解决方案">目前主流的解决方案&lt;/h3>
+&lt;ul>
+&lt;li>Ngnix+lua&lt;/li>
+&lt;/ul>
+&lt;p>使用nginx的&lt;strong>反向代理和负载均衡&lt;/strong>可实现对api服务器的负载均衡及高可用&lt;/p>
+&lt;p>lua是一种脚本语言,可以来编写一些简单的逻辑, nginx支持lua脚本&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Kong&lt;/p>
+&lt;p>基于Nginx+Lua开发，性能高，稳定，有多个可用的插件(限流、鉴权等等)可以开箱即用。 问题：&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>只支持Http协议；二次开发，自由扩展困难；提供管理API，缺乏更易用的管控、配置方式。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Zuul&lt;/p>
+&lt;p>springboot1系列用的，Netflix开源的网关，功能丰富，使用JAVA开发，易于二次开发。Zuul 1.0 有问题：缺乏管控，无法动态配置；依赖组件较多；处理Http请求依赖的是Web容器，性能不如Nginx。&lt;/p>
+&lt;p>Zuul有2.0&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Spring Cloud Gateway&lt;/p>
+&lt;p>Spring公司为了替换Zuul而开发的网关服务，将在下面具体介绍。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>Gateway&lt;/p>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>其实现依赖Netty与WebFlux，不是传统的Servlet编程模型，学习成本高&lt;/li>
+&lt;li>不能将其部署在Tomcat、Jetty等Servlet容器里，只能打成jar包执行&lt;/li>
+&lt;li>需要Spring Boot 2.0及以上的版本，才支持&lt;/li>
+&lt;/ul>
+&lt;h3 id="路由-route">路由 route&lt;/h3>
+&lt;p>路由(Route) 是 gateway 中最基本的组件之一，表示一个具体的路由信息载体。主要定义了下面的几个信息:&lt;/p>
+&lt;p>id，路由标识符，区别于其他 Route，默认是一个随机的UID，最好自己起一个###&lt;/p>
+&lt;p>uri，路由指向的目的地 uri，即客户端请求最终被转发到的微服务。&lt;/p>
+&lt;p>order，用于多个 Route 之间的排序，数值越小排序越靠前，匹配优先级越高。&lt;/p>
+&lt;p>predicate，断言的作用是进行条件判断，只有断言都返回真，才会真正的执行路由。&lt;/p>
+&lt;p>filter，过滤器用于修改请求和响应信息。&lt;/p>
+&lt;h3 id="断言">断言&lt;/h3>
+&lt;p>predicate 用于条件判断，只有全部的断言为真，才实现路由转发。&lt;/p>
+&lt;p>4.5.1 内置路由断言工厂&lt;/p>
+&lt;p>可以自定义断言&lt;/p>
+&lt;h3 id="过滤器">过滤器&lt;/h3>
+&lt;ol>
+&lt;li>作用：在请求过程中，对请求和响应做手脚&lt;/li>
+&lt;li>生命周期：PRE 和 POST&lt;/li>
+&lt;li>分类：局部过滤器（作用在一个路由上），全局过滤器（全部路由是）&lt;/li>
+&lt;/ol>
+&lt;p>PRE生命周期：在被路由之前调用，跨域实现验证身份，集群。&lt;/p>
+&lt;p>POST生命周期：可以添加标准的Header，收集统计信息。&lt;/p>
+&lt;h4 id="局部过滤器-gateaway">局部过滤器 GateAway&lt;/h4>
+&lt;p>内置有很多，可以自定义&lt;/p>
+&lt;h4 id="全局过滤器">全局过滤器&lt;/h4>
+&lt;h4 id="网关限流">网关限流&lt;/h4>
+&lt;p>用sentinel&lt;/p>
+&lt;h2 id="mq消息队列">MQ消息队列&lt;/h2>
+&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.jianshu.com/p/38d247f02724
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="安全">安全&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/qq_37023928/article/details/116777630
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="解决前后端分离的跨域问题">解决前后端分离的跨域问题&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.yisu.com/zixun/606000.html
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="创建test类注解">创建Test类注解&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@RunWith(SpringJUnit4ClassRunner.class)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">@SpringBootTest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">依赖
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-boot-test&amp;lt;/artifactId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="开启services">开启services&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Views -&amp;gt; Tool Windows -&amp;gt; Services
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="spring容器中找不到servletwebserverfactory类出现的异常">&lt;strong>Spring容器中找不到ServletWebServerFactory类出现的异常&lt;/strong>&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://cloud.tencent.com/developer/article/1893349
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</guid><description>&lt;h2 id="实体类命名">实体类命名&lt;/h2>
+&lt;p>1.分层领域模型规约：&lt;/p>
+&lt;pre>&lt;code>• DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。
+• DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。
+• BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。
+• AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。
+• VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。
+• POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。
+• Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。
+&lt;/code>&lt;/pre>
+&lt;p>2.领域模型命名规约：&lt;/p>
+&lt;pre>&lt;code>• 数据对象：xxxDO，xxx即为数据表名。
+• 数据传输对象：xxxDTO，xxx为业务领域相关的名称。
+• 展示对象：xxxVO，xxx一般为网页名称。 • POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。
+&lt;/code>&lt;/pre>
+&lt;h1 id="restful-接口风格">Restful 接口风格&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid><description>&lt;p>jar包启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M jar包名.jar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>nacos启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sh /home/tmp/nacos/bin/startup.sh -m standalone
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>服务器启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /home/mind_wings
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-user-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-timetable-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M -noverify api-gateway-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出现过的问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">api-gateway 启动失败
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/crxk_/article/details/103196146
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>

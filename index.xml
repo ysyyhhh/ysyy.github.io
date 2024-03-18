@@ -6031,7 +6031,11 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;h2 id="大语言模型">大语言模型&lt;/h2>
 &lt;h3 id="gpt">GPT&lt;/h3>
 &lt;h3 id="bert">BERT&lt;/h3>
-&lt;p>&lt;a href="https://www.zhihu.com/tardis/zm/art/607605399?source_id=1003" target="_blank" rel="noopener">BERT vs GPT&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
+&lt;p>&lt;a href="https://www.zhihu.com/tardis/zm/art/607605399?source_id=1003" target="_blank" rel="noopener">BERT vs GPT&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E5%91%BD%E4%BB%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E5%91%BD%E4%BB%A4/</guid><description>&lt;h1 id="linux命令">Linux命令&lt;/h1>
+&lt;h2 id="常用命令">常用命令&lt;/h2>
+&lt;h2 id="qa">QA&lt;/h2>
+&lt;p>文件过滤用什么
+grep?&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
 &lt;h4 id="epoll底层实现">epoll底层实现&lt;/h4>
 &lt;p>epoll是Linux内核提供的一种高效的I/O多路复用机制，其底层实现主要包括以下几个部分：&lt;/p>
 &lt;ol>
@@ -9126,7 +9130,15 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;li>提⾼I/O速度；&lt;/li>
 &lt;li>将独占设备改为共享设备；&lt;/li>
 &lt;li>实现了虚拟设备功能；&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/mysql/</guid><description>&lt;h1 id="mysql">MySQL&lt;/h1>
+&lt;p>39.Mysql的存储引擎有什么
+40.Innodb的特性
+41.Mysql有几种锁
+42.怎么避免锁全表
+43.Insert into和replace into有什么区别
+44.Union和union all的区别
+45.常用的几种连接
+46.Join和leftjoin什么区别&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
 &lt;h2 id="redis基础知识">Redis基础知识：&lt;/h2>
 &lt;h3 id="redis是什么有什么用">Redis是什么？有什么用？&lt;/h3>
 &lt;p>Redis是一个开源的内存数据结构存储系统。&lt;/p>
@@ -9362,7 +9374,7 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
 &lt;h3 id="列数据库是什么">&lt;strong>列数据库是什么&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>列数据库&lt;/strong>是将传统的表格形式拆分为单列存储，&lt;strong>存储方式&lt;/strong>是列数据库与传统数据库的最大差别。这个差别同时&lt;strong>带给了列数据库高效的查询性能&lt;/strong>。&lt;/p>
 &lt;p>即每一列的数据的存储在一个连续空间的,且有序,因此只要找到了主键在第几个位置,就可以快速找到其他属性的元素.&lt;/p>
@@ -13545,6 +13557,25 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lower_bound&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">cmp&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="思维题">思维题&lt;/h1>
 &lt;h4 id="小球称重问题">小球称重问题&lt;/h4>
+&lt;p>8个小球，其中1个偏重，1个天平，要秤几次才能找到重的球？&lt;/p>
+&lt;p>2次&lt;/p>
+&lt;ul>
+&lt;li>两边各放3个
+&lt;ul>
+&lt;li>如果相同重
+&lt;ul>
+&lt;li>剩下两个第二次必测得出&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果其中第一次其中一边重的话
+&lt;ul>
+&lt;li>就把那3个挑两个出来&lt;/li>
+&lt;li>如果一样重剩下那个就是重 否则直接就测出来&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h1 id="np问题">NP问题&lt;/h1>
 &lt;h2 id="集合覆盖问题">集合覆盖问题&lt;/h2>
 &lt;h1 id="杂项">杂项&lt;/h1>
@@ -13574,7 +13605,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;p>做n次贪心，总时间复杂度是n^2logn&lt;/p>
 &lt;p>给出一无序数组 求所有长度大于等于k的连续子序列的中位数的最大值 定义中位数为第&lt;a href="%e5%90%91%e4%b8%8a%e5%8f%96%e6%95%b4">l/2&lt;/a>(l为数组长度)个数&lt;/p>
 &lt;p>二分答案，从小到大排序后二分，选择X为中位数。判断是否有大于等于X的中位数满足条件。&lt;/p>
-&lt;p>预处理数组为 -1 ， 0 ， 1（小于X，等于X，大于X），On跑一遍找是否有长度大于K的和大于等于0。 求前缀和并维护最小前缀和即可。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E7%BC%93%E5%AD%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E7%BC%93%E5%AD%98/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/rpc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/rpc/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="经典问题">经典问题&lt;/h2>
+&lt;p>预处理数组为 -1 ， 0 ， 1（小于X，等于X，大于X），On跑一遍找是否有长度大于K的和大于等于0。 求前缀和并维护最小前缀和即可。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%90%9C%E7%B4%A2%E5%BC%95%E6%93%8E/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E7%BC%93%E5%AD%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E4%B8%AD%E9%97%B4%E4%BB%B6/%E7%BC%93%E5%AD%98/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="经典问题">经典问题&lt;/h2>
 &lt;p>拜占庭将军问题
 描述： 一组将军围攻一座城市，他们需要达成一致的决策，但是其中一些将军可能是叛徒，他们会向其他将军发送错误的信息。这个问题的目标是找到一种算法，使得所有忠诚的将军能够达成一致的决策，即使有叛徒存在。
 经典设置：&lt;/p>
@@ -13585,7 +13616,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;li>叛徒将军可以发送错误的消息。&lt;/li>
 &lt;li>总共有m个将军，其中n个是忠诚的，m-n个是叛徒。&lt;/li>
 &lt;li>问题的目标是找到一种算法，使得所有忠诚的将军能够达成一致的决策，即使有叛徒存在。&lt;/li>
-&lt;/ol></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E8%AE%A1%E7%AE%97/</guid><description>&lt;h1 id="分布式计算">分布式计算&lt;/h1>
+&lt;/ol></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</guid><description>&lt;h1 id="分布式计算">分布式计算&lt;/h1>
 &lt;ul>
 &lt;li>MapReduce&lt;/li>
 &lt;li>Spark&lt;/li>
@@ -13593,7 +13624,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;/ul>
 &lt;h2 id="mapreduce">MapReduce&lt;/h2>
 &lt;p>MapReduce是一种编程模型，用于处理大规模数据集的并行计算。它由两个主要阶段组成：Map阶段和Reduce阶段。在Map阶段，输入数据集被划分为多个独立的数据块，然后由Map函数处理。在Reduce阶段，Map阶段的输出被分组，然后由Reduce函数处理。&lt;/p>
-&lt;p>相关论文：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
+&lt;p>相关论文：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
 &lt;h2 id="基础">基础&lt;/h2>
 &lt;p>请求报文结构&lt;/p>
 &lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
@@ -15696,7 +15727,7 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Field&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">field&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">clazz&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getDeclaredField&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;name&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 修改属性的值&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">filed&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">setAccessible&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kc">true&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">filed&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;Tom&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">filed&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">user&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;Tom&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 获取类的方法&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Method&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">methods&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">clazz&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getDeclaredMethods&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
@@ -15933,7 +15964,7 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>(a, b) -&amp;gt; a + b&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</guid><description>&lt;h1 id="java集合体系">Java集合体系&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description>&lt;h1 id="面向对象">面向对象&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E9%9B%86%E5%90%88/</guid><description>&lt;h1 id="java集合体系">Java集合体系&lt;/h1>
 &lt;p>Java 集合， 也叫作容器，主要是由两大接口派生而来：一个是 Collection接口，主要用于存放单一元素；另一个是 Map 接口，主要用于存放键值对。对于Collection 接口，下面又有三个主要的子接口：List、Set 和 Queue。&lt;/p>
 &lt;p>
 &lt;figure >
@@ -16186,12 +16217,12 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>符号引用常量池：用于存储类、方法、字段等符号引用。&lt;/li>
 &lt;li>运行时常量池：用于存储在类加载时解析的常量池信息，包括字面量常量池和符号引用常量池中的内容。&lt;/li>
 &lt;/ol>
-&lt;p>使用常量池的主要目的是为了提高程序的性能和减少内存的占用。由于常量池中的常量是唯一的，因此可以避免重复创建相同的常量对象，从而减少内存的占用。同时，由于常量池中的常量是在编译期间就确定的，因此可以在运行时直接使用，避免了重复计算和创建对象的开销，提高了程序的性能。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;h5 id="service层的返回值">Service层的返回值&lt;/h5>
+&lt;p>使用常量池的主要目的是为了提高程序的性能和减少内存的占用。由于常量池中的常量是唯一的，因此可以避免重复创建相同的常量对象，从而减少内存的占用。同时，由于常量池中的常量是在编译期间就确定的，因此可以在运行时直接使用，避免了重复计算和创建对象的开销，提高了程序的性能。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/code%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/</guid><description>&lt;h5 id="service层的返回值">Service层的返回值&lt;/h5>
 &lt;p>service 做校验，如果非法，直接抛异常 + 全局异常处理&lt;/p>
 &lt;p>controller 正常就是组合 service ，返回前端需要的数据。&lt;/p>
 &lt;p>java异常效率低下是因为抛出异常会遍历所有涉及堆栈，具体代码在基类Throwable的fillInStackTrace()方法里。但其实可以通过在自定义异常中重写fillInStackTrace()来大幅度提高异常效率。&lt;/p>
 &lt;p>&lt;a href="https://segmentfault.com/q/1010000020840854" target="_blank" rel="noopener">https://segmentfault.com/q/1010000020840854&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://blog.csdn.net/qq_41107231/article/details/115874974" target="_blank" rel="noopener">https://blog.csdn.net/qq_41107231/article/details/115874974&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring-cloud-alibaba/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring-cloud-alibaba/</guid><description>&lt;h1 id="微服务">微服务&lt;/h1>
+&lt;p>&lt;a href="https://blog.csdn.net/qq_41107231/article/details/115874974" target="_blank" rel="noopener">https://blog.csdn.net/qq_41107231/article/details/115874974&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring-cloud-alibaba/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring-cloud-alibaba/</guid><description>&lt;h1 id="微服务">微服务&lt;/h1>
 &lt;p>各个springboot&lt;/p>
 &lt;h1 id="nacos注册中心">Nacos注册中心&lt;/h1>
 &lt;h4 id="核心功能">核心功能&lt;/h4>
@@ -16271,7 +16302,303 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;h4 id="网关限流">网关限流&lt;/h4>
 &lt;p>用sentinel&lt;/p>
 &lt;h2 id="mq消息队列">MQ消息队列&lt;/h2>
-&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h4 id="介绍一下springboot">介绍一下springboot&lt;/h4>
+&lt;p>一般用于请求加快&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.jianshu.com/p/38d247f02724
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="安全">安全&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/qq_37023928/article/details/116777630
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="解决前后端分离的跨域问题">解决前后端分离的跨域问题&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.yisu.com/zixun/606000.html
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="创建test类注解">创建Test类注解&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@RunWith(SpringJUnit4ClassRunner.class)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">@SpringBootTest
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">依赖
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-boot-test&amp;lt;/artifactId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="开启services">开启services&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Views -&amp;gt; Tool Windows -&amp;gt; Services
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="spring容器中找不到servletwebserverfactory类出现的异常">&lt;strong>Spring容器中找不到ServletWebServerFactory类出现的异常&lt;/strong>&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://cloud.tencent.com/developer/article/1893349
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</guid><description>&lt;h2 id="实体类命名">实体类命名&lt;/h2>
+&lt;p>1.分层领域模型规约：&lt;/p>
+&lt;pre>&lt;code>• DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。
+• DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。
+• BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。
+• AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。
+• VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。
+• POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。
+• Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。
+&lt;/code>&lt;/pre>
+&lt;p>2.领域模型命名规约：&lt;/p>
+&lt;pre>&lt;code>• 数据对象：xxxDO，xxx即为数据表名。
+• 数据传输对象：xxxDTO，xxx为业务领域相关的名称。
+• 展示对象：xxxVO，xxx一般为网页名称。 • POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。
+&lt;/code>&lt;/pre>
+&lt;h1 id="restful-接口风格">Restful 接口风格&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/3.18%E5%89%8D/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid><description>&lt;p>jar包启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M jar包名.jar
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>nacos启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sh /home/tmp/nacos/bin/startup.sh -m standalone
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>服务器启动&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /home/mind_wings
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-user-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-timetable-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M -noverify api-gateway-1.0-SNAPSHOT.jar &amp;amp;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出现过的问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">api-gateway 启动失败
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/crxk_/article/details/103196146
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</guid><description>&lt;h1 id="spring-aop">Spring AOP&lt;/h1>
+&lt;h2 id="什么是aop">什么是AOP&lt;/h2>
+&lt;p>AOP（Aspect-Oriented Programming）面向切面编程，是一种编程范式，它的主要目的是提高代码的模块化程度，使得代码更加易于维护和扩展。&lt;/p>
+&lt;p>将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。&lt;/p>
+&lt;p>Manager层的事务管理、日志管理、权限控制等功能，都是与业务逻辑无关的，但是却是业务逻辑所必须的，这些功能可以通过AOP来实现。&lt;/p>
+&lt;p>AOP的实现方式有两种：动态代理和CGLIB字节码增强。&lt;/p>
+&lt;ul>
+&lt;li>如果目标对象实现了接口，Spring就会使用JDK的动态代理&lt;/li>
+&lt;li>如果目标对象没有实现接口，Spring就会使用CGLIB字节码增强&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringAOP/AOP%20Process.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="切面和filter什么区别">切面和filter什么区别&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</guid><description>&lt;p>Spring IOC&lt;/p>
+&lt;p>什么是IOC&lt;/p>
+&lt;ul>
+&lt;li>Inversion of Control 控制反转&lt;/li>
+&lt;li>控制权由程序员转交给了Spring容器，由Spring容器来实例化对象，而不是由程序员来实例化对象&lt;/li>
+&lt;/ul>
+&lt;p>控制：对象创建（实例化、管理）的控制权
+反转：由程序员转交给了外部环境（Spring，IOC容器）&lt;/p>
+&lt;p>当我们需要创建一个对象时，只需要配置好配置文件/注解&lt;/p>
+&lt;h2 id="spring-ioc容器">Spring IOC容器&lt;/h2>
+&lt;p>IOC容器是Map类型的对象，存储了所有的bean对象，key是bean的id，value是bean对象&lt;/p>
+&lt;p>两种配置Bean的方式：&lt;/p>
+&lt;ul>
+&lt;li>XML配置&lt;/li>
+&lt;li>注解配置&lt;/li>
+&lt;/ul>
+&lt;h2 id="spring-bean">Spring Bean&lt;/h2>
+&lt;p>Bean是被IoC容器管理的对象，Bean是一个Java对象，由Spring容器实例化、装配、管理&lt;/p>
+&lt;h2 id="声明为bean的注解">声明为Bean的注解&lt;/h2>
+&lt;p>@Component&lt;/p>
+&lt;ul>
+&lt;li>用于标注一个普通的bean&lt;/li>
+&lt;li>不区分是哪个层的&lt;/li>
+&lt;/ul>
+&lt;p>@Repository&lt;/p>
+&lt;ul>
+&lt;li>用于标注一个DAO层的bean&lt;/li>
+&lt;li>但很多时候都不用这种方式&lt;/li>
+&lt;li>一般直接通过MapperScan注解扫描mapper接口（在mybatis中）&lt;/li>
+&lt;/ul>
+&lt;p>@Service&lt;/p>
+&lt;ul>
+&lt;li>用于标注一个Service层的bean&lt;/li>
+&lt;/ul>
+&lt;p>@Controller&lt;/p>
+&lt;ul>
+&lt;li>用于标注一个Controller层的bean&lt;/li>
+&lt;/ul>
+&lt;p>@Component和@Bean的区别&lt;/p>
+&lt;ul>
+&lt;li>@Component是用于标注一个普通的bean，作用于类；而@Bean是用于标注一个方法，作用于方法&lt;/li>
+&lt;li>@Component是被Spring扫描到之后（@ComponentScan），自动注册到Spring容器中；而@Bean是在配置类中，手动注册到Spring容器中&lt;/li>
+&lt;li>@Bean自定义性强，比如在引用第三方库的时候，可以使用@Bean注解，将第三方库的对象注册到Spring容器中&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Configuration&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AppConfig&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transferService&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferServiceImpl&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;bean&lt;/span> &lt;span class="na">id=&lt;/span>&lt;span class="s">&amp;#34;transferService&amp;#34;&lt;/span> &lt;span class="na">class=&lt;/span>&lt;span class="s">&amp;#34;com.example.TransferServiceImpl&amp;#34;&lt;/span>&lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>不能通过@Component实现的例子&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Configuration&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AppConfig&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transferService&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferServiceImpl&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transferService2&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransferServiceImpl&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>为什么不能使用@Component&lt;/p>
+&lt;ul>
+&lt;li>因为@Component是用于标注一个普通的bean，作用于类；而@Bean是用于标注一个方法，作用于方法&lt;/li>
+&lt;/ul>
+&lt;h2 id="注入bean的注解">注入Bean的注解&lt;/h2>
+&lt;p>Spring内置的@Autowired注解
+JDK内置的@Resource注解和@Inject注解&lt;/p>
+&lt;p>@Autowired和@Resource的区别&lt;/p>
+&lt;ul>
+&lt;li>AutoWired的默认是按照类型注入
+&lt;ul>
+&lt;li>如果有多个类型一样的bean，会变成按照名称注入&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Resource默认是按照名称注入，如果没有指定name属性，会按照类型注入&lt;/li>
+&lt;li>如果存在多个实现类, Autowired需要@Qualifier指定具体的实现类，而Resource需要name指定具体的实现类&lt;/li>
+&lt;li>@Autowired 支持在构造函数、方法、字段和参数上使用。&lt;/li>
+&lt;li>@Resource 主要用于字段和方法上的注入，&lt;strong>不支持在构造函数或参数上使用&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>SmsService 接口有两个实现类: SmsServiceImpl1和 SmsServiceImpl2，且它们都已经被 Spring 容器所管理&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 报错，byName 和 byType 都无法匹配到 bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 正确注入 SmsServiceImpl1 对象对应的 bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsServiceImpl1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 正确注入 SmsServiceImpl1 对象对应的 bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// smsServiceImpl1 就是我们上面所说的名称&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Qualifier&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;smsServiceImpl1&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 报错，byName 和 byType 都无法匹配到 bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Resource&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 正确注入 SmsServiceImpl1 对象对应的 bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Resource&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsServiceImpl1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 正确注入 SmsServiceImpl1 对象对应的 bean（比较推荐这种方式）&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Resource&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;smsServiceImpl1&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="怎么动态获取spring容器里面的bean从哪个类中获取">怎么动态获取spring容器里面的bean，从哪个类中获取&lt;/h2>
+&lt;p>从ApplicationContext中获取Bean&lt;/p>
+&lt;h2 id="bean的作用域">Bean的作用域&lt;/h2>
+&lt;ul>
+&lt;li>singleton：单例模式，一个Spring容器中只有一个bean实例，默认值&lt;/li>
+&lt;li>prototype：原型模式，每次从容器中获取bean时，都会创建一个新的实例&lt;/li>
+&lt;li>request：每次HTTP请求都会创建一个新的bean，该bean仅在当前HTTP request内有效&lt;/li>
+&lt;li>session：每次HTTP请求都会创建一个新的bean，该bean仅在当前HTTP session内有效&lt;/li>
+&lt;li>global session：全局session作用域，仅在基于portlet的Web应用中才有意义，Spring5废弃&lt;/li>
+&lt;li>application：全局作用域，Spring5废弃&lt;/li>
+&lt;li>websocket：全局作用域，Spring5废弃&lt;/li>
+&lt;/ul>
+&lt;p>配置Bean的作用域&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-xml" data-lang="xml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">&amp;lt;bean&lt;/span> &lt;span class="na">id=&lt;/span>&lt;span class="s">&amp;#34;user&amp;#34;&lt;/span> &lt;span class="na">class=&lt;/span>&lt;span class="s">&amp;#34;com.example.User&amp;#34;&lt;/span> &lt;span class="na">scope=&lt;/span>&lt;span class="s">&amp;#34;prototype&amp;#34;&lt;/span>&lt;span class="nt">/&amp;gt;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Scope&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;prototype&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">User&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="bean的线程安全问题">Bean的线程安全问题&lt;/h2>
+&lt;p>与作用域有关&lt;/p>
+&lt;ul>
+&lt;li>singleton：线程不安全, IoC容器中只有一个bean实例，多个线程共享一个bean实例, 如果bean中有状态，会出现线程安全问题&lt;/li>
+&lt;li>prototype：线程安全, 每次从容器中获取bean时，都会创建一个新的实例&lt;/li>
+&lt;li>其他的都是线程安全的&lt;/li>
+&lt;/ul>
+&lt;p>解决办法:&lt;/p>
+&lt;ul>
+&lt;li>不要在bean中定义状态&lt;/li>
+&lt;li>使用ThreadLocal(推荐)&lt;/li>
+&lt;/ul>
+&lt;h2 id="bean的生命周期">Bean的生命周期&lt;/h2>
+&lt;p>Bean的生命周期包括初始化和销毁两个阶段&lt;/p>
+&lt;p>Bean的初始化&lt;/p>
+&lt;ul>
+&lt;li>通过构造方法创建bean&lt;/li>
+&lt;li>为bean的属性设置值 set()&lt;/li>
+&lt;li>如果实现了*.Aware接口，调用相应的方法
+&lt;ul>
+&lt;li>BeanNameAware&lt;/li>
+&lt;li>BeanFactoryAware&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果有相应的初始化方法就调用
+&lt;ul>
+&lt;li>如果有Spring 容器相关BeanPostProcessor，调用postProcessBeforeInitialization方法&lt;/li>
+&lt;li>如果有InitializingBean，调用afterPropertiesSet方法&lt;/li>
+&lt;li>如果有init-method属性，调用init-method方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>bean初始化完成&lt;/li>
+&lt;/ul>
+&lt;p>Bean的销毁&lt;/p>
+&lt;ul>
+&lt;li>调用bean的销毁方法
+&lt;ul>
+&lt;li>如果实现了 DisposableBean 接口，调用destroy方法&lt;/li>
+&lt;li>如果有destroy-method属性，调用destroy-method方法&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>bean销毁完成&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringIOC/Bean%e7%9a%84%e5%a3%b0%e6%98%8e%e5%91%a8%e6%9c%9f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="spring-基础">Spring 基础&lt;/h1>
+&lt;h3 id="spring常见的一些模块">Spring常见的一些模块&lt;/h3>
+&lt;p>Spring 支持&lt;/p>
+&lt;ul>
+&lt;li>IoC（Inversion of Control:控制反转）&lt;/li>
+&lt;li>AOP(Aspect-Oriented Programming:面向切面编程)&lt;/li>
+&lt;/ul>
+&lt;p>Spring模块：&lt;/p>
+&lt;ul>
+&lt;li>Spring Core Container：核心容器， 提供IoC容器的基本功能
+&lt;ul>
+&lt;li>spring-core：Spring 框架基本的核心工具类。&lt;/li>
+&lt;li>spring-beans：提供对 bean 的创建、配置和管理等功能的支持。&lt;/li>
+&lt;li>spring-context：提供对国际化、事件传播、资源加载等功能的支持。&lt;/li>
+&lt;li>spring-expression：提供对表达式语言（Spring Expression Language） SpEL 的支持，只依赖于 core 模块，不依赖于其他模块，可以单独使用。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Spring AOP：提供面向切面编程的功能
+&lt;ul>
+&lt;li>spring-aop：提供对 AOP 的支持。&lt;/li>
+&lt;li>spring-aspects：提供对 AspectJ 的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Spring Data Access/Integration：提供对数据库操作、事务管理、消息处理等功能的支持
+&lt;ul>
+&lt;li>spring-jdbc：提供对 JDBC 的支持。&lt;/li>
+&lt;li>spring-tx：提供对事务管理的支持。&lt;/li>
+&lt;li>spring-orm：提供对 ORM 工具的支持。&lt;/li>
+&lt;li>spring-oxm：提供对 Object/XML 映射的支持。&lt;/li>
+&lt;li>spring-jms：提供对 JMS 的支持。&lt;/li>
+&lt;li>spring-web：提供对 Web 应用的支持。&lt;/li>
+&lt;li>spring-webmvc：提供对 Web MVC 的支持。&lt;/li>
+&lt;li>spring-websocket：提供对 Web Socket 的支持。&lt;/li>
+&lt;li>spring-webflux：提供对 Web Flux 的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Spring Web：提供对 Web 应用的支持
+&lt;ul>
+&lt;li>spring-web：提供对 Web 应用的支持。&lt;/li>
+&lt;li>spring-webmvc：提供对 Web MVC 的支持。&lt;/li>
+&lt;li>spring-websocket：提供对 Web Socket 的支持。&lt;/li>
+&lt;li>spring-webflux：提供对 Web Flux 的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Spring Test：提供对单元测试和集成测试的支持
+&lt;ul>
+&lt;li>spring-test：提供对测试的支持。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="spring-spring-mvc-spring-boot的关系">Spring Spring MVC Spring Boot的关系&lt;/h3>
+&lt;p>Spring是一个开源框架
+Spring MVC是Spring框架的一个模块
+Spring Boot是Spring框架的一个子项目。&lt;/p>
+&lt;ul>
+&lt;li>简化了Spring MVC的配置&lt;/li>
+&lt;/ul>
+&lt;h4 id="介绍一下springboot">介绍一下springboot&lt;/h4>
 &lt;p>简化spring应用的创建及部署&lt;/p>
 &lt;p>Spring Boot通过自动配置功能，降低了复杂性，同时支持基于JVM的多种开源框架，可以缩短开发时间，使开发更加简单和高效。&lt;/p>
 &lt;h4 id="3mvc的dispatcherservlet的分派原理">3.mvc的dispatcherservlet的分派原理&lt;/h4>
@@ -16323,57 +16650,7 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>
 &lt;p>&lt;code>@RESTController&lt;/code> 等同于&lt;code>@Controller&lt;/code>+&lt;code>@ResponseBody&lt;/code>在类上写了这个注解，标识这个类的所有方法只返回数据，而不进行视图跳转&lt;/p>
 &lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%B8%B8%E7%94%A8%E4%BB%A3%E7%A0%81/</guid><description>&lt;h5 id="jpa注解">JPA注解&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.jianshu.com/p/38d247f02724
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="安全">安全&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/qq_37023928/article/details/116777630
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="解决前后端分离的跨域问题">解决前后端分离的跨域问题&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://www.yisu.com/zixun/606000.html
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="创建test类注解">创建Test类注解&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">@RunWith(SpringJUnit4ClassRunner.class)
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">@SpringBootTest
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">依赖
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework.boot&amp;lt;/groupId&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-boot-test&amp;lt;/artifactId&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;dependency&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;groupId&amp;gt;org.springframework&amp;lt;/groupId&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;artifactId&amp;gt;spring-test&amp;lt;/artifactId&amp;gt;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &amp;lt;/dependency&amp;gt;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="开启services">开启services&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Views -&amp;gt; Tool Windows -&amp;gt; Services
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="spring容器中找不到servletwebserverfactory类出现的异常">&lt;strong>Spring容器中找不到ServletWebServerFactory类出现的异常&lt;/strong>&lt;/h5>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">https://cloud.tencent.com/developer/article/1893349
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/%E4%BB%A3%E7%A0%81%E9%A3%8E%E6%A0%BC/</guid><description>&lt;h2 id="实体类命名">实体类命名&lt;/h2>
-&lt;p>1.分层领域模型规约：&lt;/p>
-&lt;pre>&lt;code>• DO（ Data Object）：与数据库表结构一一对应，通过DAO层向上传输数据源对象。
-• DTO（ Data Transfer Object）：数据传输对象，Service或Manager向外传输的对象。
-• BO（ Business Object）：业务对象。 由Service层输出的封装业务逻辑的对象。
-• AO（ Application Object）：应用对象。 在Web层与Service层之间抽象的复用对象模型，极为贴近展示层，复用度不高。
-• VO（ View Object）：显示层对象，通常是Web向模板渲染引擎层传输的对象。
-• POJO（ Plain Ordinary Java Object）：在本手册中， POJO专指只有setter/getter/toString的简单类，包括DO/DTO/BO/VO等。
-• Query：数据查询对象，各层接收上层的查询请求。 注意超过2个参数的查询封装，禁止使用Map类来传输。
-&lt;/code>&lt;/pre>
-&lt;p>2.领域模型命名规约：&lt;/p>
-&lt;pre>&lt;code>• 数据对象：xxxDO，xxx即为数据表名。
-• 数据传输对象：xxxDTO，xxx为业务领域相关的名称。
-• 展示对象：xxxVO，xxx一般为网页名称。 • POJO是DO/DTO/BO/VO的统称，禁止命名成xxxPOJO。
-&lt;/code>&lt;/pre>
-&lt;h1 id="restful-接口风格">Restful 接口风格&lt;/h1></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/%E6%9C%8D%E5%8A%A1%E7%AB%AF/</guid><description>&lt;p>jar包启动&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M jar包名.jar
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>nacos启动&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">sh /home/tmp/nacos/bin/startup.sh -m standalone
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>服务器启动&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">cd /home/mind_wings
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-user-1.0-SNAPSHOT.jar &amp;amp;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M service-timetable-1.0-SNAPSHOT.jar &amp;amp;
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nohup java -jar -Xms128M -Xmx128M -XX:PermSize=128M -XX:MaxPermSize=128M -noverify api-gateway-1.0-SNAPSHOT.jar &amp;amp;
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>出现过的问题&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">api-gateway 启动失败
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">https://blog.csdn.net/crxk_/article/details/103196146
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
 &lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>

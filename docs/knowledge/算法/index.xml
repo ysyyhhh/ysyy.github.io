@@ -364,6 +364,25 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lower_bound&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">cmp&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="思维题">思维题&lt;/h1>
 &lt;h4 id="小球称重问题">小球称重问题&lt;/h4>
+&lt;p>8个小球，其中1个偏重，1个天平，要秤几次才能找到重的球？&lt;/p>
+&lt;p>2次&lt;/p>
+&lt;ul>
+&lt;li>两边各放3个
+&lt;ul>
+&lt;li>如果相同重
+&lt;ul>
+&lt;li>剩下两个第二次必测得出&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果其中第一次其中一边重的话
+&lt;ul>
+&lt;li>就把那3个挑两个出来&lt;/li>
+&lt;li>如果一样重剩下那个就是重 否则直接就测出来&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h1 id="np问题">NP问题&lt;/h1>
 &lt;h2 id="集合覆盖问题">集合覆盖问题&lt;/h2>
 &lt;h1 id="杂项">杂项&lt;/h1>
