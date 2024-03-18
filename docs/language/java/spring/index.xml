@@ -1,4 +1,148 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/spring/index.xml" rel="self" type="application/rss+xml"/><description>spring</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>spring</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</guid><description>&lt;h1 id="spring-aop">Spring AOP&lt;/h1>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>spring | Ysyy's</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link><atom:link href="https://ysyyhhh.github.io/docs/language/java/spring/index.xml" rel="self" type="application/rss+xml"/><description>spring</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>spring</title><link>https://ysyyhhh.github.io/docs/language/java/spring/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/mybatis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/mybatis/</guid><description>&lt;h1 id="mybatis">MyBatis&lt;/h1>
+&lt;h2 id="mybatis-概念">MyBatis 概念&lt;/h2>
+&lt;p>MyBatis 是一个优秀的持久层框架，它对 JDBC 的操作数据库的过程进行封装，使开发者只需要关注 SQL 本身，而不需要花费精力去处理例如注册驱动、创建连接、创建 Statement、手动设置参数、结果集检索等JDBC繁杂的过程代码。&lt;/p>
+&lt;p>与 MyBatis Plus 的区别：&lt;/p>
+&lt;ul>
+&lt;li>MyBatis 是一个持久层框架，它是对 JDBC 的封装，它的目的是为了简化 JDBC 的操作。&lt;/li>
+&lt;li>MyBatis Plus 是在 MyBatis 的基础上进行了功能的增强，它是一个持久层框架，它的目的是为了简化开发。&lt;/li>
+&lt;li>MyBatis Plus 多了一些功能，例如：分页、逻辑删除、性能分析等。&lt;/li>
+&lt;/ul>
+&lt;h2 id="语法">语法&lt;/h2>
+&lt;h3 id="-与--的区别">#{} 与 ${} 的区别&lt;/h3>
+&lt;ul>
+&lt;li>#{} 是预编译处理，${} 是字符串替换。&lt;/li>
+&lt;li>#{} 是将传入的数据当做一个字符串，会在#{}所在的位置加一个占位符?，然后使用 PreparedStatement 的 setString() 方法来设置?的值。&lt;/li>
+&lt;li>${} 是将传入的数据直接拼接在 SQL 中，会导致 SQL 注入的问题。&lt;/li>
+&lt;/ul>
+&lt;h2 id="mybatis-的执行流程">MyBatis 的执行流程&lt;/h2>
+&lt;ol>
+&lt;li>加载配置文件&lt;/li>
+&lt;li>创建 SqlSessionFactory 工厂&lt;/li>
+&lt;li>创建 SqlSession&lt;/li>
+&lt;li>执行 SQL&lt;/li>
+&lt;li>关闭 SqlSession&lt;/li>
+&lt;li>关闭 SqlSessionFactory&lt;/li>
+&lt;li>释放资源&lt;/li>
+&lt;/ol>
+&lt;h2 id="xml中的标签">xml中的标签&lt;/h2>
+&lt;p>sql相关: insert 、 update delete、select
+参数相关: parameterMap、parameterType、resultMap、resultType
+其他: sql、include、trim、where、set、foreach、if、choose、when、otherwise&lt;/p>
+&lt;h2 id="dao接口的工作原理">Dao接口的工作原理&lt;/h2>
+&lt;p>Dao 接口的工作原理是动态代理，MyBatis 会根据 Dao 接口的方法名和参数类型来生成一个代理对象，代理对象会调用 SqlSession 的方法来执行 SQL 语句。&lt;/p>
+&lt;p>Mapper接口没有实现类， 调用接口方法时，接口全限定名+方法名就是对应的SQL语句的ID，可唯一定位一个MappedStatement对象。&lt;/p>
+&lt;p>Dao接口里的方法可以重载，但Mybatis xml里的ID不允许重复
+重载需要满足的条件：&lt;/p>
+&lt;ul>
+&lt;li>仅有一个无参 和 有参&lt;/li>
+&lt;li>或者， 多个有参方法，但参数数量必须一一对应，使用相同的@Param注解&lt;/li>
+&lt;/ul>
+&lt;p>xml中id，在namespace下唯一，不同namespace下可以有相同的id&lt;/p>
+&lt;h2 id="mybatis-的延迟加载">MyBatis 的延迟加载&lt;/h2>
+&lt;p>MyBatis 的延迟加载是指在需要使用数据时才去查询数据库，而不是在一开始就把所有数据都查询出来。&lt;/p>
+&lt;p>原理是（和Hibernate的延迟加载原理一致）
+使用 CGLIB 创建目标对象的代理对象，当调用目标方法时，进入拦截器方法，比如调用 a.getB().getName() ，拦截器 invoke() 方法发现 a.getB() 是 null 值，那么就会单独发送事先保存好的查询关联 B 对象的 sql，把 B 查询上来，然后调用 a.setB(b)，于是 a 的对象 b 属性就有值了，接着完成 a.getB().getName() 方法的调用。这就是延迟加载的基本原理。&lt;/p>
+&lt;h2 id="批处理">批处理&lt;/h2>
+&lt;p>使用 BatchExecutor 批处理器，可以将多个 SQL 语句一次性发送到数据库执行，减少网络开销。&lt;/p>
+&lt;h2 id="executor">Executor&lt;/h2>
+&lt;p>Executor 是 MyBatis 的执行器，它负责执行 MyBatis 的 SQL 语句，它有三种实现：&lt;/p>
+&lt;ul>
+&lt;li>SimpleExecutor：每执行一次 update 或 select 都会开启一个 Statement 对象，用完立刻关闭 Statement 对象。&lt;/li>
+&lt;li>ReuseExecutor：执行 update 或 select 时，会创建 Statement 对象，用完后不会关闭 Statement 对象，而是放置于 Map&amp;lt;String, Statement&amp;gt; 中，供下一次使用。&lt;/li>
+&lt;li>BatchExecutor：执行 update（没有 select，JDBC 批处理不支持 select），将所有 SQL 都添加到批处理中（addBatch()），等待统一执行（executeBatch()）。&lt;/li>
+&lt;/ul>
+&lt;p>如何选择 Executor：&lt;/p>
+&lt;ul>
+&lt;li>默认情况下，MyBatis 使用 SimpleExecutor。&lt;/li>
+&lt;li>在 MyBatis 的配置文件中可以配置使用哪种 Executor。&lt;/li>
+&lt;li>一般情况下，如果是单线程环境，使用 SimpleExecutor 就可以了。&lt;/li>
+&lt;li>如果是多线程环境，使用 ReuseExecutor。&lt;/li>
+&lt;li>如果是批处理，使用 BatchExecutor。&lt;/li>
+&lt;/ul>
+&lt;h2 id="mybatis-映射枚举类">MyBatis 映射枚举类&lt;/h2>
+&lt;p>MyBatis 3.4.5 之后，MyBatis 支持枚举类型的映射。&lt;/p>
+&lt;h2 id="mybatis-xml文件中-a-include了bb能否定义在a的后面">MyBatis xml文件中 A include了B，B能否定义在A的后面&lt;/h2>
+&lt;p>可以，MyBatis 会先解析所有的 sql 语句，然后再解析所有的 include 标签。&lt;/p>
+&lt;h2 id="mybatis-的一级缓存和二级缓存">MyBatis 的一级缓存和二级缓存&lt;/h2>
+&lt;p>一级缓存是 SqlSession 级别的缓存，当调用 SqlSession 的修改、添加、删除、commit()、close()等方法时，就会清空一级缓存。&lt;/p>
+&lt;p>二级缓存是 Mapper 级别的缓存，多个 SqlSession 可以共用二级缓存，二级缓存是跨 SqlSession 的。&lt;/p>
+&lt;h2 id="mybatis-的缓存机制">MyBatis 的缓存机制&lt;/h2>
+&lt;p>MyBatis 的缓存机制是通过 Cache 接口来实现的，MyBatis 默认使用 PerpetualCache 作为一级缓存，使用 LruCache 作为二级缓存。&lt;/p>
+&lt;h2 id="orm">ORM&lt;/h2>
+&lt;p>ORM（Object-Relational Mapping）对象关系映射，是一种程序设计技术，用于实现面向对象编程语言里不同类型系统的数据之间的转换。&lt;/p>
+&lt;p>MyBatis 是一种半自动化的 ORM 框架，它需要程序员手动编写 SQL 语句，但是不需要程序员手动处理结果集。&lt;/p>
+&lt;p>Hibernate 是一种全自动化的 ORM 框架，它不需要程序员手动编写 SQL 语句，也不需要程序员手动处理结果集。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/netty/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/netty/</guid><description>&lt;h1 id="netty">Netty&lt;/h1>
+&lt;p>Netty是一个异步的、事件驱动的网络应用框架，用于快速开发高性能、高可靠性的网络服务器和客户端程序。&lt;/p>
+&lt;h2 id="io模型">I/O模型&lt;/h2>
+&lt;p>Netty的I/O模型是Reactor模型，Reactor模型是一种事件驱动模型，当有事件发生时，会调用相应的事件处理器进行处理。&lt;/p>
+&lt;p>BIO (Blocking I/O)：同步阻塞I/O模型，一个连接一个线程，即客户端有连接请求时服务端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销。&lt;/p>
+&lt;p>NIO (Non-blocking I/O)：同步非阻塞I/O模型，一个线程处理多个连接，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有I/O请求就进行处理。&lt;/p>
+&lt;p>AIO (Asynchronous I/O)：异步非阻塞I/O模型，AIO引入异步通道的概念，采用了Proactor模式，简化了程序编写，有效的请求才启动线程，它的特点是先由操作系统完成后才通知服务端启动线程去处理，一般适用于连接数较多且连接时间较长的应用。&lt;/p>
+&lt;h2 id="netty的介绍">Netty的介绍&lt;/h2>
+&lt;p>Netty是一个基于NIO的客户、服务器端编程框架，使用Netty可以快速开发网络应用，例如实现一个高性能的协议服务器/客户端。&lt;/p>
+&lt;p>NIO的缺点 &amp;amp;&amp;amp; Netty的价值&lt;/p>
+&lt;p>NIO的编程模型相对底层，对开发人员的要求较高，需要了解Selector、Channel、Buffer等概念，开发工作量和难度较大。
+NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重要问题：粘包和拆包。&lt;/p>
+&lt;p>粘包和拆包&lt;/p>
+&lt;ul>
+&lt;li>粘包：多个小的包粘在一起发送，接收端无法区分&lt;/li>
+&lt;li>拆包：一个大的包被拆分成多个小的包发送，接收端无法区分&lt;/li>
+&lt;/ul>
+&lt;p>Netty优点&lt;/p>
+&lt;ul>
+&lt;li>API使用简单，开发工作量小&lt;/li>
+&lt;li>自带的编解码器，可以很好的解决粘包和拆包问题&lt;/li>
+&lt;li>简单的线程模型，可以处理成千上万的连接&lt;/li>
+&lt;li>自带各种协议栈&lt;/li>
+&lt;li>真正的无连接，无状态，高性能&lt;/li>
+&lt;/ul>
+&lt;p>Netty的应用场景&lt;/p>
+&lt;ul>
+&lt;li>作为RPC框架的网络通信模块&lt;/li>
+&lt;li>实现HTTP服务器，功能包括处理常见的HTTP请求、响应、编解码、文件服务等&lt;/li>
+&lt;li>实现自定义的协议服务器，例如实现一个简单的聊天服务器&lt;/li>
+&lt;li>实现消息推送服务器，例如实现一个简单的即时通讯服务器&lt;/li>
+&lt;/ul>
+&lt;p>使用了Netty的开源项目&lt;/p>
+&lt;ul>
+&lt;li>Dubbo&lt;/li>
+&lt;li>RocketMQ&lt;/li>
+&lt;li>Elasticsearch&lt;/li>
+&lt;li>Zookeeper&lt;/li>
+&lt;li>gRPC&lt;/li>
+&lt;/ul>
+&lt;h2 id="netty的核心组件">Netty的核心组件&lt;/h2>
+&lt;p>Channel：通道，Java NIO中的基础概念，代表一个打开的连接，可执行读取/写入操作。Netty对Channel的所有操作都是非阻塞的。&lt;/p>
+&lt;p>ChannelFuture：Java的Future接口的扩展，代表一个还没有发生的I/O操作。&lt;/p>
+&lt;p>EventLoop：事件循环，一个线程，一个EventLoop可以处理多个Channel，一个Channel只对应一个EventLoop。&lt;/p>
+&lt;p>ChannelHandler：事件处理器，处理I/O事件或者拦截I/O操作，并将其转发到其ChannelPipeline(业务逻辑处理链)中的下一个处理器。&lt;/p>
+&lt;p>ChannelPipeline：事件处理链，负责ChannelHandler的调度和执行。&lt;/p>
+&lt;p>ByteBuf：一个字节容器，Netty对ByteBuffer进行了封装，提供了更加强大和灵活的功能。&lt;/p>
+&lt;h2 id="netty的使用">Netty的使用&lt;/h2>
+&lt;p>Netty的使用主要分为两个部分：服务端和客户端。&lt;/p>
+&lt;h2 id="reactor线程模型">Reactor线程模型&lt;/h2>
+&lt;p>Reactor线程模型是Netty的核心，它是Netty高性能的关键。&lt;/p>
+&lt;p>Reactor线程模型是一种基于事件驱动的设计模式，主要用于处理并发I/O操作。&lt;/p>
+&lt;p>单线程Reactor模型&lt;/p>
+&lt;ul>
+&lt;li>一个线程处理所有的I/O事件，包括接收客户端的连接、读取数据、发送数据等。&lt;/li>
+&lt;li>优点：编程简单，没有线程切换的开销&lt;/li>
+&lt;li>缺点：性能瓶颈，无法充分利用多核CPU&lt;/li>
+&lt;/ul>
+&lt;p>多线程Reactor模型&lt;/p>
+&lt;ul>
+&lt;li>一个线程负责接收客户端的连接，多个线程负责处理I/O事件&lt;/li>
+&lt;li>优点：充分利用多核CPU&lt;/li>
+&lt;li>缺点：编程复杂，需要处理线程同步和数据共享问题
+&lt;ul>
+&lt;li>并发连接数多时存在性能问题&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>主从Reactor模型&lt;/p>
+&lt;ul>
+&lt;li>一组线程负责接收客户端的连接，一组线程负责处理I/O事件&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</guid><description>&lt;h1 id="spring-aop">Spring AOP&lt;/h1>
 &lt;h2 id="什么是aop">什么是AOP&lt;/h2>
 &lt;p>AOP（Aspect-Oriented Programming）面向切面编程，是一种编程范式，它的主要目的是提高代码的模块化程度，使得代码更加易于维护和扩展。&lt;/p>
 &lt;p>将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。&lt;/p>
@@ -14,7 +158,87 @@
 &lt;div class="w-100" >&lt;img src="img/SpringAOP/AOP%20Process.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
-&lt;h2 id="切面和filter什么区别">切面和filter什么区别&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</guid><description>&lt;p>Spring IOC&lt;/p>
+&lt;p>Spring AOP也集成了AspectJ，可以使用AspectJ的注解来实现AOP。&lt;/p>
+&lt;h2 id="aop的核心概念">AOP的核心概念&lt;/h2>
+&lt;ul>
+&lt;li>Aspect（切面）：横切关注点，即模块化横切关注点的行为。比如日志、事务、权限等 = Advice + Pointcut&lt;/li>
+&lt;li>Joinpoint（连接点）：程序执行的某个特定的点，比如方法的调用、异常的处理等&lt;/li>
+&lt;li>Pointcut（切入点）：匹配连接点的断言，AOP通过切入点定位到连接点&lt;/li>
+&lt;li>Advice（通知）：切面在连接点上执行的动作，分为前置通知、后置通知、环绕通知、异常通知、最终通知&lt;/li>
+&lt;li>Introduction（引介）：在不修改类代码的前提下，为类添加新的方法和属性&lt;/li>
+&lt;li>Target（目标对象）：被代理的对象&lt;/li>
+&lt;li>Weaving（织入）：将切面应用到目标对象并创建新的代理对象的过程&lt;/li>
+&lt;li>Proxy（代理）：被AOP框架创建的对象，用来替换原始对象&lt;/li>
+&lt;/ul>
+&lt;h2 id="spring-aop-和-aspectj">Spring AOP 和 AspectJ&lt;/h2>
+&lt;ul>
+&lt;li>Spring AOP：基于代理的AOP实现，只支持方法级别的连接点&lt;/li>
+&lt;li>AspectJ：基于字节码的AOP实现，支持方法级别和字段级别的连接点&lt;/li>
+&lt;li>Spring AOP 属于运行时增强，AspectJ 属于编译时增强&lt;/li>
+&lt;/ul>
+&lt;p>AspectJ的通知类型:&lt;/p>
+&lt;ul>
+&lt;li>Before：前置通知&lt;/li>
+&lt;li>After：后置通知&lt;/li>
+&lt;li>AfterReturning：返回通知, 在方法返回结果后执行&lt;/li>
+&lt;li>AfterThrowing：异常通知, 在方法抛出异常后执行&lt;/li>
+&lt;li>Around：环绕通知, 在方法执行前后执行&lt;/li>
+&lt;/ul>
+&lt;h2 id="多个切面的执行顺序">多个切面的执行顺序&lt;/h2>
+&lt;ol>
+&lt;li>使用@Order注解, 数值越小优先级越高&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Aspect&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Order&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">LogAspect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// ...&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
+&lt;li>实现Ordered接口, 重写getOrder()方法&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Aspect&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">LogAspect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">implements&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Ordered&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">getOrder&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="切面filterinterceptor">切面、Filter、Interceptor&lt;/h2>
+&lt;ul>
+&lt;li>Filter是Servlet规范中的一部分，是基于URL的，只能在Servlet规范中使用
+&lt;ul>
+&lt;li>作用是对请求进行过滤，可以在请求到达Servlet之前或者响应到达客户端之前进行一些处理&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Interceptor的作用是在请求到达Controller之前或者响应到达客户端之前进行一些处理&lt;/li>
+&lt;li>aspect是AOP的一部分，是基于Java的，可以在任何地方使用
+&lt;ul>
+&lt;li>作用是对方法进行增强，比如事务、日志、权限等&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>执行顺序：过滤器-&amp;gt;拦截器-&amp;gt;切面
+过滤器、拦截器属于请求层面的拦截；切面属于方法层面的拦截&lt;/p>
+&lt;p>实现原理不同&lt;/p>
+&lt;ul>
+&lt;li>Filter是基于函数回调的，依赖于Servlet容器&lt;/li>
+&lt;li>Interceptor是基于反射的，依赖于Spring容器&lt;/li>
+&lt;li>Aspect是基于代理的，依赖于Spring容器&lt;/li>
+&lt;/ul>
+&lt;p>使用范围不同&lt;/p>
+&lt;ul>
+&lt;li>Filter是基于URL的，依赖Tomcat容器&lt;/li>
+&lt;li>Interceptor是基于方法的，是Spring组件，不依赖Tomcat容器，&lt;/li>
+&lt;/ul>
+&lt;p>触发时间不同
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringAOP/%e8%a7%a6%e5%8f%91%e6%97%b6%e9%97%b4.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+请求进入容器后，但在进入servlet之前进行预处理，请求结束是在servlet处理完以后。&lt;/p>
+&lt;p>拦截器 Interceptor 是在请求进入servlet后，在进入Controller之前进行预处理的，Controller 中渲染了对应的视图之后请求结束。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</guid><description>&lt;p>Spring IOC&lt;/p>
 &lt;p>什么是IOC&lt;/p>
 &lt;ul>
 &lt;li>Inversion of Control 控制反转&lt;/li>
@@ -187,8 +411,170 @@ JDK内置的@Resource注解和@Inject注解&lt;/p>
 &lt;div class="flex justify-center ">
 &lt;div class="w-100" >&lt;img src="img/SpringIOC/Bean%e7%9a%84%e5%a3%b0%e6%98%8e%e5%91%a8%e6%9c%9f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
-&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="spring-基础">Spring 基础&lt;/h1>
-&lt;h3 id="spring常见的一些模块">Spring常见的一些模块&lt;/h3>
+&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springmvc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springmvc/</guid><description>&lt;h1 id="springmvc">SpringMVC&lt;/h1>
+&lt;h2 id="1-springmvc简介">1. SpringMVC简介&lt;/h2>
+&lt;p>MVC是Model-View-Controller的缩写，是一种设计模式，用于开发Web应用程序。SpringMVC是Spring框架的一个模块，用于开发Web应用程序。&lt;/p>
+&lt;p>Model1时代&lt;/p>
+&lt;p>这个模式下 JSP 即是控制层（Controller）又是表现层（View）。显而易见，这种模式存在很多问题。比如控制逻辑和表现逻辑混杂在一起，导致代码重用率极低；再比如前端和后端相互依赖，难以进行测试维护并且开发效率极低。
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringMVC/Model1.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>Model2时代&lt;/p>
+&lt;p>早期MVC
+Model:系统涉及的数据，也就是 dao 和 bean。
+View：展示模型中的数据，只是用来展示。
+Controller：接受用户请求，并将请求发送至 Model，最后返回数据给 JSP 并展示给用户
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringMVC/Model2.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>存在的问题有:&lt;/p>
+&lt;ul>
+&lt;li>代码耦合度高, 代码重用率低&lt;/li>
+&lt;/ul>
+&lt;p>SpringMVC&lt;/p>
+&lt;p>MVC 是一种设计模式，Spring MVC 是一款很优秀的 MVC 框架。Spring MVC 可以帮助我们进行更简洁的 Web 层的开发，并且它天生与 Spring 框架集成。Spring MVC 下我们一般把后端项目分为 Service 层（处理业务）、Dao 层（数据库操作）、Entity 层（实体类）、Controller 层(控制层，返回数据给前台页面)。&lt;/p>
+&lt;h2 id="springmvc核心组件">SpringMVC核心组件&lt;/h2>
+&lt;p>SpringMVC的核心组件有：&lt;/p>
+&lt;ul>
+&lt;li>DispatcherServlet: 核心的Servlet，用于接收请求并分发请求&lt;/li>
+&lt;li>HandlerMapping: 处理器映射器，用于查找处理器&lt;/li>
+&lt;li>HandlerAdapter: 处理器适配器，用于执行处理器&lt;/li>
+&lt;li>Handler: 处理器，用于处理请求&lt;/li>
+&lt;li>ViewResolver: 视图解析器，用于解析视图&lt;/li>
+&lt;/ul>
+&lt;h2 id="springmvc的工作流程mvc的dispatcherservlet的分派原理">SpringMVC的工作流程(mvc的dispatcherservlet的分派原理)&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/SpringMVC/SpringMVC%e5%b7%a5%e4%bd%9c%e6%b5%81%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ol>
+&lt;li>浏览器发送请求, &lt;code>DispatcherServlet&lt;/code> 拦截请求&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 根据请求信息调用 &lt;code>HandlerMapping&lt;/code>
+&lt;ol>
+&lt;li>&lt;code>HandlerMapping&lt;/code> 根据URL找到对应的 &lt;code>Handler&lt;/code>,即Controller&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 调用 &lt;code>HandlerAdapter&lt;/code>
+&lt;ol>
+&lt;li>&lt;code>HandlerAdapter&lt;/code> 执行 &lt;code>Handler&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;code>Handler&lt;/code> 执行完毕返回 &lt;code>ModelAndView&lt;/code>&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 调用 &lt;code>ViewResolver&lt;/code>
+&lt;ol>
+&lt;li>&lt;code>ViewResolver&lt;/code> 解析 &lt;code>ModelAndView&lt;/code> 返回 &lt;code>View&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 把ModelAndView传给View
+&lt;ol>
+&lt;li>&lt;code>View&lt;/code> 渲染数据并返回给 &lt;code>DispatcherServlet&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 把 &lt;code>View&lt;/code> 返回给浏览器&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="4.13%e6%bb%b4%e6%bb%b4%e5%87%86%e5%a4%87/img/image-20230413193651300.png" alt="image-20230413193651300" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ol>
+&lt;li>用户发送 请求到 前端控制器（DispatcherServlet）。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>处理器映射器&lt;/strong>（HandlerMapping）去 查找 处理器（Handler）。&lt;/li>
+&lt;li>找到以后 处理器映射器（HandlerMappering）向 前端控制器 返回 执行链（HandlerExecutionChain）。&lt;/li>
+&lt;li>前端控制器（DispatcherServlet）调用 &lt;strong>处理器适配器&lt;/strong>（HandlerAdapter） 去执行 处理器（Handler）。&lt;/li>
+&lt;li>处理器适配器 去执行 处理器Handler。&lt;/li>
+&lt;li>处理器 执行完给 处理器适配器 返回ModelAndView。&lt;/li>
+&lt;li>&lt;strong>处理器适配器&lt;/strong> 向 前端控制器 返回ModelAndView。&lt;/li>
+&lt;li>前端控制器 请求 &lt;strong>视图解析器&lt;/strong>（ViewResolver）去进行 视图解析。&lt;/li>
+&lt;li>视图解析器 向 前端控制器返回View。&lt;/li>
+&lt;li>前端控制器 对 &lt;strong>视图进行渲染&lt;/strong>。&lt;/li>
+&lt;li>前端控制器 向用户&lt;strong>响应结果&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;h2 id="restful风格在mvc的分派如何解析参数这个我不知道瞎答的">restful风格在mvc的分派，如何解析参数（这个我不知道瞎答的）&lt;/h2>
+&lt;p>restful 即 URL表示资源， + GET POST PUT DELETE 表示行为&lt;/p>
+&lt;p>Restful风格的请求是使用 &lt;strong>url+请求方式&lt;/strong> 表示一次请求目的的，并且规范了一些的状态码，使得看到接口就知道请求要干嘛。&lt;/p>
+&lt;p>RequestMappingURL&lt;/p>
+&lt;p>PathVariable 获取参数&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;code>@Controller&lt;/code>声名一个处理请求的控制器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestMapping&lt;/code>请求映射地址，它存在几个子注解对于实现&lt;code>REST&lt;/code>风格来说更加具有语义性&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;ul>
+&lt;li>&lt;code>GETMapping&lt;/code> GET请求&lt;/li>
+&lt;li>&lt;code>PUTMapping&lt;/code> PUT请求&lt;/li>
+&lt;li>&lt;code>POSTMapping&lt;/code> POST请求&lt;/li>
+&lt;li>&lt;code>DELETEMapping&lt;/code> DELETE请求&lt;code>sponseBody&lt;/code> 将响应内容转换为&lt;code>JSON&lt;/code>格式&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RequestBody&lt;/code> 请求内容转换为&lt;code>JSON&lt;/code>格式&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@PathVariable(&amp;quot;id&amp;quot;)&lt;/code>用于绑定一个参数&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;code>@RESTController&lt;/code> 等同于&lt;code>@Controller&lt;/code>+&lt;code>@ResponseBody&lt;/code>在类上写了这个注解，标识这个类的所有方法只返回数据，而不进行视图跳转&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="统一异常处理">统一异常处理&lt;/h2>
+&lt;p>SpringMVC提供了&lt;code>@ControllerAdvice&lt;/code>注解，用于统一处理异常。&lt;code>@ControllerAdvice&lt;/code>注解可以用于定义一个全局的异常处理类，用于处理所有Controller中抛出的异常。&lt;/p>
+&lt;p>还会用到&lt;code>@ExceptionHandler&lt;/code>注解，用于定义一个方法，用于处理指定类型的异常。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@ControllerAdvice&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@ResponseBody&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">GlobalExceptionHandler&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@ExceptionHandler&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Exception&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Result&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">handleException&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Exception&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Result&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;500&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getMessage&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这种方式可以统一处理异常，避免在每个Controller中都写异常处理代码。&lt;/p>
+&lt;p>如果需要对不同的异常做不同的处理，可以定义多个&lt;code>@ExceptionHandler&lt;/code>方法&lt;/p>
+&lt;p>ExceptionHandlerMethodResolver 中 getMappedMethod 方法，根据异常类型找到对应的方法，然后执行。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Nullable&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Method&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">getMappedMethod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">exceptionType&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">List&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">matches&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ArrayList&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//找到可以处理的所有异常信息。mappedMethods 中存放了异常和处理异常的方法的对应关系&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">mappedException&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">mappedMethods&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">keySet&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mappedException&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">isAssignableFrom&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">exceptionType&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">matches&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">add&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mappedException&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 不为空说明有方法处理异常&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="n">matches&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">isEmpty&lt;/span>&lt;span class="p">())&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 按照匹配程度从小到大排序&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">matches&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">sort&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ExceptionDepthComparator&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">exceptionType&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 返回处理异常的方法&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">mappedMethods&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">matches&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">else&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>getMappedMethod() 会首先找到所有可以处理的异常信息，然后按照匹配程度从小到大排序，最后返回处理异常的方法。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="spring-基础">Spring 基础&lt;/h1>
+&lt;h2 id="spring-概念">Spring 概念&lt;/h2>
+&lt;p>Spring 是重量级企业开发框架 Enterprise JavaBean(EJB)的替代品，Spring 为企业级 Java 开发提供了一种相对简单的方法，通过 依赖注入 和 面向切面编程，用简单的 Java 对象(Plain Old Java Object，PoJ0)实现了 EJB 的功能&lt;/p>
+&lt;p>缺点:
+Spring的组件代码是轻量级,但是Spring的配置文件却是重量级的&lt;/p>
+&lt;p>Spring 2.5 引入了注解驱动的开发模式，消除了大量的XML配置&lt;/p>
+&lt;p>Spring 3.0 引入了Java配置的方式，可以完全不使用XML配置&lt;/p>
+&lt;p>但在使用某些特性时,仍然要配置
+如:&lt;/p>
+&lt;ul>
+&lt;li>事务管理&lt;/li>
+&lt;li>SpringMVC&lt;/li>
+&lt;/ul>
+&lt;h3 id="常见的一些模块">常见的一些模块&lt;/h3>
 &lt;p>Spring 支持&lt;/p>
 &lt;ul>
 &lt;li>IoC（Inversion of Control:控制反转）&lt;/li>
@@ -237,63 +623,312 @@ JDK内置的@Resource注解和@Inject注解&lt;/p>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="spring-spring-mvc-spring-boot的关系">Spring Spring MVC Spring Boot的关系&lt;/h3>
+&lt;h2 id="spring-spring-mvc-spring-boot的关系">Spring Spring MVC Spring Boot的关系&lt;/h2>
 &lt;p>Spring是一个开源框架
 Spring MVC是Spring框架的一个模块
 Spring Boot是Spring框架的一个子项目。&lt;/p>
 &lt;ul>
 &lt;li>简化了Spring MVC的配置&lt;/li>
 &lt;/ul>
-&lt;h4 id="介绍一下springboot">介绍一下springboot&lt;/h4>
-&lt;p>简化spring应用的创建及部署&lt;/p>
+&lt;h3 id="springboot">springboot&lt;/h3>
+&lt;p>为了简化spring应用的创建及部署&lt;/p>
+&lt;p>SpringBoot优点:&lt;/p>
 &lt;p>Spring Boot通过自动配置功能，降低了复杂性，同时支持基于JVM的多种开源框架，可以缩短开发时间，使开发更加简单和高效。&lt;/p>
-&lt;h4 id="3mvc的dispatcherservlet的分派原理">3.mvc的dispatcherservlet的分派原理&lt;/h4>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="4.13%e6%bb%b4%e6%bb%b4%e5%87%86%e5%a4%87/img/image-20230413193651300.png" alt="image-20230413193651300" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;ol>
-&lt;li>用户发送 请求到 前端控制器（DispatcherServlet）。&lt;/li>
-&lt;li>前端控制器 请求 &lt;strong>处理器映射器&lt;/strong>（HandlerMapping）去 查找 处理器（Handler）。&lt;/li>
-&lt;li>找到以后 处理器映射器（HandlerMappering）向 前端控制器 返回 执行链（HandlerExecutionChain）。&lt;/li>
-&lt;li>前端控制器（DispatcherServlet）调用 &lt;strong>处理器适配器&lt;/strong>（HandlerAdapter） 去执行 处理器（Handler）。&lt;/li>
-&lt;li>处理器适配器 去执行 处理器Handler。&lt;/li>
-&lt;li>处理器 执行完给 处理器适配器 返回ModelAndView。&lt;/li>
-&lt;li>&lt;strong>处理器适配器&lt;/strong> 向 前端控制器 返回ModelAndView。&lt;/li>
-&lt;li>前端控制器 请求 &lt;strong>视图解析器&lt;/strong>（ViewResolver）去进行 视图解析。&lt;/li>
-&lt;li>视图解析器 向 前端控制器返回View。&lt;/li>
-&lt;li>前端控制器 对 &lt;strong>视图进行渲染&lt;/strong>。&lt;/li>
-&lt;li>前端控制器 向用户&lt;strong>响应结果&lt;/strong>。&lt;/li>
-&lt;/ol>
-&lt;h4 id="restful风格在mvc的分派如何解析参数这个我不知道瞎答的">restful风格在mvc的分派，如何解析参数（这个我不知道瞎答的）&lt;/h4>
-&lt;p>restful 即 URL表示资源， + GET POST PUT DELETE 表示行为&lt;/p>
-&lt;p>Restful风格的请求是使用 &lt;strong>url+请求方式&lt;/strong> 表示一次请求目的的，并且规范了一些的状态码，使得看到接口就知道请求要干嘛。&lt;/p>
-&lt;p>RequestMappingURL&lt;/p>
-&lt;p>PathVariable 获取参数&lt;/p>
+&lt;p>Spring Boot 遵循“约定优于配置”的原则，提供了一种快速构建Spring应用的方式。(默认配置可以修改)&lt;/p>
+&lt;p>提供了嵌入式的Tomcat、Jetty、Undertow等容器，可以通过main方法直接运行。&lt;/p>
+&lt;h4 id="spring-boot-starter">Spring Boot Starter&lt;/h4>
+&lt;p>Spring Boot Starter 是 Spring Boot 的一个重要特性，它是一种特殊的依赖，可以简化 Maven 或 Gradle 的配置，使得构建 Spring Boot 应用更加简单。
+spring-boot-starter-web：提供对 Web 应用的支持。&lt;/p>
+&lt;h3 id="spring-boot的特性">Spring Boot的特性&lt;/h3>
+&lt;p>支持的Servlet容器:&lt;/p>
 &lt;ul>
-&lt;li>
-&lt;p>&lt;code>@Controller&lt;/code>声名一个处理请求的控制器&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;code>@RequestMapping&lt;/code>请求映射地址，它存在几个子注解对于实现&lt;code>REST&lt;/code>风格来说更加具有语义性&lt;/p>
-&lt;/li>
-&lt;li>
+&lt;li>Tomcat&lt;/li>
+&lt;li>Jetty&lt;/li>
+&lt;li>Undertow&lt;/li>
+&lt;/ul>
+&lt;p>如何在Spring Boot中使用Jetty&lt;/p>
 &lt;ul>
-&lt;li>&lt;code>GETMapping&lt;/code> GET请求&lt;/li>
-&lt;li>&lt;code>PUTMapping&lt;/code> PUT请求&lt;/li>
-&lt;li>&lt;code>POSTMapping&lt;/code> POST请求&lt;/li>
-&lt;li>&lt;code>DELETEMapping&lt;/code> DELETE请求&lt;code>sponseBody&lt;/code> 将响应内容转换为&lt;code>JSON&lt;/code>格式&lt;/li>
+&lt;li>在pom.xml中排除Tomcat&lt;/li>
+&lt;li>添加Jetty的依赖&lt;/li>
+&lt;/ul>
+&lt;h3 id="springbootapplication注解">SpringBootApplication注解&lt;/h3>
+&lt;p>SpringBootApplication注解是Spring Boot的核心注解，它是一个组合注解，包括了@Configuration、@EnableAutoConfiguration、@ComponentScan等注解。&lt;/p>
+&lt;p>这三个注解的功能:&lt;/p>
+&lt;ul>
+&lt;li>@Configuration：表明该类是一个配置类，它会被Spring容器扫描并且用于构建Bean定义，这些Bean定义将被用于构建Spring应用上下文。&lt;/li>
+&lt;li>@ComponentScan：自动扫描并加载符合条件的组件或者bean。&lt;/li>
+&lt;li>@EnableAutoConfiguration：开启Spring Boot的自动配置功能。&lt;/li>
+&lt;/ul>
+&lt;h3 id="springboot的自动配置">SpringBoot的自动配置&lt;/h3>
+&lt;p>Spring Boot 的自动配置功能是 Spring Boot 的一个重要特性，它可以根据应用的依赖和配置自动配置 Spring 应用。&lt;/p>
+&lt;p>Spring Boot 的自动配置功能是通过 @EnableAutoConfiguration 注解实现的，它会根据应用的依赖和配置自动配置 Spring 应用。&lt;/p>
+&lt;p>自动装配核心功能的实现实际是通过 AutoConfigurationImportSelector类&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Target&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="n">ElementType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">TYPE&lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Retention&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">RetentionPolicy&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">RUNTIME&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Documented&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Inherited&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@AutoConfigurationPackage&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//作用：将main包下的所有组件注册到容器中&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Import&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="n">AutoConfigurationImportSelector&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//加载自动装配类 xxxAutoconfiguration&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nd">@interface&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">EnableAutoConfiguration&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ENABLED_OVERRIDE_PROPERTY&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;spring.boot.enableautoconfiguration&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&amp;gt;[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">exclude&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">excludeName&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>AutoConfigurationImportSelector 类实现了 ImportSelector接口，也就实现了这个接口中的 selectImports方法，该方法主要用于获取所有符合条件的类的全限定类名，这些类需要被加载到 IoC 容器中。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NO_IMPORTS&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[&lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="o">]&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">selectImports&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">AnnotationMetadata&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">annotationMetadata&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// &amp;lt;1&amp;gt;.判断自动装配开关是否打开&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">!&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">isEnabled&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">annotationMetadata&lt;/span>&lt;span class="p">))&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">NO_IMPORTS&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">else&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//&amp;lt;2&amp;gt;.获取所有需要装配的bean&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">AutoConfigurationMetadata&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">autoConfigurationMetadata&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">AutoConfigurationMetadataLoader&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">loadMetadata&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">beanClassLoader&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">AutoConfigurationImportSelector&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">AutoConfigurationEntry&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">autoConfigurationEntry&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getAutoConfigurationEntry&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">autoConfigurationMetadata&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">annotationMetadata&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">StringUtils&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">toStringArray&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">autoConfigurationEntry&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">getConfigurations&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="开发restful-web的注解有哪些">开发RESTful Web的注解有哪些&lt;/h3>
+&lt;p>RESTful是一种软件架构风格，它是一种设计风格而不是标准，它是一种针对网络应用的设计和开发方式，可以降低开发的复杂性，提高系统的可伸缩性。&lt;/p>
+&lt;p>Spring MVC 提供了一些注解来简化 RESTful Web 的开发，这些注解包括：&lt;/p>
+&lt;ul>
+&lt;li>@RestController：用于定义 RESTful Web 服务。
+&lt;ul>
+&lt;li>是@Controller和@ResponseBody的组合注解&lt;/li>
+&lt;li>表示这是个控制器，并且是一个RESTful的控制器&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>&lt;code>@RequestBody&lt;/code> 请求内容转换为&lt;code>JSON&lt;/code>格式&lt;/p>
+&lt;li>@Component、@Service、@Repository：用于定义组件。&lt;/li>
+&lt;li>@GetMapping、@PostMapping、@PutMapping、@DeleteMapping：用于定义 GET、POST、PUT、DELETE 请求。&lt;/li>
+&lt;li>@RequestParam、@PathVariable、@RequestBody：分别在处理方法的参数上使用，用于获取请求参数、路径参数、请求体。&lt;/li>
+&lt;/ul>
+&lt;h3 id="spring-boot的配置文件">Spring Boot的配置文件&lt;/h3>
+&lt;p>Spring Boot 的配置文件有两种格式：properties 和 YAML。&lt;/p>
+&lt;p>Spring Boot 的配置文件有以下几种位置，对应的优先级从高到低：&lt;/p>
+&lt;ul>
+&lt;li>当前目录下的 config 目录&lt;/li>
+&lt;li>当前目录&lt;/li>
+&lt;li>classpath 下的 config 目录&lt;/li>
+&lt;li>classpath 根目录&lt;/li>
+&lt;li>开发时 resources 目录&lt;/li>
+&lt;li>以上位置的 application-{profile}.properties 或 application-{profile}.yml&lt;/li>
+&lt;/ul>
+&lt;p>读取配置文件&lt;/p>
+&lt;p>@Value注解&lt;/p>
+&lt;ul>
+&lt;li>用于读取配置文件中的属性值&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Value&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;${name}&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>@ConfigurationProperties注解&lt;/p>
+&lt;ul>
+&lt;li>读取并绑定配置文件中的属性值&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@ConfigurationProperties&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">prefix&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;person&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">Person&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Integer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">age&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="spring-中的设计模式">Spring 中的设计模式&lt;/h2>
+&lt;ul>
+&lt;li>工厂模式
+&lt;ul>
+&lt;li>BeanFactory&lt;/li>
+&lt;li>ApplicationContext&lt;/li>
+&lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>&lt;code>@PathVariable(&amp;quot;id&amp;quot;)&lt;/code>用于绑定一个参数&lt;/p>
+&lt;li>单例模式
+&lt;ul>
+&lt;li>Bean的作用域&lt;/li>
+&lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>&lt;code>@RESTController&lt;/code> 等同于&lt;code>@Controller&lt;/code>+&lt;code>@ResponseBody&lt;/code>在类上写了这个注解，标识这个类的所有方法只返回数据，而不进行视图跳转&lt;/p>
+&lt;li>代理模式
+&lt;ul>
+&lt;li>AOP&lt;/li>
+&lt;/ul>
 &lt;/li>
+&lt;li>观察者模式
+&lt;ul>
+&lt;li>Spring事件驱动模型&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>适配器模式
+&lt;ul>
+&lt;li>HandlerAdapter&lt;/li>
+&lt;li>HandlerMapping&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>模板方法模式
+&lt;ul>
+&lt;li>JdbcTemplate&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="spring事务">Spring事务&lt;/h2>
+&lt;h3 id="事务的特性">事务的特性&lt;/h3>
+&lt;ul>
+&lt;li>原子性(Atomicity): 事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。&lt;/li>
+&lt;li>一致性(Consistency): 事务必须使数据库从一个一致性状态变换到另一个一致性状态。&lt;/li>
+&lt;li>隔离性(Isolation): 一个事务的执行不能被其他事务干扰。&lt;/li>
+&lt;li>持久性(Durability): 事务一旦提交，它对数据库中数据的改变是永久性的。&lt;/li>
+&lt;/ul>
+&lt;p>保证AID,C才能被满足&lt;/p>
+&lt;h3 id="spring事务管理">Spring事务管理&lt;/h3>
+&lt;p>Spring事务管理的方式有两种：&lt;/p>
+&lt;ul>
+&lt;li>编程式事务管理&lt;/li>
+&lt;li>声明式事务管理&lt;/li>
+&lt;/ul>
+&lt;h4 id="编程式事务管理">编程式事务管理&lt;/h4>
+&lt;p>编程式事务管理是通过编程的方式来管理事务。在编程式事务管理中，需要在代码中显式的调用事务管理的API来管理事务，这种方式将导致业务代码和事务管理代码耦合在一起，不利于事务管理逻辑的重用。&lt;/p>
+&lt;p>通过&lt;code>TransactionTemplate&lt;/code> 或者 &lt;code>PlatformTransactionManager&lt;/code> 来管理事务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AccountService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">JdbcTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransactionTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">transactionTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">setJdbcTemplate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">JdbcTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">jdbcTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">setTransactionTemplate&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TransactionTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">transactionTemplate&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">this&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">transactionTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">transactionTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transfer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Double&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">transactionTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">execute&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransactionCallbackWithoutResult&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Override&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">protected&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">doInTransactionWithoutResult&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">TransactionStatus&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">transactionStatus&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money - ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money + ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="声明式事务管理">声明式事务管理&lt;/h4>
+&lt;p>声明式事务管理是通过配置的方式来管理事务。在声明式事务管理中，只需要在配置文件中声明事务管理的相关属性，就可以在业务代码中实现事务管理，而不需要在业务代码中负责事务管理的代码。&lt;/p>
+&lt;p>通过AOP来管理事务, 通过&lt;code>@Transactional&lt;/code>注解来声明事务&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AccountService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">JdbcTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transfer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Double&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money - ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money + ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="spring事务的传播行为">Spring事务的传播行为&lt;/h3>
+&lt;p>事务的传播行为是指在多个事务方法相互调用的情况下，事务管理器如何管理事务的传播行为。&lt;/p>
+&lt;p>当事务方法A调用事务方法B时，Spring事务管理器会根据&lt;strong>事务方法B的传播行为&lt;/strong>来决定事务方法B是否加入事务方法A的事务。&lt;/p>
+&lt;p>Spring事务的传播行为有以下几种：&lt;/p>
+&lt;ul>
+&lt;li>PROPAGATION_REQUIRED：最常见的传播行为，如果当前没有事务，就新建一个事务，如果当前存在事务，就加入该事务。&lt;/li>
+&lt;li>PROPAGATION_REQUIRES_NEW：新建一个事务，如果当前存在事务，就把当前事务挂起。&lt;/li>
+&lt;li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行，如果当前没有事务，则新建一个事务。&lt;/li>
+&lt;li>PROPAGATION_MANDATORY：强制要求当前方法必须在事务中执行，如果当前没有事务，则抛出异常。&lt;/li>
+&lt;/ul>
+&lt;p>不会发生回滚的情况：&lt;/p>
+&lt;ul>
+&lt;li>PROPAGATION_SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。&lt;/li>
+&lt;li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。&lt;/li>
+&lt;li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。&lt;/li>
+&lt;/ul>
+&lt;h3 id="spring事务的隔离级别">Spring事务的隔离级别&lt;/h3>
+&lt;p>事务的隔离级别是指多个事务之间的隔离程度，事务的隔离级别有以下几种：&lt;/p>
+&lt;ul>
+&lt;li>DEFAULT：使用数据库默认的隔离级别。
+&lt;ul>
+&lt;li>MySQL 默认的隔离级别是 REPEATABLE_READ&lt;/li>
+&lt;li>Oracle 默认的隔离级别是 READ_COMMITTED&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>READ_UNCOMMITTED：允许脏读、不可重复读和幻读
+&lt;ul>
+&lt;li>允许一个事务读取另一个事务未提交的数据&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>READ_COMMITTED：禁止脏读，但是允许不可重复读和幻读。
+&lt;ul>
+&lt;li>允许一个事务读取另一个事务已提交的数据&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>REPEATABLE_READ：禁止脏读和不可重复读，但是允许幻读。
+&lt;ul>
+&lt;li>对同一字段的多次读取结果是一致的&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>SERIALIZABLE：禁止脏读、不可重复读和幻读。
+&lt;ul>
+&lt;li>最高的隔离级别，会导致性能下降&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="spring事务的回滚规则">Spring事务的回滚规则&lt;/h3>
+&lt;p>Spring事务的回滚规则有以下几种：&lt;/p>
+&lt;ul>
+&lt;li>默认情况下，Spring只会对RuntimeException进行回滚，对于其他异常不会进行回滚。&lt;/li>
+&lt;li>通过&lt;code>@Transactional&lt;/code>注解的&lt;code>rollbackFor&lt;/code>属性可以指定哪些异常需要回滚。&lt;/li>
+&lt;li>通过&lt;code>@Transactional&lt;/code>注解的&lt;code>noRollbackFor&lt;/code>属性可以指定哪些异常不需要回滚。&lt;/li>
+&lt;/ul>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">rollbackFor&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="n">Exception&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transfer&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Double&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money - ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money + ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="spring-data-jpa">Spring Data JPA&lt;/h2>
+&lt;p>Spring Data JPA 是 Spring 基于 ORM 框架 JPA 封装的一个子项目，用于简化 JPA 的使用。&lt;/p>
+&lt;p>Spring Data JPA 提供了一种新的方法来定义仓库接口，通过定义仓库接口来自动生成仓库实现。&lt;/p>
+&lt;p>Spring Data JPA 通过解析方法名来自动生成 SQL 语句，从而简化了开发。&lt;/p>
+&lt;h3 id="实战">实战&lt;/h3>
+&lt;h4 id="创建实体类">创建实体类&lt;/h4>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Entity&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Table&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;t_user&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">User&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Id&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@GeneratedValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">strategy&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">GenerationType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">IDENTITY&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Long&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">id&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">username&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">password&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">email&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">phone&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Date&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">created&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Date&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">updated&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 省略 getter 和 setter&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使某个字段不参与持久化&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Transient&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">code&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="jpa的审计功能">JPA的审计功能&lt;/h3>
+&lt;p>JPA提供了审计功能，可以自动记录实体的创建时间和更新时间。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@EntityListeners&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">AuditingEntityListener&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@MappedSuperclass&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">BaseEntity&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@CreatedDate&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Date&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">created&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@LastModifiedDate&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Date&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">updated&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 省略 getter 和 setter&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>需要在启动类上添加&lt;code>@EnableJpaAuditing&lt;/code>注解&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Configuration&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@EnableJpaAuditing&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">JpaConfig&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="hibernate">Hibernate&lt;/h2>
+&lt;p>Hibernate 是一个开源的对象关系映射框架，它是一个优秀的ORM（Object-Relational Mapping）框架，它对 JDBC 进行了封装，提供了对象关系映射的功能，可以将 Java 对象映射到数据库表中。&lt;/p>
+&lt;h2 id="spring-security">Spring Security&lt;/h2>
+&lt;p>Spring Security 是 Spring 提供的一个安全框架，用于对 Java 应用程序进行安全认证和授权。&lt;/p>
+&lt;p>hasRole和hasAuthority的区别&lt;/p>
+&lt;ul>
+&lt;li>hasRole：会在参数上加上ROLE_前缀(所以数据库中的角色名要加上ROLE_前缀)&lt;/li>
+&lt;li>hasAuthority：不会在参数上加上ROLE_前缀&lt;/li>
+&lt;/ul>
+&lt;p>加密&lt;/p>
+&lt;ul>
+&lt;li>BCryptPasswordEncoder&lt;/li>
 &lt;/ul></description></item></channel></rss>

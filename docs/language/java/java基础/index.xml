@@ -247,7 +247,8 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;p>JDK9之后，String的+和+=操作符的实现已经不是通过StringBuilder来实现的，而是通过invokedynamic指令来实现的，这样可以更好的优化字符串的拼接操作。
 但也有常量折叠的优化，所以在编译时会自动将字符串拼接操作优化为常量。&lt;/p>
 &lt;/blockquote>
-&lt;p>Object的equals方法是比较的引用，而String的equals方法是比较的内容。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</guid><description>&lt;h1 id="语法特性">语法特性&lt;/h1>
+&lt;p>Object的equals方法是比较的引用，而String的equals方法是比较的内容。&lt;/p>
+&lt;p>String.intern() 是一个 Native 方法，它的作用是如果字符串常量池中已经包含一个等于此String对象的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</guid><description>&lt;h1 id="语法特性">语法特性&lt;/h1>
 &lt;h2 id="异常">异常&lt;/h2>
 &lt;h3 id="异常分类">异常分类&lt;/h3>
 &lt;p>异常属于Java.lang包中的Throwable类的子类, 分为两种&lt;/p>
@@ -684,4 +685,34 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>(a, b) -&amp;gt; a + b&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description>&lt;h1 id="面向对象">面向对象&lt;/h1></description></item></channel></rss>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description>&lt;h1 id="面向对象">面向对象&lt;/h1>
+&lt;h2 id="面向对象的特征">面向对象的特征&lt;/h2>
+&lt;ul>
+&lt;li>封装&lt;/li>
+&lt;li>继承&lt;/li>
+&lt;li>多态&lt;/li>
+&lt;/ul>
+&lt;h2 id="接口和抽象类的区别">接口和抽象类的区别&lt;/h2>
+&lt;ul>
+&lt;li>抽象类是对类的抽象，接口是对行为的抽象&lt;/li>
+&lt;/ul>
+&lt;p>类可以实现多个接口，但只能继承一个抽象类&lt;/p>
+&lt;h2 id="深拷贝浅拷贝引用拷贝">深拷贝，浅拷贝，引用拷贝&lt;/h2>
+&lt;ul>
+&lt;li>浅拷贝：在堆上创建一个新的对象，但是只是复制了对象的引用，对象的内容并没有复制，所以新对象和原对象的内容是一样的&lt;/li>
+&lt;li>深拷贝：在堆上创建一个新的对象，同时复制了对象的内容，所以新对象和原对象的内容是不一样的&lt;/li>
+&lt;li>引用拷贝：不会创建新的对象，只是复制了对象的引用，所以新对象和原对象的内容是一样的&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1/%e4%b8%89%e7%a7%8d%e6%8b%b7%e8%b4%9d%e7%9a%84%e5%85%b3%e7%b3%bb.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="object类">Object类&lt;/h2>
+&lt;p>Object是所有类的父类，因此任何类的对象都可以赋值给Object类型的变量。&lt;/p>
+&lt;h3 id="object的方法">Object的方法&lt;/h3>
+&lt;ul>
+&lt;li>&lt;code>equals&lt;/code>：比较的是内容&lt;/li>
+&lt;li>&lt;code>hashCode&lt;/code>：返回对象的哈希码值&lt;/li>
+&lt;/ul></description></item></channel></rss>
