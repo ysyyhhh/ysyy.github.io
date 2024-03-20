@@ -383,6 +383,9 @@
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;h3 id="开关问题">开关问题&lt;/h3>
+&lt;p>三个开关放在一个房间里面，另一个房间有灯泡。问你：如何在只进出有灯泡的房间一次，就可以判断出三个开关中具体哪一个是控制该灯泡的&lt;/p>
+&lt;p>A：打开一个开关，等一会儿，然后关闭它。然后打开另一个开关，然后进入房间。如果灯泡亮着，那么是第二个开关。如果灯泡是暗的，摸一下灯泡。如果灯泡是热的，那么是第一个开关。如果灯泡是冷的，那么是第三个开关。&lt;/p>
 &lt;h1 id="np问题">NP问题&lt;/h1>
 &lt;h2 id="集合覆盖问题">集合覆盖问题&lt;/h2>
 &lt;h1 id="杂项">杂项&lt;/h1>
@@ -396,7 +399,29 @@
 &lt;li>请&lt;strong>珍惜每次面试机会&lt;/strong>，尤其是面试喜欢的公司时。&lt;/li>
 &lt;li>面试一般都会有记录和面试评价。&lt;/li>
 &lt;li>所见所闻：大佬A大二时投递了理想公司的实习，意图刷该公司的面试经验。结果表现不佳，导致在真正需要找实习的时候，因之前的面评太差，导致没过简历/排序靠后（记不太清了）&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</guid><description>&lt;p>1.已知平面上的一个圆和若干点 快速求出包含点数最少的多边形使得圆在多边形中&lt;/p>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E6%99%BA%E5%8A%9B%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E6%99%BA%E5%8A%9B%E9%A2%98/</guid><description>&lt;h1 id="智力题">智力题&lt;/h1>
+&lt;p>&lt;a href="https://www.cnblogs.com/XJT2018/p/11539661.html" target="_blank" rel="noopener">https://www.cnblogs.com/XJT2018/p/11539661.html&lt;/a>&lt;/p>
+&lt;p>8个小球，其中1个偏重，1个天平，要秤几次才能找到重的球？&lt;/p>
+&lt;p>2次&lt;/p>
+&lt;ul>
+&lt;li>两边各放3个
+&lt;ul>
+&lt;li>如果相同重
+&lt;ul>
+&lt;li>剩下两个第二次必测得出&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>如果其中第一次其中一边重的话
+&lt;ul>
+&lt;li>就把那3个挑两个出来&lt;/li>
+&lt;li>如果一样重剩下那个就是重 否则直接就测出来&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>A和B面前有个N个石头，A必须先手，每人每次最多拿3个最少拿1个，请问N在什么情况下，A可以必胜，必胜的策略是？&lt;/p>
+&lt;p>N是4的倍数&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%AE%97%E6%B3%95/%E7%AC%94%E8%AF%95%E7%AE%97%E6%B3%95%E9%A2%98/</guid><description>&lt;p>1.已知平面上的一个圆和若干点 快速求出包含点数最少的多边形使得圆在多边形中&lt;/p>
 &lt;p>预处理：圆内的点删去&lt;/p>
 &lt;p>点排序，按照射线的角度排序。O(nlogn)&lt;/p>
 &lt;p>如黑色的三个点要排序，就是按与圆相切的射线的角度排序。&lt;/p>
