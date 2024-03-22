@@ -144,9 +144,21 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 &lt;li>一组线程负责接收客户端的连接，一组线程负责处理I/O事件&lt;/li>
 &lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springaop/</guid><description>&lt;h1 id="spring-aop">Spring AOP&lt;/h1>
 &lt;h2 id="什么是aop">什么是AOP&lt;/h2>
-&lt;p>AOP（Aspect-Oriented Programming）面向切面编程，是一种编程范式，它的主要目的是提高代码的模块化程度，使得代码更加易于维护和扩展。&lt;/p>
-&lt;p>将那些与业务无关，却为业务模块所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。&lt;/p>
-&lt;p>Manager层的事务管理、日志管理、权限控制等功能，都是与业务逻辑无关的，但是却是业务逻辑所必须的，这些功能可以通过AOP来实现。&lt;/p>
+&lt;p>AOP（Aspect-Oriented Programming）&lt;strong>面向切面编程&lt;/strong>，是一种编程范式，它的主要目的是&lt;strong>提高代码的模块化程度&lt;/strong>，使得代码更加易于维护和扩展。&lt;/p>
+&lt;p>将那些与业务无关，却为业务模块&lt;strong>所共同调用的逻辑或责任（例如事务处理、日志管理、权限控制等）封装起来&lt;/strong>，便于减少系统的重复代码，降低模块间的耦合度，并有利于未来的可拓展性和可维护性。&lt;/p>
+&lt;p>Manager层的&lt;strong>事务管理、日志管理、权限控制&lt;/strong>等功能，都是与业务逻辑无关的，但是却是业务逻辑所必须的，这些功能可以通过AOP来实现。&lt;/p>
+&lt;h2 id="aop的核心概念">AOP的核心概念&lt;/h2>
+&lt;ul>
+&lt;li>Aspect（切面）：横切关注点，即模块化横切关注点的行为。比如日志、事务、权限等 = Advice + Pointcut&lt;/li>
+&lt;li>JoinPoint（连接点）：程序执行的某个特定的点，比如方法的调用、异常的处理等&lt;/li>
+&lt;li>PointCut（切入点）：匹配连接点的断言，AOP通过切入点定位到连接点&lt;/li>
+&lt;li>Advice（通知）：切面在连接点上执行的动作，分为前置通知、后置通知、环绕通知、异常通知、最终通知&lt;/li>
+&lt;li>Introduction（引介）：在不修改类代码的前提下，为类添加新的方法和属性&lt;/li>
+&lt;li>Target（目标对象）：被代理的对象&lt;/li>
+&lt;li>Weaving（织入）：将切面应用到目标对象并创建新的代理对象的过程&lt;/li>
+&lt;li>Proxy（代理）：被AOP框架创建的对象，用来替换原始对象&lt;/li>
+&lt;/ul>
+&lt;h2 id="aop的实现方法">AOP的实现方法&lt;/h2>
 &lt;p>AOP的实现方式有两种：动态代理和CGLIB字节码增强。&lt;/p>
 &lt;ul>
 &lt;li>如果目标对象实现了接口，Spring就会使用JDK的动态代理&lt;/li>
@@ -159,18 +171,7 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 &lt;/div>&lt;/figure>
 &lt;/p>
 &lt;p>Spring AOP也集成了AspectJ，可以使用AspectJ的注解来实现AOP。&lt;/p>
-&lt;h2 id="aop的核心概念">AOP的核心概念&lt;/h2>
-&lt;ul>
-&lt;li>Aspect（切面）：横切关注点，即模块化横切关注点的行为。比如日志、事务、权限等 = Advice + Pointcut&lt;/li>
-&lt;li>Joinpoint（连接点）：程序执行的某个特定的点，比如方法的调用、异常的处理等&lt;/li>
-&lt;li>Pointcut（切入点）：匹配连接点的断言，AOP通过切入点定位到连接点&lt;/li>
-&lt;li>Advice（通知）：切面在连接点上执行的动作，分为前置通知、后置通知、环绕通知、异常通知、最终通知&lt;/li>
-&lt;li>Introduction（引介）：在不修改类代码的前提下，为类添加新的方法和属性&lt;/li>
-&lt;li>Target（目标对象）：被代理的对象&lt;/li>
-&lt;li>Weaving（织入）：将切面应用到目标对象并创建新的代理对象的过程&lt;/li>
-&lt;li>Proxy（代理）：被AOP框架创建的对象，用来替换原始对象&lt;/li>
-&lt;/ul>
-&lt;h2 id="spring-aop-和-aspectj">Spring AOP 和 AspectJ&lt;/h2>
+&lt;p>Spring AOP 和 AspectJ&lt;/p>
 &lt;ul>
 &lt;li>Spring AOP：基于代理的AOP实现，只支持方法级别的连接点&lt;/li>
 &lt;li>AspectJ：基于字节码的AOP实现，支持方法级别和字段级别的连接点&lt;/li>
@@ -183,6 +184,61 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 &lt;li>AfterReturning：返回通知, 在方法返回结果后执行&lt;/li>
 &lt;li>AfterThrowing：异常通知, 在方法抛出异常后执行&lt;/li>
 &lt;li>Around：环绕通知, 在方法执行前后执行&lt;/li>
+&lt;/ul>
+&lt;h2 id="aop实战">AOP实战&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 日志注解&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Target&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="n">ElementType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">PARAMETER&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">ElementType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">METHOD&lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Retention&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">RetentionPolicy&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">RUNTIME&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Documented&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nd">@interface&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Log&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="cm">/**
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * 描述
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">description&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="cm">/**
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * 方法类型 INSERT DELETE UPDATE OTHER
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">MethodType&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">methodType&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MethodType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">OTHER&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 日志切面&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Component&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Aspect&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">LogAspect&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 切入点，所有被 Log 注解标注的方法&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Pointcut&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;@annotation(cn.javaguide.annotation.Log)&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">webLog&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="cm">/**
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> * 环绕通知
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cm"> */&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Around&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;webLog()&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">doAround&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ProceedingJoinPoint&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">joinPoint&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">throws&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 省略具体的处理逻辑&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 省略其他代码&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Log&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">description&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;method1&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">methodType&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MethodType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">INSERT&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CommonResponse&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">Object&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">method1&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 业务逻辑&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">xxService&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">method1&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 省略具体的业务处理逻辑&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">CommonResponse&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">success&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="aop的应用场景">AOP的应用场景&lt;/h2>
+&lt;ul>
+&lt;li>日志记录: 自定义日志记录注解&lt;/li>
+&lt;li>性能统计: 利用AOP统计方法的执行时间&lt;/li>
+&lt;li>事务管理: @Transactional注解就是基于AOP实现的&lt;/li>
+&lt;li>权限控制: 利用注解在目标方法前判断用户所需的权限
+&lt;ul>
+&lt;li>Spring Security中的@PreAuthorize注解&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h2 id="多个切面的执行顺序">多个切面的执行顺序&lt;/h2>
 &lt;ol>
@@ -252,17 +308,17 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 &lt;li>RocketMQ&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</guid><description>&lt;p>Spring IOC&lt;/p>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/springioc/</guid><description>&lt;h1 id="spring-ioc">Spring IOC&lt;/h1>
 &lt;p>什么是IOC&lt;/p>
 &lt;ul>
 &lt;li>Inversion of Control 控制反转&lt;/li>
-&lt;li>控制权由程序员转交给了Spring容器，由Spring容器来实例化对象，而不是由程序员来实例化对象&lt;/li>
+&lt;li>&lt;strong>控制权由程序员转交给了Spring容器&lt;/strong>，&lt;strong>由Spring容器来实例化对象&lt;/strong>，而不是由程序员来实例化对象&lt;/li>
 &lt;/ul>
 &lt;p>控制：对象创建（实例化、管理）的控制权
 反转：由程序员转交给了外部环境（Spring，IOC容器）&lt;/p>
-&lt;p>当我们需要创建一个对象时，只需要配置好配置文件/注解&lt;/p>
+&lt;p>当我们&lt;strong>需要创建一个对象时，只需要配置好配置文件/注解&lt;/strong>&lt;/p>
 &lt;h2 id="spring-ioc容器">Spring IOC容器&lt;/h2>
-&lt;p>IOC容器是Map类型的对象，存储了所有的bean对象，key是bean的id，value是bean对象&lt;/p>
+&lt;p>IOC容器是&lt;strong>Map类型的对象&lt;/strong>，存储了所有的bean对象，key是bean的id，value是bean对象&lt;/p>
 &lt;p>两种配置Bean的方式：&lt;/p>
 &lt;ul>
 &lt;li>XML配置&lt;/li>
@@ -292,8 +348,8 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 &lt;/ul>
 &lt;p>@Component和@Bean的区别&lt;/p>
 &lt;ul>
-&lt;li>@Component是用于标注一个普通的bean，作用于类；而@Bean是用于标注一个方法，作用于方法&lt;/li>
-&lt;li>@Component是被Spring扫描到之后（@ComponentScan），自动注册到Spring容器中；而@Bean是在配置类中，手动注册到Spring容器中&lt;/li>
+&lt;li>@Component是用于标注一个普通的bean，作用于&lt;strong>类&lt;/strong>；而@Bean是用于标注一个方法，作用于&lt;strong>方法&lt;/strong>&lt;/li>
+&lt;li>@Component是被Spring扫描到之后（@ComponentScan），&lt;strong>自动注册&lt;/strong>到Spring容器中；而@Bean是在配置类中，&lt;strong>手动注册&lt;/strong>到Spring容器中&lt;/li>
 &lt;li>@Bean自定义性强，比如在引用第三方库的时候，可以使用@Bean注解，将第三方库的对象注册到Spring容器中&lt;/li>
 &lt;/ul>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Java" data-lang="Java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Configuration&lt;/span>&lt;span class="w">
@@ -327,7 +383,7 @@ NIO在面对复杂的网络应用时，容易出现Reactor模型中的两个重�
 JDK内置的@Resource注解和@Inject注解&lt;/p>
 &lt;p>@Autowired和@Resource的区别&lt;/p>
 &lt;ul>
-&lt;li>AutoWired的默认是按照类型注入
+&lt;li>AutoWired的默认是&lt;strong>按照类型注入&lt;/strong>
 &lt;ul>
 &lt;li>如果有多个类型一样的bean，会变成按照名称注入&lt;/li>
 &lt;/ul>
@@ -468,48 +524,27 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/div>&lt;/figure>
 &lt;/p>
 &lt;ol>
-&lt;li>浏览器发送请求, &lt;code>DispatcherServlet&lt;/code> 拦截请求&lt;/li>
-&lt;li>&lt;code>DispatcherServlet&lt;/code> 根据请求信息调用 &lt;code>HandlerMapping&lt;/code>
+&lt;li>客户端发送请求到前端控制器 &lt;code>DispatcherServlet&lt;/code>。&lt;/li>
+&lt;li>获得Controller
 &lt;ol>
-&lt;li>&lt;code>HandlerMapping&lt;/code> 根据URL找到对应的 &lt;code>Handler&lt;/code>,即Controller&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 根据请求信息 (URI 等)，决定使用哪个 &lt;code>HandlerMapping&lt;/code> 来映射 Controller。&lt;/li>
+&lt;li>&lt;code>HandlerMapping&lt;/code> 获取到对应的 &lt;code>Controller&lt;/code> 后,返回给 &lt;code>DispatcherServlet&lt;/code>&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>&lt;code>DispatcherServlet&lt;/code> 调用 &lt;code>HandlerAdapter&lt;/code>
+&lt;li>调用Controller的方法
 &lt;ol>
-&lt;li>&lt;code>HandlerAdapter&lt;/code> 执行 &lt;code>Handler&lt;/code>&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 根据获得的 &lt;code>Controller&lt;/code> 来调用对应的方法。&lt;/li>
+&lt;li>&lt;code>Controller&lt;/code> 执行相应的业务逻辑,处理完后返回一个 &lt;code>ModelAndView&lt;/code> 对象给 &lt;code>DispatcherServlet&lt;/code>。&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>&lt;code>Handler&lt;/code> 执行完毕返回 &lt;code>ModelAndView&lt;/code>&lt;/li>
-&lt;li>&lt;code>DispatcherServlet&lt;/code> 调用 &lt;code>ViewResolver&lt;/code>
+&lt;li>根据&lt;code>ModelAndView&lt;/code>找到&lt;code>View&lt;/code>
 &lt;ol>
-&lt;li>&lt;code>ViewResolver&lt;/code> 解析 &lt;code>ModelAndView&lt;/code> 返回 &lt;code>View&lt;/code>&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 将获得的 &lt;code>ModelAndView&lt;/code> 对象传递给 &lt;code>ViewResolver&lt;/code>。
+&lt;code>ViewResolver&lt;/code> 根据之前配置好的规则,解析&lt;code>ModelAndView&lt;/code>对象中的视图名,找到真正的视图对象View。&lt;/li>
+&lt;li>&lt;code>DispatcherServlet&lt;/code> 调用 View 对象进行视图渲染,得到最终的视图。&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;li>&lt;code>DispatcherServlet&lt;/code> 把ModelAndView传给View
-&lt;ol>
-&lt;li>&lt;code>View&lt;/code> 渲染数据并返回给 &lt;code>DispatcherServlet&lt;/code>&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>&lt;code>DispatcherServlet&lt;/code> 把 &lt;code>View&lt;/code> 返回给浏览器&lt;/li>
-&lt;/ol>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="4.13%e6%bb%b4%e6%bb%b4%e5%87%86%e5%a4%87/img/image-20230413193651300.png" alt="image-20230413193651300" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;ol>
-&lt;li>用户发送 请求到 前端控制器（DispatcherServlet）。&lt;/li>
-&lt;li>前端控制器 请求 &lt;strong>处理器映射器&lt;/strong>（HandlerMapping）去 查找 处理器（Handler）。&lt;/li>
-&lt;li>找到以后 处理器映射器（HandlerMappering）向 前端控制器 返回 执行链（HandlerExecutionChain）。&lt;/li>
-&lt;li>前端控制器（DispatcherServlet）调用 &lt;strong>处理器适配器&lt;/strong>（HandlerAdapter） 去执行 处理器（Handler）。&lt;/li>
-&lt;li>处理器适配器 去执行 处理器Handler。&lt;/li>
-&lt;li>处理器 执行完给 处理器适配器 返回ModelAndView。&lt;/li>
-&lt;li>&lt;strong>处理器适配器&lt;/strong> 向 前端控制器 返回ModelAndView。&lt;/li>
-&lt;li>前端控制器 请求 &lt;strong>视图解析器&lt;/strong>（ViewResolver）去进行 视图解析。&lt;/li>
-&lt;li>视图解析器 向 前端控制器返回View。&lt;/li>
-&lt;li>前端控制器 对 &lt;strong>视图进行渲染&lt;/strong>。&lt;/li>
-&lt;li>前端控制器 向用户&lt;strong>响应结果&lt;/strong>。&lt;/li>
+&lt;li>最终的视图通过响应对象返回给客户端。&lt;/li>
 &lt;/ol>
 &lt;h2 id="restful风格在mvc的分派如何解析参数这个我不知道瞎答的">restful风格在mvc的分派，如何解析参数（这个我不知道瞎答的）&lt;/h2>
 &lt;p>restful 即 URL表示资源， + GET POST PUT DELETE 表示行为&lt;/p>
@@ -575,8 +610,8 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>getMappedMethod() 会首先找到所有可以处理的异常信息，然后按照匹配程度从小到大排序，最后返回处理异常的方法。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E4%BA%8B%E5%8A%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E4%BA%8B%E5%8A%A1/</guid><description>&lt;h2 id="spring事务">Spring事务&lt;/h2>
-&lt;h3 id="事务的特性">事务的特性&lt;/h3>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>getMappedMethod() 会首先找到所有可以处理的异常信息，然后按照匹配程度从小到大排序，最后返回处理异常的方法。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E4%BA%8B%E5%8A%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E4%BA%8B%E5%8A%A1/</guid><description>&lt;h1 id="spring事务">Spring事务&lt;/h1>
+&lt;h2 id="事务的特性">事务的特性&lt;/h2>
 &lt;ul>
 &lt;li>原子性(Atomicity): 事务是一个不可分割的工作单位，事务中的操作要么都发生，要么都不发生。&lt;/li>
 &lt;li>一致性(Consistency): 事务必须使数据库从一个一致性状态变换到另一个一致性状态。&lt;/li>
@@ -584,14 +619,27 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;li>持久性(Durability): 事务一旦提交，它对数据库中数据的改变是永久性的。&lt;/li>
 &lt;/ul>
 &lt;p>保证AID,C才能被满足&lt;/p>
-&lt;h3 id="spring事务管理">Spring事务管理&lt;/h3>
+&lt;h2 id="为什么要有事务">为什么要有事务&lt;/h2>
+&lt;p>系统中的业务方法可能包括了多个原子性的数据库操作&lt;/p>
+&lt;p>如:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">savePerson&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">personDao&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">save&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">person&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">personDetailDao&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">save&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">personDetail&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这些操作需要保证原子性，要么都成功，要么都失败&lt;/p>
+&lt;p>事务能否生效, 取决于数据库引擎的支持, 需要是innodb引擎&lt;/p>
+&lt;h2 id="spring事务管理">Spring事务管理&lt;/h2>
+&lt;p>MySQL保证原子性是通过回滚日志(undo log) 实现的.
+如果执行遇到异常, 会回滚到事务开始前的状态. 且回滚日志先于数据的持久化.&lt;/p>
 &lt;p>Spring事务管理的方式有两种：&lt;/p>
 &lt;ul>
 &lt;li>编程式事务管理&lt;/li>
 &lt;li>声明式事务管理&lt;/li>
 &lt;/ul>
-&lt;h4 id="编程式事务管理">编程式事务管理&lt;/h4>
-&lt;p>编程式事务管理是通过编程的方式来管理事务。在编程式事务管理中，需要在代码中显式的调用事务管理的API来管理事务，这种方式将导致业务代码和事务管理代码耦合在一起，不利于事务管理逻辑的重用。&lt;/p>
+&lt;h3 id="编程式事务管理">编程式事务管理&lt;/h3>
+&lt;p>编程式事务管理是通过编程的方式来管理事务。&lt;/p>
+&lt;p>在编程式事务管理中，需要在代码中显式的调用事务管理的API来管理事务&lt;/p>
+&lt;p>会导致业务代码和事务管理代码耦合在一起，不利于事务管理逻辑的重用, 很少用&lt;/p>
 &lt;p>通过&lt;code>TransactionTemplate&lt;/code> 或者 &lt;code>PlatformTransactionManager&lt;/code> 来管理事务&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AccountService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">JdbcTemplate&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
@@ -615,9 +663,10 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">});&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="声明式事务管理">声明式事务管理&lt;/h4>
-&lt;p>声明式事务管理是通过配置的方式来管理事务。在声明式事务管理中，只需要在配置文件中声明事务管理的相关属性，就可以在业务代码中实现事务管理，而不需要在业务代码中负责事务管理的代码。&lt;/p>
-&lt;p>通过AOP来管理事务, 通过&lt;code>@Transactional&lt;/code>注解来声明事务&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="声明式事务管理">声明式事务管理&lt;/h3>
+&lt;p>声明式事务管理是通过配置的方式来管理事务。&lt;/p>
+&lt;p>在声明式事务管理中，只需要在配置文件中声明事务管理的相关属性，就可以在业务代码中实现事务管理，而不需要在业务代码中负责事务管理的代码。&lt;/p>
+&lt;p>实际基于 AOP 实现（基于&lt;code>@Transactional&lt;/code> 的全注解方式使用最多）&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">AccountService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
@@ -629,23 +678,99 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money + ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="spring事务的传播行为">Spring事务的传播行为&lt;/h3>
-&lt;p>事务的传播行为是指在多个事务方法相互调用的情况下，事务管理器如何管理事务的传播行为。&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="spring事务的传播行为">Spring事务的传播行为&lt;/h2>
+&lt;p>事务的传播行为是指在&lt;strong>多个事务方法相互调用的情况下，事务管理器如何管理事务的传播行为&lt;/strong>。&lt;/p>
 &lt;p>当事务方法A调用事务方法B时，Spring事务管理器会根据&lt;strong>事务方法B的传播行为&lt;/strong>来决定事务方法B是否加入事务方法A的事务。&lt;/p>
+&lt;p>我们在 A 类的aMethod()方法中调用了 B 类的 bMethod() 方法。这个时候就涉及到业务层方法之间互相调用的事务问题。如果我们的 &lt;strong>bMethod()如果发生异常需要回滚&lt;/strong>，如何配置事务传播行为才能&lt;strong>让 aMethod()也跟着回滚&lt;/strong>呢？&lt;/p>
 &lt;p>Spring事务的传播行为有以下几种：&lt;/p>
+&lt;h3 id="会发生回滚的四种情况">会发生回滚的四种情况&lt;/h3>
+&lt;h4 id="required">REQUIRED&lt;/h4>
+&lt;p>默认且最常见的传播行为，如果当前没有事务，就新建一个事务，如果当前存在事务，就加入该事务。&lt;/p>
 &lt;ul>
-&lt;li>PROPAGATION_REQUIRED：最常见的传播行为，如果当前没有事务，就新建一个事务，如果当前存在事务，就加入该事务。&lt;/li>
-&lt;li>PROPAGATION_REQUIRES_NEW：新建一个事务，如果当前存在事务，就把当前事务挂起。&lt;/li>
-&lt;li>PROPAGATION_NESTED：如果当前存在事务，则在嵌套事务内执行，如果当前没有事务，则新建一个事务。&lt;/li>
-&lt;li>PROPAGATION_MANDATORY：强制要求当前方法必须在事务中执行，如果当前没有事务，则抛出异常。&lt;/li>
+&lt;li>如果外部方法没有开启事务, REQUIRED修饰的内部方法会开启一个新的事务.&lt;/li>
+&lt;li>如果外部方法开启了事务, REQUIRED修饰的内部方法会加入到外部方法的事务中, 即属于同一个事务.&lt;/li>
 &lt;/ul>
-&lt;p>不会发生回滚的情况：&lt;/p>
+&lt;p>其中一个方法回滚,就都回滚&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRED&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">bMethod&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRED&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">bMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="requires_new">REQUIRES_NEW&lt;/h4>
+&lt;p>新建一个事务，如果当前存在事务，就把当前事务挂起。&lt;/p>
+&lt;p>也就是说&lt;strong>不管外部方法是否开启事务&lt;/strong>，Propagation.REQUIRES_NEW修饰的内部方法会&lt;strong>新开启自己的事务&lt;/strong>，且开启的&lt;strong>事务相互独立，互不干扰&lt;/strong>。&lt;/p>
+&lt;p>即,一般情况下, ab回滚互不影响.&lt;/p>
+&lt;p>但如果b方法&lt;strong>抛出了未被捕获的异常&lt;/strong>, 且这个异常满足a的回滚规则,a才会跟着回滚.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRED&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">bMethod&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRES_NEW&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">bMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="nested">NESTED&lt;/h4>
+&lt;p>如果当前存在事务，则在嵌套事务内执行，如果当前没有事务，则新建一个事务。&lt;/p>
+&lt;ul>
+&lt;li>在外部方法开启事务的情况下，在&lt;strong>内部开启一个新的事务，作为嵌套事务存在&lt;/strong>。&lt;/li>
+&lt;li>如果外部方法无事务，则单独开启一个事务，与 PROPAGATION_REQUIRED 类似。&lt;/li>
+&lt;/ul>
+&lt;p>即,
+a回滚, b一定回滚
+b回滚,a不会滚&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Autowired&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRED&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">aMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">bMethod&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">B&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">NESTED&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">bMethod&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//do something&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="mandatory">MANDATORY&lt;/h4>
+&lt;p>如果当前存在事务，则加入该事务；如果当前没有事务，则抛出异常。（mandatory：强制性）&lt;/p>
+&lt;ul>
+&lt;li>如果外部方法没有开启事务, MANDATORY修饰的内部方法会抛出异常.&lt;/li>
+&lt;li>如果外部方法开启了事务, MANDATORY修饰的内部方法会加入到外部方法的事务中, 即属于同一个事务.&lt;/li>
+&lt;/ul>
+&lt;h4 id="不会发生回滚的情况">不会发生回滚的情况&lt;/h4>
 &lt;ul>
 &lt;li>PROPAGATION_SUPPORTS：支持当前事务，如果当前没有事务，就以非事务方式执行。&lt;/li>
 &lt;li>PROPAGATION_NOT_SUPPORTED：以非事务方式执行操作，如果当前存在事务，就把当前事务挂起。&lt;/li>
 &lt;li>PROPAGATION_NEVER：以非事务方式执行，如果当前存在事务，则抛出异常。&lt;/li>
 &lt;/ul>
-&lt;h3 id="spring事务的隔离级别">Spring事务的隔离级别&lt;/h3>
+&lt;h2 id="spring事务的隔离级别">Spring事务的隔离级别&lt;/h2>
 &lt;p>事务的隔离级别是指多个事务之间的隔离程度，事务的隔离级别有以下几种：&lt;/p>
 &lt;ul>
 &lt;li>DEFAULT：使用数据库默认的隔离级别。
@@ -675,10 +800,22 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="spring事务的回滚规则">Spring事务的回滚规则&lt;/h3>
+&lt;h2 id="事务超时">事务超时&lt;/h2>
+&lt;p>是指一个事务所允许执行的最长时间，如果超过该时间限制但事务还没有完成，则自动回滚事务.&lt;/p>
+&lt;h2 id="事务只读">事务只读&lt;/h2>
+&lt;p>对于只有读取数据查询的事务，可以指定事务类型为 readonly，即只读事务。&lt;/p>
+&lt;p>这是一种声明, 用于优化事务性能, 通常用于查询操作, 但不是必须的.&lt;/p>
+&lt;p>原因:
+给方法加上了Transactional注解的话，这个方法执行的所有sql会被放在一个事务中。如果声明了只读事务的话，数据库就会去优化它的执行.&lt;/p>
+&lt;p>比如:&lt;/p>
+&lt;ul>
+&lt;li>一次执行单条查询, 数据库没必要使用事务支持, 因为默认支持了.&lt;/li>
+&lt;li>一次执行大量的查询, 数据库会使用事务支持, 保证数据的一致性.&lt;/li>
+&lt;/ul>
+&lt;h2 id="spring事务的回滚规则">Spring事务的回滚规则&lt;/h2>
 &lt;p>Spring事务的回滚规则有以下几种：&lt;/p>
 &lt;ul>
-&lt;li>默认情况下，Spring只会对RuntimeException进行回滚，对于其他异常不会进行回滚。&lt;/li>
+&lt;li>默认情况下，只有遇到运行期异常(RuntimeException 的子类）时才会回滚，Error 也会导致事务回滚，但是，在遇到检查型（Checked）异常时不会回滚。&lt;/li>
 &lt;li>通过&lt;code>@Transactional&lt;/code>注解的&lt;code>rollbackFor&lt;/code>属性可以指定哪些异常需要回滚。&lt;/li>
 &lt;li>通过&lt;code>@Transactional&lt;/code>注解的&lt;code>noRollbackFor&lt;/code>属性可以指定哪些异常不需要回滚。&lt;/li>
 &lt;/ul>
@@ -687,7 +824,106 @@ Controller：接受用户请求，并将请求发送至 Model，最后返回数�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money - ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">outUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">jdbcTemplate&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">update&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;update account set money = money + ? where username = ?&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">money&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">inUser&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="spring-基础">Spring 基础&lt;/h1>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="transactional注解使用">@Transactional注解使用&lt;/h2>
+&lt;h3 id="作用范围">作用范围&lt;/h3>
+&lt;ul>
+&lt;li>方法: 推荐用于方法, 但智能用于public方法, 否则不生效.&lt;/li>
+&lt;li>类: 用于类上, 会应用到所有的public方法上.&lt;/li>
+&lt;li>接口: 不推荐在接口上使用.&lt;/li>
+&lt;/ul>
+&lt;h3 id="常用配置参数">常用配置参数&lt;/h3>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Target&lt;/span>&lt;span class="p">({&lt;/span>&lt;span class="n">ElementType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">TYPE&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ElementType&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">METHOD&lt;/span>&lt;span class="p">})&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Retention&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">RetentionPolicy&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">RUNTIME&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Inherited&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Documented&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nd">@interface&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Transactional&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@AliasFor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;transactionManager&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">value&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nd">@AliasFor&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;value&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">transactionManager&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">propagation&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Propagation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">REQUIRED&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Isolation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">isolation&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Isolation&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">DEFAULT&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">timeout&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">TransactionDefinition&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">TIMEOUT_DEFAULT&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">boolean&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">readOnly&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">false&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="o">&amp;gt;[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">rollbackFor&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">rollbackForClassName&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="o">&amp;lt;?&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">extends&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Throwable&lt;/span>&lt;span class="o">&amp;gt;[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">noRollbackFor&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">noRollbackForClassName&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{};&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>五个常用配置参数&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>属性名&lt;/th>
+&lt;th>默认值&lt;/th>
+&lt;th>说明&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>propagation&lt;/td>
+&lt;td>Propagation.REQUIRED&lt;/td>
+&lt;td>事务的传播行为&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>isolation&lt;/td>
+&lt;td>Isolation.DEFAULT&lt;/td>
+&lt;td>事务的隔离级别&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>timeout&lt;/td>
+&lt;td>TransactionDefinition.TIMEOUT_DEFAULT(-1)&lt;/td>
+&lt;td>事务的超时时间&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>readOnly&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>事务的只读属性&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>rollbackFor&lt;/td>
+&lt;td>{}&lt;/td>
+&lt;td>导致事务回滚的异常类数组&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h3 id="transactional注解的实现原理">@Transactional注解的实现原理&lt;/h3>
+&lt;p>&lt;code>@Transactional&lt;/code>注解的实现原理是基于AOP实现的。&lt;/p>
+&lt;p>AOP 又是使用动态代理实现的。如果目标对象实现了接口，默认情况下会采用 JDK 的动态代理，如果目标对象没有实现了接口,会使用 CGLIB 动态代理。&lt;/p>
+&lt;h2 id="spring-aop-自调用问题">Spring AOP 自调用问题&lt;/h2>
+&lt;p>当一个方法被标记了@Transactional 注解的时候，Spring 事务管理器只会在&lt;strong>被其他类方法调用的时候生效&lt;/strong>，而不会在同一个类中方法调用生效。&lt;/p>
+&lt;p>Spring AOP 工作原理决定的。&lt;/p>
+&lt;p>因为 Spring AOP 使用动态代理来实现事务的管理，它会在运行的时候为带有 @Transactional 注解的方法生成代理对象，并在方法调用的前后应用事物逻辑。如果该方法被其他类调用我们的代理对象就会拦截方法调用并处理事务。&lt;/p>
+&lt;p>但是在&lt;strong>一个类中的其他方法内部调用的时候，我们代理对象就无法拦截到这个内部调用&lt;/strong>，因此事务也就失效了。&lt;/p>
+&lt;p>MyService 类中的method1()调用method2()就会导致method2()的事务失效。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="nd">@Service&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">MyService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">method1&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">method2&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//......&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Transactional&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">method2&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">//......&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解决方法:&lt;/p>
+&lt;ul>
+&lt;li>避免同一个类内部调用&lt;/li>
+&lt;li>使用AspectJ取代Spring AOP(因为AspectJ是编译时织入，Spring AOP是运行时织入)&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/spring/spring%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="spring-基础">Spring 基础&lt;/h1>
 &lt;h2 id="spring-概念">Spring 概念&lt;/h2>
 &lt;p>Spring 是重量级企业开发框架 Enterprise JavaBean(EJB)的替代品，Spring 为企业级 Java 开发提供了一种相对简单的方法，通过 依赖注入 和 面向切面编程，用简单的 Java 对象(Plain Old Java Object，PoJ0)实现了 EJB 的功能&lt;/p>
 &lt;p>缺点:
@@ -699,6 +935,17 @@ Spring的组件代码是轻量级,但是Spring的配置文件却是重量级的&
 &lt;ul>
 &lt;li>事务管理&lt;/li>
 &lt;li>SpringMVC&lt;/li>
+&lt;/ul>
+&lt;h3 id="spring声明周期">Spring声明周期&lt;/h3>
+&lt;ul>
+&lt;li>Spring容器的生命周期
+&lt;ul>
+&lt;li>创建容器&lt;/li>
+&lt;li>初始化容器&lt;/li>
+&lt;li>使用容器&lt;/li>
+&lt;li>销毁容器&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="常见的一些模块">常见的一些模块&lt;/h3>
 &lt;p>Spring 支持&lt;/p>

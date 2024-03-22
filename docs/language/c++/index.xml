@@ -35,42 +35,7 @@
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="err">使用&lt;/span>&lt;span class="n">reset来用子类覆盖父类&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">auto&lt;/span> &lt;span class="n">new_node&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="k">new&lt;/span> &lt;span class="n">TrieNodeWithValue&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">move&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="n">end_node&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">end_node&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">reset&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">new_node&lt;/span>&lt;span class="p">);&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="stl">STL&lt;/h2>
-&lt;h3 id="vector">vector&lt;/h3>
-&lt;p>可变长数组，用倍增的思想。&lt;/p>
-&lt;p>vector在push_back以成倍增长可以在均摊后达到O(1)的事件复杂度&lt;/p>
-&lt;p>2倍 gcc&lt;/p>
-&lt;p>1.5倍 vs2019&lt;/p>
-&lt;p>以2倍的方式扩容，导致&lt;strong>下一次申请的内存必然大于之前分配内存的总和&lt;/strong>，导致&lt;strong>之前分配的内存不能再被使用&lt;/strong>，所以最好倍增长因子设置为(1,2)之间.&lt;/p>
-&lt;h3 id="map">map&lt;/h3>
-&lt;p>map底层红黑树&lt;/p>
-&lt;p>unordered_map底层哈希&lt;/p>
-&lt;h3 id="bitset">bitset&lt;/h3>
-&lt;p>二进制数组，bool类型的数组。&lt;/p>
-&lt;p>可以加速到/64&lt;/p>
-&lt;h3 id="迭代器失效的情况以及解决方法">迭代器失效的情况，以及解决方法&lt;/h3>
-&lt;ol>
-&lt;li>对于序列容器vector，deque来说，使用erase后，后边的每个元素的迭代器都会失效，后边每个元素都往前移动一位，&lt;strong>erase返回下一个有效的迭代器&lt;/strong>。&lt;/li>
-&lt;li>对于关联容器map，set来说，使用了erase后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素，不会影响下一个元素的迭代器，所以&lt;strong>在调用erase之前，记录下一个元素的迭代器&lt;/strong>即可。&lt;/li>
-&lt;li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的迭代器，因此上面两种方法都可以使用。&lt;/li>
-&lt;/ol>
-&lt;h3 id="哈希冲突的解决方法">哈希冲突的解决方法&lt;/h3>
-&lt;p>开放地址法/再散列法&lt;/p>
-&lt;ul>
-&lt;li>冲突时采用&lt;/li>
-&lt;li>线性探查&lt;/li>
-&lt;li>二次探测&lt;/li>
-&lt;li>伪随机&lt;/li>
-&lt;/ul>
-&lt;p>链表法/拉链法&lt;/p>
-&lt;ul>
-&lt;li>冲突时直接单链表&lt;/li>
-&lt;/ul>
-&lt;p>再哈希法&lt;/p>
-&lt;ul>
-&lt;li>输出是同一个位置就再次哈希（第二个哈希函数）&lt;/li>
-&lt;/ul>
-&lt;h3 id="空类包括什么成员">空类包括什么成员&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="空类包括什么成员">空类包括什么成员&lt;/h3>
 &lt;p>默认构造函数、一个拷贝默认构造函数、一个默认拷贝赋值操作符和一个默认析构函数&lt;/p>
 &lt;h3 id="浅拷贝和深拷贝">浅拷贝和深拷贝&lt;/h3>
 &lt;p>浅拷贝/值拷贝 数据数量不变，共享同一片空间&lt;/p>
@@ -120,26 +85,73 @@
 &lt;p>对象管理自己的资源。&lt;/p>
 &lt;p>智能指针是RAII原则的体现。&lt;/p>
 &lt;h3 id="内存泄漏">内存泄漏&lt;/h3>
-&lt;ol>
-&lt;li>
 &lt;p>&lt;strong>内存泄露及解决办法&lt;/strong>：&lt;/p>
 &lt;p>&lt;strong>什么是内存泄露？&lt;/strong>&lt;/p>
-&lt;p>简单地说就是申请了一块内存空间，使用完毕后没有释放掉。（1）new和malloc申请资源使用后，没有用delete和free释放；（2）子类继承父类时，父类析构函数不是虚函数。&lt;/p>
-&lt;p>（3）Windows句柄资源使用后没有释放。&lt;/p>
+&lt;p>简单地说就是申请了一块内存空间，使用完毕后没有释放掉。&lt;/p>
+&lt;ul>
+&lt;li>new和malloc申请资源使用后，没有用delete和free释放；&lt;/li>
+&lt;li>子类继承父类时，父类析构函数不是虚函数。
+&lt;ul>
+&lt;li>必须是虚函数这样才能触发动态绑定，这样才不会仅调用父类的析构函数&lt;/li>
+&lt;li>是虚函数会先调用子类的虚构函数，再调用父类的虚构函数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Windows句柄资源使用后没有释放。&lt;/li>
+&lt;/ul>
 &lt;p>&lt;strong>怎么检测？&lt;/strong>&lt;/p>
 &lt;p>第一：良好的编码习惯，使用了内存分配的函数，一旦使用完毕,要记得使用其相应的函数释放掉。&lt;/p>
 &lt;p>第二：将分配的内存的指针以链表的形式自行管理，使用完毕之后从链表中删除，程序结束时可检查改链表。&lt;/p>
 &lt;p>第三：使用&lt;strong>智能指针&lt;/strong>。&lt;/p>
 &lt;p>第四：一些常见的工具插件，如ccmalloc、Dmalloc、Leaky、Valgrind等等。&lt;/p>
-&lt;/li>
-&lt;/ol>
 &lt;h3 id="智能指针-shared_ptr与unique_ptr的开销比较">智能指针 shared_ptr与unique_ptr的开销比较&lt;/h3>
 &lt;p>shared_ptr内部引用计数对象要通过new创建，这样所有的对象才能指向同一个引用计数变量；&lt;/p>
 &lt;p>unique_ptr接近原生的性能&lt;/p>
 &lt;p>&lt;a href="https://blog.csdn.net/codingcs/article/details/120403980" target="_blank" rel="noopener">https://blog.csdn.net/codingcs/article/details/120403980&lt;/a>&lt;/p>
 &lt;h3 id="右值引用">右值引用&lt;/h3>
 &lt;p>右值引用主要用于移动语义和完美转发&lt;/p>
-&lt;h3 id="如果有多个重载函数那么我根据函数名打断点gdb会怎么执行呢是只执行一个还是全部都显示出来都显示出来">如果有多个重载函数，那么我根据函数名打断点，GDB会怎么执行呢，是只执行一个还是全部都显示出来（都显示出来）&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/stl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/stl/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid><description>&lt;h1 id="多线程">多线程&lt;/h1>
+&lt;h4 id="移动语义">移动语义&lt;/h4>
+&lt;ul>
+&lt;li>传统的拷贝构造函数和赋值操作符都是通过复制的方式来初始化一个新对象，这样会导致内存的分配和释放，效率较低。&lt;/li>
+&lt;li>移动语义是一种新的语义，它允许将资源从一个对象转移到另一个对象，而不是复制资源。这样可以避免不必要的内存分配和释放，提高程序的效率。&lt;/li>
+&lt;/ul>
+&lt;h4 id="完美转发">完美转发&lt;/h4>
+&lt;p>完美转发是指在函数模板中保持参数的原有类型，不改变参数的类型，将参数原封不动地传递给其他函数。&lt;/p>
+&lt;h3 id="如果有多个重载函数那么我根据函数名打断点gdb会怎么执行呢是只执行一个还是全部都显示出来都显示出来">如果有多个重载函数，那么我根据函数名打断点，GDB会怎么执行呢，是只执行一个还是全部都显示出来（都显示出来）&lt;/h3>
+&lt;h2 id="stl">STL&lt;/h2>
+&lt;h3 id="vector">vector&lt;/h3>
+&lt;p>可变长数组，用倍增的思想。&lt;/p>
+&lt;p>vector在push_back以成倍增长可以在均摊后达到O(1)的事件复杂度&lt;/p>
+&lt;p>2倍 gcc&lt;/p>
+&lt;p>1.5倍 vs2019&lt;/p>
+&lt;p>以2倍的方式扩容，导致&lt;strong>下一次申请的内存必然大于之前分配内存的总和&lt;/strong>，导致&lt;strong>之前分配的内存不能再被使用&lt;/strong>，所以最好倍增长因子设置为(1,2)之间.&lt;/p>
+&lt;h3 id="map">map&lt;/h3>
+&lt;p>map底层红黑树&lt;/p>
+&lt;p>unordered_map底层哈希&lt;/p>
+&lt;h3 id="bitset">bitset&lt;/h3>
+&lt;p>二进制数组，bool类型的数组。&lt;/p>
+&lt;p>可以加速到/64&lt;/p>
+&lt;h3 id="迭代器失效的情况以及解决方法">迭代器失效的情况，以及解决方法&lt;/h3>
+&lt;ol>
+&lt;li>对于序列容器vector，deque来说，使用erase后，后边的每个元素的迭代器都会失效，后边每个元素都往前移动一位，&lt;strong>erase返回下一个有效的迭代器&lt;/strong>。&lt;/li>
+&lt;li>对于关联容器map，set来说，使用了erase后，当前元素的迭代器失效，但是其结构是红黑树，删除当前元素，不会影响下一个元素的迭代器，所以&lt;strong>在调用erase之前，记录下一个元素的迭代器&lt;/strong>即可。&lt;/li>
+&lt;li>对于list来说，它使用了不连续分配的内存，并且它的erase方法也会返回下一个有效的迭代器，因此上面两种方法都可以使用。&lt;/li>
+&lt;/ol>
+&lt;h3 id="哈希冲突的解决方法">哈希冲突的解决方法&lt;/h3>
+&lt;p>开放地址法/再散列法&lt;/p>
+&lt;ul>
+&lt;li>冲突时采用&lt;/li>
+&lt;li>线性探查&lt;/li>
+&lt;li>二次探测&lt;/li>
+&lt;li>伪随机&lt;/li>
+&lt;/ul>
+&lt;p>链表法/拉链法&lt;/p>
+&lt;ul>
+&lt;li>冲突时直接单链表&lt;/li>
+&lt;/ul>
+&lt;p>再哈希法&lt;/p>
+&lt;ul>
+&lt;li>输出是同一个位置就再次哈希（第二个哈希函数）&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/stl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/stl/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E5%A4%9A%E7%BA%BF%E7%A8%8B/</guid><description>&lt;h1 id="多线程">多线程&lt;/h1>
 &lt;h2 id="锁">锁&lt;/h2>
 &lt;h3 id="unique_lock-和-lock_guard">unique_lock 和 lock_guard&lt;/h3>
 &lt;p>unique_lock 和 lock_guard 都是 RAII 的封装，都是用来管理 mutex 的，但是 unique_lock 比 lock_guard 更加灵活，可以随时 unlock 和 lock，而 lock_guard 只能在构造的时候 lock，在析构的时候 unlock。&lt;/p>

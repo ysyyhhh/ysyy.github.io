@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>计网 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/index.xml" rel="self" type="application/rss+xml"/><description>计网</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>计网</title><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
-&lt;h2 id="基础">基础&lt;/h2>
-&lt;p>请求报文结构&lt;/p>
+&lt;h2 id="结构">结构&lt;/h2>
+&lt;h3 id="请求报文结构">请求报文结构&lt;/h3>
 &lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
 &lt;p>请求报文结构：&lt;/p>
 &lt;p>第一行是包含了请求方法、URL、协议版本；
@@ -20,7 +20,7 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">User-Agent: Mozilla/5.0 xxx
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">param1=1&lt;span class="err">&amp;amp;&lt;/span>param2=2
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>响应报文结构&lt;/p>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="响应报文结构">响应报文结构&lt;/h3>
 &lt;p>第一行包含协议版本、状态码以及描述，最常见的是 200 OK 表示请求成功了
 接下来多行也是首部内容
 一个空行分隔首部和内容主体
@@ -49,7 +49,14 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 省略...
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="http的方法">HTTP的方法&lt;/h2>
+&lt;p>HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD 方法。&lt;/p>
+&lt;p>HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。&lt;/p>
+&lt;h2 id="https">HTTPS&lt;/h2>
+&lt;p>HTTPS校验的哈希算法是什么&lt;/p>
+&lt;ul>
+&lt;li>RSA&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
 &lt;p>TCP:
 User Datagram Protocol 用户数据报协议&lt;/p>
 &lt;ul>
@@ -94,7 +101,7 @@ Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场
 &lt;h2 id="三实际应用">三、实际应用&lt;/h2>
 &lt;h3 id="reactor模式">Reactor模式&lt;/h3>
 &lt;h3 id="proactor模式">Proactor模式&lt;/h3>
-&lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%91%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%91%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="1概述">1.概述&lt;/h2>
 &lt;p>LAN：Local Area Network，局域网&lt;/p>
 &lt;p>WAN：Wide Area Network，广域网&lt;/p>
@@ -1187,7 +1194,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>UDP:不可靠的无连接信道.&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>运输协议数据单元 TPDU&lt;/strong>.Transport Protocol Data Unit&lt;/p>
-&lt;p>&lt;strong>TCP&lt;/strong>:&lt;/p>
+&lt;h3 id="tcp">&lt;strong>TCP&lt;/strong>:&lt;/h3>
 &lt;ul>
 &lt;li>Transmission Control Protocol 传输控制协议&lt;/li>
 &lt;li>提供&lt;strong>面向连接&lt;/strong>的、&lt;strong>可靠&lt;/strong>的&lt;strong>字节流&lt;/strong>服务&lt;/li>
@@ -1195,7 +1202,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>传输开销大、报文头部大&lt;/li>
 &lt;li>&lt;strong>全双工&lt;/strong>&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>UDP&lt;/strong>：&lt;/p>
+&lt;h3 id="udp">&lt;strong>UDP&lt;/strong>：&lt;/h3>
 &lt;ul>
 &lt;li>User Datagram Protocol 用户数据报协议&lt;/li>
 &lt;li>提供&lt;strong>面向事务&lt;/strong>的&lt;strong>简单不可靠&lt;/strong>信息传送服务&lt;/li>
@@ -1207,7 +1214,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>HTTP 80，SNMP 161&lt;/p>
 &lt;p>DNS 53，SMTP 25&lt;/p>
 &lt;p>&lt;strong>TELNET 23&lt;/strong>，FTP 21&lt;/p>
-&lt;p>&lt;strong>TCP的三种可靠传输机制&lt;/strong>:&lt;/p>
+&lt;h3 id="tcp的三种可靠传输机制">&lt;strong>TCP的三种可靠传输机制&lt;/strong>:&lt;/h3>
 &lt;ul>
 &lt;li>TCP数据&lt;strong>编号&lt;/strong>: 建立连接时协定初始编号,每一个&lt;strong>字节&lt;/strong>对应一个&lt;strong>编号&lt;/strong>,保证数据有序提交应用层。&lt;/li>
 &lt;li>TCP数据&lt;strong>确认&lt;/strong>: 对接收到的数据的&lt;strong>最高序号表示确认&lt;/strong>。&lt;/li>
@@ -1215,7 +1222,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;/ul>
 &lt;p>&lt;strong>流量控制&lt;/strong>： 端与端之间通信量的控制。&lt;strong>让发送方的发送速率不要太快&lt;/strong>，既要让接收方来得及接收，也不要使网络发生拥塞。一般使用滑动窗口进行流量控制。&lt;/p>
 &lt;p>&lt;strong>拥塞控制&lt;/strong>：使网络能够承受现有的&lt;strong>网络负荷&lt;/strong>。本质是根据自己估算的网络拥塞程度&lt;strong>设置拥塞窗口的值cwnd&lt;/strong>来限定发送速率。&lt;/p>
-&lt;p>&lt;strong>TCP的拥塞控制四种方法&lt;/strong>:&lt;/p>
+&lt;h3 id="tcp的拥塞控制四种方法">&lt;strong>TCP的拥塞控制四种方法&lt;/strong>:&lt;/h3>
 &lt;ul>
 &lt;li>
 &lt;p>慢开始: cwnd = 1，每收到一个确认cwnd++&lt;/p>
@@ -1240,7 +1247,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>快恢复: 发送方&lt;strong>一连收到三个重复确认&lt;/strong>，ssthresh = cwnd/2，但cwnd不变，此时是由RRT线性增大。&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>TCP三次握手&lt;/strong>：&lt;/p>
+&lt;h3 id="tcp三次握手">&lt;strong>TCP三次握手&lt;/strong>：&lt;/h3>
 &lt;ul>
 &lt;li>&lt;strong>第一次&lt;/strong>
 &lt;ul>
@@ -1264,7 +1271,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>TCP三次握手的原因&lt;/strong>:&lt;/p>
+&lt;h3 id="tcp三次握手的原因">&lt;strong>TCP三次握手的原因&lt;/strong>:&lt;/h3>
 &lt;ul>
 &lt;li>
 &lt;p>因为第二次服务端接收到连接请求的时候，也想建立连接，所以将SYN和ACK一起发送。&lt;/p>
@@ -1276,17 +1283,16 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>第二次和第三次：为了保证&lt;strong>客户端能收接受到服务端&lt;/strong>的信息并能做出正确的应答。&lt;/p>
 &lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>TCP四次挥手过程&lt;/strong>:&lt;/p>
+&lt;h3 id="tcp四次挥手过程">&lt;strong>TCP四次挥手过程&lt;/strong>:&lt;/h3>
 &lt;ul>
 &lt;li>&lt;strong>第一次&lt;/strong>：&lt;strong>客户端&lt;/strong>发送&lt;strong>FIN报文请求释放连接&lt;/strong>。用来关闭客户端到服务端的数据传送。单向关闭。&lt;/li>
 &lt;li>&lt;strong>第二次&lt;/strong>：&lt;strong>服务端&lt;/strong>收到这个FIN后，&lt;strong>发回ACK确认&lt;/strong>。客户端到服务端方向的连接释放，TCP处于半关闭。客户端无法向服务端发送数据，但服务端仍然可以向客户端发送数据。&lt;/li>
 &lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。&lt;/li>
-&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在
-2MSL后关闭。TCP连接释放完成。&lt;/li>
+&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在2MSL后关闭。TCP连接释放完成。&lt;/li>
 &lt;/ul>
-&lt;p>&lt;strong>TCP四次挥手原因&lt;/strong>:
-当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
-&lt;p>&lt;strong>TCP最后一次挥手客户端要等待2MSL(最长报文寿命)时间的原因:&lt;/strong>&lt;/p>
+&lt;h3 id="tcp四次挥手原因">&lt;strong>TCP四次挥手原因&lt;/strong>:&lt;/h3>
+&lt;p>当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
+&lt;h3 id="tcp最后一次挥手客户端要等待2msl最长报文寿命时间的原因">&lt;strong>TCP最后一次挥手客户端要等待2MSL(最长报文寿命)时间的原因:&lt;/strong>&lt;/h3>
 &lt;ul>
 &lt;li>若&lt;strong>客户端&lt;/strong>发送&lt;strong>最后的ACK丢失&lt;/strong>，
 则&lt;strong>服务端会在经过MSL后重发FIN报文&lt;/strong>。若客户端此时已经关闭，则无法重发ACK，则&lt;strong>服务端则无法进入关闭状态&lt;/strong>。&lt;/li>
@@ -1413,4 +1419,59 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>资源路径。域名（端口）后紧跟的就是资源路径，从第一个/开始，表示从服务器上根目录开始进行索引到的文件路径，上图中要访问的文件就是服务器根目录下/path/to/myfile.html。早先的设计是该文件通常物理存储于服务器主机上，但现在随着网络技术的进步，该文件不一定会物理存储在服务器主机上，有可能存放在云上，而文件路径也有可能是虚拟的（遵循某种规则）。&lt;/li>
 &lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
 &lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
+&lt;/ul>
+&lt;h4 id="输入url后发生了什么">输入URL后发生了什么&lt;/h4>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>应用层决定请求URL后,由于IP地址还未知,首先会发起域名解析请求。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>域名解析请求通过UDP传输到本地DNS服务器。&lt;/p>
+&lt;ul>
+&lt;li>DNS服务器根据域名查询缓存或者递归查询根DNS、顶级域名服务器等,直到获取到目标主机的IP地址。&lt;/li>
+&lt;li>DNS服务器回复客户端IP地址,此过程采用UDP传输。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>客户端获得IP后对请求进行封装,生成HTTP请求报文。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>传输层:HTTP请求报文交给TCP协议处理。TCP会为该通信会话建立连接,并将HTTP报文切成一个个TCP段,每个TCP段添加序列号等控制信息。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>网络层:TCP段交给IP处理。IP给每个TCP段添加源IP地址、目标IP地址、检查字以及其他控制信息,将其封装成IP数据报。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>链路层:IP数据报交给链路层(如以太网)处理。以太网将IP数据报装入以太网帧中,添加源MAC地址、目标MAC地址等,形成真正通过物理链路传输的帧格式数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>物理层:将以太网帧通过以太网卡发送到 physical network 即万兆交换机等,再通过光纤或电缆等物理传输媒介传输到目标主机。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>目的主机接收到帧后,各层逆向解析和处理,最终应用层获取到完整的HTTP请求报文。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>服务器应用处理请求逻辑,生成HTTP响应报文。响应报文经过TCP/IP封装打包成 frames 后,返回客户端,各层相反的顺序传送。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/p>
+&lt;/li>
 &lt;/ul></description></item></channel></rss>
