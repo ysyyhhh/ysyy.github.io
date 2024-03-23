@@ -13730,7 +13730,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="kt">bool&lt;/span> &lt;span class="nf">cmp&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">a2&lt;/span>&lt;span class="p">){&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">a1&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">a2&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">vector&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="err">v&lt;/span>&lt;span class="n">ector&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kt">int&lt;/span> &lt;span class="n">in&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lower_bound&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">(),&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">cmp&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">();&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="思维题">思维题&lt;/h1>
 &lt;h4 id="小球称重问题">小球称重问题&lt;/h4>
@@ -19320,6 +19320,11 @@ DiscardPolicy：直接丢弃任务，不做任何处理。&lt;/p>
 &lt;li>反射,例如: Class.forName(&amp;ldquo;com.example.Test&amp;rdquo;)&lt;/li>
 &lt;li>初始化一个类的子类&lt;/li>
 &lt;li>Java虚拟机启动时被标明为启动类的类,即main方法所在的类&lt;/li>
+&lt;/ul>
+&lt;p>类初始化的方式&lt;/p>
+&lt;ul>
+&lt;li>构造函数&lt;/li>
+&lt;li>静态代码块&lt;/li>
 &lt;/ul>
 &lt;h4 id="使用">使用&lt;/h4>
 &lt;p>类访问方法区的数据,执行程序代码,调用方法等.&lt;/p>
