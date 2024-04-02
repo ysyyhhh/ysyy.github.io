@@ -97,7 +97,17 @@ Netty是一个异步的、基于事件驱动的网络应用框架，用以快速
 Netty主要针对在TCP协议下，面向Clients端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输的应用。
 Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场景。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="io模型">I/O模型&lt;/h1>
 &lt;h2 id="一什么是io模型-及-io模型的分类">一、什么是I/O模型 及 I/O模型的分类&lt;/h2>
-&lt;h2 id="二io-多路复用">二、I/O 多路复用&lt;/h2>
+&lt;p>Unix 有五种 I/O 模型：&lt;/p>
+&lt;p>阻塞式 I/O
+非阻塞式 I/O
+I/O 复用（select 和 poll）
+信号驱动式 I/O（SIGIO）
+异步 I/O（AIO）&lt;/p>
+&lt;h2 id="io-多路复用">I/O 多路复用&lt;/h2>
+&lt;p>它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。&lt;/p>
+&lt;h3 id="select">select&lt;/h3>
+&lt;h3 id="poll">poll&lt;/h3>
+&lt;h3 id="epoll">epoll&lt;/h3>
 &lt;h2 id="三实际应用">三、实际应用&lt;/h2>
 &lt;h3 id="reactor模式">Reactor模式&lt;/h3>
 &lt;h3 id="proactor模式">Proactor模式&lt;/h3>

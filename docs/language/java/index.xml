@@ -306,6 +306,16 @@ AIO是一种异步IO模型，适用于连接数较多且数据量较大的场景
 &lt;li>头部和尾部的插入删除都是O(1)&lt;/li>
 &lt;li>一般不使用,作者都不使用&lt;/li>
 &lt;/ul>
+&lt;h3 id="arraylist">ArrayList&lt;/h3>
+&lt;p>底层是动态数组&lt;/p>
+&lt;p>Q:声明arraylist，java语言会做什么操作
+A:声明ArrayList时，Java会创建一个长度为0的数组，当第一次添加元素时，会创建一个长度为10的数组，并将元素添加到数组中。当数组长度不够时，会创建一个原数组长度的1.5倍的新数组，并将原数组中的元素复制到新数组中。&lt;/p>
+&lt;p>arraylist什么时候扩容
+A:ArrayList在添加元素时，会先判断当前数组的容量是否足够，如果不够则会进行扩容。扩容时，会创建一个原数组长度的1.5倍的新数组，并将原数组中的元素复制到新数组中。&lt;/p>
+&lt;p>arraylist是线程安全的吗
+A:ArrayList是非线程安全的，如果需要在多线程环境下使用ArrayList，可以使用Collections.synchronizedList()方法将ArrayList转换为线程安全的List。&lt;/p>
+&lt;p>线程安全的list有哪些
+A:线程安全的List有Vector和Collections.synchronizedList()方法转换的List。Vector是一种线程安全的List实现，而Collections.synchronizedList()方法可以将ArrayList转换为线程安全的List。&lt;/p>
 &lt;h2 id="set">Set&lt;/h2>
 &lt;p>对集合进行排序时,需要实现Comparable接口,重写compareTo方法&lt;/p>
 &lt;p>集合的不可重复性是通过equals方法来判断的, 需要重写equals方法和hashCode方法&lt;/p>
@@ -365,6 +375,32 @@ AIO是一种异步IO模型，适用于连接数较多且数据量较大的场景
 &lt;p>jdk1.8之前插入链表是头插法，jdk1.8之后是尾插法。&lt;/p>
 &lt;p>put原理&lt;/p>
 &lt;p>同时还有一个区别：发生“hash冲突”时，我们上面的做法是“头插法”，这是jdk1.7的做法，而在jdk1.8中，使用的是“尾插法”。&lt;/p>
+&lt;h4 id="hash冲突解决方案">hash冲突解决方案&lt;/h4>
+&lt;ul>
+&lt;li>开放定址法
+&lt;ul>
+&lt;li>线性探测法&lt;/li>
+&lt;li>二次探测法&lt;/li>
+&lt;li>伪随机&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>链地址法
+&lt;ul>
+&lt;li>相同的hash值的元素，用链表存储&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>再哈希法
+&lt;ul>
+&lt;li>提供多个hash函数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>建立公共溢出区
+&lt;ul>
+&lt;li>将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。&lt;/li>
+&lt;li>在查找的时候，先与哈希表的相应位置比较，如果查找成功，则返回。否则去公共溢出区按顺序一一查找。在冲突数据少时性能好，冲突数据多的时候耗时。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h4 id="hashmap底层实现">hashmap底层实现&lt;/h4>
 &lt;p>HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
 &lt;p>一般情况下，当元素数量超过阈值时便会触发扩容。每次扩容的容量都是之前容量的2倍。&lt;/p>
@@ -374,6 +410,7 @@ AIO是一种异步IO模型，适用于连接数较多且数据量较大的场景
 &lt;h4 id="hashmap17和18区别">hashmap1.7和1.8区别&lt;/h4>
 &lt;p>HashMap1.7和1.8的主要区别在于底层实现方式的改变。1.7中使用的是数组+链表的方式来解决哈希冲突，而1.8中引入了红黑树来优化链表过长的情况，提高了查询效率。此外，1.8中还引入了一些新的方法和特性，如forEach()方法、Lambda表达式等。&lt;/p>
 &lt;h4 id="hashmap怎么让他线程安全的方法">hashmap怎么让他线程安全的方法&lt;/h4>
+&lt;p>线程安全的map有哪些&lt;/p>
 &lt;p>HashMap本身是非线程安全的，如果需要在多线程环境下使用HashMap，可以使用以下几种方法来保证线程安全：&lt;/p>
 &lt;ol>
 &lt;li>使用Collections.synchronizedMap()方法将HashMap转换为线程安全的Map。&lt;/li>
@@ -383,6 +420,8 @@ AIO是一种异步IO模型，适用于连接数较多且数据量较大的场景
 &lt;h3 id="concurrenthashmap">ConcurrentHashMap&lt;/h3>
 &lt;h4 id="concurrenthashmap原理">ConcurrentHashMap原理&lt;/h4>
 &lt;p>ConcurrentHashMap 已经摒弃了 Segment 的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。&lt;/p>
+&lt;p>13、concurrenthashmap最耗时的操作是什么&lt;/p>
+&lt;p>12、hashtable和concurrenthashmap的区别&lt;/p>
 &lt;p>红黑树可用别的数据结构代替吗&lt;/p>
 &lt;p>跳表与红黑树比较&lt;/p>
 &lt;p>线程安全的类有哪些，为什么线程安全&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</guid><description>&lt;h1 id="java-多线程">Java 多线程&lt;/h1>
@@ -2336,7 +2375,19 @@ JVM 中的 PC 寄存器是对物理 PC 寄存器的一种抽象模拟。&lt;/p>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="内存分配策略">内存分配策略&lt;/h4>
+&lt;p>Major GC（Major Garbage Collection）和Mixed GC（Mixed Garbage Collection）是两种不同的垃圾回收机制，它们在执行时的行为和目标有所不同。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl"> Major GC（也称为Full GC）是一种针对整个堆内存执行的垃圾回收操作。它的目标是清理整个堆内存，并回收无用对象。Major GC通常在堆内存空间不足或触发显式的垃圾回收请求时执行。它会停止应用程序的执行，并对整个堆内存进行标记和清理。Major GC的过程包括标记阶段和清理阶段，通过标记可达对象和清理未标记的对象来回收内存空间。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Mixed GC（也称为Incremental GC）是一种结合了部分收集和全收集的垃圾回收操作。它的目标是在不完全停止应用程序的情况下，尽可能回收垃圾对象。Mixed GC通过将堆内存划分为多个区域（如年轻代和老年代的不同区域）来实现增量的回收。它会在应用程序执行的同时，对某些区域进行标记和清理操作。这样可以减少垃圾回收的停顿时间，提高应用程序的响应性能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 区别总结如下：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 范围：Major GC是对整个堆内存执行的垃圾回收操作，而Mixed GC是对部分堆内存区域执行的垃圾回收操作。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 目标：Major GC的目标是清理整个堆内存，并回收无用对象；Mixed GC的目标是在不完全停止应用程序的情况下，尽可能回收垃圾对象。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 执行方式：Major GC会停止应用程序的执行，执行全面的标记和清理操作；Mixed GC会在应用程序执行的同时，对某些区域进行增量式的标记和清理操作。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 停顿时间：Major GC的停顿时间较长，会导致应用程序的暂停；Mixed GC采用增量式的回收，可以减少垃圾回收的停顿时间，提高应用程序的响应性能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Java虚拟机和垃圾收集器的实现可以根据具体的需求和性能目标选择使用Major GC、Mixed GC或它们的组合来进行垃圾回收操作。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="内存分配策略">内存分配策略&lt;/h4>
 &lt;ul>
 &lt;li>对象优先在Eden区分配&lt;/li>
 &lt;li>大对象直接进入老年代&lt;/li>

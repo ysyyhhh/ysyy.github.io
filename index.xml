@@ -9201,6 +9201,25 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;li>强制把读请求给主库&lt;/li>
 &lt;li>延迟读取, 等待从库同步完成后再读取&lt;/li>
 &lt;/ol>
+&lt;h2 id="锁">锁&lt;/h2>
+&lt;h3 id="锁的类型">锁的类型&lt;/h3>
+&lt;ul>
+&lt;li>共享锁（S锁）：允许事务读取一行数据&lt;/li>
+&lt;li>排他锁（X锁）：允许事务删除或更新一行数据&lt;/li>
+&lt;li>读锁（R锁）：允许事务读取一行数据&lt;/li>
+&lt;li>写锁（W锁）：允许事务删除或更新一行数据&lt;/li>
+&lt;li>乐观锁：不加锁，通过版本号或时间戳来判断数据是否被修改&lt;/li>
+&lt;li>悲观锁：加锁，通过锁来保证数据的一致性&lt;/li>
+&lt;li>行锁：锁定一行数据&lt;/li>
+&lt;li>表锁：锁定整个表&lt;/li>
+&lt;li>间隙锁：锁定一个范围，但不包括记录本身&lt;/li>
+&lt;li>临键锁：锁定一个范围，包括记录本身&lt;/li>
+&lt;li>读写锁：读锁共享，写锁排他&lt;/li>
+&lt;li>自旋锁：不断循环检查锁是否释放&lt;/li>
+&lt;li>互斥锁：同一时间只允许一个线程访问共享资源&lt;/li>
+&lt;/ul>
+&lt;h3 id="mvcc">MVCC&lt;/h3>
+&lt;p>MVCC（Multi-Version Concurrency Control）多版本并发控制&lt;/p>
 &lt;h2 id="日志类型">日志类型&lt;/h2>
 &lt;h3 id="重做日志redo-log">重做日志（redo log）&lt;/h3>
 &lt;p>作用：保证事务的持久性&lt;/p>
@@ -9220,6 +9239,16 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;p>作用： 用于主从复制&lt;/p>
 &lt;p>内容：包括执行了的sql语句和反向的sql语句&lt;/p>
 &lt;p>其他： 错误日志（errorlog）、慢查询日志（slow query log）、一般查询日志（general log），中继日志（relay log）&lt;/p>
+&lt;h3 id="逻辑日志和物理日志">逻辑日志和物理日志&lt;/h3>
+&lt;p>逻辑日志：记录的是逻辑操作，如insert、update、delete&lt;/p>
+&lt;ul>
+&lt;li>binlog&lt;/li>
+&lt;li>undo log&lt;/li>
+&lt;/ul>
+&lt;p>物理日志：记录的是物理操作，如页的修改，如redo log&lt;/p>
+&lt;ul>
+&lt;li>redo log&lt;/li>
+&lt;/ul>
 &lt;h2 id="分布式场景">分布式场景&lt;/h2>
 &lt;h3 id="分布式场景中如何保证主键的唯一性">分布式场景中如何保证主键的唯一性&lt;/h3>
 &lt;ul>
@@ -9379,6 +9408,8 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;p>Redis的回收策略包括noeviction、allkeys-lru、volatile-lru、allkeys-random和volatile-random等。&lt;/p>
 &lt;h3 id="redis的持久化机制的优缺点有哪些">Redis的持久化机制的优缺点有哪些？&lt;/h3>
 &lt;p>Redis的持久化机制包括RDB和AOF两种方式，各自的优缺点包括数据恢复速度、数据安全性、数据一致性等方面。&lt;/p>
+&lt;p>RDB方式是将Redis的内存数据快照保存到磁盘上，优点是恢复速度快，缺点是可能会丢失最近一次快照之后的数据。&lt;/p>
+&lt;p>AOF方式是将Redis的写操作以追加的方式记录到一个日志文件中，优点是可以保证数据的完整性和一致性，缺点是日志文件可能会很大。&lt;/p>
 &lt;h3 id="保证缓存与数据库的双写一致性--">保证缓存与数据库的双写一致性&amp;ndash;&lt;/h3>
 &lt;p>四种同步策略：&lt;/p>
 &lt;p>想要保证缓存与数据库的双写一致，一共有4种方式，即4种同步策略：&lt;/p>
@@ -9495,457 +9526,7 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
-&lt;h2 id="索引">索引&lt;/h2>
-&lt;h3 id="b树与b树的结构">&lt;strong>B树与B+树的结构&lt;/strong>&lt;/h3>
-&lt;p>B树是&lt;strong>多关键字平衡树&lt;/strong>,且节点内的关键字是有序的.每个节点都存储其关键字指向的具体数据地址.&lt;/p>
-&lt;p>B+树是在B树的基础上, 非叶子节点仅指向其多个子节点的地址 , 只有叶子节点指向具体以堆文件形式存放的数据块地址. 相邻叶子节点也通过指针连接. 方便快速范围查询.&lt;/p>
-&lt;p>不同之处:&lt;/p>
-&lt;ul>
-&lt;li>层数更低: 相比于B树, B+树的非叶子节点全部用于索引,使得B+树的层数更低,&lt;/li>
-&lt;li>效率稳定, B+树一定只能在叶子节点找到数据的具体地址, 每次查询的路径长度基本一致.&lt;/li>
-&lt;li>范围查询: B+树的叶子节点有next指针, 使得范围查询效率更高.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么不用其他数据结构做索引而用b树或b树">&lt;strong>为什么不用其他数据结构做索引，而用B树或B+树&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>链表, 链表的查询速度是O（N），每次查询都得从链表头开始查询，例如上面查询“xiaxia”，如果xiaxia在1000的位置，那么需要遍历1000次才能查找到。&lt;/li>
-&lt;li>数组:查询速度O（1），但删除插入是O(n), 且数据必须存在于内存, 索引过大时无法存储.&lt;/li>
-&lt;li>平衡二叉树
-&lt;ul>
-&lt;li>二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少. 但在树形结构下,影响查询效率的因素主要是树的深度, B树的深度远比平衡二叉树小。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="b树索引的适用范围">&lt;strong>B树索引的适用范围&lt;/strong>:&lt;/h3>
-&lt;ul>
-&lt;li>全键值匹配&lt;/li>
-&lt;li>匹配最左前缀
-匹配列前缀&lt;/li>
-&lt;li>匹配范围值
-精确匹配某一列并范围匹配另外一列
-只访问索引的查询&lt;/li>
-&lt;/ul>
-&lt;h3 id="什么时候使用b树索引--b树的索引可用性">&lt;strong>什么时候使用B树索引 / B树的索引可用性&lt;/strong>:&lt;/h3>
-&lt;p>1、只需要获取少量的行;(确保使用索引比不使用索引更高效)&lt;/p>
-&lt;p>2、即便获取很多行，但是可以只使用索引不使用基本表。(索引中包含整个表)&lt;/p>
-&lt;h3 id="索引有哪些索引分类">&lt;strong>索引有哪些？索引分类&lt;/strong>&lt;/h3>
-&lt;h4 id="按照物理存储分类">按照物理存储分类&lt;/h4>
-&lt;p>聚簇索引&lt;/p>
-&lt;ul>
-&lt;li>按照数据存放的&lt;strong>物理位置为顺序&lt;/strong>的索引结构，聚集索引的&lt;strong>叶子节点包含了整个数据行&lt;/strong>。&lt;/li>
-&lt;li>InnoDB表要&lt;strong>求必须有聚簇索引，默认在主键字段上建立聚簇索引&lt;/strong>&lt;/li>
-&lt;li>每个表&lt;strong>只能有一个聚集索引&lt;/strong>，它对应的索引键值也是表的&lt;strong>主键或唯一约束条件&lt;/strong>。&lt;/li>
-&lt;li>通过聚集索引，我们可以快速地按照主键或唯一约束条件查询和排序表中的数据, &lt;strong>提高多行检索速度&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>非聚簇索引&lt;/p>
-&lt;ul>
-&lt;li>索引顺序与数据&lt;strong>物理列排序无关&lt;/strong>，&lt;strong>叶节点仍然是索引节点(指向主键)&lt;/strong>&lt;/li>
-&lt;li>每个表可以有&lt;strong>多个非聚集索引&lt;/strong>，这些索引可以覆盖&lt;strong>多个数据列&lt;/strong>，以满足不同的查询需求。&lt;/li>
-&lt;li>通过非聚集索引，快速地&lt;strong>定位表中符合查询条件的记录的主键&lt;/strong>，然后进行(回表查询)。&lt;/li>
-&lt;/ul>
-&lt;h4 id="按字段特性">按字段特性&lt;/h4>
-&lt;p>&lt;strong>单列索引&lt;/strong>：对&lt;strong>单列创建索引&lt;/strong>，&lt;strong>叶子节点包含索引列的值&lt;/strong>，并且&lt;strong>根据单列排序&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>联合索引&lt;/strong>：同时对&lt;strong>多列创建索引&lt;/strong>，&lt;strong>叶子节点会同时包含每个索引列的值&lt;/strong>，并且同时&lt;strong>根据多列排序&lt;/strong>，这个排序和我们所理解的字典序类似。&lt;/p>
-&lt;p>&lt;strong>覆盖索引&lt;/strong>: 如果&lt;strong>非聚簇符合索引&lt;/strong>已经能够得到&lt;strong>查询的所有信息&lt;/strong>了，就&lt;strong>无需再回表&lt;/strong>，即只按照条件&lt;strong>找主键&lt;/strong>。&lt;/p>
-&lt;h4 id="按数据结构分类">按数据结构分类&lt;/h4>
-&lt;p>B+索引&lt;/p>
-&lt;p>&lt;strong>哈希索引&lt;/strong>&lt;/p>
-&lt;p>所有的数据类型，通过哈希函数变成一个&lt;strong>等长的哈希值&lt;/strong>。&lt;/p>
-&lt;p>将这个&lt;strong>等长的哈希值&lt;/strong>作为&lt;strong>组织成索引的结构 —— 哈希链表&lt;/strong>。&lt;/p>
-&lt;p>哈希链表的结点上，&lt;strong>储存哈希值&lt;/strong> 和 &lt;strong>指向记录哈希值的地址 uid（索引行的地址）&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>哈希索引能做什么不能做什么？&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>哈希索引只能用来进行&lt;strong>全键值&lt;/strong>的查询
-&lt;ul>
-&lt;li>不能前缀查询&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>哈希索引只支持&lt;strong>击中运算符&lt;/strong>
-&lt;ul>
-&lt;li>击中运算符：= , != , in&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>哈希索引&lt;strong>不支持范围查询&lt;/strong>&lt;/li>
-&lt;li>哈希索引&lt;strong>不支持对字段排序&lt;/strong>(因为只支持击中运算符)&lt;/li>
-&lt;li>哈希索引&lt;strong>读取效率高于B树索引&lt;/strong>
-&lt;ul>
-&lt;li>哈希索引结构非常&lt;strong>紧凑&lt;/strong>.&lt;/li>
-&lt;li>哈希索引&lt;strong>使用数值的比较&lt;/strong>,远&lt;strong>高于字符串比较&lt;/strong>速度.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>函数索引&lt;/strong>&lt;/p>
-&lt;p>B树索引是对一个字段构建索引,而函数索引是对&lt;strong>这个字段上的一个函数值&lt;/strong>构建索引.&lt;/p>
-&lt;p>&lt;strong>结构同样是B+树索引,只是节点的关键字是函数的值而不是字段值.&lt;/strong>&lt;/p>
-&lt;p>是最具创造力的索引结构,用得好可用解决并发冲突,优化存储结构.等很多事情.&lt;/p>
-&lt;p>&lt;strong>能用在哪&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>不区分大小写&lt;/strong>查询&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>T、F比例巨大差异&lt;/strong>的查询&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>项目表有两个状态, active和inactive.&lt;/p>
-&lt;p>要求active的项目,必须要有唯一名. 而inactive没有这个要求.&lt;/p>
-&lt;p>解决方法: &lt;strong>函数索引上构建唯一索引&lt;/strong>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>位图索引&lt;/strong>&lt;/p>
-&lt;p>用一个&lt;strong>索引键条目（01图）存储指向多行&lt;/strong>的指针。&lt;/p>
-&lt;p>&lt;strong>位图索引适合&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>相异基数(distinct cardinality)低&lt;/strong>的字段进行快速查询 (复合查询)
-&lt;ul>
-&lt;li>可以取的值的范围小: 性别、真假,年龄段 等.&lt;/li>
-&lt;li>使用B树索引,需要复合索引时 组合数多. 且共同的值多, 可能使得叶子结点远少于索引结点.&lt;/li>
-&lt;li>使用哈希索引,碰撞率贼高.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>大量&lt;strong>临时查询的聚合&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>位图索引对于写操作非常不友好&lt;/strong>/位图索引&lt;strong>不能应用在OLTP&lt;/strong>应用中的原因&lt;/p>
-&lt;p>&lt;strong>原因&lt;/strong>: 位图索引的&lt;strong>键值指向多行&lt;/strong>, 如果一个session修改了一个索引的数据,则&lt;strong>该索引指向的所有行都会被查找到&lt;/strong>.无法锁定单独一个条目,&lt;strong>可能在修改时要锁住整个目录&lt;/strong>,导致并发性下降严重 几乎变成串行化.&lt;/p>
-&lt;p>&lt;strong>位图连结索引&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>允许使用&lt;strong>另外某个表的列&lt;/strong> 对 &lt;strong>一个给定表&lt;/strong> 建立索引。&lt;/li>
-&lt;li>实际上，这就是允许&lt;strong>对一个索引结构&lt;/strong>(而不是表本身)中的数据进行&lt;strong>逆规范化&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>位图联结索引的&lt;strong>前提条件&lt;/strong>:&lt;/p>
-&lt;p>&lt;strong>必须连接到另一张表的主键/唯一键&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>反向键索引或叫避向索引“eseindex)&lt;/strong>&lt;/p>
-&lt;ol>
-&lt;li>将键值反向插入，以免并发插入时都插入到同一个块。&lt;/li>
-&lt;li>此时进程将竞争同一个索引页,插入并发性大幅度下降&lt;/li>
-&lt;/ol>
-&lt;h3 id="索引的5种优点">&lt;strong>索引的5种优点&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>可以大大加快数据的&lt;strong>检索&lt;/strong>速度&lt;/li>
-&lt;li>可以加速表和表之间的&lt;strong>连接&lt;/strong>，特别是在实现数据的参照完整性方面特别有意义&lt;/li>
-&lt;li>在使用分组和排序子句进行数据检索式，同样可以显著减少查询中&lt;strong>分组和排序&lt;/strong>的时间&lt;/li>
-&lt;li>通过创建&lt;strong>唯一性&lt;/strong>索引，可以保证数据库表中每一行数据的唯一性&lt;/li>
-&lt;li>通过使用索引，可以在查询的过程中，使用&lt;strong>优化隐藏器&lt;/strong>，提高系统的性能&lt;/li>
-&lt;/ul>
-&lt;h3 id="系统对外键建立索引很普遍为什么要对外键建立索引">&lt;strong>系统对外键建立索引很普遍。为什么要对外键建立索引？&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>加快对于父表和子表的&lt;strong>连接查询&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>删除操作&lt;/strong>时，可以快速通过外键的索引找到&lt;strong>主表中&lt;/strong>要删除的行。&lt;/li>
-&lt;li>&lt;strong>避免死锁&lt;/strong>, 有外键时会导致两个表都要上锁.
-&lt;ul>
-&lt;li>添加索引能够让&lt;strong>上锁后操作的时间变短&lt;/strong>, .并发时需要 A表加锁/B表加锁。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="不加索引的外键情况">&lt;strong>不加索引的外键情况&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>子表不容易&lt;/strong>修改
-&lt;ul>
-&lt;li>不从子表中删除记录&lt;/li>
-&lt;li>是一个字典表,不容易被修改.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>一般&lt;strong>不进行父表和子表的连接查询&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="建立索引的条件--请解释数据库管理员如何为数据库建立一组好的索引">&lt;strong>建立索引的条件 / 请解释数据库管理员如何为数据库建立一组好的索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>经常搜索&lt;/strong>的列&lt;/li>
-&lt;li>经常&lt;strong>使用where子句&lt;/strong>的列上，加快条件的判断速度&lt;/li>
-&lt;li>经常进行&lt;strong>范围搜索&lt;/strong>的列上，因为索引已经排序了，其指定的范围是连续的.&lt;/li>
-&lt;li>&lt;strong>唯一性&lt;/strong>的列:在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li>
-&lt;li>经常&lt;strong>需要排序&lt;/strong>的列上，因为索引已经排序了，查询可以利用索引的排序，加速排序查询时间.&lt;/li>
-&lt;li>&lt;strong>经常用在连接的列&lt;/strong>，这些列&lt;strong>主要是外键&lt;/strong>，可以加快连接速度&lt;/li>
-&lt;li>&lt;strong>数据分布较广的列&lt;/strong>:&lt;/li>
-&lt;/ul>
-&lt;h3 id="哪些列上不应该加索引">&lt;strong>哪些列上不应该加索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>很少使用&lt;/strong>或者参考的列不应该创建索引。&lt;/li>
-&lt;li>&lt;strong>很少的数据值&lt;/strong>列不应该创建索引。&lt;/li>
-&lt;li>&lt;strong>text,image,bit数据类型&lt;/strong>的列不应该加索引。
-&lt;ul>
-&lt;li>比较和排序的开销大.&lt;/li>
-&lt;li>因为这些列要么数据量很大，要么很小，不利于使用索引&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>修改需求大&lt;/strong>的列.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么数据库管理员一般不会给所有单个属性都建立索引请写出两条原因">&lt;strong>为什么数据库管理员一般不会给所有单个属性都建立索引，请写出两条原因&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>过多的索引会&lt;strong>加重优化器&lt;/strong>查找最优查询计划的负担&lt;/li>
-&lt;li>会增加数据库&lt;strong>维护索引的负担&lt;/strong>.&lt;/li>
-&lt;li>一旦聚集索引改变，&lt;strong>所有非聚集索引都会跟着改变&lt;/strong>&lt;/li>
-&lt;li>该列是&lt;strong>属于不该建立索引&lt;/strong>的列时.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么没有使用我的索引">&lt;strong>为什么没有使用我的索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>使用B+树索引&lt;/strong>，但&lt;strong>没有使用索引的最前列&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>不能为NULL建立索引条目&lt;/strong>
-&lt;ul>
-&lt;li>&lt;strong>COUNT(*)&lt;/strong>， 包括NULL, t会引起&lt;strong>全表扫描&lt;/strong>，&lt;/li>
-&lt;li>is not NULL&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>函数查询&lt;/strong>时不使用索引&lt;/li>
-&lt;li>&lt;strong>隐形函数查询&lt;/strong>，比如**&amp;lt;&amp;gt;不等于符**，会&lt;strong>引起全表扫描&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>隐式类型转换&lt;/strong>，如字符串转成数值来比较&lt;/li>
-&lt;li>如果用了我的索引，实际反而会更慢。
-&lt;ul>
-&lt;li>即查询&lt;strong>优化器发现有比使用你的索引更快的访问方式&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>没有正确的统计信息&lt;/strong>，造成CBO无法做出正确的选择&lt;/li>
-&lt;li>两个条件用 &lt;strong>or 连接&lt;/strong>，一个有索引一个没索引&lt;/li>
-&lt;/ul>
-&lt;p>总结成两条：&lt;/p>
-&lt;ul>
-&lt;li>“不能使用索引，使用索引会返回不正确的结果”&lt;/li>
-&lt;li>“不该使用索引，如果使用了索引就会变得更慢”&lt;/li>
-&lt;/ul>
-&lt;h3 id="如何查看索引是否被使用">如何查看索引是否被使用&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>explain&lt;/strong>命令
-&lt;ul>
-&lt;li>&lt;code>explain select * from company_info where cname like '%小%'&lt;/code>&lt;/li>
-&lt;li>看possible_keys和key列&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="索引带来的问题负面的使用索引会降低查询效率的情况">&lt;strong>索引带来的问题（负面的）,使用索引会降低查询效率的情况&lt;/strong>：&lt;/h3>
-&lt;ul>
-&lt;li>总是&lt;strong>存在索引不被使用&lt;/strong>的情况。
-&lt;ul>
-&lt;li>存在索引时, 创建索引会带来系统的维护和空间的开销.&lt;/li>
-&lt;li>因此索引如果不被使用反而会降低效率.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>当&lt;strong>一次查询的结果集较大&lt;/strong>时，索引会影响效率。
-&lt;ul>
-&lt;li>因为&lt;strong>索引是针对点查询&lt;/strong>的，而不是针对某个范围查询的。此时有可能不使用索引反而效率更高.&lt;/li>
-&lt;li>一般结果集在10%以下可以考虑使用索引。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>对于&lt;strong>修改需求大的表&lt;/strong>中，使用索引会严重影响数据库更新操作的效率。&lt;/li>
-&lt;li>太多索引会让&lt;strong>设计不稳定&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="设计索引时需要考虑的主要因素">&lt;strong>设计索引时需要考虑的主要因素&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>在&lt;strong>适合加&lt;/strong>索引的列上加索引&lt;/li>
-&lt;li>不在&lt;strong>不应该加&lt;/strong>索引的列上加索引&lt;/li>
-&lt;li>不要加&lt;strong>过多&lt;/strong>的索引&lt;/li>
-&lt;li>确保建立该索引后&lt;strong>能够被使用&lt;/strong>&lt;/li>
-&lt;li>确保索引带来的&lt;strong>好处大于索引带来的问题&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="聚簇索引--clustered-index-或者--clustering-index">&lt;strong>聚簇索引 -clustered index 或者 -clustering index&lt;/strong>&lt;/h3>
-&lt;p>为了使得&lt;strong>表中数据有序&lt;/strong>, 很多数据库使用了&lt;strong>聚簇索引&lt;/strong>.&lt;/p>
-&lt;p>聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，这个叶子节点也被称为数据页。每张表只能拥有一个聚簇索引。&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>范围查询效率非常高&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>代价: &lt;strong>非范围查询也要进行范围扫描&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>主键更新会导致记录的重新排序，从而导致记录物理位置的变化&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>为了更加安全, 聚簇索引可以和索引组织表一样，根据主键来定义. 因为主键被更新的概率小,或者说不应该被更新.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>聚簇索引&lt;strong>也可以是非主键索引,这是和索引组织表不一样的地方&lt;/strong>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>聚簇索引和IOT的区别在于索引键的选择和存储方式。&lt;/p>
-&lt;ul>
-&lt;li>聚簇索引只包括表的主键，并将表的数据按照主键值的顺序存储在硬盘上；&lt;/li>
-&lt;li>IOT包括表的主键和数据列，并将数据和索引存储在同一个结构中。&lt;/li>
-&lt;/ul>
-&lt;h2 id="事务">事务&lt;/h2>
-&lt;h3 id="为什么要加锁">&lt;strong>为什么要加锁&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>多个应用程序&lt;strong>同时对相同数据进行访问&lt;/strong>。&lt;/li>
-&lt;li>&lt;strong>保证数据库的完整性和一致性&lt;/strong>，就必须要有一定的机制用于控制数据记录的读取、插入、删除和更新。&lt;/li>
-&lt;li>通过对数据库对象加锁，我们可以&lt;strong>避免由于并发更改造成数据的丢失&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁与提交">&lt;strong>加锁与提交&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>想要使加锁时间最短，必须&lt;strong>频繁的提交&lt;/strong>&lt;/li>
-&lt;li>但如果每个逻辑单元完成后都提交&lt;strong>会增加大量开销&lt;/strong>&lt;/li>
-&lt;li>对于批处理程序，并发控制不是问题，&lt;strong>避免频繁提交才是明智的做法&lt;/strong>。&lt;/li>
-&lt;li>对于用户交互程序，则需要&lt;strong>高频提交，加快释放锁&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁与可伸缩性">&lt;strong>加锁与可伸缩性&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>与表级锁相比，行级锁能产生更佳的&lt;strong>吞吐量&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>行级锁大都性能曲线很快达到极限&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁处理的原则">&lt;strong>加锁处理的原则&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>不要随便使用表级锁&lt;/strong>&lt;/li>
-&lt;li>尽量&lt;strong>缩短加锁时间&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>索引也需要维护&lt;/strong>&lt;/li>
-&lt;li>编程上的原则(语句性能高，未必程序性能高（下面有4点）)
-&lt;ul>
-&lt;li>避免SQL语句上的&lt;strong>循环处理&lt;/strong>&lt;/li>
-&lt;li>减少程序和数据库之间的&lt;strong>交互次数&lt;/strong>&lt;/li>
-&lt;li>充分利用DBMS提供的机制，使&lt;strong>跨机器交互的次数&lt;/strong>降至最少&lt;/li>
-&lt;li>把所有&lt;strong>不重复不必要的SQL语句放在逻辑工作单元&lt;/strong>之外&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="锁的分类">锁的分类&lt;/h3>
-&lt;p>悲观锁：&lt;/p>
-&lt;ul>
-&lt;li>指在读写数据时，认为&lt;strong>数据很可能会被其他并发操作所修改&lt;/strong>.
-&lt;ul>
-&lt;li>因此在**进行操作之前，先加锁，**确保数据不会被其他操作修改。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>悲观锁适用于并发写操作多，&lt;strong>读操作少&lt;/strong>的场景
-&lt;ul>
-&lt;li>例如&lt;strong>银行转账等涉及到账户余额变动&lt;/strong>的场景。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>悲观锁的缺点是在&lt;strong>并发量高时，会导致大量的阻塞和等待&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>乐观锁：&lt;/p>
-&lt;ul>
-&lt;li>指在读写数据时，认为&lt;strong>数据不会被其他并发操作所修改.&lt;/strong>
-&lt;ul>
-&lt;li>因此在进行操作之前，不加锁，但在&lt;strong>提交数据时，检查数据是否被其他操作所修改，如果没有修改，则提交成功，否则返回错误信息&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>乐观锁适用于并发读操作多，&lt;strong>写操作少&lt;/strong>的场景.
-&lt;ul>
-&lt;li>例如商品库存等只需要查询不需要修改的场景。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>乐观锁的优点是可以&lt;strong>大大降低阻塞和等待&lt;/strong>，但是需要在提交数据时进行额外的校验，&lt;strong>增加了程序开发和维护的难度&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>共享锁（Shared Lock）：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>允许多个事务进行读操作，但不允许写操作&lt;/strong>。&lt;/li>
-&lt;li>共享锁适用于多个事务&lt;strong>只读同一份数据&lt;/strong>的场景。&lt;/li>
-&lt;li>适用于读多写少的场景，例如在线图书馆、新闻网站等需要大量读取数据的应用，可以使用共享锁来&lt;strong>提高并发读取的能力，避免写操作的阻塞&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>排他锁（Exclusive Lock）：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>只允许一个事务进行写操作&lt;/strong>，其他事务&lt;strong>不能进行读写操作&lt;/strong>。&lt;/li>
-&lt;li>适用于写多读少的场景，&lt;/li>
-&lt;li>例如银行转账、在线购物等需要对数据进行修改的应用，可以使用排他锁来保证操作的原子性，&lt;strong>避免读写冲突和数据不一致性&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>行级锁（Row Lock）：&lt;/p>
-&lt;ul>
-&lt;li>针对数据表中的某一行数据进行加锁，&lt;strong>只有在访问该行数据时才会加锁&lt;/strong>，这样可以&lt;strong>提高并发性能&lt;/strong>。&lt;/li>
-&lt;li>例如社交网络、在线游戏等需要&lt;strong>频繁更新数据,高并发&lt;/strong>的应用，可以使用行级锁来控制并发更新，提高系统的并发能力和性能。&lt;/li>
-&lt;/ul>
-&lt;p>间隙锁（Gap Lock）：&lt;/p>
-&lt;ul>
-&lt;li>针对数据表中&lt;strong>不存在的数据进行加锁&lt;/strong>，可以防止其他事务在这个间隙中插入数据。&lt;/li>
-&lt;li>适用于对数据表中不存在的数据进行加锁的场景，例如对于需要&lt;strong>进行范围查询或者范围删除的应用&lt;/strong>，可以使用间隙锁来避免其他事务在查询或删除操作中插入数据，保证数据的一致性和正确性。(避免幻读)&lt;/li>
-&lt;/ul>
-&lt;p>意向锁（Intention Lock）：&lt;/p>
-&lt;ul>
-&lt;li>在加行级锁和表级锁&lt;strong>之前，先进行意向锁的判断&lt;/strong>，以&lt;strong>提高加锁效率&lt;/strong>。&lt;/li>
-&lt;li>例如在多个事务同时请求对同一数据行进行更新时，可以使用意向锁来提前判断需要加的锁类型，&lt;strong>避免不必要的锁竞争和死锁问题&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;h3 id="必须由程序员利用程序语言控制并发更新的情况">&lt;strong>必须由程序员利用程序语言控制并发更新的情况:&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>业务规则&lt;strong>复杂的更新&lt;/strong>：如果更新操作需要依赖多个表或者多个条件，并且需要保证操作的原子性，就需要使用事务来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>分布式系统中的数据更新&lt;/strong>：在分布式系统中，不同节点之间可能会同时更新同一份数据，如果不加控制，就会导致数据的不一致性。因此，在分布式系统中，需要使用分布式锁来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>批量数据更新&lt;/strong>：如果需要批量更新数据，而且更新的数据量很大，可能会导致数据库锁表或者死锁等问题。因此，需要&lt;strong>将批量更新操作分批进行&lt;/strong>，或者&lt;strong>使用分布式锁&lt;/strong>来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>大量并发更新&lt;/strong>：如果并发更新的请求数量非常大，可能会导致数据库性能下降或者崩溃。因此，&lt;strong>需要使用连接池、缓存等技术来优化数据库性能，或者使用分布式锁来分散并发更新的压力。&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="资源竞争解决方案有哪些">&lt;strong>资源竞争解决方案有哪些&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>DBA解决方案：针对事务空间、可用列表&lt;/p>
-&lt;ul>
-&lt;li>增加分配给储物条目的空间缓解冲突&lt;/li>
-&lt;li>让&lt;strong>insert分配到不同的物理块&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>架构解决方案：分区、逆序索引、索引组织表&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>开发解决方案：&lt;/p>
-&lt;ul>
-&lt;li>调节&lt;strong>并发数&lt;/strong>
-&lt;ul>
-&lt;li>限制session个数为最高性能的session个数，使周转更快&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>不使用系统产生值&lt;/strong>
-&lt;ul>
-&lt;li>连续值只在范围查询中使用，在连续值本身毫无现实意义的情况下，范围查询的场景也不多见;&lt;/li>
-&lt;li>可以只使用随机数来做主键，遇到随机数碰撞，就再生成一个随机数.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>总结：&lt;strong>与加锁不同，数据库竞争是可以改善的&lt;/strong>。架构师、开发者和DBA都可以从各自的角度改善竞争&lt;/p>
-&lt;h3 id="并发操作主要解决哪三个问题">&lt;strong>并发操作主要解决哪三个问题&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>丢失修改&lt;/strong>：T1和T2读入同一数据并修改，T2提交的结果破坏了T1的提交，导致T1修改被丢失&lt;/li>
-&lt;li>&lt;strong>读脏数据&lt;/strong>：T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1由于某种原因被撤销，数据也做了恢复，此时T2读的数据和数据库里的数据不一致，T2读到脏数据，即不正确数据&lt;/li>
-&lt;li>&lt;strong>不可重复读&lt;/strong>：T1读数据后，T2对其修改，T1无法再现前一次读取结果&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务的隔离级别">事务的隔离级别&lt;/h3>
-&lt;p>未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。&lt;/p>
-&lt;p>提交读（Read Committed）：是大都是 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。&lt;/p>
-&lt;p>可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。&lt;/p>
-&lt;p>可串行化（Serializable）：是最高的隔离级别。强制事务串行执行，会在读取的每一行数据上加锁，这样虽然能避免幻读的问题，但也可能导致大量的超时和锁争用的问题。很少会应用到这种级别，只有在非常需要确保数据的一致性且可以接受没有并发的应用场景下才会考虑。&lt;/p>
-&lt;p>MySql实现的哪种隔离级别&lt;/p>
-&lt;ul>
-&lt;li>可重复读&lt;/li>
-&lt;/ul>
-&lt;p>实现方式: MVCC&lt;/p>
-&lt;h3 id="mvcc原理">MVCC原理&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>多版本并发控制&lt;/strong>，是一种并发控制方法，用于实现事务隔离级别。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>通过保存数据在某个时间点的快照来实现事务的隔离。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>当前事务内的更新，可以读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本未提交，不能读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本已提交，但是却在快照创建后提交的，不能读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本已提交，且是在快照创建前提交的，可以读到；&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务隔离级别的实现">事务隔离级别的实现&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>未提交读&lt;/strong>：不加锁&lt;/li>
-&lt;li>&lt;strong>提交读&lt;/strong>：加行级锁&lt;/li>
-&lt;li>&lt;strong>可重复读&lt;/strong>：
-&lt;ul>
-&lt;li>MySQL的InnoDB存储引擎通过**多版本并发控制（MVCC）**来实现可重复读。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>可串行化&lt;/strong>：加表级锁&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务的acid特性">&lt;strong>事务的ACID特性&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>原子性（Atomicity）&lt;/strong>：事务是一个不可分割的工作单位，事务中的操作要么都做，要么都不做。&lt;/li>
-&lt;li>&lt;strong>一致性（Consistency）&lt;/strong>：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。&lt;/li>
-&lt;li>&lt;strong>隔离性（Isolation）&lt;/strong>：一个事务的执行不能被其他事务干扰。&lt;/li>
-&lt;li>&lt;strong>持久性（Durability）&lt;/strong>：事务一旦提交，它对数据库中的数据的改变就是永久性的。&lt;/li>
-&lt;/ul>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
 &lt;h2 id="sql优化">SQL优化&lt;/h2>
 &lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
@@ -10168,6 +9749,495 @@ B）⾯向⽤户层提供接⼝；&lt;/li>
 &lt;li>&lt;strong>避免更新分区键&lt;/strong>, 更新分区键会影响数据移动&lt;/li>
 &lt;li>&lt;strong>不在更新数据频繁时使用分区&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>考虑整体&lt;/strong>,当有多个处理执行时，解决方案就不应该过度偏袒其中任何一个&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;h2 id="索引">索引&lt;/h2>
+&lt;h3 id="索引的优缺点">索引的优缺点&lt;/h3>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>使用索引可以大大加快数据的检索速度（大大减少检索的数据量）, 减少 IO 次数，这也是创建索引的最主要的原因。&lt;/li>
+&lt;li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。&lt;/li>
+&lt;li>可以加速表和表之间的&lt;strong>连接&lt;/strong>，特别是在实现数据的参照完整性方面特别有意义&lt;/li>
+&lt;li>在使用分组和排序子句进行数据检索式，同样可以显著减少查询中**分组&lt;/li>
+&lt;li>通过使用索引，可以在查询的过程中，使用&lt;strong>优化隐藏器&lt;/strong>，提高系统的性能&lt;/li>
+&lt;/ul>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>创建索引和维护索引需要耗费许多时间。当对表中的数据进行增删改的时候，如果数据有索引，那么索引也需要动态的修改，会降低 SQL 执行效率。&lt;/li>
+&lt;li>索引需要使用物理文件存储，也会耗费一定空间。&lt;/li>
+&lt;/ul>
+&lt;p>但使用索引不一定能提高查询性能吗?&lt;/p>
+&lt;p>大多数情况下，索引查询都是比全表扫描要快的。但是如果数据库的数据量不大，那么使用索引也不一定能够带来很大提升。&lt;/p>
+&lt;h3 id="索引有哪些索引分类">&lt;strong>索引有哪些？索引分类&lt;/strong>&lt;/h3>
+&lt;h4 id="按照物理存储分类">按照物理存储分类&lt;/h4>
+&lt;p>聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>按照数据存放的&lt;strong>物理位置为顺序&lt;/strong>的索引结构，聚集索引的&lt;strong>叶子节点包含了整个数据行&lt;/strong>。&lt;/li>
+&lt;li>InnoDB表要求&lt;strong>必须有聚簇索引，默认在主键字段上建立聚簇索引&lt;/strong>,在.idb文件中就包含了索引和数据.&lt;/li>
+&lt;li>每个表&lt;strong>只能有一个聚集索引&lt;/strong>，它对应的索引键值也是表的&lt;strong>主键或唯一约束条件&lt;/strong>。&lt;/li>
+&lt;li>通过聚集索引，我们可以快速地按照主键或唯一约束条件查询和排序表中的数据, &lt;strong>提高多行检索速度&lt;/strong>
+优点:&lt;/li>
+&lt;li>查询速度快&lt;/li>
+&lt;li>对排序查找和范围查找优化：聚簇索引对于主键的排序查找和范围查找速度非常快。&lt;/li>
+&lt;/ul>
+&lt;p>缺点:&lt;/p>
+&lt;ul>
+&lt;li>有序, 对于UUID等无序的主键, 会导致插入性能下降.&lt;/li>
+&lt;li>更新代价大,叶子节点包含了整个数据行,更新索引会导致数据行的移动, 代价大.&lt;/li>
+&lt;/ul>
+&lt;p>非聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>索引顺序与数据&lt;strong>物理列排序无关&lt;/strong>，&lt;strong>叶节点仍然是索引节点(指向主键)&lt;/strong>&lt;/li>
+&lt;li>每个表可以有&lt;strong>多个非聚集索引&lt;/strong>，这些索引可以覆盖&lt;strong>多个数据列&lt;/strong>，以满足不同的查询需求。&lt;/li>
+&lt;li>通过非聚集索引，快速地&lt;strong>定位表中符合查询条件的记录的主键&lt;/strong>，然后进行(回表查询)。&lt;/li>
+&lt;li>MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引
+优点:&lt;/li>
+&lt;li>更新代价小
+缺点:&lt;/li>
+&lt;li>引起二次查询(回表), 查到索引对应的指针或主键后, 要根据主键再次查询数据, 会增加查询时间.&lt;/li>
+&lt;/ul>
+&lt;p>为了使得&lt;strong>表中数据有序&lt;/strong>, 很多数据库使用了&lt;strong>聚簇索引&lt;/strong>.&lt;/p>
+&lt;p>聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，这个叶子节点也被称为数据页。每张表只能拥有一个聚簇索引。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>范围查询效率非常高&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>代价: &lt;strong>非范围查询也要进行范围扫描&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>主键更新会导致记录的重新排序，从而导致记录物理位置的变化&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>为了更加安全, 聚簇索引可以和索引组织表一样，根据主键来定义. 因为主键被更新的概率小,或者说不应该被更新.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>聚簇索引&lt;strong>也可以是非主键索引,这是和索引组织表不一样的地方&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>聚簇索引和IOT的区别在于索引键的选择和存储方式。&lt;/p>
+&lt;ul>
+&lt;li>聚簇索引只包括表的主键，并将表的数据按照主键值的顺序存储在硬盘上；&lt;/li>
+&lt;li>IOT包括表的主键和数据列，并将数据和索引存储在同一个结构中。
+0&lt;/li>
+&lt;/ul>
+&lt;h4 id="按应用的字段">按应用的字段&lt;/h4>
+&lt;p>主键索引：加速查询 + 列值唯一（不可以有 NULL）+ 表中只有一个。
+唯一索引：加速查询 + 列值唯一（可以有 NULL）。
+普通索引：仅加速查询。
+覆盖索引：一个索引包含（或者说覆盖）所有需要查询的字段的值。&lt;/p>
+&lt;ul>
+&lt;li>如果&lt;strong>非聚簇符合索引&lt;/strong>已经能够得到&lt;strong>查询的所有信息&lt;/strong>了，就&lt;strong>无需再回表&lt;/strong>，即只按照条件&lt;strong>找主键&lt;/strong>。
+联合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并。&lt;/li>
+&lt;li>联合索引遵循最左前缀原则，即在查询时，&lt;strong>查询条件必须使用到联合索引的最左边的列&lt;/strong>，索引才会生效。
+全文索引：对文本的内容进行分词，进行搜索。目前只有 CHAR、VARCHAR ，TEXT 列上可以创建全文索引。一般不会使用，效率较低，通常使用搜索引擎如 ElasticSearch 代替。&lt;/li>
+&lt;/ul>
+&lt;h3 id="索引的底层数据结构">索引的底层数据结构&lt;/h3>
+&lt;h4 id="b树索引">B+树索引&lt;/h4>
+&lt;p>见&lt;a href="###B&amp;#43;%e6%a0%91">B+树&lt;/a>&lt;/p>
+&lt;h4 id="哈希索引">哈希索引&lt;/h4>
+&lt;ul>
+&lt;li>所有的数据类型，通过哈希函数变成一个&lt;strong>等长的哈希值&lt;/strong>。&lt;/li>
+&lt;li>将这个&lt;strong>等长的哈希值&lt;/strong>作为&lt;strong>组织成索引的结构 —— 哈希链表&lt;/strong>。&lt;/li>
+&lt;li>哈希链表的结点上，&lt;strong>储存哈希值&lt;/strong> 和 &lt;strong>指向记录哈希值的地址 uid（索引行的地址）&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>哈希索引能做什么不能做什么？&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>哈希索引只能用来进行&lt;strong>全键值&lt;/strong>的查询
+&lt;ul>
+&lt;li>不能前缀查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引只支持&lt;strong>击中运算符&lt;/strong>
+&lt;ul>
+&lt;li>击中运算符：= , != , in&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持范围查询&lt;/strong>&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持对字段排序&lt;/strong>(因为只支持击中运算符)&lt;/li>
+&lt;li>哈希索引&lt;strong>读取效率高于B树索引&lt;/strong>
+&lt;ul>
+&lt;li>哈希索引结构非常&lt;strong>紧凑&lt;/strong>.&lt;/li>
+&lt;li>哈希索引&lt;strong>使用数值的比较&lt;/strong>,远&lt;strong>高于字符串比较&lt;/strong>速度.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="函数索引">函数索引&lt;/h4>
+&lt;p>B树索引是对一个字段构建索引,而函数索引是对&lt;strong>这个字段上的一个函数值&lt;/strong>构建索引.&lt;/p>
+&lt;p>&lt;strong>结构同样是B+树索引,只是节点的关键字是函数的值而不是字段值.&lt;/strong>&lt;/p>
+&lt;p>是最具创造力的索引结构,用得好可用解决并发冲突,优化存储结构.等很多事情.&lt;/p>
+&lt;p>&lt;strong>能用在哪&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>不区分大小写&lt;/strong>查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>T、F比例巨大差异&lt;/strong>的查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>项目表有两个状态, active和inactive.
+要求active的项目,必须要有唯一名. 而inactive没有这个要求.
+解决方法: &lt;strong>函数索引上构建唯一索引&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="位图索引">位图索引&lt;/h4>
+&lt;p>用一个&lt;strong>索引键条目（01图）存储指向多行&lt;/strong>的指针。&lt;/p>
+&lt;p>&lt;strong>位图索引适合&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>相异基数(distinct cardinality)低&lt;/strong>的字段进行快速查询 (复合查询)
+&lt;ul>
+&lt;li>可以取的值的范围小: 性别、真假,年龄段 等.&lt;/li>
+&lt;li>使用B树索引,需要复合索引时 组合数多. 且共同的值多, 可能使得叶子结点远少于索引结点.&lt;/li>
+&lt;li>使用哈希索引,碰撞率贼高.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>大量&lt;strong>临时查询的聚合&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>位图索引对于写操作非常不友好&lt;/strong>/位图索引&lt;strong>不能应用在OLTP&lt;/strong>应用中的原因&lt;/p>
+&lt;p>&lt;strong>原因&lt;/strong>: 位图索引的&lt;strong>键值指向多行&lt;/strong>, 如果一个session修改了一个索引的数据,则&lt;strong>该索引指向的所有行都会被查找到&lt;/strong>.无法锁定单独一个条目,&lt;strong>可能在修改时要锁住整个目录&lt;/strong>,导致并发性下降严重 几乎变成串行化.&lt;/p>
+&lt;p>&lt;strong>位图连结索引&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>允许使用&lt;strong>另外某个表的列&lt;/strong> 对 &lt;strong>一个给定表&lt;/strong> 建立索引。&lt;/li>
+&lt;li>实际上，这就是允许&lt;strong>对一个索引结构&lt;/strong>(而不是表本身)中的数据进行&lt;strong>逆规范化&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>位图联结索引的&lt;strong>前提条件&lt;/strong>:&lt;/p>
+&lt;p>&lt;strong>必须连接到另一张表的主键/唯一键&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>反向键索引或叫避向索引“eseindex)&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>将键值反向插入，以免并发插入时都插入到同一个块。&lt;/li>
+&lt;li>此时进程将竞争同一个索引页,插入并发性大幅度下降&lt;/li>
+&lt;/ol>
+&lt;h3 id="b树">B+树&lt;/h3>
+&lt;h4 id="b树与b树的结构">B树与B+树的结构&lt;/h4>
+&lt;p>B树是&lt;strong>多关键字平衡树&lt;/strong>,且节点内的关键字是有序的.每个节点都存储其关键字指向的具体数据地址.&lt;/p>
+&lt;p>B+树是在B树的基础上, 非叶子节点仅指向其多个子节点的地址 , 只有叶子节点指向具体以堆文件形式存放的数据块地址. 相邻叶子节点也通过指针连接. 方便快速范围查询.&lt;/p>
+&lt;p>不同之处:&lt;/p>
+&lt;ul>
+&lt;li>层数更低: 相比于B树, B+树的非叶子节点全部用于索引,使得B+树的层数更低,&lt;/li>
+&lt;li>效率稳定, B+树一定只能在叶子节点找到数据的具体地址, 每次查询的路径长度基本一致.&lt;/li>
+&lt;li>范围查询: B+树的叶子节点有next指针, 使得范围查询效率更高.&lt;/li>
+&lt;/ul>
+&lt;h4 id="为什么不用其他数据结构做索引而用b树或b树">为什么不用其他数据结构做索引，而用B树或B+树&lt;/h4>
+&lt;ul>
+&lt;li>链表, 链表的查询速度是O（N），每次查询都得从链表头开始查询，例如上面查询“xiaxia”，如果xiaxia在1000的位置，那么需要遍历1000次才能查找到。&lt;/li>
+&lt;li>数组:查询速度O（1），但删除插入是O(n), 且数据必须存在于内存, 索引过大时无法存储.&lt;/li>
+&lt;li>平衡二叉树
+&lt;ul>
+&lt;li>二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少. 但在树形结构下,影响查询效率的因素主要是树的深度, B树的深度远比平衡二叉树小。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="b树索引的适用范围">B+树索引的适用范围&lt;/h4>
+&lt;ul>
+&lt;li>全键值匹配&lt;/li>
+&lt;li>匹配最左前缀
+&lt;ul>
+&lt;li>匹配列前缀&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>匹配范围值
+&lt;ul>
+&lt;li>精确匹配某一列并范围匹配另外一列&lt;/li>
+&lt;li>只访问索引的查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="什么时候使用b树索引--b树的索引可用性">什么时候使用B树索引 / B树的索引可用性&lt;/h4>
+&lt;p>1、只需要获取少量的行;(确保使用索引比不使用索引更高效)&lt;/p>
+&lt;p>2、即便获取很多行，但是可以只使用索引不使用基本表。(索引中包含整个表)&lt;/p>
+&lt;h3 id="正确使用索引">正确使用索引&lt;/h3>
+&lt;h4 id="索引带来的问题负面的使用索引会降低查询效率的情况">索引带来的问题（负面的）,使用索引会降低查询效率的情况&lt;/h4>
+&lt;ul>
+&lt;li>总是&lt;strong>存在索引不被使用&lt;/strong>的情况。
+&lt;ul>
+&lt;li>存在索引时, 创建索引会带来系统的维护和空间的开销.&lt;/li>
+&lt;li>因此索引如果不被使用反而会降低效率.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>当&lt;strong>一次查询的结果集较大&lt;/strong>时，索引会影响效率。
+&lt;ul>
+&lt;li>因为&lt;strong>索引是针对点查询&lt;/strong>的，而不是针对某个范围查询的。此时有可能不使用索引反而效率更高.&lt;/li>
+&lt;li>一般结果集在10%以下可以考虑使用索引。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对于&lt;strong>修改需求大的表&lt;/strong>中，使用索引会严重影响数据库更新操作的效率。&lt;/li>
+&lt;li>太多索引会让&lt;strong>设计不稳定&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="设计索引时需要考虑的主要因素">设计索引时需要考虑的主要因素&lt;/h4>
+&lt;ul>
+&lt;li>在&lt;strong>适合加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>不在&lt;strong>不应该加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>限制索引数量&lt;/li>
+&lt;li>确保建立该索引后&lt;strong>能够被使用&lt;/strong>&lt;/li>
+&lt;li>确保索引带来的&lt;strong>好处大于索引带来的问题&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="哪些字段适合建立索引">哪些字段适合建立索引&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>经常搜索&lt;/strong>的列&lt;/li>
+&lt;li>经常&lt;strong>使用where子句&lt;/strong>的列上，加快条件的判断速度&lt;/li>
+&lt;li>经常进行&lt;strong>范围搜索&lt;/strong>的列上，因为索引已经排序了，其指定的范围是连续的.&lt;/li>
+&lt;li>&lt;strong>唯一性&lt;/strong>的列:在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li>
+&lt;li>经常&lt;strong>需要排序&lt;/strong>的列上，因为索引已经排序了，查询可以利用索引的排序，加速排序查询时间.&lt;/li>
+&lt;li>&lt;strong>经常用在连接的列&lt;/strong>，这些列&lt;strong>主要是外键&lt;/strong>，可以加快连接速度&lt;/li>
+&lt;li>&lt;strong>数据分布较广的列&lt;/strong>:&lt;/li>
+&lt;/ul>
+&lt;h4 id="哪些字段上不应该加索引">哪些字段上不应该加索引&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>很少使用&lt;/strong>或者参考的列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>很少的数据值&lt;/strong>列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>text,image,bit数据类型&lt;/strong>的列不应该加索引。
+&lt;ul>
+&lt;li>比较和排序的开销大.&lt;/li>
+&lt;li>因为这些列要么数据量很大，要么很小，不利于使用索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>修改需求大&lt;/strong>的列.&lt;/li>
+&lt;/ul>
+&lt;h4 id="对外键建立索引">对外键建立索引&lt;/h4>
+&lt;p>系统对外键建立索引很普遍。为什么要对外键建立索引&lt;/p>
+&lt;ul>
+&lt;li>加快对于父表和子表的&lt;strong>连接查询&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>删除操作&lt;/strong>时，可以快速通过外键的索引找到&lt;strong>主表中&lt;/strong>要删除的行。&lt;/li>
+&lt;li>&lt;strong>避免死锁&lt;/strong>, 有外键时会导致两个表都要上锁.
+&lt;ul>
+&lt;li>添加索引能够让&lt;strong>上锁后操作的时间变短&lt;/strong>, .并发时需要 A表加锁/B表加锁。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>什么情况下不对外键建立索引&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>子表不容易&lt;/strong>修改
+&lt;ul>
+&lt;li>不从子表中删除记录&lt;/li>
+&lt;li>是一个字典表,不容易被修改.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一般&lt;strong>不进行父表和子表的连接查询&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="为什么一般不会给所有单个属性都建立索引请写出两条原因">为什么一般不会给所有单个属性都建立索引，请写出两条原因&lt;/h4>
+&lt;ul>
+&lt;li>过多的索引会&lt;strong>加重优化器&lt;/strong>查找最优查询计划的负担&lt;/li>
+&lt;li>会增加数据库&lt;strong>维护索引的负担&lt;/strong>.&lt;/li>
+&lt;li>一旦聚集索引改变，&lt;strong>所有非聚集索引都会跟着改变&lt;/strong>&lt;/li>
+&lt;li>该列是&lt;strong>属于不该建立索引&lt;/strong>的列时.&lt;/li>
+&lt;/ul>
+&lt;h3 id="索引失效的情况">索引失效的情况&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>使用B+树索引&lt;/strong>，但&lt;strong>没有使用索引的最前列&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>不能为NULL建立索引条目&lt;/strong>
+&lt;ul>
+&lt;li>&lt;strong>COUNT(*)&lt;/strong>， 包括NULL, t会引起&lt;strong>全表扫描&lt;/strong>，&lt;/li>
+&lt;li>is not NULL&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>函数查询&lt;/strong>时不使用索引&lt;/li>
+&lt;li>&lt;strong>隐形函数查询&lt;/strong>，比如**&amp;lt;&amp;gt;不等于符**，会&lt;strong>引起全表扫描&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>隐式类型转换&lt;/strong>，如字符串转成数值来比较&lt;/li>
+&lt;li>如果用了我的索引，实际反而会更慢。
+&lt;ul>
+&lt;li>即查询&lt;strong>优化器发现有比使用你的索引更快的访问方式&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>没有正确的统计信息&lt;/strong>，造成CBO无法做出正确的选择&lt;/li>
+&lt;li>两个条件用 &lt;strong>or 连接&lt;/strong>，一个有索引一个没索引&lt;/li>
+&lt;/ul>
+&lt;p>总结成两条：&lt;/p>
+&lt;ul>
+&lt;li>“不能使用索引，使用索引会返回不正确的结果”&lt;/li>
+&lt;li>“不该使用索引，如果使用了索引就会变得更慢”&lt;/li>
+&lt;/ul>
+&lt;h3 id="如何查看索引是否被使用">如何查看索引是否被使用&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>explain&lt;/strong>命令
+&lt;ul>
+&lt;li>&lt;code>explain select * from company_info where cname like '%小%'&lt;/code>&lt;/li>
+&lt;li>看possible_keys和key列&lt;/li>
+&lt;li>possible_keys 可能用到的索引; key 实际用到的索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="事务">事务&lt;/h2>
+&lt;h3 id="为什么要加锁">&lt;strong>为什么要加锁&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>多个应用程序&lt;strong>同时对相同数据进行访问&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>保证数据库的完整性和一致性&lt;/strong>，就必须要有一定的机制用于控制数据记录的读取、插入、删除和更新。&lt;/li>
+&lt;li>通过对数据库对象加锁，我们可以&lt;strong>避免由于并发更改造成数据的丢失&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与提交">&lt;strong>加锁与提交&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>想要使加锁时间最短，必须&lt;strong>频繁的提交&lt;/strong>&lt;/li>
+&lt;li>但如果每个逻辑单元完成后都提交&lt;strong>会增加大量开销&lt;/strong>&lt;/li>
+&lt;li>对于批处理程序，并发控制不是问题，&lt;strong>避免频繁提交才是明智的做法&lt;/strong>。&lt;/li>
+&lt;li>对于用户交互程序，则需要&lt;strong>高频提交，加快释放锁&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与可伸缩性">&lt;strong>加锁与可伸缩性&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>与表级锁相比，行级锁能产生更佳的&lt;strong>吞吐量&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>行级锁大都性能曲线很快达到极限&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁处理的原则">&lt;strong>加锁处理的原则&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>不要随便使用表级锁&lt;/strong>&lt;/li>
+&lt;li>尽量&lt;strong>缩短加锁时间&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>索引也需要维护&lt;/strong>&lt;/li>
+&lt;li>编程上的原则(语句性能高，未必程序性能高（下面有4点）)
+&lt;ul>
+&lt;li>避免SQL语句上的&lt;strong>循环处理&lt;/strong>&lt;/li>
+&lt;li>减少程序和数据库之间的&lt;strong>交互次数&lt;/strong>&lt;/li>
+&lt;li>充分利用DBMS提供的机制，使&lt;strong>跨机器交互的次数&lt;/strong>降至最少&lt;/li>
+&lt;li>把所有&lt;strong>不重复不必要的SQL语句放在逻辑工作单元&lt;/strong>之外&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="锁的分类">锁的分类&lt;/h3>
+&lt;p>悲观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据很可能会被其他并发操作所修改&lt;/strong>.
+&lt;ul>
+&lt;li>因此在**进行操作之前，先加锁，**确保数据不会被其他操作修改。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁适用于并发写操作多，&lt;strong>读操作少&lt;/strong>的场景
+&lt;ul>
+&lt;li>例如&lt;strong>银行转账等涉及到账户余额变动&lt;/strong>的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁的缺点是在&lt;strong>并发量高时，会导致大量的阻塞和等待&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>乐观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据不会被其他并发操作所修改.&lt;/strong>
+&lt;ul>
+&lt;li>因此在进行操作之前，不加锁，但在&lt;strong>提交数据时，检查数据是否被其他操作所修改，如果没有修改，则提交成功，否则返回错误信息&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁适用于并发读操作多，&lt;strong>写操作少&lt;/strong>的场景.
+&lt;ul>
+&lt;li>例如商品库存等只需要查询不需要修改的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁的优点是可以&lt;strong>大大降低阻塞和等待&lt;/strong>，但是需要在提交数据时进行额外的校验，&lt;strong>增加了程序开发和维护的难度&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>共享锁（Shared Lock）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>允许多个事务进行读操作，但不允许写操作&lt;/strong>。&lt;/li>
+&lt;li>共享锁适用于多个事务&lt;strong>只读同一份数据&lt;/strong>的场景。&lt;/li>
+&lt;li>适用于读多写少的场景，例如在线图书馆、新闻网站等需要大量读取数据的应用，可以使用共享锁来&lt;strong>提高并发读取的能力，避免写操作的阻塞&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>排他锁（Exclusive Lock）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>只允许一个事务进行写操作&lt;/strong>，其他事务&lt;strong>不能进行读写操作&lt;/strong>。&lt;/li>
+&lt;li>适用于写多读少的场景，&lt;/li>
+&lt;li>例如银行转账、在线购物等需要对数据进行修改的应用，可以使用排他锁来保证操作的原子性，&lt;strong>避免读写冲突和数据不一致性&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>行级锁（Row Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中的某一行数据进行加锁，&lt;strong>只有在访问该行数据时才会加锁&lt;/strong>，这样可以&lt;strong>提高并发性能&lt;/strong>。&lt;/li>
+&lt;li>例如社交网络、在线游戏等需要&lt;strong>频繁更新数据,高并发&lt;/strong>的应用，可以使用行级锁来控制并发更新，提高系统的并发能力和性能。&lt;/li>
+&lt;/ul>
+&lt;p>间隙锁（Gap Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中&lt;strong>不存在的数据进行加锁&lt;/strong>，可以防止其他事务在这个间隙中插入数据。&lt;/li>
+&lt;li>适用于对数据表中不存在的数据进行加锁的场景，例如对于需要&lt;strong>进行范围查询或者范围删除的应用&lt;/strong>，可以使用间隙锁来避免其他事务在查询或删除操作中插入数据，保证数据的一致性和正确性。(避免幻读)&lt;/li>
+&lt;/ul>
+&lt;p>意向锁（Intention Lock）：&lt;/p>
+&lt;ul>
+&lt;li>在加行级锁和表级锁&lt;strong>之前，先进行意向锁的判断&lt;/strong>，以&lt;strong>提高加锁效率&lt;/strong>。&lt;/li>
+&lt;li>例如在多个事务同时请求对同一数据行进行更新时，可以使用意向锁来提前判断需要加的锁类型，&lt;strong>避免不必要的锁竞争和死锁问题&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="必须由程序员利用程序语言控制并发更新的情况">&lt;strong>必须由程序员利用程序语言控制并发更新的情况:&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>业务规则&lt;strong>复杂的更新&lt;/strong>：如果更新操作需要依赖多个表或者多个条件，并且需要保证操作的原子性，就需要使用事务来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>分布式系统中的数据更新&lt;/strong>：在分布式系统中，不同节点之间可能会同时更新同一份数据，如果不加控制，就会导致数据的不一致性。因此，在分布式系统中，需要使用分布式锁来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>批量数据更新&lt;/strong>：如果需要批量更新数据，而且更新的数据量很大，可能会导致数据库锁表或者死锁等问题。因此，需要&lt;strong>将批量更新操作分批进行&lt;/strong>，或者&lt;strong>使用分布式锁&lt;/strong>来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>大量并发更新&lt;/strong>：如果并发更新的请求数量非常大，可能会导致数据库性能下降或者崩溃。因此，&lt;strong>需要使用连接池、缓存等技术来优化数据库性能，或者使用分布式锁来分散并发更新的压力。&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="资源竞争解决方案有哪些">&lt;strong>资源竞争解决方案有哪些&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>DBA解决方案：针对事务空间、可用列表&lt;/p>
+&lt;ul>
+&lt;li>增加分配给储物条目的空间缓解冲突&lt;/li>
+&lt;li>让&lt;strong>insert分配到不同的物理块&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>架构解决方案：分区、逆序索引、索引组织表&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>开发解决方案：&lt;/p>
+&lt;ul>
+&lt;li>调节&lt;strong>并发数&lt;/strong>
+&lt;ul>
+&lt;li>限制session个数为最高性能的session个数，使周转更快&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>不使用系统产生值&lt;/strong>
+&lt;ul>
+&lt;li>连续值只在范围查询中使用，在连续值本身毫无现实意义的情况下，范围查询的场景也不多见;&lt;/li>
+&lt;li>可以只使用随机数来做主键，遇到随机数碰撞，就再生成一个随机数.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>总结：&lt;strong>与加锁不同，数据库竞争是可以改善的&lt;/strong>。架构师、开发者和DBA都可以从各自的角度改善竞争&lt;/p>
+&lt;h3 id="并发操作主要解决哪三个问题">&lt;strong>并发操作主要解决哪三个问题&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>丢失修改&lt;/strong>：T1和T2读入同一数据并修改，T2提交的结果破坏了T1的提交，导致T1修改被丢失&lt;/li>
+&lt;li>&lt;strong>读脏数据&lt;/strong>：T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1由于某种原因被撤销，数据也做了恢复，此时T2读的数据和数据库里的数据不一致，T2读到脏数据，即不正确数据&lt;/li>
+&lt;li>&lt;strong>不可重复读&lt;/strong>：T1读数据后，T2对其修改，T1无法再现前一次读取结果&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务的隔离级别">事务的隔离级别&lt;/h3>
+&lt;p>未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。&lt;/p>
+&lt;p>提交读（Read Committed）：是大都是 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。&lt;/p>
+&lt;p>可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。&lt;/p>
+&lt;p>可串行化（Serializable）：是最高的隔离级别。强制事务串行执行，会在读取的每一行数据上加锁，这样虽然能避免幻读的问题，但也可能导致大量的超时和锁争用的问题。很少会应用到这种级别，只有在非常需要确保数据的一致性且可以接受没有并发的应用场景下才会考虑。&lt;/p>
+&lt;p>MySql实现的哪种隔离级别&lt;/p>
+&lt;ul>
+&lt;li>可重复读&lt;/li>
+&lt;/ul>
+&lt;p>实现方式: MVCC&lt;/p>
+&lt;h3 id="mvcc原理">MVCC原理&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>多版本并发控制&lt;/strong>，是一种并发控制方法，用于实现事务隔离级别。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>通过保存数据在某个时间点的快照来实现事务的隔离。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>当前事务内的更新，可以读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本未提交，不能读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本已提交，但是却在快照创建后提交的，不能读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本已提交，且是在快照创建前提交的，可以读到；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务隔离级别的实现">事务隔离级别的实现&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>未提交读&lt;/strong>：不加锁&lt;/li>
+&lt;li>&lt;strong>提交读&lt;/strong>：加行级锁&lt;/li>
+&lt;li>&lt;strong>可重复读&lt;/strong>：
+&lt;ul>
+&lt;li>MySQL的InnoDB存储引擎通过**多版本并发控制（MVCC）**来实现可重复读。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>可串行化&lt;/strong>：加表级锁&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务的acid特性">&lt;strong>事务的ACID特性&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>原子性（Atomicity）&lt;/strong>：事务是一个不可分割的工作单位，事务中的操作要么都做，要么都不做。&lt;/li>
+&lt;li>&lt;strong>一致性（Consistency）&lt;/strong>：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。&lt;/li>
+&lt;li>&lt;strong>隔离性（Isolation）&lt;/strong>：一个事务的执行不能被其他事务干扰。&lt;/li>
+&lt;li>&lt;strong>持久性（Durability）&lt;/strong>：事务一旦提交，它对数据库中的数据的改变就是永久性的。&lt;/li>
 &lt;/ul>
 &lt;h2 id="模型">模型&lt;/h2>
 &lt;h3 id="面向对象中可持久化类的父类子类继承关系如何映射到关系数据库中有哪几种情况-每种情况下的表结构设计是怎姓的层次结构">&lt;strong>面向对象中可持久化类的父类子类继承关系，如何映射到关系数据库中，有哪几种情况, 每种情况下的表结构设计是怎姓的。(层次结构)&lt;/strong>&lt;/h3>
@@ -13818,11 +13888,81 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;li>叛徒将军可以发送错误的消息。&lt;/li>
 &lt;li>总共有m个将军，其中n个是忠诚的，m-n个是叛徒。&lt;/li>
 &lt;li>问题的目标是找到一种算法，使得所有忠诚的将军能够达成一致的决策，即使有叛徒存在。&lt;/li>
-&lt;/ol></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description>&lt;h1 id="消息队列">消息队列&lt;/h1>
+&lt;/ol>
+&lt;h2 id="cap--base理论">CAP &amp;amp; Base理论&lt;/h2>
+&lt;p>CAP理论是分布式系统设计中的一个重要理论，它指出在一个分布式系统中，一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）这三个要素不可兼得，最多只能同时满足其中的两个。&lt;/p>
+&lt;ul>
+&lt;li>一致性（Consistency）：在分布式系统中的所有节点上的数据是一致的，即一个节点上的数据发生了变化，那么在其他节点上也应该立即发生变化。&lt;/li>
+&lt;li>可用性（Availability）：分布式系统中的所有节点都能够正常响应客户端的请求。&lt;/li>
+&lt;li>分区容错性（Partition tolerance）：分布式系统中的节点之间可能会因为网络分区而无法通信，分区容错性指的是系统能够继续工作，即使节点之间无法通信。&lt;/li>
+&lt;/ul>
+&lt;p>网络分区: 分布式系统中，多个节点之间的网络本来是连通的，但是因为某些故障（比如部分节点网络出了问题）某些节点之间不连通了，整个网络就分成了几块区域，这就叫 网络分区。&lt;/p>
+&lt;p>CAP一般要满足两个，而P是必须的，所以CAP理论一般是AP或者CP。&lt;/p>
+&lt;ul>
+&lt;li>CP：HBase、MongoDB等分布式数据库是CP系统，它要求数据一致性和分区容错性，但是无法保证所有节点的可用性。&lt;/li>
+&lt;li>AP：Cassandra、DynamoDB等分布式数据库是AP系统，它要求可用性和分区容错性，但是无法保证数据一致性。&lt;/li>
+&lt;/ul>
+&lt;p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。&lt;/p>
+&lt;p>常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos&lt;/p>
+&lt;p>ZooKeeper保证的是CP，Eureka保证的是AP，Nacos既可以保证CP也可以保证AP。&lt;/p>
+&lt;h2 id="分布式算法">分布式算法&lt;/h2>
+&lt;p>Paxos算法&lt;/p>
+&lt;p>Raft算法&lt;/p>
+&lt;h2 id="分布式id">分布式ID&lt;/h2>
+&lt;p>一个最基本的分布式 ID 需要满足下面这些要求：&lt;/p>
+&lt;ul>
+&lt;li>全局唯一：ID 的全局唯一性肯定是首先要满足的！&lt;/li>
+&lt;li>高性能：分布式 ID 的生成速度要快，对本地资源消耗要小。&lt;/li>
+&lt;li>高可用：生成分布式 ID 的服务要保证可用性无限接近于 100%。&lt;/li>
+&lt;li>方便易用：拿来即用，使用方便，快速接入！&lt;/li>
+&lt;/ul>
+&lt;h3 id="解决方案">解决方案&lt;/h3>
+&lt;h4 id="数据库主键自增">数据库主键自增&lt;/h4>
+&lt;p>基于数据库的号段模式来生成分布式 ID。&lt;/p>
+&lt;p>NoSQL 方案使用 Redis 多一些。我们通过 Redis 的 incr 命令即可实现对 id 原子顺序递增&lt;/p>
+&lt;h4 id="uuid">UUID&lt;/h4>
+&lt;p>UUID 是 Universally Unique Identifier（通用唯一标识符） 的缩写。UUID 包含 32 个 16 进制数字（8-4-4-4-12）。JDK 就提供了现成的生成 UUID&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">//输出示例：cb4a9ede-fa5e-4585-b9bb-d60bce986eaa&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">UUID&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">randomUUID&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="开源框架-雪花算法号段模式">开源框架 雪花算法/号段模式&lt;/h4>
+&lt;h2 id="分布式锁">分布式锁&lt;/h2>
+&lt;p>如何才能实现共享资源的互斥访问呢？ 锁是一个比较通用的解决方案，更准确点来说是悲观锁。&lt;/p>
+&lt;p>一个最基本的分布式锁需要满足：&lt;/p>
+&lt;p>互斥：任意一个时刻，锁只能被一个线程持有。
+高可用：锁服务是高可用的，当一个锁服务出现问题，能够自动切换到另外一个锁服务。并且，即使客户端的释放锁的代码逻辑出现问题，锁最终一定还是会被释放，不会影响其他线程对共享资源的访问。这一般是通过超时机制实现的。
+可重入：一个节点获取了锁之后，还可以再次获取锁。
+除了上面这三个基本条件之外，一个好的分布式锁还需要满足下面这些条件：&lt;/p>
+&lt;p>高性能：获取和释放锁的操作应该快速完成，并且不应该对整个系统的性能造成过大影响。
+非阻塞：如果获取不到锁，不能无限期等待，避免对系统正常运行造成影响。&lt;/p>
+&lt;h3 id="实现方式">实现方式&lt;/h3>
+&lt;p>常见分布式锁实现方案如下：&lt;/p>
+&lt;p>基于关系型数据库比如 MySQL 实现分布式锁。
+基于分布式协调服务 ZooKeeper 实现分布式锁。
+基于分布式键值存储系统比如 Redis 、Etcd 实现分布式锁。
+关系型数据库的方式一般是通过唯一索引或者排他锁实现。不过，一般不会使用这种方式，问题太多比如性能太差、不具备锁失效机制。&lt;/p>
+&lt;p>基于 ZooKeeper 或者 Redis 实现分布式锁这两种实现方式要用的更多一些，我专门写了一篇文章来详细介绍这两种方案：分布式锁常见实现方案总结。&lt;/p>
+&lt;h2 id="分布式事务">分布式事务&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description>&lt;h1 id="消息队列">消息队列&lt;/h1>
 &lt;h2 id="rabbitmq">RabbitMQ&lt;/h2>
 &lt;p>AMQP，即Advanced Message Queuing Protocol，一个提供统一消息服务的应用层标准高级消息队列协议，是应用层协议的一个开放标准，为面向消息的中间件设计。基于此协议的客户端与消息中间件可传递消息，并不受客户端/中间件同产品、不同的开发语言等条件的限制。&lt;/p>
 &lt;h3 id="底层原理">底层原理&lt;/h3>
-&lt;h3 id="rabbitmq如何保证消费一致性">RabbitMQ如何保证消费一致性&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</guid><description>&lt;h1 id="分布式计算">分布式计算&lt;/h1>
+&lt;h3 id="rabbitmq如何保证消费一致性">RabbitMQ如何保证消费一致性&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E7%BD%91%E5%85%B3/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E7%BD%91%E5%85%B3/</guid><description>&lt;h1 id="api网关">API网关&lt;/h1>
+&lt;p>网关主要做了两件事情：请求转发 + 请求过滤。&lt;/p>
+&lt;p>绝大部分网关可以提供下面这些功能（有一些功能需要借助其他框架或者中间件）：&lt;/p>
+&lt;p>请求转发：将请求转发到目标微服务。
+负载均衡：根据各个微服务实例的负载情况或者具体的负载均衡策略配置对请求实现动态的负载均衡。
+安全认证：对用户请求进行身份验证并仅允许可信客户端访问 API，并且还能够使用类似 RBAC 等方式来授权。
+参数校验：支持参数映射与校验逻辑。
+日志记录：记录所有请求的行为日志供后续使用。
+监控告警：从业务指标、机器指标、JVM 指标等方面进行监控并提供配套的告警机制。
+流量控制：对请求的流量进行控制，也就是限制某一时刻内的请求数。
+熔断降级：实时监控请求的统计信息，达到配置的失败阈值后，自动熔断，返回默认值。
+响应缓存：当用户请求获取的是一些静态的或更新不频繁的数据时，一段时间内多次请求获取到的数据很可能是一样的。对于这种情况可以将响应缓存起来。这样用户请求可以直接在网关层得到响应数据，无需再去访问业务服务，减轻业务服务的负担。
+响应聚合：某些情况下用户请求要获取的响应内容可能会来自于多个业务服务。网关作为业务服务的调用方，可以把多个服务的响应整合起来，再一并返回给用户。
+灰度发布：将请求动态分流到不同的服务版本（最基本的一种灰度发布）。
+异常处理：对于业务服务返回的异常响应，可以在网关层在返回给用户之前做转换处理。这样可以把一些业务侧返回的异常细节隐藏，转换成用户友好的错误提示返回。
+API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么必须考虑使用 API 文档，例如 Swagger 或 OpenAPI。
+协议转换：通过协议转换整合后台基于 REST、AMQP、Dubbo 等不同风格和实现技术的微服务，面向 Web Mobile、开放平台等特定客户端提供统一服务。
+证书管理：将 SSL 证书部署到 API 网关，由一个统一的入口管理接口，降低了证书更换时的复杂度。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E8%AE%A1%E7%AE%97/</guid><description>&lt;h1 id="分布式计算">分布式计算&lt;/h1>
 &lt;ul>
 &lt;li>MapReduce&lt;/li>
 &lt;li>Spark&lt;/li>
@@ -13830,7 +13970,21 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;/ul>
 &lt;h2 id="mapreduce">MapReduce&lt;/h2>
 &lt;p>MapReduce是一种编程模型，用于处理大规模数据集的并行计算。它由两个主要阶段组成：Map阶段和Reduce阶段。在Map阶段，输入数据集被划分为多个独立的数据块，然后由Map函数处理。在Reduce阶段，Map阶段的输出被分组，然后由Reduce函数处理。&lt;/p>
-&lt;p>相关论文：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
+&lt;p>相关论文：&lt;a href="https://static.googleusercontent.com/media/research.google.com/zh-CN//archive/mapreduce-osdi04.pdf" target="_blank" rel="noopener">MapReduce: Simplified Data Processing on Large Clusters&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E9%80%9A%E4%BF%A1rpc/</guid><description>&lt;h1 id="rpc">RPC&lt;/h1>
+&lt;p>RPC（Remote Procedure Call） 即远程过程调用，通过名字我们就能看出 RPC 关注的是远程调用而非本地调用。&lt;/p>
+&lt;p>整个 RPC 的 核心功能看作是下面 👇 5 个部分实现的：&lt;/p>
+&lt;p>客户端（服务消费端）：调用远程方法的一端。
+客户端 Stub（桩）：这其实就是一代理类。代理类主要做的事情很简单，就是把你调用方法、类、方法参数等信息传递到服务端。
+网络传输：网络传输就是你要把你调用的方法的信息比如说参数啊这些东西传输到服务端，然后服务端执行完之后再把返回结果通过网络传输给你传输回来。网络传输的实现方式有很多种比如最基本的 Socket 或者性能以及封装更加优秀的 Netty（推荐）。
+服务端 Stub（桩）：这个桩就不是代理类了。我觉得理解为桩实际不太好，大家注意一下就好。这里的服务端 Stub 实际指的就是接收到客户端执行方法的请求后，去执行对应的方法然后返回结果给客户端的类。
+服务端（服务提供端）：提供远程方法的一端。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e9%80%9a%e4%bf%a1%28RPC%29/RPC%e5%8e%9f%e7%90%86%e5%9b%be.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;a href="https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6" target="_blank" rel="noopener">https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
 &lt;h2 id="结构">结构&lt;/h2>
 &lt;h3 id="请求报文结构">请求报文结构&lt;/h3>
 &lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
@@ -13929,7 +14083,17 @@ Netty是一个异步的、基于事件驱动的网络应用框架，用以快速
 Netty主要针对在TCP协议下，面向Clients端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输的应用。
 Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场景。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="io模型">I/O模型&lt;/h1>
 &lt;h2 id="一什么是io模型-及-io模型的分类">一、什么是I/O模型 及 I/O模型的分类&lt;/h2>
-&lt;h2 id="二io-多路复用">二、I/O 多路复用&lt;/h2>
+&lt;p>Unix 有五种 I/O 模型：&lt;/p>
+&lt;p>阻塞式 I/O
+非阻塞式 I/O
+I/O 复用（select 和 poll）
+信号驱动式 I/O（SIGIO）
+异步 I/O（AIO）&lt;/p>
+&lt;h2 id="io-多路复用">I/O 多路复用&lt;/h2>
+&lt;p>它可以让单个进程具有处理多个 I/O 事件的能力。又被称为 Event Driven I/O，即事件驱动 I/O。&lt;/p>
+&lt;h3 id="select">select&lt;/h3>
+&lt;h3 id="poll">poll&lt;/h3>
+&lt;h3 id="epoll">epoll&lt;/h3>
 &lt;h2 id="三实际应用">三、实际应用&lt;/h2>
 &lt;h3 id="reactor模式">Reactor模式&lt;/h3>
 &lt;h3 id="proactor模式">Proactor模式&lt;/h3>
@@ -16653,7 +16817,269 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>除了把静态分析做的更精确（比如设计更复杂的 lint 规则），和把动态分析做的更完备（比如提要求更高的覆盖率标准）&lt;/p>
 &lt;p>还有一个趋势，就是&lt;strong>结合不同的程序分析技术取长补短&lt;/strong>。比如 hybrid fuzzing 的做法是，通过有效的结合符号执行与模糊测试来提高测试的覆盖率。&lt;/p>
 &lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/396531255" target="_blank" rel="noopener">插桩、覆盖率、动态切片、动态污点分析等。&lt;/a>&lt;a href="https://zhuanlan.zhihu.com/p/396531255" target="_blank" rel="noopener">1&lt;/a>&lt;/p>
-&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/396531255" target="_blank" rel="noopener">技术分享 | 浅谈程序分析&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/git/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/git/</guid><description>&lt;p>软件配置管理&lt;/p>
+&lt;p>&lt;a href="https://zhuanlan.zhihu.com/p/396531255" target="_blank" rel="noopener">技术分享 | 浅谈程序分析&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/</guid><description>&lt;h1 id="设计模式">设计模式&lt;/h1>
+&lt;p>不到十五种，只考学了的&lt;/p>
+&lt;p>分类:&lt;/p>
+&lt;p>题型：
+分析，设计，问答题&lt;/p>
+&lt;p>要画类图, 多种模式组合&lt;/p>
+&lt;p>接口的变化还是功能的变化, 功能的选择还是删减, 目的是创建还是复用对象&lt;/p>
+&lt;p>只关注 设计原则 设计思想 和 设计模式本身&lt;/p>
+&lt;h2 id="2策略模式">2.策略模式&lt;/h2>
+&lt;p>策略类的层次结构定义了一系列算法或行为，以供上下文重用。
+修改策略不符合开闭原则，增加策略符合开闭原则。
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-13-19-58.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>与简单工厂模式的区别&lt;/p>
+&lt;p>用途不一样
+工厂是创建型模式,它的作用就是创建对象；
+策略是行为型模式,它的作用是让一个对象在许多行为中选择一种行为;
+关注点不一样
+一个关注对象创建
+一个关注行为的封装&lt;/p>
+&lt;p>解决不同的问题
+工厂模式是创建型的设计模式，它接受指令，创建出符合要求的实例；它主要解决的是资源的统一分发，将对象的创建完全独立出来，让对象的创建和具体的使用客户无关。主要应用在多数据库选择，类库文件加载等。
+策略模式是为了解决的是策略的切换与扩展，更简洁的说是定义策略族，分别封装起来，让他们之间可以相互替换，策略模式让策略的变化独立于使用策略的客户。&lt;/p>
+&lt;p>工厂相当于黑盒子，策略相当于白盒子；&lt;/p>
+&lt;h2 id="3状态模式">3.状态模式&lt;/h2>
+&lt;p>⼀个对象的⾏为取决于⼀个或多个动态变化的属性，这种属性叫做状态，这样的对象叫做有状态的对象
+定义：允许⼀个对象在其内部状态改变时改变它的⾏为，对象看起来似乎修改了它的类
+包含的⻆⾊：环境类、抽象状态类、具体状态类
+环境类：拥有状态的对象，充当状态管理器 State Manager ，在环境类中切换状态&lt;/p>
+&lt;p>抽象状态类：可以是抽象类或接⼝；将不同对象下的⾏为单独抽取出来封装到具体状态类中，使得
+环境类在修改内部状态时改变其⾏为
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-19-37-35.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>描述了对象状态的变化以及对象如何在每⼀种状态下表现出不同的⾏为
+和策略模式的区别：策略模式是为了让⽤户透明地选择⼀个策略，从外部看，不同策略的⾏为是⼀致的；⽽状态模式是为了改变状态来改变⾏为，从外部看，不同状态的⾏为是不同的&lt;/p>
+&lt;p>优点：封装了转换规则；枚举可能的状态；⽅便添加新的状态；状态转换逻辑与状态对象合成⼀体；让多个环境对象共享⼀个状态对象&lt;/p>
+&lt;p>缺点：增加系统类和对象的个数；如果使⽤不当将导致程序结构和代码的混乱；对开闭原则的⽀持并不太好&lt;/p>
+&lt;p>适⽤环境：⾏为依赖于它的状态（属性），可以根据他的状态改变⽽改变它的相关⾏为；代码包含⼤量与对象状态有关的条件语句&lt;/p>
+&lt;p>模式扩展：共享状态；简单状态模式，不需要转换状态的模式，不关⼼状态切换，遵循开闭原则；&lt;/p>
+&lt;p>可切换状态的状态模式，可以切换状态，添加新的状态类可能需要修改其他某些状态类甚⾄环境类的源代码&lt;/p>
+&lt;h2 id="观察者模式">观察者模式&lt;/h2>
+&lt;p>定义：定义了对象之间的⼀对多依赖，让多个观察者对象同时监听某⼀主题对象，当主题对象发⽣变化时，它的所有依赖者（观察者）都会收到通知并更新⾃⼰的状态&lt;/p>
+&lt;p>Observer Pattern，⼜叫发布-订阅 Publish/Subscribe 模式、模型-视图 Model/View 模式、源-监听器 Source/Listener 模式、从属者 Dependents 模式&lt;/p>
+&lt;p>定义：对象间的⼀种⼀对多依赖关系，使得每当⼀个对象状态发⽣改变时，其相关依赖对象皆得到通知并被⾃动更新
+包含的角色：目标、具体目标、观察者、具体观察者&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-21-53.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>优点：实现表示层和数据逻辑层的分离；贯彻⽬标和观察者之间建⽴⼀个抽象的耦合；⽀持⼴播通信；符合开闭原则&lt;/p>
+&lt;p>缺点：通知所有观察者会花费很多时间；如果观察者和观察⽬标之间有循环依赖，可能导致系统崩溃；没有相应的机制让观察者知道所观察的⽬标对象是怎么发⽣变化的，仅仅只是知道观察目标发⽣了变化&lt;/p>
+&lt;p>适⽤环境：⼀个⽅⾯依赖于另⼀个⽅⾯，将这些⽅⾯封装在独⽴的对象中使它们可以各⾃独⽴地改变和复⽤；⼀个对象的改变将导致其他⼀个或多个对象也发⽣改变，⽽不知道具体有多少对象将发⽣改变；⼀个对象必须通知其他对象，⽽并不知道这些对象是谁；需要在系统中创建⼀个触发链，A-&amp;gt;B, B-&amp;gt;C ……，可以⽤观察者模式创建⼀种链式触发机制&lt;/p>
+&lt;p>模式扩展：Java 中的 Observable 和 Observer 类；MVC 模式&lt;/p>
+&lt;h2 id="单例模式">单例模式&lt;/h2>
+&lt;p>饿汉式&lt;/p>
+&lt;p>懒汉式&lt;/p>
+&lt;h2 id="装饰器模式">装饰器模式&lt;/h2>
+&lt;p>⽤继承机制或关联机制可以给⼀个类或对象增加⾏为；以对客户透明的⽅式动态地给⼀个对象附加
+更多的职责，并且不需要创造更多⼦类
+定义：动态地给⼀个对象增加⼀些额外的职责，别名也叫包装器 Wrapper ，也称为油漆⼯模式
+包含的⻆⾊：抽象构件、具体构件、抽象装饰类、具体装饰类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-28-11.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>与继承相⽐，装饰不会破坏类的封装性，⽽且继承是耦合度较⼤的静态关系，⽆法动态扩展
+关联关系具有较好的松耦合性，系统更加容易维护，缺点是要创建更多的对象
+以对⽤户透明的⽅式，动态地给⼀个对象附加更多的责任
+优点：提供⽐继承更多的灵活性；通过⼀种动态的⽅法来扩展⼀个对象的功能；通过使⽤不同的具
+体装饰类以及这些装饰类的排列组合，可以创造出很多不同⾏为的组合；具体构件类与具体装饰类
+可以独⽴变化，符合开闭原则
+缺点：产⽣很多⼩对象；⽐继承更容易出错，排错也很困难，多层装饰的对象调试时需要逐级排查
+适⽤环境：以动态、透明的⽅式给单个对象添加职责；动态地给⼀个对象增加和撤销功能；当不能
+采⽤继承的⽅式对系统进⾏扩充或者采⽤继承不利于系统扩展和维护时，如扩展很多、需要⼤量⼦
+类，或者类是 ﬁnal 不能继承
+模式应⽤：给 JList 装饰⼀个滚动条 JScrollPane ；Java ⾥的各种 **InputStream
+模式简化时需要注意的问题：⼀个装饰类的接⼝与被装饰类的接⼝保持相同；不要把太多的逻辑和
+状态放到具体构件中&lt;/p>
+&lt;p>模式简化：如果只有⼀个具体构件类⽽没有抽象构件类，那么抽象装饰类可以作为具体构件类的直
+接⼦类&lt;/p>
+&lt;h2 id="工厂方法模式">工厂方法模式&lt;/h2>
+&lt;p>⼯⼚⽅法模式
+Factory Method Pattern，⼜称为虚拟构造器模式 Virtual Constructor Pattern 或者多态⼯⼚模式
+Polymorphic Factory Pattern
+“延迟实例化”：⼯⼚⽗类负责定义创建产品对象的公共接⼝，⽽⼯⼚⼦类则负责⽣成具体的产品对象；核⼼的⼯⼚类不再负责所有产品的创建，⽽是将具体创建⼯作交给⼦类去做允许系统在不修改⼯⼚⻆⾊的情况下引进新产品，符合开闭原则&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-43-31.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>可以退化成简单⼯⼚模式&lt;/p>
+&lt;p>优点：⽤户只关⼼所需产品对应的⼯⼚，⽆须关⼼创建细节甚⾄⽆须知道具体产品类的类名；可以⾃主确定创建何种产品对象，⽽如何创建这个对象的细节则完全封装在具体⼯⼚内部；在系统中加⼊新产品时，⽆须修改抽象⼯⼚和抽象产品提供的接⼝，⽆须修改客户端，也⽆须修改其他的具体⼯⼚和具体产品，⽽只要添加⼀个具体⼯⼚和具体产品就可以&lt;/p>
+&lt;p>缺点：需要编写新的具体产品类，还要提供与之对应的具体⼯⼚类，系统中类的个数将成对增加，增加了系统复杂度；增加了系统的抽象性、理解难度、实现难度&lt;/p>
+&lt;p>适⽤环境：⼀个类不知道它所需要的对象的类；⼀个类通过其⼦类来指定创建哪个对象；将创建对象的任务委托给多个⼯⼚⼦类中的某⼀个，客户端在使⽤时可以⽆须关⼼时哪个⼯⼚⼦类创建产品⼦类，需要时再动态指定&lt;/p>
+&lt;h2 id="抽象模式">抽象⼯⼚模式&lt;/h2>
+&lt;p>Abstract Factory Pattern
+产品等级结构：抽象电视机与海尔电视机、海信电视机构成产品等级结构
+产品族：由同⼀个⼯⼚⽣产的、位于不同产品等级结构中的⼀组产品，如海尔电视机、海尔电冰箱&lt;/p>
+&lt;p>⼯⼚⽅法模式⾯对同⼀个产品等级结构，抽象⼯⼚模式⾯对多个产品等级结构提供⼀个创建⼀系列相关或相互依赖对象的接⼝，⽽⽆须指定它们具体的类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-43-48.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>包含的⻆⾊：抽象⼯⼚、具体⼯⼚、抽象产品、具体产品
+优点：隔离了具体类的⽣成；只需改变具体⼯⼚的实例，就可以改变软件系统的⾏为；实现⾼内聚低耦合的设计⽬的；保证客户端始终只使⽤同⼀个产品族中的对象；增加新的具体⼯⼚和产品族很⽅便，⽆须修改已有系统，符合开闭原则&lt;/p>
+&lt;p>缺点：难以扩展抽象⼯⼚来⽣产新种类的产品（涉及到对抽象⼯⼚和所有⼦类的修改）（开闭原则的倾斜性）&lt;/p>
+&lt;p>适⽤环境：不应当依赖于产品类实例如何被创建、组合和表达的细节；有多于⼀个产品族；属于同⼀个产品族的产品将在⼀起使⽤；所有的产品以同样的接⼝出现，客户端不依赖具体实现&lt;/p>
+&lt;p>⼯⼚模式的退化&lt;/p>
+&lt;ul>
+&lt;li>抽象⼯⼚➡ ⼯⼚⽅法：只存在⼀个产品等级结构&lt;/li>
+&lt;li>⼯⼚⽅法➡ 简单⼯⼚：⼯⼚⽅法模式中抽象⼯⼚与具体⼯⼚合并，提供统⼀的⼯⼚来创建产品对象，并将创建对象的⼯⼚⽅法设计为静态⽅法&lt;/li>
+&lt;/ul>
+&lt;h2 id="适配器模式">适配器模式&lt;/h2>
+&lt;p>将现有的接⼝转化为客户端期望的接⼝
+定义：将⼀个接⼝转换成客户希望的另⼀个接⼝，使接⼝不兼容的那些类可以⼀起⼯作
+也叫做包装器 Wrapper&lt;/p>
+&lt;p>包含的⻆⾊：⽬标抽象类、适配器类（⽤来适配的类）、适配者类（被适配的类）、客户类
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-49-41.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+优点：将⽬标类和适配者类解耦；增加了类的透明性和复⽤性；灵活性和扩展性都⾮常好&lt;/p>
+&lt;p>对象适配器模式优点：可以把多个不同的适配者适配到同⼀个⽬标；同⼀个适配器可以把适配者类和它的⼦类都适配到⽬标接⼝&lt;/p>
+&lt;p>对象适配器模式缺点：不容易置换适配者类的⽅法
+类适配器模式优点：可以在适配器类中置换⼀些适配者的⽅法，灵活性更强
+类适配器模式缺点：⼀次只能适配⼀个适配者类，⽬标抽象类只能为抽象类
+适⽤环境：需要使⽤现有的类，但是类的接⼝不符合系统需要；想要建⽴⼀个可以重复使⽤的类，⽤于与⼀些彼此之间没有太⼤关联的⼀些类
+模式应⽤：JDBC 中间件
+模式扩展：默认适配器模式 Default Adapter Pattern（当不需要实现接⼝的全部⽅法时，可先设⼀个抽象类⽤空⽅法实现每个接⼝⽅法，那么抽象类的⼦类就可以有选择地覆盖⽗类的⽅法来实现需求，适⽤于⼀个接⼝不想使⽤其所有⽅法的情况，因此也称为单接⼝适配器模式）、双向适配器模式&lt;/p>
+&lt;h2 id="外观模式">外观模式&lt;/h2>
+&lt;p>定义：外部与⼀个⼦系统的通信必须通过⼀个统⼀的外观对象进⾏，为⼦系统中的⼀组接⼝提供⼀个⼀致的界⾯，外观模式定义了⼀个⾼层接⼝，使得这⼀⼦系统更加容易使⽤。⼜称为⻔⾯模式
+包含的⻆⾊：外观⻆⾊、⼦系统⻆⾊&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-20-51-50.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>单⼀职责原则：在软件中将⼀个系统划分为若⼲个⼦系统有利于降低整个系统的复杂性；引⼊⼀个
+外观对象，为⼦系统的访问提供了⼀个简单⽽单⼀的⼊⼝&lt;/p>
+&lt;p>迪⽶特法则：通过引⼊⼀个新的外观类可以降低原有系统的复杂度，降低客户类与⼦系统类的耦合度&lt;/p>
+&lt;p>客户端只需要与外观对象打交道，⽽不需要与⼦系统内部的很多对象打交道；降低系统复杂度；提⾼了客户端使⽤的便捷性&lt;/p>
+&lt;p>模式应⽤：电源总开关（多个电器⼀起开启和关闭）&lt;/p>
+&lt;p>优点：对客户屏蔽⼦系统组件，减少了客户处理的对象数⽬并使得⼦系统使⽤起来更加容易；实现了⼦系统与客户之间的松耦合关系；降低了⼤型软件系统中的编译依赖性，并简化了系统在不同平台之间的移植过程；只是提供了⼀个访问⼦系统的统⼀⼊⼝，并不影响⽤户直接使⽤⼦系统类&lt;/p>
+&lt;p>缺点：不能很好地限制客户使⽤⼦系统类；在不引⼊抽象外观类的情况下，增加新的⼦系统需要修改外观类或客户端的源代码，违背了开闭原则&lt;/p>
+&lt;p>适⽤环境：当要为⼀个复杂⼦系统提供⼀个简单接⼝时可以使⽤外观模式；客户程序与多个⼦系统之间存在很⼤的依赖性；使⽤外观模式定义系统中每⼀层的⼊⼝，层与层之间不直接产⽣联系，⽽通过外观类建⽴联系，降低层之间的耦合度&lt;/p>
+&lt;p>模式扩展：⼀般将外观类设计为单例类以节约系统资源，但在⼀个系统中可以设计多个外观类，每个外观类都负责和⼀些特定的⼦系统交互；不要试图通过外观类为⼦系统增加新⾏为；实现迪⽶特法则；引⼊抽象外观类，当增加新的⼦系统或者移除⼦系统时需要修改外观类，可以通过引⼊抽象外观类解决违背开闭原则的问题，客户端针对抽象外观类进⾏编程&lt;/p>
+&lt;h2 id="模板方法模式">模板方法模式&lt;/h2>
+&lt;p>定义：定义⼀个操作中算法的⻣架，⽽将⼀些步骤延迟到⼦类中，模板⽅法使得⼦类可以不改变⼀个算法的结构即可重定义该算法的某些特定步骤
+基于继承，将相同代码放在⽗类中，以具体⽅法形式实现；声明⼀些抽象⽅法，让不同⼦类实现
+包含的⻆⾊：抽象类、具体⼦类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-04-26.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>实现具体逻辑步骤的⽅法称为基本⽅法 Primitive Method，定义在抽象类中将基本⽅法汇总起来的⽅法称为模板⽅法 Template Method&lt;/p>
+&lt;p>钩⼦⽅法 Hook Method：挂钩⽅法和空⽅法（返回布尔值来确定是否在模板⽅法中执⾏）实现⼦类对⽗类⾏为的反向控制（模板中调⽤⼀个返回布尔值的基本⽅法，根据返回值来判断是否执⾏某些&lt;/p>
+&lt;p>代码；不同的⼦类返回不同的布尔值，来控制⽗类）&lt;/p>
+&lt;p>优点：在⼀个类中抽象地定义算法，⽽由它的⼦类实现细节的处理；代码复⽤的基本技术；反向的控制结构，符合开闭原则；符合单⼀职责原则，使类内聚&lt;/p>
+&lt;p>缺点：类的个数增加&lt;/p>
+&lt;p>适⽤环境：将可变的⾏为留给⼦类来实现；各⼦类中公共的⾏为应被提取出来并集中到⼀个公共⽗类中；对⼀些复杂的算法进⾏分割；控制⼦类的扩展&lt;/p>
+&lt;p>关于继承：应恰当使⽤继承，将可复⽤的⼀般性⾏为代码移到⽗类中。虽然继承复⽤存在⼀些问题，但是在某些情况下能给开发带来⽅便，模板⽅法模式体现了继承的优势&lt;/p>
+&lt;p>模式扩展：好莱坞原则（⼦类不显式调⽤⽗类的⽅法，⽽是通过覆盖⽗类的⽅法来实现某些具体业务逻辑，通过⽗类来调⽤⼦类）；钩⼦⽅法（可使⼦类控制⽗类。⽗类提供空⽅法或⼀个默认实现⽅法，由⼦类覆盖。⽗类调⽤返回布尔值的⼦类⽅法，以判断是否执⾏某些代码）&lt;/p>
+&lt;h2 id="命令模式">命令模式&lt;/h2>
+&lt;p>Command Pattern，别名动作 Action 模式或事务 Transaction 模式
+动机：让命令的发送者和接收者完全解耦
+定义：将⼀个请求封装为⼀个对象，从⽽使我们可⽤不同的请求对客户进⾏参数化；对请求排队或者记录请求⽇志，以及⽀持可撤销的操作&lt;/p>
+&lt;p>包含的⻆⾊：抽象命令类、具体命令类、调⽤者、接收者、客户类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-21-28.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>对命令进⾏封装，将发出命令的责任和执⾏命令的责任分隔开；请求⼀⽅发出操作请求，接受⼀⽅收到请求并执⾏；请求的⼀⽅不必知道接受请求的⼀⽅的接⼝&lt;/p>
+&lt;p>使请求本身成为⼀个对象；引⼊了抽象命令接⼝，发送者针对抽象命令接⼝编程&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-22-01.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>优点：降低系统耦合度；新的命令可以很容易地加⼊到系统中；⽐较容易设计⼀个命令队列和宏命令（组合命令）；⽅便地实现对请求的 Undo 和 Redo
+缺点：导致某些系统由过多的具体命令类
+适⽤环境：需要将请求调⽤者和请求接收者解耦；需要在不同的时间指定请求、将请求排队和执⾏&lt;/p>
+&lt;p>请求；需要⽀持命令的撤销和恢复操作；需要将⼀组操作组合在⼀起，即⽀持宏命令
+模式扩展：撤销操作的实现&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-22-53.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>模式扩展：宏命令：⼜称为组合命令，是&lt;strong>命令模式和组合模式&lt;/strong>联⽤的产物；在调⽤宏命令的execute() ⽅法时，将递归调⽤它所包含的每个成员命令的 execute() ⽅法；宏命令的成员对象可以是简单命令，还可以继续是宏命令&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-23-25.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="迭代器模式">迭代器模式&lt;/h2>
+&lt;p>Iterator Pattern，又叫游标 Cursor 模式&lt;/p>
+&lt;p>定义：提供⼀种⽅法顺序访问⼀个聚合对象中各个元素，⽽又⽆须暴露该对象的内部表示&lt;/p>
+&lt;p>包含的⻆⾊：抽象迭代器、具体迭代器、抽象聚合类、具体聚合类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-24-01.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>优点：访问⼀个聚合对象的内容⽆需暴露它的内部表示；遍历任务交由迭代器完成，这简化了聚合类；它⽀持以不同的遍历⽅式遍历⼀个聚合，甚⾄可以同时遍历多个聚合对象；在同⼀个聚合上可以有多个遍历；在迭代器模式中，增加新的聚合类和迭代器类都很⽅便，无须修改原有代码；封装性良好，为遍历不同的聚合结构提供⼀个统⼀的接⼝&lt;/p>
+&lt;p>缺点：增加了类的个数，这在⼀定程度上增加了系统的复杂性&lt;/p>
+&lt;h2 id="代理模式">代理模式&lt;/h2>
+&lt;p>Proxy Pattern 或 Surrogate Pattern
+通过引⼊⼀个新的对象，来实现对真实对象的操作或者将新的对象作为真实对象的⼀个替身；通过引⼊代理对象来间接访问⼀个对象
+客户和⽬标对象之间通过⼀个代理对象来实现间接引⽤，起到中介作⽤；通过代理对象去掉客户不能看到的内容和服务，或者添加客户需要的额外对象&lt;/p>
+&lt;p>定义：给某⼀个对象提供⼀个代理，并由代理对象控制对原对象的引⽤
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-34-06.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>包含的对象：抽象主题⻆⾊、代理主题⻆⾊、真实主题⻆⾊
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-34-20.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>优点：协调调⽤者和被调⽤者，降低系统耦合度；远程代理使得客户端可以访问在远程机器上的对象；虚拟代理通过⼀个⼩对象来代表⼀个⼤对象，减少系统资源的消耗，对系统进⾏优化并提⾼运⾏速度；保护代理可以控制对真实对象的使⽤权限&lt;/p>
+&lt;p>缺点：有些类型的代理模式可能会造成请求的处理速度变慢；实现代理模式需要额外的⼯作，有些⾮常复杂&lt;/p>
+&lt;p>适⽤环境：远程 Remote 代理（⼜叫⼤使 Ambassador）、虚拟 Virtual 代理、Copy-On-Write 代理（真正需要⽤到对象的时候才克隆）、保护 Protect or Access 代理（控制权限）、缓冲 Cache 代理（为某个⽬标操作的结果提供临时存储空间，以便多个客户端可以共享这些结果）、防⽕墙 Firewall 代理、智能引⽤ Smart Reference 代理（当⼀个对象被引⽤时，提供⼀些额外的操作）&lt;/p>
+&lt;p>模式应⽤：远程⽅法调⽤&lt;/p>
+&lt;h2 id="组合模式">组合模式&lt;/h2>
+&lt;p>Composite Pattern&lt;/p>
+&lt;p>定义：组合多个对象形成树形结构以表示“整体-部分”的结构层次，对单个对象（即叶⼦对象）和组合对象（即容器对象）的使⽤具有⼀致性
+⼜被称为“整体-部分”（Part-Whole）模式，将对象组织到树结构中，可以⽤来描述整体与部分的关系&lt;/p>
+&lt;p>包含的⻆⾊：抽象构件、叶⼦构件、容器构件、客户类&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2023-12-28-21-36-18.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+优点：分层次的复杂对象；客户端可以⼀致地使⽤组合结构或其中单个对象；定义了包含叶⼦对象和容器对象的类层次结构，形成复杂的树形结构；更容易在组合体内加⼊对象构件&lt;/p>
+&lt;p>缺点：设计变得更加抽象；很难对容器中的构件类型进⾏限制&lt;/p>
+&lt;p>适⽤环境：需要表示⼀个对象整体或部分层次；客户端可以针对抽象构件编程，⽆须关⼼对象层次&lt;/p>
+&lt;p>结构的细节；对象的结构是动态的并且复杂程度不⼀样，但客户需要⼀致地处理它们&lt;/p>
+&lt;p>模式应⽤：XML ⽂档解析；操作系统中的⽬录结构&lt;/p>
+&lt;p>模式扩展：更复杂的组合模式（有多种叶⼦节点、有多种组合节点）、透明组合模式（叶⼦结点也有组合节点的⽅法）、安全组合模式（只有组合节点才有 add remove getChild 等⽅法）&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E5%9F%BA%E7%A1%80/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/git/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E9%A1%B9%E7%9B%AE%E7%AE%A1%E7%90%86/git/</guid><description>&lt;p>软件配置管理&lt;/p>
 &lt;p>21.做代码管理用什么东西&lt;/p>
 &lt;p>Git 代码仓库&lt;/p>
 &lt;p>22.git rebase和git merge的区别&lt;/p>
@@ -17914,6 +18340,16 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>头部和尾部的插入删除都是O(1)&lt;/li>
 &lt;li>一般不使用,作者都不使用&lt;/li>
 &lt;/ul>
+&lt;h3 id="arraylist">ArrayList&lt;/h3>
+&lt;p>底层是动态数组&lt;/p>
+&lt;p>Q:声明arraylist，java语言会做什么操作
+A:声明ArrayList时，Java会创建一个长度为0的数组，当第一次添加元素时，会创建一个长度为10的数组，并将元素添加到数组中。当数组长度不够时，会创建一个原数组长度的1.5倍的新数组，并将原数组中的元素复制到新数组中。&lt;/p>
+&lt;p>arraylist什么时候扩容
+A:ArrayList在添加元素时，会先判断当前数组的容量是否足够，如果不够则会进行扩容。扩容时，会创建一个原数组长度的1.5倍的新数组，并将原数组中的元素复制到新数组中。&lt;/p>
+&lt;p>arraylist是线程安全的吗
+A:ArrayList是非线程安全的，如果需要在多线程环境下使用ArrayList，可以使用Collections.synchronizedList()方法将ArrayList转换为线程安全的List。&lt;/p>
+&lt;p>线程安全的list有哪些
+A:线程安全的List有Vector和Collections.synchronizedList()方法转换的List。Vector是一种线程安全的List实现，而Collections.synchronizedList()方法可以将ArrayList转换为线程安全的List。&lt;/p>
 &lt;h2 id="set">Set&lt;/h2>
 &lt;p>对集合进行排序时,需要实现Comparable接口,重写compareTo方法&lt;/p>
 &lt;p>集合的不可重复性是通过equals方法来判断的, 需要重写equals方法和hashCode方法&lt;/p>
@@ -17973,6 +18409,32 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;p>jdk1.8之前插入链表是头插法，jdk1.8之后是尾插法。&lt;/p>
 &lt;p>put原理&lt;/p>
 &lt;p>同时还有一个区别：发生“hash冲突”时，我们上面的做法是“头插法”，这是jdk1.7的做法，而在jdk1.8中，使用的是“尾插法”。&lt;/p>
+&lt;h4 id="hash冲突解决方案">hash冲突解决方案&lt;/h4>
+&lt;ul>
+&lt;li>开放定址法
+&lt;ul>
+&lt;li>线性探测法&lt;/li>
+&lt;li>二次探测法&lt;/li>
+&lt;li>伪随机&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>链地址法
+&lt;ul>
+&lt;li>相同的hash值的元素，用链表存储&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>再哈希法
+&lt;ul>
+&lt;li>提供多个hash函数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>建立公共溢出区
+&lt;ul>
+&lt;li>将哈希表分为基本表和溢出表两部分，凡是和基本表发生冲突的元素，一律填入溢出表。&lt;/li>
+&lt;li>在查找的时候，先与哈希表的相应位置比较，如果查找成功，则返回。否则去公共溢出区按顺序一一查找。在冲突数据少时性能好，冲突数据多的时候耗时。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h4 id="hashmap底层实现">hashmap底层实现&lt;/h4>
 &lt;p>HashMap是一种基于哈希表的Map实现，其底层实现主要包括数组和链表（或红黑树）两部分。数组用来存储哈希桶，链表（或红黑树）用来解决哈希冲突。&lt;/p>
 &lt;p>一般情况下，当元素数量超过阈值时便会触发扩容。每次扩容的容量都是之前容量的2倍。&lt;/p>
@@ -17982,6 +18444,7 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;h4 id="hashmap17和18区别">hashmap1.7和1.8区别&lt;/h4>
 &lt;p>HashMap1.7和1.8的主要区别在于底层实现方式的改变。1.7中使用的是数组+链表的方式来解决哈希冲突，而1.8中引入了红黑树来优化链表过长的情况，提高了查询效率。此外，1.8中还引入了一些新的方法和特性，如forEach()方法、Lambda表达式等。&lt;/p>
 &lt;h4 id="hashmap怎么让他线程安全的方法">hashmap怎么让他线程安全的方法&lt;/h4>
+&lt;p>线程安全的map有哪些&lt;/p>
 &lt;p>HashMap本身是非线程安全的，如果需要在多线程环境下使用HashMap，可以使用以下几种方法来保证线程安全：&lt;/p>
 &lt;ol>
 &lt;li>使用Collections.synchronizedMap()方法将HashMap转换为线程安全的Map。&lt;/li>
@@ -17991,6 +18454,8 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;h3 id="concurrenthashmap">ConcurrentHashMap&lt;/h3>
 &lt;h4 id="concurrenthashmap原理">ConcurrentHashMap原理&lt;/h4>
 &lt;p>ConcurrentHashMap 已经摒弃了 Segment 的概念，而是直接用 Node 数组+链表+红黑树的数据结构来实现，并发控制使用 synchronized 和 CAS 来操作。&lt;/p>
+&lt;p>13、concurrenthashmap最耗时的操作是什么&lt;/p>
+&lt;p>12、hashtable和concurrenthashmap的区别&lt;/p>
 &lt;p>红黑树可用别的数据结构代替吗&lt;/p>
 &lt;p>跳表与红黑树比较&lt;/p>
 &lt;p>线程安全的类有哪些，为什么线程安全&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/jucjava%E5%B9%B6%E5%8F%91/</guid><description>&lt;h1 id="java-多线程">Java 多线程&lt;/h1>
@@ -19944,7 +20409,19 @@ JVM 中的 PC 寄存器是对物理 PC 寄存器的一种抽象模拟。&lt;/p>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h4 id="内存分配策略">内存分配策略&lt;/h4>
+&lt;p>Major GC（Major Garbage Collection）和Mixed GC（Mixed Garbage Collection）是两种不同的垃圾回收机制，它们在执行时的行为和目标有所不同。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-md" data-lang="md">&lt;span class="line">&lt;span class="cl"> Major GC（也称为Full GC）是一种针对整个堆内存执行的垃圾回收操作。它的目标是清理整个堆内存，并回收无用对象。Major GC通常在堆内存空间不足或触发显式的垃圾回收请求时执行。它会停止应用程序的执行，并对整个堆内存进行标记和清理。Major GC的过程包括标记阶段和清理阶段，通过标记可达对象和清理未标记的对象来回收内存空间。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Mixed GC（也称为Incremental GC）是一种结合了部分收集和全收集的垃圾回收操作。它的目标是在不完全停止应用程序的情况下，尽可能回收垃圾对象。Mixed GC通过将堆内存划分为多个区域（如年轻代和老年代的不同区域）来实现增量的回收。它会在应用程序执行的同时，对某些区域进行标记和清理操作。这样可以减少垃圾回收的停顿时间，提高应用程序的响应性能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 区别总结如下：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 范围：Major GC是对整个堆内存执行的垃圾回收操作，而Mixed GC是对部分堆内存区域执行的垃圾回收操作。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 目标：Major GC的目标是清理整个堆内存，并回收无用对象；Mixed GC的目标是在不完全停止应用程序的情况下，尽可能回收垃圾对象。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 执行方式：Major GC会停止应用程序的执行，执行全面的标记和清理操作；Mixed GC会在应用程序执行的同时，对某些区域进行增量式的标记和清理操作。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 停顿时间：Major GC的停顿时间较长，会导致应用程序的暂停；Mixed GC采用增量式的回收，可以减少垃圾回收的停顿时间，提高应用程序的响应性能。
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Java虚拟机和垃圾收集器的实现可以根据具体的需求和性能目标选择使用Major GC、Mixed GC或它们的组合来进行垃圾回收操作。
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="内存分配策略">内存分配策略&lt;/h4>
 &lt;ul>
 &lt;li>对象优先在Eden区分配&lt;/li>
 &lt;li>大对象直接进入老年代&lt;/li>

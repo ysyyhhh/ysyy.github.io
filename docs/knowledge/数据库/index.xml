@@ -63,6 +63,25 @@
 &lt;li>强制把读请求给主库&lt;/li>
 &lt;li>延迟读取, 等待从库同步完成后再读取&lt;/li>
 &lt;/ol>
+&lt;h2 id="锁">锁&lt;/h2>
+&lt;h3 id="锁的类型">锁的类型&lt;/h3>
+&lt;ul>
+&lt;li>共享锁（S锁）：允许事务读取一行数据&lt;/li>
+&lt;li>排他锁（X锁）：允许事务删除或更新一行数据&lt;/li>
+&lt;li>读锁（R锁）：允许事务读取一行数据&lt;/li>
+&lt;li>写锁（W锁）：允许事务删除或更新一行数据&lt;/li>
+&lt;li>乐观锁：不加锁，通过版本号或时间戳来判断数据是否被修改&lt;/li>
+&lt;li>悲观锁：加锁，通过锁来保证数据的一致性&lt;/li>
+&lt;li>行锁：锁定一行数据&lt;/li>
+&lt;li>表锁：锁定整个表&lt;/li>
+&lt;li>间隙锁：锁定一个范围，但不包括记录本身&lt;/li>
+&lt;li>临键锁：锁定一个范围，包括记录本身&lt;/li>
+&lt;li>读写锁：读锁共享，写锁排他&lt;/li>
+&lt;li>自旋锁：不断循环检查锁是否释放&lt;/li>
+&lt;li>互斥锁：同一时间只允许一个线程访问共享资源&lt;/li>
+&lt;/ul>
+&lt;h3 id="mvcc">MVCC&lt;/h3>
+&lt;p>MVCC（Multi-Version Concurrency Control）多版本并发控制&lt;/p>
 &lt;h2 id="日志类型">日志类型&lt;/h2>
 &lt;h3 id="重做日志redo-log">重做日志（redo log）&lt;/h3>
 &lt;p>作用：保证事务的持久性&lt;/p>
@@ -82,6 +101,16 @@
 &lt;p>作用： 用于主从复制&lt;/p>
 &lt;p>内容：包括执行了的sql语句和反向的sql语句&lt;/p>
 &lt;p>其他： 错误日志（errorlog）、慢查询日志（slow query log）、一般查询日志（general log），中继日志（relay log）&lt;/p>
+&lt;h3 id="逻辑日志和物理日志">逻辑日志和物理日志&lt;/h3>
+&lt;p>逻辑日志：记录的是逻辑操作，如insert、update、delete&lt;/p>
+&lt;ul>
+&lt;li>binlog&lt;/li>
+&lt;li>undo log&lt;/li>
+&lt;/ul>
+&lt;p>物理日志：记录的是物理操作，如页的修改，如redo log&lt;/p>
+&lt;ul>
+&lt;li>redo log&lt;/li>
+&lt;/ul>
 &lt;h2 id="分布式场景">分布式场景&lt;/h2>
 &lt;h3 id="分布式场景中如何保证主键的唯一性">分布式场景中如何保证主键的唯一性&lt;/h3>
 &lt;ul>
@@ -241,6 +270,8 @@
 &lt;p>Redis的回收策略包括noeviction、allkeys-lru、volatile-lru、allkeys-random和volatile-random等。&lt;/p>
 &lt;h3 id="redis的持久化机制的优缺点有哪些">Redis的持久化机制的优缺点有哪些？&lt;/h3>
 &lt;p>Redis的持久化机制包括RDB和AOF两种方式，各自的优缺点包括数据恢复速度、数据安全性、数据一致性等方面。&lt;/p>
+&lt;p>RDB方式是将Redis的内存数据快照保存到磁盘上，优点是恢复速度快，缺点是可能会丢失最近一次快照之后的数据。&lt;/p>
+&lt;p>AOF方式是将Redis的写操作以追加的方式记录到一个日志文件中，优点是可以保证数据的完整性和一致性，缺点是日志文件可能会很大。&lt;/p>
 &lt;h3 id="保证缓存与数据库的双写一致性--">保证缓存与数据库的双写一致性&amp;ndash;&lt;/h3>
 &lt;p>四种同步策略：&lt;/p>
 &lt;p>想要保证缓存与数据库的双写一致，一共有4种方式，即4种同步策略：&lt;/p>
@@ -357,457 +388,7 @@
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
-&lt;h2 id="索引">索引&lt;/h2>
-&lt;h3 id="b树与b树的结构">&lt;strong>B树与B+树的结构&lt;/strong>&lt;/h3>
-&lt;p>B树是&lt;strong>多关键字平衡树&lt;/strong>,且节点内的关键字是有序的.每个节点都存储其关键字指向的具体数据地址.&lt;/p>
-&lt;p>B+树是在B树的基础上, 非叶子节点仅指向其多个子节点的地址 , 只有叶子节点指向具体以堆文件形式存放的数据块地址. 相邻叶子节点也通过指针连接. 方便快速范围查询.&lt;/p>
-&lt;p>不同之处:&lt;/p>
-&lt;ul>
-&lt;li>层数更低: 相比于B树, B+树的非叶子节点全部用于索引,使得B+树的层数更低,&lt;/li>
-&lt;li>效率稳定, B+树一定只能在叶子节点找到数据的具体地址, 每次查询的路径长度基本一致.&lt;/li>
-&lt;li>范围查询: B+树的叶子节点有next指针, 使得范围查询效率更高.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么不用其他数据结构做索引而用b树或b树">&lt;strong>为什么不用其他数据结构做索引，而用B树或B+树&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>链表, 链表的查询速度是O（N），每次查询都得从链表头开始查询，例如上面查询“xiaxia”，如果xiaxia在1000的位置，那么需要遍历1000次才能查找到。&lt;/li>
-&lt;li>数组:查询速度O（1），但删除插入是O(n), 且数据必须存在于内存, 索引过大时无法存储.&lt;/li>
-&lt;li>平衡二叉树
-&lt;ul>
-&lt;li>二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少. 但在树形结构下,影响查询效率的因素主要是树的深度, B树的深度远比平衡二叉树小。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="b树索引的适用范围">&lt;strong>B树索引的适用范围&lt;/strong>:&lt;/h3>
-&lt;ul>
-&lt;li>全键值匹配&lt;/li>
-&lt;li>匹配最左前缀
-匹配列前缀&lt;/li>
-&lt;li>匹配范围值
-精确匹配某一列并范围匹配另外一列
-只访问索引的查询&lt;/li>
-&lt;/ul>
-&lt;h3 id="什么时候使用b树索引--b树的索引可用性">&lt;strong>什么时候使用B树索引 / B树的索引可用性&lt;/strong>:&lt;/h3>
-&lt;p>1、只需要获取少量的行;(确保使用索引比不使用索引更高效)&lt;/p>
-&lt;p>2、即便获取很多行，但是可以只使用索引不使用基本表。(索引中包含整个表)&lt;/p>
-&lt;h3 id="索引有哪些索引分类">&lt;strong>索引有哪些？索引分类&lt;/strong>&lt;/h3>
-&lt;h4 id="按照物理存储分类">按照物理存储分类&lt;/h4>
-&lt;p>聚簇索引&lt;/p>
-&lt;ul>
-&lt;li>按照数据存放的&lt;strong>物理位置为顺序&lt;/strong>的索引结构，聚集索引的&lt;strong>叶子节点包含了整个数据行&lt;/strong>。&lt;/li>
-&lt;li>InnoDB表要&lt;strong>求必须有聚簇索引，默认在主键字段上建立聚簇索引&lt;/strong>&lt;/li>
-&lt;li>每个表&lt;strong>只能有一个聚集索引&lt;/strong>，它对应的索引键值也是表的&lt;strong>主键或唯一约束条件&lt;/strong>。&lt;/li>
-&lt;li>通过聚集索引，我们可以快速地按照主键或唯一约束条件查询和排序表中的数据, &lt;strong>提高多行检索速度&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>非聚簇索引&lt;/p>
-&lt;ul>
-&lt;li>索引顺序与数据&lt;strong>物理列排序无关&lt;/strong>，&lt;strong>叶节点仍然是索引节点(指向主键)&lt;/strong>&lt;/li>
-&lt;li>每个表可以有&lt;strong>多个非聚集索引&lt;/strong>，这些索引可以覆盖&lt;strong>多个数据列&lt;/strong>，以满足不同的查询需求。&lt;/li>
-&lt;li>通过非聚集索引，快速地&lt;strong>定位表中符合查询条件的记录的主键&lt;/strong>，然后进行(回表查询)。&lt;/li>
-&lt;/ul>
-&lt;h4 id="按字段特性">按字段特性&lt;/h4>
-&lt;p>&lt;strong>单列索引&lt;/strong>：对&lt;strong>单列创建索引&lt;/strong>，&lt;strong>叶子节点包含索引列的值&lt;/strong>，并且&lt;strong>根据单列排序&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>联合索引&lt;/strong>：同时对&lt;strong>多列创建索引&lt;/strong>，&lt;strong>叶子节点会同时包含每个索引列的值&lt;/strong>，并且同时&lt;strong>根据多列排序&lt;/strong>，这个排序和我们所理解的字典序类似。&lt;/p>
-&lt;p>&lt;strong>覆盖索引&lt;/strong>: 如果&lt;strong>非聚簇符合索引&lt;/strong>已经能够得到&lt;strong>查询的所有信息&lt;/strong>了，就&lt;strong>无需再回表&lt;/strong>，即只按照条件&lt;strong>找主键&lt;/strong>。&lt;/p>
-&lt;h4 id="按数据结构分类">按数据结构分类&lt;/h4>
-&lt;p>B+索引&lt;/p>
-&lt;p>&lt;strong>哈希索引&lt;/strong>&lt;/p>
-&lt;p>所有的数据类型，通过哈希函数变成一个&lt;strong>等长的哈希值&lt;/strong>。&lt;/p>
-&lt;p>将这个&lt;strong>等长的哈希值&lt;/strong>作为&lt;strong>组织成索引的结构 —— 哈希链表&lt;/strong>。&lt;/p>
-&lt;p>哈希链表的结点上，&lt;strong>储存哈希值&lt;/strong> 和 &lt;strong>指向记录哈希值的地址 uid（索引行的地址）&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>哈希索引能做什么不能做什么？&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>哈希索引只能用来进行&lt;strong>全键值&lt;/strong>的查询
-&lt;ul>
-&lt;li>不能前缀查询&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>哈希索引只支持&lt;strong>击中运算符&lt;/strong>
-&lt;ul>
-&lt;li>击中运算符：= , != , in&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>哈希索引&lt;strong>不支持范围查询&lt;/strong>&lt;/li>
-&lt;li>哈希索引&lt;strong>不支持对字段排序&lt;/strong>(因为只支持击中运算符)&lt;/li>
-&lt;li>哈希索引&lt;strong>读取效率高于B树索引&lt;/strong>
-&lt;ul>
-&lt;li>哈希索引结构非常&lt;strong>紧凑&lt;/strong>.&lt;/li>
-&lt;li>哈希索引&lt;strong>使用数值的比较&lt;/strong>,远&lt;strong>高于字符串比较&lt;/strong>速度.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>函数索引&lt;/strong>&lt;/p>
-&lt;p>B树索引是对一个字段构建索引,而函数索引是对&lt;strong>这个字段上的一个函数值&lt;/strong>构建索引.&lt;/p>
-&lt;p>&lt;strong>结构同样是B+树索引,只是节点的关键字是函数的值而不是字段值.&lt;/strong>&lt;/p>
-&lt;p>是最具创造力的索引结构,用得好可用解决并发冲突,优化存储结构.等很多事情.&lt;/p>
-&lt;p>&lt;strong>能用在哪&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>不区分大小写&lt;/strong>查询&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>T、F比例巨大差异&lt;/strong>的查询&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>项目表有两个状态, active和inactive.&lt;/p>
-&lt;p>要求active的项目,必须要有唯一名. 而inactive没有这个要求.&lt;/p>
-&lt;p>解决方法: &lt;strong>函数索引上构建唯一索引&lt;/strong>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>位图索引&lt;/strong>&lt;/p>
-&lt;p>用一个&lt;strong>索引键条目（01图）存储指向多行&lt;/strong>的指针。&lt;/p>
-&lt;p>&lt;strong>位图索引适合&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>相异基数(distinct cardinality)低&lt;/strong>的字段进行快速查询 (复合查询)
-&lt;ul>
-&lt;li>可以取的值的范围小: 性别、真假,年龄段 等.&lt;/li>
-&lt;li>使用B树索引,需要复合索引时 组合数多. 且共同的值多, 可能使得叶子结点远少于索引结点.&lt;/li>
-&lt;li>使用哈希索引,碰撞率贼高.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>大量&lt;strong>临时查询的聚合&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>位图索引对于写操作非常不友好&lt;/strong>/位图索引&lt;strong>不能应用在OLTP&lt;/strong>应用中的原因&lt;/p>
-&lt;p>&lt;strong>原因&lt;/strong>: 位图索引的&lt;strong>键值指向多行&lt;/strong>, 如果一个session修改了一个索引的数据,则&lt;strong>该索引指向的所有行都会被查找到&lt;/strong>.无法锁定单独一个条目,&lt;strong>可能在修改时要锁住整个目录&lt;/strong>,导致并发性下降严重 几乎变成串行化.&lt;/p>
-&lt;p>&lt;strong>位图连结索引&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>允许使用&lt;strong>另外某个表的列&lt;/strong> 对 &lt;strong>一个给定表&lt;/strong> 建立索引。&lt;/li>
-&lt;li>实际上，这就是允许&lt;strong>对一个索引结构&lt;/strong>(而不是表本身)中的数据进行&lt;strong>逆规范化&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>位图联结索引的&lt;strong>前提条件&lt;/strong>:&lt;/p>
-&lt;p>&lt;strong>必须连接到另一张表的主键/唯一键&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>反向键索引或叫避向索引“eseindex)&lt;/strong>&lt;/p>
-&lt;ol>
-&lt;li>将键值反向插入，以免并发插入时都插入到同一个块。&lt;/li>
-&lt;li>此时进程将竞争同一个索引页,插入并发性大幅度下降&lt;/li>
-&lt;/ol>
-&lt;h3 id="索引的5种优点">&lt;strong>索引的5种优点&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>可以大大加快数据的&lt;strong>检索&lt;/strong>速度&lt;/li>
-&lt;li>可以加速表和表之间的&lt;strong>连接&lt;/strong>，特别是在实现数据的参照完整性方面特别有意义&lt;/li>
-&lt;li>在使用分组和排序子句进行数据检索式，同样可以显著减少查询中&lt;strong>分组和排序&lt;/strong>的时间&lt;/li>
-&lt;li>通过创建&lt;strong>唯一性&lt;/strong>索引，可以保证数据库表中每一行数据的唯一性&lt;/li>
-&lt;li>通过使用索引，可以在查询的过程中，使用&lt;strong>优化隐藏器&lt;/strong>，提高系统的性能&lt;/li>
-&lt;/ul>
-&lt;h3 id="系统对外键建立索引很普遍为什么要对外键建立索引">&lt;strong>系统对外键建立索引很普遍。为什么要对外键建立索引？&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>加快对于父表和子表的&lt;strong>连接查询&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>删除操作&lt;/strong>时，可以快速通过外键的索引找到&lt;strong>主表中&lt;/strong>要删除的行。&lt;/li>
-&lt;li>&lt;strong>避免死锁&lt;/strong>, 有外键时会导致两个表都要上锁.
-&lt;ul>
-&lt;li>添加索引能够让&lt;strong>上锁后操作的时间变短&lt;/strong>, .并发时需要 A表加锁/B表加锁。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="不加索引的外键情况">&lt;strong>不加索引的外键情况&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>子表不容易&lt;/strong>修改
-&lt;ul>
-&lt;li>不从子表中删除记录&lt;/li>
-&lt;li>是一个字典表,不容易被修改.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>一般&lt;strong>不进行父表和子表的连接查询&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="建立索引的条件--请解释数据库管理员如何为数据库建立一组好的索引">&lt;strong>建立索引的条件 / 请解释数据库管理员如何为数据库建立一组好的索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>经常搜索&lt;/strong>的列&lt;/li>
-&lt;li>经常&lt;strong>使用where子句&lt;/strong>的列上，加快条件的判断速度&lt;/li>
-&lt;li>经常进行&lt;strong>范围搜索&lt;/strong>的列上，因为索引已经排序了，其指定的范围是连续的.&lt;/li>
-&lt;li>&lt;strong>唯一性&lt;/strong>的列:在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li>
-&lt;li>经常&lt;strong>需要排序&lt;/strong>的列上，因为索引已经排序了，查询可以利用索引的排序，加速排序查询时间.&lt;/li>
-&lt;li>&lt;strong>经常用在连接的列&lt;/strong>，这些列&lt;strong>主要是外键&lt;/strong>，可以加快连接速度&lt;/li>
-&lt;li>&lt;strong>数据分布较广的列&lt;/strong>:&lt;/li>
-&lt;/ul>
-&lt;h3 id="哪些列上不应该加索引">&lt;strong>哪些列上不应该加索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>很少使用&lt;/strong>或者参考的列不应该创建索引。&lt;/li>
-&lt;li>&lt;strong>很少的数据值&lt;/strong>列不应该创建索引。&lt;/li>
-&lt;li>&lt;strong>text,image,bit数据类型&lt;/strong>的列不应该加索引。
-&lt;ul>
-&lt;li>比较和排序的开销大.&lt;/li>
-&lt;li>因为这些列要么数据量很大，要么很小，不利于使用索引&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>修改需求大&lt;/strong>的列.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么数据库管理员一般不会给所有单个属性都建立索引请写出两条原因">&lt;strong>为什么数据库管理员一般不会给所有单个属性都建立索引，请写出两条原因&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>过多的索引会&lt;strong>加重优化器&lt;/strong>查找最优查询计划的负担&lt;/li>
-&lt;li>会增加数据库&lt;strong>维护索引的负担&lt;/strong>.&lt;/li>
-&lt;li>一旦聚集索引改变，&lt;strong>所有非聚集索引都会跟着改变&lt;/strong>&lt;/li>
-&lt;li>该列是&lt;strong>属于不该建立索引&lt;/strong>的列时.&lt;/li>
-&lt;/ul>
-&lt;h3 id="为什么没有使用我的索引">&lt;strong>为什么没有使用我的索引&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>使用B+树索引&lt;/strong>，但&lt;strong>没有使用索引的最前列&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>不能为NULL建立索引条目&lt;/strong>
-&lt;ul>
-&lt;li>&lt;strong>COUNT(*)&lt;/strong>， 包括NULL, t会引起&lt;strong>全表扫描&lt;/strong>，&lt;/li>
-&lt;li>is not NULL&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>函数查询&lt;/strong>时不使用索引&lt;/li>
-&lt;li>&lt;strong>隐形函数查询&lt;/strong>，比如**&amp;lt;&amp;gt;不等于符**，会&lt;strong>引起全表扫描&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>隐式类型转换&lt;/strong>，如字符串转成数值来比较&lt;/li>
-&lt;li>如果用了我的索引，实际反而会更慢。
-&lt;ul>
-&lt;li>即查询&lt;strong>优化器发现有比使用你的索引更快的访问方式&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>没有正确的统计信息&lt;/strong>，造成CBO无法做出正确的选择&lt;/li>
-&lt;li>两个条件用 &lt;strong>or 连接&lt;/strong>，一个有索引一个没索引&lt;/li>
-&lt;/ul>
-&lt;p>总结成两条：&lt;/p>
-&lt;ul>
-&lt;li>“不能使用索引，使用索引会返回不正确的结果”&lt;/li>
-&lt;li>“不该使用索引，如果使用了索引就会变得更慢”&lt;/li>
-&lt;/ul>
-&lt;h3 id="如何查看索引是否被使用">如何查看索引是否被使用&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>explain&lt;/strong>命令
-&lt;ul>
-&lt;li>&lt;code>explain select * from company_info where cname like '%小%'&lt;/code>&lt;/li>
-&lt;li>看possible_keys和key列&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="索引带来的问题负面的使用索引会降低查询效率的情况">&lt;strong>索引带来的问题（负面的）,使用索引会降低查询效率的情况&lt;/strong>：&lt;/h3>
-&lt;ul>
-&lt;li>总是&lt;strong>存在索引不被使用&lt;/strong>的情况。
-&lt;ul>
-&lt;li>存在索引时, 创建索引会带来系统的维护和空间的开销.&lt;/li>
-&lt;li>因此索引如果不被使用反而会降低效率.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>当&lt;strong>一次查询的结果集较大&lt;/strong>时，索引会影响效率。
-&lt;ul>
-&lt;li>因为&lt;strong>索引是针对点查询&lt;/strong>的，而不是针对某个范围查询的。此时有可能不使用索引反而效率更高.&lt;/li>
-&lt;li>一般结果集在10%以下可以考虑使用索引。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>对于&lt;strong>修改需求大的表&lt;/strong>中，使用索引会严重影响数据库更新操作的效率。&lt;/li>
-&lt;li>太多索引会让&lt;strong>设计不稳定&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="设计索引时需要考虑的主要因素">&lt;strong>设计索引时需要考虑的主要因素&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>在&lt;strong>适合加&lt;/strong>索引的列上加索引&lt;/li>
-&lt;li>不在&lt;strong>不应该加&lt;/strong>索引的列上加索引&lt;/li>
-&lt;li>不要加&lt;strong>过多&lt;/strong>的索引&lt;/li>
-&lt;li>确保建立该索引后&lt;strong>能够被使用&lt;/strong>&lt;/li>
-&lt;li>确保索引带来的&lt;strong>好处大于索引带来的问题&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="聚簇索引--clustered-index-或者--clustering-index">&lt;strong>聚簇索引 -clustered index 或者 -clustering index&lt;/strong>&lt;/h3>
-&lt;p>为了使得&lt;strong>表中数据有序&lt;/strong>, 很多数据库使用了&lt;strong>聚簇索引&lt;/strong>.&lt;/p>
-&lt;p>聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，这个叶子节点也被称为数据页。每张表只能拥有一个聚簇索引。&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>范围查询效率非常高&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>代价: &lt;strong>非范围查询也要进行范围扫描&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>主键更新会导致记录的重新排序，从而导致记录物理位置的变化&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>为了更加安全, 聚簇索引可以和索引组织表一样，根据主键来定义. 因为主键被更新的概率小,或者说不应该被更新.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>聚簇索引&lt;strong>也可以是非主键索引,这是和索引组织表不一样的地方&lt;/strong>.&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>聚簇索引和IOT的区别在于索引键的选择和存储方式。&lt;/p>
-&lt;ul>
-&lt;li>聚簇索引只包括表的主键，并将表的数据按照主键值的顺序存储在硬盘上；&lt;/li>
-&lt;li>IOT包括表的主键和数据列，并将数据和索引存储在同一个结构中。&lt;/li>
-&lt;/ul>
-&lt;h2 id="事务">事务&lt;/h2>
-&lt;h3 id="为什么要加锁">&lt;strong>为什么要加锁&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>多个应用程序&lt;strong>同时对相同数据进行访问&lt;/strong>。&lt;/li>
-&lt;li>&lt;strong>保证数据库的完整性和一致性&lt;/strong>，就必须要有一定的机制用于控制数据记录的读取、插入、删除和更新。&lt;/li>
-&lt;li>通过对数据库对象加锁，我们可以&lt;strong>避免由于并发更改造成数据的丢失&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁与提交">&lt;strong>加锁与提交&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>想要使加锁时间最短，必须&lt;strong>频繁的提交&lt;/strong>&lt;/li>
-&lt;li>但如果每个逻辑单元完成后都提交&lt;strong>会增加大量开销&lt;/strong>&lt;/li>
-&lt;li>对于批处理程序，并发控制不是问题，&lt;strong>避免频繁提交才是明智的做法&lt;/strong>。&lt;/li>
-&lt;li>对于用户交互程序，则需要&lt;strong>高频提交，加快释放锁&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁与可伸缩性">&lt;strong>加锁与可伸缩性&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>与表级锁相比，行级锁能产生更佳的&lt;strong>吞吐量&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>行级锁大都性能曲线很快达到极限&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="加锁处理的原则">&lt;strong>加锁处理的原则&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>不要随便使用表级锁&lt;/strong>&lt;/li>
-&lt;li>尽量&lt;strong>缩短加锁时间&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>索引也需要维护&lt;/strong>&lt;/li>
-&lt;li>编程上的原则(语句性能高，未必程序性能高（下面有4点）)
-&lt;ul>
-&lt;li>避免SQL语句上的&lt;strong>循环处理&lt;/strong>&lt;/li>
-&lt;li>减少程序和数据库之间的&lt;strong>交互次数&lt;/strong>&lt;/li>
-&lt;li>充分利用DBMS提供的机制，使&lt;strong>跨机器交互的次数&lt;/strong>降至最少&lt;/li>
-&lt;li>把所有&lt;strong>不重复不必要的SQL语句放在逻辑工作单元&lt;/strong>之外&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="锁的分类">锁的分类&lt;/h3>
-&lt;p>悲观锁：&lt;/p>
-&lt;ul>
-&lt;li>指在读写数据时，认为&lt;strong>数据很可能会被其他并发操作所修改&lt;/strong>.
-&lt;ul>
-&lt;li>因此在**进行操作之前，先加锁，**确保数据不会被其他操作修改。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>悲观锁适用于并发写操作多，&lt;strong>读操作少&lt;/strong>的场景
-&lt;ul>
-&lt;li>例如&lt;strong>银行转账等涉及到账户余额变动&lt;/strong>的场景。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>悲观锁的缺点是在&lt;strong>并发量高时，会导致大量的阻塞和等待&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>乐观锁：&lt;/p>
-&lt;ul>
-&lt;li>指在读写数据时，认为&lt;strong>数据不会被其他并发操作所修改.&lt;/strong>
-&lt;ul>
-&lt;li>因此在进行操作之前，不加锁，但在&lt;strong>提交数据时，检查数据是否被其他操作所修改，如果没有修改，则提交成功，否则返回错误信息&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>乐观锁适用于并发读操作多，&lt;strong>写操作少&lt;/strong>的场景.
-&lt;ul>
-&lt;li>例如商品库存等只需要查询不需要修改的场景。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>乐观锁的优点是可以&lt;strong>大大降低阻塞和等待&lt;/strong>，但是需要在提交数据时进行额外的校验，&lt;strong>增加了程序开发和维护的难度&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>共享锁（Shared Lock）：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>允许多个事务进行读操作，但不允许写操作&lt;/strong>。&lt;/li>
-&lt;li>共享锁适用于多个事务&lt;strong>只读同一份数据&lt;/strong>的场景。&lt;/li>
-&lt;li>适用于读多写少的场景，例如在线图书馆、新闻网站等需要大量读取数据的应用，可以使用共享锁来&lt;strong>提高并发读取的能力，避免写操作的阻塞&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>排他锁（Exclusive Lock）：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>只允许一个事务进行写操作&lt;/strong>，其他事务&lt;strong>不能进行读写操作&lt;/strong>。&lt;/li>
-&lt;li>适用于写多读少的场景，&lt;/li>
-&lt;li>例如银行转账、在线购物等需要对数据进行修改的应用，可以使用排他锁来保证操作的原子性，&lt;strong>避免读写冲突和数据不一致性&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>行级锁（Row Lock）：&lt;/p>
-&lt;ul>
-&lt;li>针对数据表中的某一行数据进行加锁，&lt;strong>只有在访问该行数据时才会加锁&lt;/strong>，这样可以&lt;strong>提高并发性能&lt;/strong>。&lt;/li>
-&lt;li>例如社交网络、在线游戏等需要&lt;strong>频繁更新数据,高并发&lt;/strong>的应用，可以使用行级锁来控制并发更新，提高系统的并发能力和性能。&lt;/li>
-&lt;/ul>
-&lt;p>间隙锁（Gap Lock）：&lt;/p>
-&lt;ul>
-&lt;li>针对数据表中&lt;strong>不存在的数据进行加锁&lt;/strong>，可以防止其他事务在这个间隙中插入数据。&lt;/li>
-&lt;li>适用于对数据表中不存在的数据进行加锁的场景，例如对于需要&lt;strong>进行范围查询或者范围删除的应用&lt;/strong>，可以使用间隙锁来避免其他事务在查询或删除操作中插入数据，保证数据的一致性和正确性。(避免幻读)&lt;/li>
-&lt;/ul>
-&lt;p>意向锁（Intention Lock）：&lt;/p>
-&lt;ul>
-&lt;li>在加行级锁和表级锁&lt;strong>之前，先进行意向锁的判断&lt;/strong>，以&lt;strong>提高加锁效率&lt;/strong>。&lt;/li>
-&lt;li>例如在多个事务同时请求对同一数据行进行更新时，可以使用意向锁来提前判断需要加的锁类型，&lt;strong>避免不必要的锁竞争和死锁问题&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;h3 id="必须由程序员利用程序语言控制并发更新的情况">&lt;strong>必须由程序员利用程序语言控制并发更新的情况:&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>业务规则&lt;strong>复杂的更新&lt;/strong>：如果更新操作需要依赖多个表或者多个条件，并且需要保证操作的原子性，就需要使用事务来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>分布式系统中的数据更新&lt;/strong>：在分布式系统中，不同节点之间可能会同时更新同一份数据，如果不加控制，就会导致数据的不一致性。因此，在分布式系统中，需要使用分布式锁来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>批量数据更新&lt;/strong>：如果需要批量更新数据，而且更新的数据量很大，可能会导致数据库锁表或者死锁等问题。因此，需要&lt;strong>将批量更新操作分批进行&lt;/strong>，或者&lt;strong>使用分布式锁&lt;/strong>来控制并发更新。&lt;/li>
-&lt;li>&lt;strong>大量并发更新&lt;/strong>：如果并发更新的请求数量非常大，可能会导致数据库性能下降或者崩溃。因此，&lt;strong>需要使用连接池、缓存等技术来优化数据库性能，或者使用分布式锁来分散并发更新的压力。&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="资源竞争解决方案有哪些">&lt;strong>资源竞争解决方案有哪些&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>DBA解决方案：针对事务空间、可用列表&lt;/p>
-&lt;ul>
-&lt;li>增加分配给储物条目的空间缓解冲突&lt;/li>
-&lt;li>让&lt;strong>insert分配到不同的物理块&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>架构解决方案：分区、逆序索引、索引组织表&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>开发解决方案：&lt;/p>
-&lt;ul>
-&lt;li>调节&lt;strong>并发数&lt;/strong>
-&lt;ul>
-&lt;li>限制session个数为最高性能的session个数，使周转更快&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>不使用系统产生值&lt;/strong>
-&lt;ul>
-&lt;li>连续值只在范围查询中使用，在连续值本身毫无现实意义的情况下，范围查询的场景也不多见;&lt;/li>
-&lt;li>可以只使用随机数来做主键，遇到随机数碰撞，就再生成一个随机数.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>总结：&lt;strong>与加锁不同，数据库竞争是可以改善的&lt;/strong>。架构师、开发者和DBA都可以从各自的角度改善竞争&lt;/p>
-&lt;h3 id="并发操作主要解决哪三个问题">&lt;strong>并发操作主要解决哪三个问题&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>丢失修改&lt;/strong>：T1和T2读入同一数据并修改，T2提交的结果破坏了T1的提交，导致T1修改被丢失&lt;/li>
-&lt;li>&lt;strong>读脏数据&lt;/strong>：T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1由于某种原因被撤销，数据也做了恢复，此时T2读的数据和数据库里的数据不一致，T2读到脏数据，即不正确数据&lt;/li>
-&lt;li>&lt;strong>不可重复读&lt;/strong>：T1读数据后，T2对其修改，T1无法再现前一次读取结果&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务的隔离级别">事务的隔离级别&lt;/h3>
-&lt;p>未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。&lt;/p>
-&lt;p>提交读（Read Committed）：是大都是 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。&lt;/p>
-&lt;p>可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。&lt;/p>
-&lt;p>可串行化（Serializable）：是最高的隔离级别。强制事务串行执行，会在读取的每一行数据上加锁，这样虽然能避免幻读的问题，但也可能导致大量的超时和锁争用的问题。很少会应用到这种级别，只有在非常需要确保数据的一致性且可以接受没有并发的应用场景下才会考虑。&lt;/p>
-&lt;p>MySql实现的哪种隔离级别&lt;/p>
-&lt;ul>
-&lt;li>可重复读&lt;/li>
-&lt;/ul>
-&lt;p>实现方式: MVCC&lt;/p>
-&lt;h3 id="mvcc原理">MVCC原理&lt;/h3>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>多版本并发控制&lt;/strong>，是一种并发控制方法，用于实现事务隔离级别。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>通过保存数据在某个时间点的快照来实现事务的隔离。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>当前事务内的更新，可以读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本未提交，不能读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本已提交，但是却在快照创建后提交的，不能读到；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>版本已提交，且是在快照创建前提交的，可以读到；&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务隔离级别的实现">事务隔离级别的实现&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>未提交读&lt;/strong>：不加锁&lt;/li>
-&lt;li>&lt;strong>提交读&lt;/strong>：加行级锁&lt;/li>
-&lt;li>&lt;strong>可重复读&lt;/strong>：
-&lt;ul>
-&lt;li>MySQL的InnoDB存储引擎通过**多版本并发控制（MVCC）**来实现可重复读。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>可串行化&lt;/strong>：加表级锁&lt;/li>
-&lt;/ul>
-&lt;h3 id="事务的acid特性">&lt;strong>事务的ACID特性&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>&lt;strong>原子性（Atomicity）&lt;/strong>：事务是一个不可分割的工作单位，事务中的操作要么都做，要么都不做。&lt;/li>
-&lt;li>&lt;strong>一致性（Consistency）&lt;/strong>：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。&lt;/li>
-&lt;li>&lt;strong>隔离性（Isolation）&lt;/strong>：一个事务的执行不能被其他事务干扰。&lt;/li>
-&lt;li>&lt;strong>持久性（Durability）&lt;/strong>：事务一旦提交，它对数据库中的数据的改变就是永久性的。&lt;/li>
-&lt;/ul>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
 &lt;h2 id="sql优化">SQL优化&lt;/h2>
 &lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
@@ -1030,6 +611,495 @@
 &lt;li>&lt;strong>避免更新分区键&lt;/strong>, 更新分区键会影响数据移动&lt;/li>
 &lt;li>&lt;strong>不在更新数据频繁时使用分区&lt;/strong>.&lt;/li>
 &lt;li>&lt;strong>考虑整体&lt;/strong>,当有多个处理执行时，解决方案就不应该过度偏袒其中任何一个&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;h2 id="索引">索引&lt;/h2>
+&lt;h3 id="索引的优缺点">索引的优缺点&lt;/h3>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>使用索引可以大大加快数据的检索速度（大大减少检索的数据量）, 减少 IO 次数，这也是创建索引的最主要的原因。&lt;/li>
+&lt;li>通过创建唯一性索引，可以保证数据库表中每一行数据的唯一性。&lt;/li>
+&lt;li>可以加速表和表之间的&lt;strong>连接&lt;/strong>，特别是在实现数据的参照完整性方面特别有意义&lt;/li>
+&lt;li>在使用分组和排序子句进行数据检索式，同样可以显著减少查询中**分组&lt;/li>
+&lt;li>通过使用索引，可以在查询的过程中，使用&lt;strong>优化隐藏器&lt;/strong>，提高系统的性能&lt;/li>
+&lt;/ul>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>创建索引和维护索引需要耗费许多时间。当对表中的数据进行增删改的时候，如果数据有索引，那么索引也需要动态的修改，会降低 SQL 执行效率。&lt;/li>
+&lt;li>索引需要使用物理文件存储，也会耗费一定空间。&lt;/li>
+&lt;/ul>
+&lt;p>但使用索引不一定能提高查询性能吗?&lt;/p>
+&lt;p>大多数情况下，索引查询都是比全表扫描要快的。但是如果数据库的数据量不大，那么使用索引也不一定能够带来很大提升。&lt;/p>
+&lt;h3 id="索引有哪些索引分类">&lt;strong>索引有哪些？索引分类&lt;/strong>&lt;/h3>
+&lt;h4 id="按照物理存储分类">按照物理存储分类&lt;/h4>
+&lt;p>聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>按照数据存放的&lt;strong>物理位置为顺序&lt;/strong>的索引结构，聚集索引的&lt;strong>叶子节点包含了整个数据行&lt;/strong>。&lt;/li>
+&lt;li>InnoDB表要求&lt;strong>必须有聚簇索引，默认在主键字段上建立聚簇索引&lt;/strong>,在.idb文件中就包含了索引和数据.&lt;/li>
+&lt;li>每个表&lt;strong>只能有一个聚集索引&lt;/strong>，它对应的索引键值也是表的&lt;strong>主键或唯一约束条件&lt;/strong>。&lt;/li>
+&lt;li>通过聚集索引，我们可以快速地按照主键或唯一约束条件查询和排序表中的数据, &lt;strong>提高多行检索速度&lt;/strong>
+优点:&lt;/li>
+&lt;li>查询速度快&lt;/li>
+&lt;li>对排序查找和范围查找优化：聚簇索引对于主键的排序查找和范围查找速度非常快。&lt;/li>
+&lt;/ul>
+&lt;p>缺点:&lt;/p>
+&lt;ul>
+&lt;li>有序, 对于UUID等无序的主键, 会导致插入性能下降.&lt;/li>
+&lt;li>更新代价大,叶子节点包含了整个数据行,更新索引会导致数据行的移动, 代价大.&lt;/li>
+&lt;/ul>
+&lt;p>非聚簇索引&lt;/p>
+&lt;ul>
+&lt;li>索引顺序与数据&lt;strong>物理列排序无关&lt;/strong>，&lt;strong>叶节点仍然是索引节点(指向主键)&lt;/strong>&lt;/li>
+&lt;li>每个表可以有&lt;strong>多个非聚集索引&lt;/strong>，这些索引可以覆盖&lt;strong>多个数据列&lt;/strong>，以满足不同的查询需求。&lt;/li>
+&lt;li>通过非聚集索引，快速地&lt;strong>定位表中符合查询条件的记录的主键&lt;/strong>，然后进行(回表查询)。&lt;/li>
+&lt;li>MySQL 的 MyISAM 引擎，不管主键还是非主键，使用的都是非聚簇索引
+优点:&lt;/li>
+&lt;li>更新代价小
+缺点:&lt;/li>
+&lt;li>引起二次查询(回表), 查到索引对应的指针或主键后, 要根据主键再次查询数据, 会增加查询时间.&lt;/li>
+&lt;/ul>
+&lt;p>为了使得&lt;strong>表中数据有序&lt;/strong>, 很多数据库使用了&lt;strong>聚簇索引&lt;/strong>.&lt;/p>
+&lt;p>聚簇索引就是按照每张表的主键构造一颗B+树，同时叶子节点中存放的就是整张表的行记录数据，这个叶子节点也被称为数据页。每张表只能拥有一个聚簇索引。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>范围查询效率非常高&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>代价: &lt;strong>非范围查询也要进行范围扫描&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>主键更新会导致记录的重新排序，从而导致记录物理位置的变化&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>为了更加安全, 聚簇索引可以和索引组织表一样，根据主键来定义. 因为主键被更新的概率小,或者说不应该被更新.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>聚簇索引&lt;strong>也可以是非主键索引,这是和索引组织表不一样的地方&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>聚簇索引和IOT的区别在于索引键的选择和存储方式。&lt;/p>
+&lt;ul>
+&lt;li>聚簇索引只包括表的主键，并将表的数据按照主键值的顺序存储在硬盘上；&lt;/li>
+&lt;li>IOT包括表的主键和数据列，并将数据和索引存储在同一个结构中。
+0&lt;/li>
+&lt;/ul>
+&lt;h4 id="按应用的字段">按应用的字段&lt;/h4>
+&lt;p>主键索引：加速查询 + 列值唯一（不可以有 NULL）+ 表中只有一个。
+唯一索引：加速查询 + 列值唯一（可以有 NULL）。
+普通索引：仅加速查询。
+覆盖索引：一个索引包含（或者说覆盖）所有需要查询的字段的值。&lt;/p>
+&lt;ul>
+&lt;li>如果&lt;strong>非聚簇符合索引&lt;/strong>已经能够得到&lt;strong>查询的所有信息&lt;/strong>了，就&lt;strong>无需再回表&lt;/strong>，即只按照条件&lt;strong>找主键&lt;/strong>。
+联合索引：多列值组成一个索引，专门用于组合搜索，其效率大于索引合并。&lt;/li>
+&lt;li>联合索引遵循最左前缀原则，即在查询时，&lt;strong>查询条件必须使用到联合索引的最左边的列&lt;/strong>，索引才会生效。
+全文索引：对文本的内容进行分词，进行搜索。目前只有 CHAR、VARCHAR ，TEXT 列上可以创建全文索引。一般不会使用，效率较低，通常使用搜索引擎如 ElasticSearch 代替。&lt;/li>
+&lt;/ul>
+&lt;h3 id="索引的底层数据结构">索引的底层数据结构&lt;/h3>
+&lt;h4 id="b树索引">B+树索引&lt;/h4>
+&lt;p>见&lt;a href="###B&amp;#43;%e6%a0%91">B+树&lt;/a>&lt;/p>
+&lt;h4 id="哈希索引">哈希索引&lt;/h4>
+&lt;ul>
+&lt;li>所有的数据类型，通过哈希函数变成一个&lt;strong>等长的哈希值&lt;/strong>。&lt;/li>
+&lt;li>将这个&lt;strong>等长的哈希值&lt;/strong>作为&lt;strong>组织成索引的结构 —— 哈希链表&lt;/strong>。&lt;/li>
+&lt;li>哈希链表的结点上，&lt;strong>储存哈希值&lt;/strong> 和 &lt;strong>指向记录哈希值的地址 uid（索引行的地址）&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>哈希索引能做什么不能做什么？&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>哈希索引只能用来进行&lt;strong>全键值&lt;/strong>的查询
+&lt;ul>
+&lt;li>不能前缀查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引只支持&lt;strong>击中运算符&lt;/strong>
+&lt;ul>
+&lt;li>击中运算符：= , != , in&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持范围查询&lt;/strong>&lt;/li>
+&lt;li>哈希索引&lt;strong>不支持对字段排序&lt;/strong>(因为只支持击中运算符)&lt;/li>
+&lt;li>哈希索引&lt;strong>读取效率高于B树索引&lt;/strong>
+&lt;ul>
+&lt;li>哈希索引结构非常&lt;strong>紧凑&lt;/strong>.&lt;/li>
+&lt;li>哈希索引&lt;strong>使用数值的比较&lt;/strong>,远&lt;strong>高于字符串比较&lt;/strong>速度.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="函数索引">函数索引&lt;/h4>
+&lt;p>B树索引是对一个字段构建索引,而函数索引是对&lt;strong>这个字段上的一个函数值&lt;/strong>构建索引.&lt;/p>
+&lt;p>&lt;strong>结构同样是B+树索引,只是节点的关键字是函数的值而不是字段值.&lt;/strong>&lt;/p>
+&lt;p>是最具创造力的索引结构,用得好可用解决并发冲突,优化存储结构.等很多事情.&lt;/p>
+&lt;p>&lt;strong>能用在哪&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>不区分大小写&lt;/strong>查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>T、F比例巨大差异&lt;/strong>的查询&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>项目表有两个状态, active和inactive.
+要求active的项目,必须要有唯一名. 而inactive没有这个要求.
+解决方法: &lt;strong>函数索引上构建唯一索引&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="位图索引">位图索引&lt;/h4>
+&lt;p>用一个&lt;strong>索引键条目（01图）存储指向多行&lt;/strong>的指针。&lt;/p>
+&lt;p>&lt;strong>位图索引适合&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>相异基数(distinct cardinality)低&lt;/strong>的字段进行快速查询 (复合查询)
+&lt;ul>
+&lt;li>可以取的值的范围小: 性别、真假,年龄段 等.&lt;/li>
+&lt;li>使用B树索引,需要复合索引时 组合数多. 且共同的值多, 可能使得叶子结点远少于索引结点.&lt;/li>
+&lt;li>使用哈希索引,碰撞率贼高.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>大量&lt;strong>临时查询的聚合&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>位图索引对于写操作非常不友好&lt;/strong>/位图索引&lt;strong>不能应用在OLTP&lt;/strong>应用中的原因&lt;/p>
+&lt;p>&lt;strong>原因&lt;/strong>: 位图索引的&lt;strong>键值指向多行&lt;/strong>, 如果一个session修改了一个索引的数据,则&lt;strong>该索引指向的所有行都会被查找到&lt;/strong>.无法锁定单独一个条目,&lt;strong>可能在修改时要锁住整个目录&lt;/strong>,导致并发性下降严重 几乎变成串行化.&lt;/p>
+&lt;p>&lt;strong>位图连结索引&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>允许使用&lt;strong>另外某个表的列&lt;/strong> 对 &lt;strong>一个给定表&lt;/strong> 建立索引。&lt;/li>
+&lt;li>实际上，这就是允许&lt;strong>对一个索引结构&lt;/strong>(而不是表本身)中的数据进行&lt;strong>逆规范化&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>位图联结索引的&lt;strong>前提条件&lt;/strong>:&lt;/p>
+&lt;p>&lt;strong>必须连接到另一张表的主键/唯一键&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>反向键索引或叫避向索引“eseindex)&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>将键值反向插入，以免并发插入时都插入到同一个块。&lt;/li>
+&lt;li>此时进程将竞争同一个索引页,插入并发性大幅度下降&lt;/li>
+&lt;/ol>
+&lt;h3 id="b树">B+树&lt;/h3>
+&lt;h4 id="b树与b树的结构">B树与B+树的结构&lt;/h4>
+&lt;p>B树是&lt;strong>多关键字平衡树&lt;/strong>,且节点内的关键字是有序的.每个节点都存储其关键字指向的具体数据地址.&lt;/p>
+&lt;p>B+树是在B树的基础上, 非叶子节点仅指向其多个子节点的地址 , 只有叶子节点指向具体以堆文件形式存放的数据块地址. 相邻叶子节点也通过指针连接. 方便快速范围查询.&lt;/p>
+&lt;p>不同之处:&lt;/p>
+&lt;ul>
+&lt;li>层数更低: 相比于B树, B+树的非叶子节点全部用于索引,使得B+树的层数更低,&lt;/li>
+&lt;li>效率稳定, B+树一定只能在叶子节点找到数据的具体地址, 每次查询的路径长度基本一致.&lt;/li>
+&lt;li>范围查询: B+树的叶子节点有next指针, 使得范围查询效率更高.&lt;/li>
+&lt;/ul>
+&lt;h4 id="为什么不用其他数据结构做索引而用b树或b树">为什么不用其他数据结构做索引，而用B树或B+树&lt;/h4>
+&lt;ul>
+&lt;li>链表, 链表的查询速度是O（N），每次查询都得从链表头开始查询，例如上面查询“xiaxia”，如果xiaxia在1000的位置，那么需要遍历1000次才能查找到。&lt;/li>
+&lt;li>数组:查询速度O（1），但删除插入是O(n), 且数据必须存在于内存, 索引过大时无法存储.&lt;/li>
+&lt;li>平衡二叉树
+&lt;ul>
+&lt;li>二叉查找树查询的时间复杂度是O（logN），查找速度最快和比较次数最少. 但在树形结构下,影响查询效率的因素主要是树的深度, B树的深度远比平衡二叉树小。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="b树索引的适用范围">B+树索引的适用范围&lt;/h4>
+&lt;ul>
+&lt;li>全键值匹配&lt;/li>
+&lt;li>匹配最左前缀
+&lt;ul>
+&lt;li>匹配列前缀&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>匹配范围值
+&lt;ul>
+&lt;li>精确匹配某一列并范围匹配另外一列&lt;/li>
+&lt;li>只访问索引的查询&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="什么时候使用b树索引--b树的索引可用性">什么时候使用B树索引 / B树的索引可用性&lt;/h4>
+&lt;p>1、只需要获取少量的行;(确保使用索引比不使用索引更高效)&lt;/p>
+&lt;p>2、即便获取很多行，但是可以只使用索引不使用基本表。(索引中包含整个表)&lt;/p>
+&lt;h3 id="正确使用索引">正确使用索引&lt;/h3>
+&lt;h4 id="索引带来的问题负面的使用索引会降低查询效率的情况">索引带来的问题（负面的）,使用索引会降低查询效率的情况&lt;/h4>
+&lt;ul>
+&lt;li>总是&lt;strong>存在索引不被使用&lt;/strong>的情况。
+&lt;ul>
+&lt;li>存在索引时, 创建索引会带来系统的维护和空间的开销.&lt;/li>
+&lt;li>因此索引如果不被使用反而会降低效率.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>当&lt;strong>一次查询的结果集较大&lt;/strong>时，索引会影响效率。
+&lt;ul>
+&lt;li>因为&lt;strong>索引是针对点查询&lt;/strong>的，而不是针对某个范围查询的。此时有可能不使用索引反而效率更高.&lt;/li>
+&lt;li>一般结果集在10%以下可以考虑使用索引。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对于&lt;strong>修改需求大的表&lt;/strong>中，使用索引会严重影响数据库更新操作的效率。&lt;/li>
+&lt;li>太多索引会让&lt;strong>设计不稳定&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="设计索引时需要考虑的主要因素">设计索引时需要考虑的主要因素&lt;/h4>
+&lt;ul>
+&lt;li>在&lt;strong>适合加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>不在&lt;strong>不应该加&lt;/strong>索引的列上加索引&lt;/li>
+&lt;li>限制索引数量&lt;/li>
+&lt;li>确保建立该索引后&lt;strong>能够被使用&lt;/strong>&lt;/li>
+&lt;li>确保索引带来的&lt;strong>好处大于索引带来的问题&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="哪些字段适合建立索引">哪些字段适合建立索引&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>经常搜索&lt;/strong>的列&lt;/li>
+&lt;li>经常&lt;strong>使用where子句&lt;/strong>的列上，加快条件的判断速度&lt;/li>
+&lt;li>经常进行&lt;strong>范围搜索&lt;/strong>的列上，因为索引已经排序了，其指定的范围是连续的.&lt;/li>
+&lt;li>&lt;strong>唯一性&lt;/strong>的列:在作为主键的列上，强制该列的唯一性和组织表中数据的排列结构&lt;/li>
+&lt;li>经常&lt;strong>需要排序&lt;/strong>的列上，因为索引已经排序了，查询可以利用索引的排序，加速排序查询时间.&lt;/li>
+&lt;li>&lt;strong>经常用在连接的列&lt;/strong>，这些列&lt;strong>主要是外键&lt;/strong>，可以加快连接速度&lt;/li>
+&lt;li>&lt;strong>数据分布较广的列&lt;/strong>:&lt;/li>
+&lt;/ul>
+&lt;h4 id="哪些字段上不应该加索引">哪些字段上不应该加索引&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>很少使用&lt;/strong>或者参考的列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>很少的数据值&lt;/strong>列不应该创建索引。&lt;/li>
+&lt;li>&lt;strong>text,image,bit数据类型&lt;/strong>的列不应该加索引。
+&lt;ul>
+&lt;li>比较和排序的开销大.&lt;/li>
+&lt;li>因为这些列要么数据量很大，要么很小，不利于使用索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>修改需求大&lt;/strong>的列.&lt;/li>
+&lt;/ul>
+&lt;h4 id="对外键建立索引">对外键建立索引&lt;/h4>
+&lt;p>系统对外键建立索引很普遍。为什么要对外键建立索引&lt;/p>
+&lt;ul>
+&lt;li>加快对于父表和子表的&lt;strong>连接查询&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>删除操作&lt;/strong>时，可以快速通过外键的索引找到&lt;strong>主表中&lt;/strong>要删除的行。&lt;/li>
+&lt;li>&lt;strong>避免死锁&lt;/strong>, 有外键时会导致两个表都要上锁.
+&lt;ul>
+&lt;li>添加索引能够让&lt;strong>上锁后操作的时间变短&lt;/strong>, .并发时需要 A表加锁/B表加锁。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>什么情况下不对外键建立索引&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>子表不容易&lt;/strong>修改
+&lt;ul>
+&lt;li>不从子表中删除记录&lt;/li>
+&lt;li>是一个字典表,不容易被修改.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>一般&lt;strong>不进行父表和子表的连接查询&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h4 id="为什么一般不会给所有单个属性都建立索引请写出两条原因">为什么一般不会给所有单个属性都建立索引，请写出两条原因&lt;/h4>
+&lt;ul>
+&lt;li>过多的索引会&lt;strong>加重优化器&lt;/strong>查找最优查询计划的负担&lt;/li>
+&lt;li>会增加数据库&lt;strong>维护索引的负担&lt;/strong>.&lt;/li>
+&lt;li>一旦聚集索引改变，&lt;strong>所有非聚集索引都会跟着改变&lt;/strong>&lt;/li>
+&lt;li>该列是&lt;strong>属于不该建立索引&lt;/strong>的列时.&lt;/li>
+&lt;/ul>
+&lt;h3 id="索引失效的情况">索引失效的情况&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>使用B+树索引&lt;/strong>，但&lt;strong>没有使用索引的最前列&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>不能为NULL建立索引条目&lt;/strong>
+&lt;ul>
+&lt;li>&lt;strong>COUNT(*)&lt;/strong>， 包括NULL, t会引起&lt;strong>全表扫描&lt;/strong>，&lt;/li>
+&lt;li>is not NULL&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>函数查询&lt;/strong>时不使用索引&lt;/li>
+&lt;li>&lt;strong>隐形函数查询&lt;/strong>，比如**&amp;lt;&amp;gt;不等于符**，会&lt;strong>引起全表扫描&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>隐式类型转换&lt;/strong>，如字符串转成数值来比较&lt;/li>
+&lt;li>如果用了我的索引，实际反而会更慢。
+&lt;ul>
+&lt;li>即查询&lt;strong>优化器发现有比使用你的索引更快的访问方式&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>没有正确的统计信息&lt;/strong>，造成CBO无法做出正确的选择&lt;/li>
+&lt;li>两个条件用 &lt;strong>or 连接&lt;/strong>，一个有索引一个没索引&lt;/li>
+&lt;/ul>
+&lt;p>总结成两条：&lt;/p>
+&lt;ul>
+&lt;li>“不能使用索引，使用索引会返回不正确的结果”&lt;/li>
+&lt;li>“不该使用索引，如果使用了索引就会变得更慢”&lt;/li>
+&lt;/ul>
+&lt;h3 id="如何查看索引是否被使用">如何查看索引是否被使用&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>explain&lt;/strong>命令
+&lt;ul>
+&lt;li>&lt;code>explain select * from company_info where cname like '%小%'&lt;/code>&lt;/li>
+&lt;li>看possible_keys和key列&lt;/li>
+&lt;li>possible_keys 可能用到的索引; key 实际用到的索引&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="事务">事务&lt;/h2>
+&lt;h3 id="为什么要加锁">&lt;strong>为什么要加锁&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>多个应用程序&lt;strong>同时对相同数据进行访问&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>保证数据库的完整性和一致性&lt;/strong>，就必须要有一定的机制用于控制数据记录的读取、插入、删除和更新。&lt;/li>
+&lt;li>通过对数据库对象加锁，我们可以&lt;strong>避免由于并发更改造成数据的丢失&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与提交">&lt;strong>加锁与提交&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>想要使加锁时间最短，必须&lt;strong>频繁的提交&lt;/strong>&lt;/li>
+&lt;li>但如果每个逻辑单元完成后都提交&lt;strong>会增加大量开销&lt;/strong>&lt;/li>
+&lt;li>对于批处理程序，并发控制不是问题，&lt;strong>避免频繁提交才是明智的做法&lt;/strong>。&lt;/li>
+&lt;li>对于用户交互程序，则需要&lt;strong>高频提交，加快释放锁&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁与可伸缩性">&lt;strong>加锁与可伸缩性&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>与表级锁相比，行级锁能产生更佳的&lt;strong>吞吐量&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>行级锁大都性能曲线很快达到极限&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="加锁处理的原则">&lt;strong>加锁处理的原则&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>不要随便使用表级锁&lt;/strong>&lt;/li>
+&lt;li>尽量&lt;strong>缩短加锁时间&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>索引也需要维护&lt;/strong>&lt;/li>
+&lt;li>编程上的原则(语句性能高，未必程序性能高（下面有4点）)
+&lt;ul>
+&lt;li>避免SQL语句上的&lt;strong>循环处理&lt;/strong>&lt;/li>
+&lt;li>减少程序和数据库之间的&lt;strong>交互次数&lt;/strong>&lt;/li>
+&lt;li>充分利用DBMS提供的机制，使&lt;strong>跨机器交互的次数&lt;/strong>降至最少&lt;/li>
+&lt;li>把所有&lt;strong>不重复不必要的SQL语句放在逻辑工作单元&lt;/strong>之外&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="锁的分类">锁的分类&lt;/h3>
+&lt;p>悲观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据很可能会被其他并发操作所修改&lt;/strong>.
+&lt;ul>
+&lt;li>因此在**进行操作之前，先加锁，**确保数据不会被其他操作修改。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁适用于并发写操作多，&lt;strong>读操作少&lt;/strong>的场景
+&lt;ul>
+&lt;li>例如&lt;strong>银行转账等涉及到账户余额变动&lt;/strong>的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>悲观锁的缺点是在&lt;strong>并发量高时，会导致大量的阻塞和等待&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>乐观锁：&lt;/p>
+&lt;ul>
+&lt;li>指在读写数据时，认为&lt;strong>数据不会被其他并发操作所修改.&lt;/strong>
+&lt;ul>
+&lt;li>因此在进行操作之前，不加锁，但在&lt;strong>提交数据时，检查数据是否被其他操作所修改，如果没有修改，则提交成功，否则返回错误信息&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁适用于并发读操作多，&lt;strong>写操作少&lt;/strong>的场景.
+&lt;ul>
+&lt;li>例如商品库存等只需要查询不需要修改的场景。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>乐观锁的优点是可以&lt;strong>大大降低阻塞和等待&lt;/strong>，但是需要在提交数据时进行额外的校验，&lt;strong>增加了程序开发和维护的难度&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>共享锁（Shared Lock）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>允许多个事务进行读操作，但不允许写操作&lt;/strong>。&lt;/li>
+&lt;li>共享锁适用于多个事务&lt;strong>只读同一份数据&lt;/strong>的场景。&lt;/li>
+&lt;li>适用于读多写少的场景，例如在线图书馆、新闻网站等需要大量读取数据的应用，可以使用共享锁来&lt;strong>提高并发读取的能力，避免写操作的阻塞&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>排他锁（Exclusive Lock）：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>只允许一个事务进行写操作&lt;/strong>，其他事务&lt;strong>不能进行读写操作&lt;/strong>。&lt;/li>
+&lt;li>适用于写多读少的场景，&lt;/li>
+&lt;li>例如银行转账、在线购物等需要对数据进行修改的应用，可以使用排他锁来保证操作的原子性，&lt;strong>避免读写冲突和数据不一致性&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>行级锁（Row Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中的某一行数据进行加锁，&lt;strong>只有在访问该行数据时才会加锁&lt;/strong>，这样可以&lt;strong>提高并发性能&lt;/strong>。&lt;/li>
+&lt;li>例如社交网络、在线游戏等需要&lt;strong>频繁更新数据,高并发&lt;/strong>的应用，可以使用行级锁来控制并发更新，提高系统的并发能力和性能。&lt;/li>
+&lt;/ul>
+&lt;p>间隙锁（Gap Lock）：&lt;/p>
+&lt;ul>
+&lt;li>针对数据表中&lt;strong>不存在的数据进行加锁&lt;/strong>，可以防止其他事务在这个间隙中插入数据。&lt;/li>
+&lt;li>适用于对数据表中不存在的数据进行加锁的场景，例如对于需要&lt;strong>进行范围查询或者范围删除的应用&lt;/strong>，可以使用间隙锁来避免其他事务在查询或删除操作中插入数据，保证数据的一致性和正确性。(避免幻读)&lt;/li>
+&lt;/ul>
+&lt;p>意向锁（Intention Lock）：&lt;/p>
+&lt;ul>
+&lt;li>在加行级锁和表级锁&lt;strong>之前，先进行意向锁的判断&lt;/strong>，以&lt;strong>提高加锁效率&lt;/strong>。&lt;/li>
+&lt;li>例如在多个事务同时请求对同一数据行进行更新时，可以使用意向锁来提前判断需要加的锁类型，&lt;strong>避免不必要的锁竞争和死锁问题&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h3 id="必须由程序员利用程序语言控制并发更新的情况">&lt;strong>必须由程序员利用程序语言控制并发更新的情况:&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>业务规则&lt;strong>复杂的更新&lt;/strong>：如果更新操作需要依赖多个表或者多个条件，并且需要保证操作的原子性，就需要使用事务来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>分布式系统中的数据更新&lt;/strong>：在分布式系统中，不同节点之间可能会同时更新同一份数据，如果不加控制，就会导致数据的不一致性。因此，在分布式系统中，需要使用分布式锁来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>批量数据更新&lt;/strong>：如果需要批量更新数据，而且更新的数据量很大，可能会导致数据库锁表或者死锁等问题。因此，需要&lt;strong>将批量更新操作分批进行&lt;/strong>，或者&lt;strong>使用分布式锁&lt;/strong>来控制并发更新。&lt;/li>
+&lt;li>&lt;strong>大量并发更新&lt;/strong>：如果并发更新的请求数量非常大，可能会导致数据库性能下降或者崩溃。因此，&lt;strong>需要使用连接池、缓存等技术来优化数据库性能，或者使用分布式锁来分散并发更新的压力。&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="资源竞争解决方案有哪些">&lt;strong>资源竞争解决方案有哪些&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>DBA解决方案：针对事务空间、可用列表&lt;/p>
+&lt;ul>
+&lt;li>增加分配给储物条目的空间缓解冲突&lt;/li>
+&lt;li>让&lt;strong>insert分配到不同的物理块&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>架构解决方案：分区、逆序索引、索引组织表&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>开发解决方案：&lt;/p>
+&lt;ul>
+&lt;li>调节&lt;strong>并发数&lt;/strong>
+&lt;ul>
+&lt;li>限制session个数为最高性能的session个数，使周转更快&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>不使用系统产生值&lt;/strong>
+&lt;ul>
+&lt;li>连续值只在范围查询中使用，在连续值本身毫无现实意义的情况下，范围查询的场景也不多见;&lt;/li>
+&lt;li>可以只使用随机数来做主键，遇到随机数碰撞，就再生成一个随机数.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>总结：&lt;strong>与加锁不同，数据库竞争是可以改善的&lt;/strong>。架构师、开发者和DBA都可以从各自的角度改善竞争&lt;/p>
+&lt;h3 id="并发操作主要解决哪三个问题">&lt;strong>并发操作主要解决哪三个问题&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>丢失修改&lt;/strong>：T1和T2读入同一数据并修改，T2提交的结果破坏了T1的提交，导致T1修改被丢失&lt;/li>
+&lt;li>&lt;strong>读脏数据&lt;/strong>：T1修改某一数据并将其写回磁盘，T2读取同一数据后，T1由于某种原因被撤销，数据也做了恢复，此时T2读的数据和数据库里的数据不一致，T2读到脏数据，即不正确数据&lt;/li>
+&lt;li>&lt;strong>不可重复读&lt;/strong>：T1读数据后，T2对其修改，T1无法再现前一次读取结果&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务的隔离级别">事务的隔离级别&lt;/h3>
+&lt;p>未提交读（Read Uncommitted）：事务可以读取未提交的数据，也称作脏读（Dirty Read）。一般很少使用。&lt;/p>
+&lt;p>提交读（Read Committed）：是大都是 DBMS （如：Oracle, SQLServer）默认事务隔离。执行两次同意的查询却有不同的结果，也叫不可重复读。&lt;/p>
+&lt;p>可重复读（Repeable Read）：是 MySQL 默认事务隔离级别。能确保同一事务多次读取同一数据的结果是一致的。可以解决脏读的问题，但理论上无法解决幻读（Phantom Read）的问题。&lt;/p>
+&lt;p>可串行化（Serializable）：是最高的隔离级别。强制事务串行执行，会在读取的每一行数据上加锁，这样虽然能避免幻读的问题，但也可能导致大量的超时和锁争用的问题。很少会应用到这种级别，只有在非常需要确保数据的一致性且可以接受没有并发的应用场景下才会考虑。&lt;/p>
+&lt;p>MySql实现的哪种隔离级别&lt;/p>
+&lt;ul>
+&lt;li>可重复读&lt;/li>
+&lt;/ul>
+&lt;p>实现方式: MVCC&lt;/p>
+&lt;h3 id="mvcc原理">MVCC原理&lt;/h3>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>多版本并发控制&lt;/strong>，是一种并发控制方法，用于实现事务隔离级别。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>通过保存数据在某个时间点的快照来实现事务的隔离。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>当前事务内的更新，可以读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本未提交，不能读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本已提交，但是却在快照创建后提交的，不能读到；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>版本已提交，且是在快照创建前提交的，可以读到；&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务隔离级别的实现">事务隔离级别的实现&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>未提交读&lt;/strong>：不加锁&lt;/li>
+&lt;li>&lt;strong>提交读&lt;/strong>：加行级锁&lt;/li>
+&lt;li>&lt;strong>可重复读&lt;/strong>：
+&lt;ul>
+&lt;li>MySQL的InnoDB存储引擎通过**多版本并发控制（MVCC）**来实现可重复读。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>可串行化&lt;/strong>：加表级锁&lt;/li>
+&lt;/ul>
+&lt;h3 id="事务的acid特性">&lt;strong>事务的ACID特性&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;strong>原子性（Atomicity）&lt;/strong>：事务是一个不可分割的工作单位，事务中的操作要么都做，要么都不做。&lt;/li>
+&lt;li>&lt;strong>一致性（Consistency）&lt;/strong>：事务执行的结果必须是使数据库从一个一致性状态变到另一个一致性状态。&lt;/li>
+&lt;li>&lt;strong>隔离性（Isolation）&lt;/strong>：一个事务的执行不能被其他事务干扰。&lt;/li>
+&lt;li>&lt;strong>持久性（Durability）&lt;/strong>：事务一旦提交，它对数据库中的数据的改变就是永久性的。&lt;/li>
 &lt;/ul>
 &lt;h2 id="模型">模型&lt;/h2>
 &lt;h3 id="面向对象中可持久化类的父类子类继承关系如何映射到关系数据库中有哪几种情况-每种情况下的表结构设计是怎姓的层次结构">&lt;strong>面向对象中可持久化类的父类子类继承关系，如何映射到关系数据库中，有哪几种情况, 每种情况下的表结构设计是怎姓的。(层次结构)&lt;/strong>&lt;/h3>
