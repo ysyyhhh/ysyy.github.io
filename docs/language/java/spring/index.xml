@@ -415,7 +415,12 @@ JDK内置的@Resource注解和@Inject注解&lt;/p>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">// 正确注入 SmsServiceImpl1 对象对应的 bean（比较推荐这种方式）&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="nd">@Resource&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">name&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;smsServiceImpl1&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">SmsService&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">smsService&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="怎么动态获取spring容器里面的bean从哪个类中获取">怎么动态获取spring容器里面的bean，从哪个类中获取&lt;/h2>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="注入bean冲突时的问题">注入Bean冲突时的问题&lt;/h2>
+&lt;p>当我们从 Spring 容器中“拉”取一个 Bean 回来的时候，可以按照名字去拉取，也可以按照类型去拉取，按照 BeanName 拉取的话，一般来说只要 BeanName 书写没有问题，都是没问题的。但是如果是按照类型去拉取，则可能会因为 Bean 存在多个实例从而导致失败。&lt;/p>
+&lt;p>使用@Resource&lt;/p>
+&lt;p>@Qualifier 指定 name&lt;/p>
+&lt;p>另外还有一种方案，就是在注册 Bean 的时候，告诉 Spring 容器，这个 Bean 在通过 type 进行注入的时候，不作为候选 Bean。&lt;/p>
+&lt;h2 id="怎么动态获取spring容器里面的bean从哪个类中获取">怎么动态获取spring容器里面的bean，从哪个类中获取&lt;/h2>
 &lt;p>从ApplicationContext中获取Bean&lt;/p>
 &lt;h2 id="bean的作用域">Bean的作用域&lt;/h2>
 &lt;ul>

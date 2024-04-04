@@ -761,7 +761,7 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h3 id="vloatile关键字">vloatile关键字&lt;/h3>
+&lt;h3 id="volatile关键字">volatile关键字&lt;/h3>
 &lt;h4 id="作用">作用&lt;/h4>
 &lt;p>作用:&lt;/p>
 &lt;ul>
@@ -772,11 +772,11 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 一个变量使用 volatile 修饰，这就指示 编译器，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。&lt;/p>
 &lt;p>禁止指令重排
 将变量声明为 volatile ，在对这个变量进行读写操作的时候，会通过&lt;strong>插入特定的内存屏障&lt;/strong> 的方式来禁止指令重排序。&lt;/p>
-&lt;h4 id="todo-vloatile-实现原理">TODO: vloatile 实现原理&lt;/h4>
+&lt;h4 id="todo-volatile-实现原理">TODO: volatile 实现原理&lt;/h4>
 &lt;p>在Java 中，当线程读取一个volatile 变量时，会从主内存中读取变量的最新值，并把它存储到线程的工作内存中。&lt;/p>
 &lt;p>volatile主要通过汇编lock前缀指令，它会锁定当前内存区域的缓存（缓存行），并且立即将当前缓存行数据写入主内存（耗时非常短）&lt;/p>
 &lt;p>当线程写入一个volatile 变量时，会把变量的值写入到线程的工作内存中，并&lt;strong>强制将这个值刷新到主内存中&lt;/strong>。&lt;/p>
-&lt;h4 id="为什么vloatile不能保证原子性">为什么vloatile不能保证原子性&lt;/h4>
+&lt;h4 id="为什么volatile不能保证原子性">为什么volatile不能保证原子性&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">VolatileExample&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">volatile&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
