@@ -167,6 +167,15 @@ N：每 N 个事务，才会将binlog写入磁盘。&lt;/p>
 &lt;p>在快照读的情况下，RR 隔离级别只会在事务开启后的第一次查询生成 Read View ，并使用至事务提交。所以在生成 Read View 之后其它事务所做的更新、插入记录版本对当前事务并不可见，实现了可重复读和防止快照读下的 “幻读”&lt;/p>
 &lt;p>2、执行 select&amp;hellip;for update/lock in share mode、insert、update、delete 等当前读&lt;/p>
 &lt;p>在当前读下，读取的都是最新的数据，如果其它事务有插入新的记录，并且刚好在当前事务查询范围内，就会产生幻读！InnoDB 使用 Next-key Lock 来防止这种情况。当执行当前读时，会锁定读取到的记录的同时，锁定它们的间隙，防止其它事务在查询范围内插入数据。只要我不让你插入，就不会发生幻读&lt;/p>
+&lt;h3 id="死锁">死锁&lt;/h3>
+&lt;h4 id="mysql中死锁的判断">MYSQL中死锁的判断&lt;/h4>
+&lt;p>使用SHOW ENGINE INNODB STATUS命令查看&lt;/p>
+&lt;h4 id="如何解除死锁">如何解除死锁&lt;/h4>
+&lt;ul>
+&lt;li>重试&lt;/li>
+&lt;li>kill掉一个事务&lt;/li>
+&lt;li>优化SQL&lt;/li>
+&lt;/ul>
 &lt;h2 id="分布式场景">分布式场景&lt;/h2>
 &lt;h3 id="分布式场景中如何保证主键的唯一性">分布式场景中如何保证主键的唯一性&lt;/h3>
 &lt;ul>
@@ -256,7 +265,7 @@ N：每 N 个事务，才会将binlog写入磁盘。&lt;/p>
 &lt;li>有序集合会给每个元素设置一个分数，并以此作为排序的依据；&lt;/li>
 &lt;li>有序集合不能包含相同的元素，但是不同元素的分数可以相同。&lt;/li>
 &lt;/ul>
-&lt;p>使用的是跳表数据结构，可以保证在O(log(N))的时间复杂度内完成插入、删除、查找等操作。&lt;/p>
+&lt;p>使用的是&lt;strong>跳表数据&lt;/strong>结构，可以保证在O(log(N))的时间复杂度内完成插入、删除、查找等操作。&lt;/p>
 &lt;h3 id="一个字符串类型的值能存储的最大容量是多少">一个字符串类型的值能存储的最大容量是多少？&lt;/h3>
 &lt;p>一个字符串类型的值能存储的最大容量是512MB。&lt;/p>
 &lt;h3 id="redis中list结构的相关操作">Redis中List结构的相关操作&lt;/h3>
@@ -444,7 +453,16 @@ N：每 N 个事务，才会将binlog写入磁盘。&lt;/p>
 &lt;p>44、如何使用Redis做异步队列？&lt;/p>
 &lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
 &lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="数据库优化">数据库优化&lt;/h1>
+&lt;p>优化思路：&lt;/p>
+&lt;ol>
+&lt;li>索引&lt;/li>
+&lt;li>执行计划(查询优化)&lt;/li>
+&lt;li>SQL优化&lt;/li>
+&lt;li>分库分表&lt;/li>
+&lt;li>数据库设计&lt;/li>
+&lt;/ol>
+&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
 &lt;h2 id="sql优化">SQL优化&lt;/h2>
 &lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
 &lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
