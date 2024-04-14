@@ -9555,6 +9555,11 @@ N：每 N 个事务，才会将binlog写入磁盘。&lt;/p>
 &lt;p>Redis的同步机制包括主从复制和哨兵机制。&lt;/p>
 &lt;p>20、Pipeline的好处是什么？&lt;/p>
 &lt;p>Pipeline的好处包括减少网络延迟、提高吞吐量等，需要使用时可以将多个命令打包发送到Redis服务器上执行。&lt;/p>
+&lt;h2 id="redis应用">Redis应用&lt;/h2>
+&lt;h3 id="分布式锁">分布式锁&lt;/h3>
+&lt;p>分布式锁实现：&lt;/p>
+&lt;p>原始方式：setnx key true（死锁）/set key true ex 30 nx（锁误删）-&amp;gt; 锁重入问题。
+Redisson 框架实现方式：Redis + Lua 实现。&lt;/p>
 &lt;h2 id="redis集群">Redis集群：&lt;/h2>
 &lt;p>21、Redis需要把所有数据放到内存中吗？&lt;/p>
 &lt;p>是的，Redis需要把所有数据放到内存中，是因为它采用了基于内存的数据存储方式，可以快速读写数据。&lt;/p>
@@ -17687,7 +17692,7 @@ cv.wait(lck);
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">print&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="kt">char&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">data&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">catch&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">IOException&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">printStackTrace&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">e&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">printStackTrace&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
