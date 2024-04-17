@@ -52,11 +52,21 @@
 &lt;li>ZipList(压缩列表&amp;ndash;特殊编码的双向链表)&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;h2 id="hash">hash&lt;/h2>
+&lt;li>hash
+&lt;ul>
+&lt;li>dict, HashTable&lt;/li>
+&lt;/ul>
 &lt;/li>
-&lt;li>set&lt;/li>
-&lt;li>zset&lt;/li>
+&lt;li>set
+&lt;ul>
+&lt;li>IntSet 整数集&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>zset
+&lt;ul>
+&lt;li>ZSkipList(跳跃表)&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h3 id="redis的其他数据类型">Redis的其他数据类型&lt;/h3>
 &lt;ol>

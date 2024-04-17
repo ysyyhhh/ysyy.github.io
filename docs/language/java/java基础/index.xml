@@ -15,7 +15,7 @@
 &lt;p>因此在性能上Java介于编译型语言和解释型语言之间，它的性能比解释型语言要好，但比编译型语言要差。&lt;/p>
 &lt;h2 id="优化解释即时编译-jit-just-in-time-compilation技术">优化解释(即时编译 JIT, Just-In-Time Compilation)技术&lt;/h2>
 &lt;p>为了优化性能,在第二步的解释中,Java使用了即时编译（JIT，Just-In-Time Compilation）技术&lt;/p>
-&lt;p>当程序运行时，解释器首先发挥作用，代码可以直接执行。随着时间推移，即时编译器逐渐发挥作用，把越来越多的代码编译优化成本地代码，来获取更高的执行效率。&lt;/p>
+&lt;p>当程序运行时，解释器首先发挥作用，代码可以直接执行。随着时间推移，即时编译器逐渐发挥作用，把越来越多的代码编译优化成本地代码，来获取&lt;strong>更高的执行效率&lt;/strong>（指热点代码这些可以得到更好的优化）。&lt;/p>
 &lt;p>即时编译器与静态编译相比:&lt;/p>
 &lt;ul>
 &lt;li>可以选择热点代码进行编译，而不是整个程序&lt;/li>
@@ -31,7 +31,7 @@
 &lt;blockquote>
 &lt;p>AOT: Ahead-Of-Time Compilation，预编译，是指在程序运行之前，将源代码编译成机器码(属于静态编译)。
 JDK 9引入了AOT编译器。
-AOT 避免了 JIT 预热等各方面的开销，可以提高 Java 程序的启动速度，避免预热时间长。并且，AOT 还能减少内存占用和增强 Java 程序的安全性（AOT 编译后的代码不容易被反编译和修改），特别适合云原生场景。&lt;/p>
+AOT 避免了 JIT 预热等各方面的开销，可以提高 Java 程序的&lt;strong>启动速度&lt;/strong>，避免预热时间长。并且，AOT 还能减少内存占用和增强 Java 程序的安全性（AOT 编译后的代码不容易被反编译和修改），特别适合云原生场景。&lt;/p>
 &lt;/blockquote>
 &lt;h2 id="aot和jit">AOT和JIT&lt;/h2>
 &lt;p>
@@ -89,7 +89,11 @@ JIT 的主要优势在于具备更高的极限处理能力，可以降低请求�
 &lt;h2 id="java和c比较">Java和C++比较&lt;/h2>
 &lt;p>不同点&lt;/p>
 &lt;ul>
-&lt;li>内存访问: Java是通过引用访问对象,内存更安全; 而C++是通过指针访问对象。&lt;/li>
+&lt;li>内存访问: Java是通过引用访问对象,内存更安全; 而C++是通过指针访问对象。
+&lt;ul>
+&lt;li>安全检查: Java有如空指针检查、数组边界检查等&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;li>类的继承: Java只支持单继承, C++支持多继承。&lt;/li>
 &lt;li>运行环境: Java是跨平台的, C++不是。&lt;/li>
 &lt;li>内存管理: Java有垃圾回收机制, C++需要手动管理内存。&lt;/li>
@@ -121,17 +125,27 @@ JIT 的主要优势在于具备更高的极限处理能力，可以降低请求�
 &lt;li>签证
 &lt;ul>
 &lt;li>先将第一段和第二段的密文&lt;strong>拼接&lt;/strong>起来&lt;/li>
-&lt;li>对拼接起来的密文字符串和自定义的盐进行上边&lt;strong>指定的HS256加密&lt;/strong>&lt;/li>
+&lt;li>对拼接起来的密文字符串和&lt;strong>自定义的盐&lt;/strong>进行上边&lt;strong>指定的HS256加密&lt;/strong>&lt;/li>
 &lt;li>&lt;strong>对HS256加密后的密文再做base64加密&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
+&lt;p>签证需要的自定义的盐、密钥等仅存在服务端，不会传输到客户端。&lt;/p>
+&lt;p>因此签证可以证明Token的合法性，&lt;strong>防止Token被篡改&lt;/strong>。&lt;/p>
 &lt;h3 id="要是想要传输密码怎么解决盐值怎么存储">要是想要传输密码，怎么解决？盐值怎么存储？&lt;/h3>
-&lt;p>SHA,&lt;/p>
+&lt;p>对称加密：&lt;/p>
+&lt;ul>
+&lt;li>AES、DES
+非对称加密：&lt;/li>
+&lt;li>RSA、ECC
+哈希加密：&lt;/li>
+&lt;li>MD5、SHA256加密算法，是一种不可逆的加密算法，可以用于加密密码。&lt;/li>
+&lt;/ul>
 &lt;p>&lt;a href="https://blog.csdn.net/biubiubiubibibi/article/details/127579426" target="_blank" rel="noopener">BCryptPasswordEncoder&lt;/a>&lt;/p>
-&lt;p>盐存在密文里.&lt;/p>
-&lt;p>status字段是什么类型&lt;/p>
-&lt;p>函数的返回值类型。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid><description>&lt;h1 id="数据类型">数据类型&lt;/h1>
+&lt;p>每次都是不一样的密文， 但是任意的一个结果密文和原文match , 得到的都是true。
+是因为密文中包含了盐，每次加密的时候都会生成一个随机的盐。
+match时，提取出密文的盐，然后用这个盐和原文再次加密，得到的密文和原来的密文进行比较。&lt;/p>
+&lt;p>status字段是什么类型&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid><description>&lt;h1 id="数据类型">数据类型&lt;/h1>
 &lt;p>八种基本数据类型:&lt;/p>
 &lt;p>byte/8
 char/16
@@ -151,16 +165,40 @@ boolean/~&lt;/p>
 &lt;li>比较: 基本数据类型比较值, 包装类型&lt;strong>比较引用&lt;/strong>,比较内容需要使用equals方法&lt;/li>
 &lt;li>存储方式: 基本数据类型的存储位置取决于变量的作用域和声明方式, 包装类型存储在堆中.(几乎所有的对象都存储在堆中)&lt;/li>
 &lt;/ul>
-&lt;p>为什么说是几乎所有对象实例都存在于堆中呢？&lt;/p>
+&lt;h3 id="为什么说是几乎所有对象实例都存在于堆中呢-逃逸分析">为什么说是几乎所有对象实例都存在于堆中呢？ （逃逸分析）&lt;/h3>
 &lt;p>这是因为 HotSpot 虚拟机引入了 JIT 优化之后，会对对象进行逃逸分析，如果发现某一个对象并没有逃逸到方法外部，那么就可能通过标量替换来实现栈上分配，而避免堆上分配内存&lt;/p>
-&lt;p>&lt;strong>基本数据类型的存储位置取决于它们的作用域和声明方式。&lt;/strong>
-栈中:&lt;/p>
+&lt;p>&lt;strong>基本数据类型的存储位置取决于它们的作用域和声明方式。&lt;/strong>&lt;/p>
+&lt;p>私有：&lt;/p>
+&lt;ul>
+&lt;li>栈中:
 &lt;ul>
 &lt;li>局部变量&lt;/li>
+&lt;li>方法参数&lt;/li>
 &lt;/ul>
-&lt;p>堆中:&lt;/p>
+&lt;/li>
+&lt;li>程序计数器
 &lt;ul>
-&lt;li>成员变量(非static)&lt;/li>
+&lt;li>当前线程执行字节码的地址&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>本地方法栈
+&lt;ul>
+&lt;li>使用本地方法(Native Method)时的状态&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>公有：&lt;/p>
+&lt;ul>
+&lt;li>堆中:
+&lt;ul>
+&lt;li>对象实例&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>方法区：
+&lt;ul>
+&lt;li>已被JVM加载的类信息、常量、&lt;strong>静态变量&lt;/strong>、即时编译器编译后的代码等数据&lt;/li>
+&lt;/ul>
+&lt;/li>
 &lt;/ul>
 &lt;h2 id="自动装箱与拆箱">自动装箱与拆箱&lt;/h2>
 &lt;p>自动装箱: 将基本数据类型转换为包装类型&lt;/p>
@@ -181,12 +219,13 @@ boolean/~&lt;/p>
 all byte values
 short values between -128 and 127
 int values between -128 and 127
-char in the range \u0000 to \u007F
-在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。&lt;/p>
+char in the range \u0000 to \u007F&lt;/p>
+&lt;p>在使用这些基本类型对应的包装类型时，如果该数值范围在缓冲池范围内，就可以直接使用缓冲池中的对象。&lt;/p>
 &lt;h4 id="integer-a--128b128两个相等吗">integer a = 128,b=128，两个相等吗&lt;/h4>
 &lt;p>&lt;a href="https://blog.csdn.net/qq_42208194/article/details/117536553" target="_blank" rel="noopener">https://blog.csdn.net/qq_42208194/article/details/117536553&lt;/a>&lt;/p>
 &lt;p>在Java中，对于Integer类型的对象，如果其值在-128到127之间，会被缓存到常量池中，因此当创建值在该范围内的Integer对象时，会直接从常量池中获取已有的对象。而对于值不在该范围内的Integer对象，则会创建新的对象。&lt;/p>
-&lt;p>因此，对于Integer a = 128, b = 128，由于128不在-128到127之间，因此会创建两个不同的Integer对象，即a和b不相等。而对于Integer a = 127, b = 127，由于127在-128到127之间，因此会从常量池中获取同一个Integer对象，即a和b相等。&lt;/p>
+&lt;p>因此，对于Integer a = 128, b = 128，由于128不在-128到127之间，因此&lt;strong>会创建两个不同的Integer对象&lt;/strong>，即a和b不相等。&lt;/p>
+&lt;p>而对于Integer a = 127, b = 127，由于127在-128到127之间，因此会从常量池中获取同一个Integer对象，即a和b相等。&lt;/p>
 &lt;h3 id="自动拆箱引发的空指针异常">自动拆箱引发的空指针异常&lt;/h3>
 &lt;p>自动拆箱会引发空指针异常，当包装类型为null时，调用其xxxValue方法会引发空指针异常。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">Integer&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kc">null&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
@@ -209,13 +248,16 @@ char in the range \u0000 to \u007F
 &lt;p>Java中的浮点数运算时会有精度丢失的问题，这是因为浮点数是用二进制表示的，而二进制无法精确表示某些十进制小数，比如0.1。&lt;/p>
 &lt;p>而BigDecimal可以精确表示任意精度的十进制小数，因此在需要精确计算的场景下，应该使用BigDecimal来进行浮点数运算。&lt;/p>
 &lt;h4 id="初始化">初始化&lt;/h4>
+&lt;blockquote>
 &lt;p>【强制】禁止使用构造方法 **BigDecimal(double)**的方式把 double 值转化为 BigDecimal 对象说明:BigDecimal(double)存在精度损失风险，在精确计算或值比较的场景中可能会导致业务逻辑异常。&lt;/p>
+&lt;/blockquote>
 &lt;p>如:BigDecimalg=new BigDecimal(0.1F);
-实际的存储值为:0.10000000149正例:优先推荐入参为 String 的构造方法，或使用 BigDecimal的valueOf方法，此方法内部其实执行之Double的 toString,而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。&lt;/p>
+实际的存储值为:0.10000000149&lt;/p>
+&lt;p>正例:&lt;strong>优先推荐入参为 String 的构造方法，或使用 BigDecimal的valueOf方法&lt;/strong>，此方法内部其实执行之Double的 toString,而 Double 的 toString 按 double 的实际能表达的精度对尾数进行了截断。&lt;/p>
 &lt;p>BigDecimal recommend1 = new BigDecimal(&amp;ldquo;0.1&amp;rdquo;);
 BigDecimal recommend2 = BigDecimal.valueOf(0.1);&lt;/p>
 &lt;h4 id="比较">比较&lt;/h4>
-&lt;p>【强制】BigDecimal 的大小比较，推荐使用 compareTo 方法，equals 方法是同时比较值和精度，与预期不一致。说明:compareTo 方法是比较值，equals 方法是比较值和精度。&lt;/p>
+&lt;p>【强制】BigDecimal 的大小比较，推荐使用 compareTo 方法，equals 方法是同时比较值和精度，与预期不一致。说明:&lt;strong>compareTo 方法是比较值，equals 方法是比较值和精度&lt;/strong>。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="n">BigDecimal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;1&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">BigDecimal&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;1.0&amp;#34;&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">equals&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">));&lt;/span>&lt;span class="c1">//false&lt;/span>&lt;span class="w">
@@ -228,13 +270,25 @@ BigDecimal recommend2 = BigDecimal.valueOf(0.1);&lt;/p>
 &lt;p>BigInteger内部是用int[]来存储数据的，因此可以表示任意精度的整数，但是由于是数组存储，因此在进行加减乘除等运算时，性能会比较差。&lt;/p>
 &lt;h2 id="object">Object&lt;/h2>
 &lt;p>Object是所有类的父类，因此任何类的对象都可以赋值给Object类型的变量。&lt;/p>
-&lt;p>创建一个对象用什么运算符?对象实体与对象引用有何不同?new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（对象引用存放在栈内存中）。&lt;/p>
-&lt;p>一个对象引用可以指向 0 个或 1 个对象
+&lt;p>创建一个对象用什么运算符?对象实体与对象引用有何不同?new 运算符，new 创建对象实例（对象实例在堆内存中），对象引用指向对象实例（&lt;strong>对象引用存放在栈内存中&lt;/strong>）。&lt;/p>
+&lt;p>一个对象引用可以指向 &lt;strong>0 个或 1 个&lt;/strong>对象
 一个对象可以有 n 个引用指向它&lt;/p>
 &lt;p>对象的相等和引用相等的区别对象的相等一般比较的是内存中存放的内容是否相等。引用相等一般比较的是他们指向的内存地址是否相等。&lt;/p>
+&lt;h3 id="hashcode-和-equals">hashCode 和 equals&lt;/h3>
+&lt;p>equals默认是 使用 ==
+对于基本数据类型来说，== 比较的是值。
+对于引用数据类型来说，== 比较的是对象的内存地址。&lt;/p>
+&lt;p>所以String重写了equals，使其比较的是内容。&lt;/p>
+&lt;p>hashCode() 定义在 JDK 的 Object 类中,Object 的 hashCode() 方法是本地方法
+&lt;code>public native int hashCode();&lt;/code>&lt;/p>
+&lt;p>是本地方法因此不是Java代码实现的，而是由底层C++代码实现的。JVM不开源.&lt;/p>
+&lt;p>要遵循下面的规则
+equals相等 -&amp;gt; hashCode相等
+hashCode相等 -&amp;gt; equals不一定相等&lt;/p>
+&lt;p>所以在重写equals方法的同时，也要重写hashCode方法。&lt;/p>
 &lt;h2 id="string">String&lt;/h2>
 &lt;p>String是不可变的，一旦创建就不能被修改。
-String的不可变性是通过final关键字实现的，因此String类是不可继承的。&lt;/p>
+String的不可变性是&lt;strong>通过final关键字&lt;/strong>实现的，因此String类是不可继承的。&lt;/p>
 &lt;p>String的不可变性有以下好处：&lt;/p>
 &lt;ul>
 &lt;li>可以缓存hash值&lt;/li>
@@ -243,16 +297,24 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>线程安全&lt;/li>
 &lt;/ul>
 &lt;p>StringBuffer和StringBuilder是可变的字符串，它们的实现是通过字符数组实现的。&lt;/p>
-&lt;p>StringBuffer是线程安全的，而StringBuilder是非线程安全的。&lt;/p>
-&lt;p>StringBuffer和StringBuilder的区别在于StringBuffer的方法是同步的，而StringBuilder的方法是非同步的。&lt;/p>
+&lt;p>StringBuffer&lt;/p>
+&lt;ul>
+&lt;li>线程安全的&lt;/li>
+&lt;li>所有方法都是同步的&lt;/li>
+&lt;/ul>
+&lt;p>StringBuilder&lt;/p>
+&lt;ul>
+&lt;li>非线程安全的&lt;/li>
+&lt;li>所有方法都不是同步的&lt;/li>
+&lt;/ul>
 &lt;p>Java本身不支持运算符重载，但String的+和+=操作符是专门针对String的重载的。&lt;/p>
-&lt;p>字符串的+=默认使用StringBuilder实现的，因此在循环中使用+=拼接字符串会产生大量的StringBuilder对象，可以在循环外使用StringBuilder来优化。&lt;/p>
+&lt;p>字符串的+=默认使用StringBuilder实现的，因此在循环中使用+=拼接字符串会产生大量的StringBuilder对象，可以&lt;strong>在循环外使用StringBuilder来优化&lt;/strong>。&lt;/p>
 &lt;blockquote>
 &lt;p>JDK9之后，String的+和+=操作符的实现已经不是通过StringBuilder来实现的，而是通过invokedynamic指令来实现的，这样可以更好的优化字符串的拼接操作。
 但也有常量折叠的优化，所以在编译时会自动将字符串拼接操作优化为常量。&lt;/p>
 &lt;/blockquote>
 &lt;p>Object的equals方法是比较的引用，而String的equals方法是比较的内容。&lt;/p>
-&lt;p>String.intern() 是一个 Native 方法，它的作用是如果字符串常量池中已经包含一个等于此String对象的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</guid><description>&lt;h1 id="语法特性">语法特性&lt;/h1>
+&lt;p>String.intern() 是一个 Native 方法，它的作用是如果&lt;strong>字符串常量池&lt;/strong>中已经包含一个等于此String对象的字符串，则返回代表池中这个字符串的String对象；否则，将此String对象包含的字符串添加到常量池中，并且返回此String对象的引用。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/java%E5%9F%BA%E7%A1%80/%E8%AF%AD%E6%B3%95%E7%89%B9%E6%80%A7/</guid><description>&lt;h1 id="语法特性">语法特性&lt;/h1>
 &lt;h2 id="异常">异常&lt;/h2>
 &lt;h3 id="异常分类">异常分类&lt;/h3>
 &lt;p>异常属于Java.lang包中的Throwable类的子类, 分为两种&lt;/p>
@@ -364,6 +426,8 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>接口参数&lt;/li>
 &lt;li>集合工具类&lt;/li>
 &lt;/ul>
+&lt;h3 id="泛型检查">泛型检查&lt;/h3>
+&lt;p>一种编译时类型检查机制,它能确保在使用泛型类或者方法时,&lt;strong>传入的实际类型参数是正确的&lt;/strong>&lt;/p>
 &lt;h2 id="反射">反射&lt;/h2>
 &lt;p>反射是指程序在运行时能够获取自身的信息, 比如类的属性和方法, 并且可以调用类的方法和属性&lt;/p>
 &lt;p>优点：&lt;/p>
@@ -376,8 +440,8 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;li>性能开销&lt;/li>
 &lt;li>安全问题
 &lt;ul>
-&lt;li>反射可以访问私有方法和属性&lt;/li>
-&lt;li>反射可以绕过泛型检查&lt;/li>
+&lt;li>反射可以&lt;strong>访问私有方法和属性&lt;/strong>&lt;/li>
+&lt;li>反射可以&lt;strong>绕过泛型检查&lt;/strong>&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
@@ -409,12 +473,17 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nd">@interface&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MyAnnotation&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">value&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">default&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="s">&amp;#34;hello&amp;#34;&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="err">###&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">反射实战&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">知道具体的类&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="err">```&lt;/span>&lt;span class="n">java&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>解释:&lt;/p>
+&lt;ul>
+&lt;li>@Target(ElementType.METHOD) 表示注解可以用在方法上&lt;/li>
+&lt;li>@Retention(RetentionPolicy.RUNTIME) 表示注解会在class字节码文件中存在, 并且可以通过反射获取到&lt;/li>
+&lt;li>@interface 表示这是一个注解&lt;/li>
+&lt;/ul>
+&lt;h3 id="反射实战">反射实战&lt;/h3>
+&lt;ol>
+&lt;li>知道具体的类&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="n">Class&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">clazz&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">User&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ol start="2">
 &lt;li>通过类的全路径名&lt;/li>
@@ -713,6 +782,13 @@ String的不可变性是通过final关键字实现的，因此String类是不可
 &lt;div class="w-100" >&lt;img src="img/%e9%9d%a2%e5%90%91%e5%af%b9%e8%b1%a1/%e4%b8%89%e7%a7%8d%e6%8b%b7%e8%b4%9d%e7%9a%84%e5%85%b3%e7%b3%bb.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
+&lt;p>浅拷贝是按位拷贝对象，它会创建一个新对象，这个对象有着原始对象属性值的一份精确拷贝。
+如果属性是基本类型，&lt;strong>拷贝的就是基本类型的值&lt;/strong>；如果属性是内存地址（引用类型），&lt;strong>拷贝的就是内存地址&lt;/strong> ，因此如果其中一个对象对这个地址的对象进行修改，会影响到另一个对象。&lt;/p>
+&lt;p>深拷贝是在堆内存中重新分配内存，拷贝对象，而不是对象的引用。因此，即使原始对象改变了，深拷贝的对象也不会改变。&lt;/p>
+&lt;p>浅拷贝和引用拷贝的区别:&lt;/p>
+&lt;ul>
+&lt;li>浅拷贝是创建一个新对象，然后将当前对象的非静态字段复制到新对象中，如果字段是值类型的，那么对该字段执行复制；如果字段是引用类型的，那么复制的是引用，因此新对象和原对象的字段引用的是同一个对象&lt;/li>
+&lt;/ul>
 &lt;h2 id="object类">Object类&lt;/h2>
 &lt;p>Object是所有类的父类，因此任何类的对象都可以赋值给Object类型的变量。&lt;/p>
 &lt;h3 id="object的方法">Object的方法&lt;/h3>

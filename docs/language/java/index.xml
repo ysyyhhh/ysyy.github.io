@@ -471,6 +471,9 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;div class="w-100" >&lt;img src="img/JUC%28Java%e5%b9%b6%e5%8f%91%29/Java%e7%ba%bf%e7%a8%8b%e7%bb%93%e6%9e%84.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
+&lt;h3 id="java中没有协程">Java中没有协程&lt;/h3>
+&lt;p>协程是多个协程对应一个内核线程的模型
+协程是一种用户级的轻量级&amp;quot;线程&amp;quot;, 由程序员自己控制切换时机, 不需要操作系统内核介入。&lt;/p>
 &lt;h3 id="为什么程序计数器虚拟机栈和本地方法栈是线程私有的呢">为什么程序计数器、虚拟机栈和本地方法栈是线程私有的呢？&lt;/h3>
 &lt;p>程序计数器的功能：&lt;/p>
 &lt;ul>
@@ -580,7 +583,7 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">FutureTask&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">futureTask&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">FutureTask&lt;/span>&lt;span class="o">&amp;lt;&amp;gt;&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">MyCallable&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">thread&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">futureTask&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">thread&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">start&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">futureTask&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//return value&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">System&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">out&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">println&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">futureTask&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">get&lt;/span>&lt;span class="p">());&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//阻塞 return value&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="实现接口-vs-继承类">实现接口 vs 继承类&lt;/h4>
@@ -646,10 +649,51 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;p>CPU Cache 的工作方式：
 先复制一份数据到 CPU Cache 中，当 CPU 需要用到的时候就可以&lt;strong>直接从 CPU Cache 中读取数据&lt;/strong>，当运算完成后，再将运算得到的数据写回 Main Memory 中。&lt;/p>
 &lt;p>CPU内部缓存不一致的解决 是通过&lt;strong>缓存一致性协议&lt;/strong>来解决的。&lt;/p>
+&lt;p>常见的CPU内部缓存一致性协议主要有以下几种:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>MESI协议&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>该协议定义了四种缓存行状态：Modified(已修改)、Exclusive(独占)、Shared(共享)和Invalid(无效)。&lt;/li>
+&lt;li>当一个CPU读取或修改缓存行时,会通过总线事务与其他CPU进行协调,以维护缓存一致性。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>MOESI协议&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>在MESI协议的基础上,增加了Owned(拥有)状态。&lt;/li>
+&lt;li>Owned状态表示该缓存行被某个CPU独占修改,但其他CPU也可读取。&lt;/li>
+&lt;li>相比MESI,MOESI协议能更好地处理写回操作,提高性能。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Synapse协议&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>这是一种基于目录的缓存一致性协议。&lt;/li>
+&lt;li>每个缓存块都有一个目录项,记录该缓存块的状态和拥有该缓存块的处理器。&lt;/li>
+&lt;li>当某个处理器要访问缓存块时,先查询目录项,根据状态信息进行适当的操作。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Dragon协议&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>这是一种基于所有权的缓存一致性协议。&lt;/li>
+&lt;li>每个缓存块都有一个所有权状态,指示该缓存块是被独占修改、共享还是无效。&lt;/li>
+&lt;li>通过控制缓存块的所有权状态,可以实现缓存一致性。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>多机下的缓存一致性协议：&lt;/p>
+&lt;ul>
+&lt;li>写更新协议（Write-through）: 当数据被修改时,立即更新缓存和后端存储。这能保证缓存中的数据始终是最新的,但会增加写操作的延迟。&lt;/li>
+&lt;li>写回协议（Write-back）: 当数据被修改时,只更新缓存,并将修改异步地刷新到后端存储。这能减少写操作的延迟,但可能会导致缓存中的数据暂时与后端不一致。&lt;/li>
+&lt;li>失效协议（Write-invalidate）: 当数据被修改时,向其他缓存发送失效消息,使其失效。读取数据时,需要从后端重新加载。这能最大限度地减少写操作对读操作的影响。&lt;/li>
+&lt;li>读独占协议（Read-exclusive）: 当一个缓存读取数据时,向其他缓存发送独占请求。其他缓存必须放弃该数据的副本,直到该缓存完成操作。这能避免读写冲突,但会增加读操作的延迟。&lt;/li>
+&lt;/ul>
 &lt;p>但同时操作系统也需要解决缓存不一致的问题.(JMM)&lt;/p>
 &lt;h4 id="指令重排序">指令重排序&lt;/h4>
 &lt;p>指令重排序是指 CPU 和编译器为了提高程序运行效率而对指令序列进行重新排序的一种手段。&lt;/p>
-&lt;p>指令重排序可以保证串行语义一致，但是没有义务保证多线程间的语义也一致 ，所以在多线程下，指令重排序可能会导致一些问题。&lt;/p>
+&lt;p>指令重排序可以保证&lt;strong>串行语义一致&lt;/strong>，但是没有义务保证多线程间的语义也一致 ，所以在多线程下，指令重排序可能会导致一些问题。&lt;/p>
 &lt;p>编译器优化重排：&lt;/p>
 &lt;ul>
 &lt;li>编译器（包括 JVM、JIT 编译器等）在不改变单线程程序语义的前提下，重新安排语句的执行顺序。&lt;/li>
@@ -664,7 +708,8 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;/p>
 &lt;p>指令重排序可以保证串行语义一致，但是没有义务保证多线程间的语义也一致 ，所以在多线程下，指令重排序可能会导致一些问题。&lt;/p>
 &lt;p>编译器和处理器的指令重排序的处理方式不一样。对于编译器，通过禁止特定类型的编译器重排序的方式来禁止重排序。&lt;/p>
-&lt;p>对于处理器，通过插入内存屏障（Memory Barrier，或有时叫做内存栅栏，Memory Fence）的方式来禁止特定类型的处理器重排序。指令并行重排和内存系统重排都属于是处理器级别的指令重排序。&lt;/p>
+&lt;p>对于处理器，通过插入内存屏障（Memory Barrier，或有时叫做内存栅栏，Memory Fence）的方式来禁止特定类型的&lt;strong>处理器重排序&lt;/strong>。
+&lt;strong>指令并行重排和内存系统重排都属于是处理器级别的指令重排序。&lt;/strong>&lt;/p>
 &lt;blockquote>
 &lt;p>内存屏障（Memory Barrier，或有时叫做内存栅栏，Memory Fence）是一种 CPU 指令，用来禁止处理器指令发生重排序（像屏障一样），从而保障指令执行的有序性。另外，为了达到屏障的效果，它也会使处理器写入、读取值之前，将主内存的值写入高速缓存，清空无效队列，从而保障变量的可见性。&lt;/p>
 &lt;/blockquote>
@@ -711,7 +756,8 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/li>
 &lt;/ul>
 &lt;h4 id="可见性问题">可见性问题&lt;/h4>
-&lt;p>可见性问题,就是看不到修改后的值, 由CPU缓存导致.&lt;/p>
+&lt;p>可见性问题,就是看不到修改后的值, 由CPU缓存导致.
+多个线程访问共享变量时，由于缓存和指令重排等因素，导致某个线程修改了变量的值，而其他线程并没有立即看到修改后的值，从而出现数据不一致的问题。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="c1">//线程1执行&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="c1">//1&lt;/span>&lt;span class="w">
@@ -793,10 +839,15 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 一个变量使用 volatile 修饰，这就指示 编译器，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。&lt;/p>
 &lt;p>禁止指令重排
 将变量声明为 volatile ，在对这个变量进行读写操作的时候，会通过&lt;strong>插入特定的内存屏障&lt;/strong> 的方式来禁止指令重排序。&lt;/p>
-&lt;h4 id="todo-volatile-实现原理">TODO: volatile 实现原理&lt;/h4>
+&lt;h4 id="volatile-实现原理">volatile 实现原理&lt;/h4>
 &lt;p>在Java 中，当线程读取一个volatile 变量时，会从主内存中读取变量的最新值，并把它存储到线程的工作内存中。&lt;/p>
 &lt;p>volatile主要通过汇编lock前缀指令，它会锁定当前内存区域的缓存（缓存行），并且立即将当前缓存行数据写入主内存（耗时非常短）&lt;/p>
-&lt;p>当线程写入一个volatile 变量时，会把变量的值写入到线程的工作内存中，并&lt;strong>强制将这个值刷新到主内存中&lt;/strong>。&lt;/p>
+&lt;p>当线程写入 volatile 变量时,会在写操作后加入一个 &amp;ldquo;写屏障&amp;rdquo; 指令,保证写操作立即刷新到主内存。&lt;/p>
+&lt;ul>
+&lt;li>写屏障指令会将当前 CPU 缓存行的数据立即刷新到主内存中
+当线程读取 volatile 变量时,会在读操作前加入一个 &amp;ldquo;读屏障&amp;rdquo; 指令,保证读取的是主内存中的最新值。&lt;/li>
+&lt;/ul>
+&lt;p>内存屏障指令可以禁止 CPU 和编译器对相关指令进行重排序优化。&lt;/p>
 &lt;h4 id="为什么volatile不能保证原子性">为什么volatile不能保证原子性&lt;/h4>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">VolatileExample&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">volatile&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">count&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
@@ -835,27 +886,27 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">instance&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="synchronized关键字">synchronized关键字&lt;/h3>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>为什么要volatile修饰instance?
+A: 保证instance是可见的, 避免指令重排.&lt;/p>
+&lt;h3 id="synchronized关键字">synchronized关键字&lt;/h3>
 &lt;p>见 &lt;a href="####synchronized">synchronized关键字&lt;/a>&lt;/p>
 &lt;h3 id="final关键字">final关键字&lt;/h3>
-&lt;p>所有的final修饰的字段都是编译期常量吗?&lt;/p>
-&lt;p>如何理解private所修饰的方法是隐式的final?&lt;/p>
-&lt;p>说说final类型的类如何拓展?&lt;/p>
-&lt;p>比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString()的方法，应该如何做?&lt;/p>
-&lt;p>final方法可以被重载吗?&lt;/p>
-&lt;p>可以父类的final方法能不能够被子类重写?&lt;/p>
-&lt;p>不可以说说final域重排序规则?&lt;/p>
-&lt;p>说说final的原理?&lt;/p>
-&lt;p>使用 final 的限制条件和局限性?&lt;/p>
 &lt;h4 id="final的基础用法">final的基础用法&lt;/h4>
+&lt;p>Q:
+可以父类的final方法能不能够被子类重写?&lt;/p>
 &lt;p>修饰类&lt;/p>
 &lt;ul>
 &lt;li>final类不能有子类&lt;/li>
 &lt;li>final类的所有方法都隐式的是final的&lt;/li>
 &lt;/ul>
+&lt;p>Q:
+如何理解private所修饰的方法是隐式的final?
+说说final类型的类如何拓展?
+比如String是final类型，我们想写个MyString复用所有String中方法，同时增加一个新的toMyString()的方法，应该如何做? 组合代替继承
+final方法可以被重载吗?&lt;/p>
 &lt;p>修饰方法&lt;/p>
 &lt;ul>
-&lt;li>private方法隐式的是final的&lt;/li>
+&lt;li>&lt;strong>private方法&lt;/strong>隐式的是final的&lt;/li>
 &lt;li>final方法不能被重写&lt;/li>
 &lt;li>final方法可以被重载&lt;/li>
 &lt;/ul>
@@ -864,6 +915,7 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;li>final参数不能被修改&lt;/li>
 &lt;li>用于向匿名内部类传递参数&lt;/li>
 &lt;/ul>
+&lt;p>Q: 所有的final修饰的字段都是编译期常量吗?&lt;/p>
 &lt;p>修饰变量&lt;/p>
 &lt;ul>
 &lt;li>final修饰的字段&lt;strong>不都是编译期常量&lt;/strong>&lt;/li>
@@ -893,18 +945,110 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="todo-final域重排序">TODO: final域重排序&lt;/h4>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以说说final域重排序规则?&lt;/p>
+&lt;h4 id="todo-final域重排序">TODO: final域重排序&lt;/h4>
+&lt;h5 id="final域为基本类型">final域为基本类型&lt;/h5>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">FinalDemo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//普通域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//final域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">FinalDemo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">finalDemo&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">FinalDemo&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 1. 写普通域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">2&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 2. 写final域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">writer&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">finalDemo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">FinalDemo&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">reader&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">FinalDemo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">demo&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">finalDemo&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 3.读对象引用&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">demo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">a&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//4.读普通域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">demo&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">b&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">//5.读final域&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>写final域重排序规则&lt;/p>
+&lt;p>写final域的重排序规则&lt;strong>禁止对final域的写&lt;/strong>重排序到构造函数之外，这个规则的实现主要包含了两个方面：&lt;/p>
+&lt;ul>
+&lt;li>JMM禁止编译器把final域的写重排序到构造函数之外；&lt;/li>
+&lt;li>编译器会在final域写之后，构造函数return之前，插入一个storestore屏障。这个屏障可以禁止处理器把final域的写重排序到构造函数之外。&lt;/li>
+&lt;/ul>
+&lt;p>我们再来分析writer方法，虽然只有一行代码，但实际上做了两件事情：&lt;/p>
+&lt;ul>
+&lt;li>构造了一个FinalDemo对象；&lt;/li>
+&lt;li>把这个对象赋值给成员变量finalDemo。&lt;/li>
+&lt;/ul>
+&lt;p>我们来画下存在的一种可能执行时序图，如下：&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/JUC%28Java%e5%b9%b6%e5%8f%91%29/%e5%86%99final%e5%9f%9f%e9%87%8d%e6%8e%92%e5%ba%8f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>由于a,b之间没有数据依赖性，普通域(普通变量)a可能会被重排序到构造函数之外，线程B就有可能读到的是普通变量a初始化之前的值(零值)，这样就可能出现错误。&lt;/p>
+&lt;p>而final域变量b，根据重排序规则，会禁止final修饰的变量b重排序到构造函数之外，从而b能够正确赋值，线程B就能够读到final变量初始化后的值。&lt;/p>
+&lt;p>因此，写final域的重排序规则可以确保：在对象引用为任意线程可见之前，对象的final域已经被正确初始化过了，而普通域就不具有这个保障。比如在上例，线程B有可能就是一个未正确初始化的对象finalDemo。&lt;/p>
+&lt;p>读final域重排序规则&lt;/p>
+&lt;p>在一个线程中，初次读对象引用和初次读该对象包含的final域，JMM会禁止这两个操作的重排序。(注意，这个规则仅仅是针对处理器)，处理器会在读final域操作的前面插入一个LoadLoad屏障。&lt;/p>
+&lt;p>实际上，读对象的引用和读该对象的final域存在间接依赖性，一般处理器不会重排序这两个操作。但是有一些处理器会重排序，因此，这条禁止重排序规则就是针对这些处理器而设定的。&lt;/p>
+&lt;p>read()方法主要包含了三个操作：&lt;/p>
+&lt;ul>
+&lt;li>初次读引用变量finalDemo;&lt;/li>
+&lt;li>初次读引用变量finalDemo的普通域a;&lt;/li>
+&lt;li>初次读引用变量finalDemo的final域b;&lt;/li>
+&lt;/ul>
+&lt;p>假设线程A写过程没有重排序，那么线程A和线程B有一种的可能执行时序为下图&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/JUC%28Java%e5%b9%b6%e5%8f%91%29/%e8%af%bb%e9%87%8d%e6%8e%92%e5%ba%8f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>读final域的重排序规则可以确保：在读一个对象的final域之前，一定会先读这个包含这个final域的对象的引用。&lt;/p>
+&lt;h5 id="todo为引用类型">TODO：为引用类型&lt;/h5>
+&lt;p>按照final修饰的数据类型分类：
+基本数据类型:&lt;/p>
+&lt;ul>
+&lt;li>final域写：禁止final域写与构造方法重排序，即禁止final域写重排序到构造方法之外，从而保证该对象对所有线程可见时，该对象的final域全部已经初始化过。&lt;/li>
+&lt;li>final域读：禁止初次读对象的引用与读该对象包含的final域的重排序。&lt;/li>
+&lt;/ul>
+&lt;p>引用数据类型：&lt;/p>
+&lt;ul>
+&lt;li>额外增加约束：禁止在构造函数对一个final修饰的对象的成员域的写入与随后将这个被构造的对象的引用赋值给引用变量 重排序&lt;/li>
+&lt;/ul>
+&lt;h4 id="说说final的原理">说说final的原理?&lt;/h4>
+&lt;p>写final域会要求编译器在final域写之后，构造函数返回前插入一个StoreStore屏障。读final域的重排序规则会要求编译器在读final域的操作前插入一个LoadLoad屏障。&lt;/p>
+&lt;h4 id="使用-final-的限制条件和局限性">使用 final 的限制条件和局限性?&lt;/h4>
 &lt;h3 id="happens-before规则">Happens-Before规则&lt;/h3>
 &lt;p>Happens-Before规则是Java内存模型中的一组规则，用于描述多线程环境下的内存可见性、原子性和有序性。&lt;/p>
 &lt;p>Happens-Before规则主要包括以下几个规则：&lt;/p>
-&lt;p>单一线程原则: 一个线程内部, 代码的执行顺序是按照代码的先后顺序执行的.&lt;/p>
-&lt;p>管程锁定规则: 对同一个锁unlock操作必须先于在lock操作.&lt;/p>
-&lt;p>volatile变量规则: 对一个volatile变量的写操作必须先于对该变量的读操作&lt;/p>
-&lt;p>线程启动规则: start()方法调用先于线程的每一个动作.&lt;/p>
-&lt;p>线程加入(join)规则: Thread对象的终止操作先于join()方法返回.&lt;/p>
-&lt;p>线程中断规则: 对线程interrupt()方法的调用先于被中断线程的代码检测到中断事件的发生. 即, 可以用interrupt()方法来检测线程是否被中断.&lt;/p>
-&lt;p>对象终结规则: 对象的构造函数执行结束先于finalize()方法的开始.&lt;/p>
-&lt;p>传递性: A先于B, B先于C, 那么A先于C.&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>单一线程&lt;/strong>原则: 一个线程内部, 代码的执行顺序是按照代码的先后顺序执行的.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>管程锁定&lt;/strong>规则: 对同一个锁unlock操作必须先于在lock操作.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>volatile变量&lt;/strong>规则: 对一个volatile变量的写操作必须先于对该变量的读操作&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>线程启动&lt;/strong>规则: start()方法调用先于线程的每一个动作.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>线程加入(join)&lt;/strong> 规则: Thread对象的&lt;strong>终止操作先于join()方法返回&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>线程中断&lt;/strong>规则: 对线程interrupt()方法的调用先于被中断线程的代码检测到中断事件的发生. 即, 可以&lt;strong>用interrupt()方法来检测线程是否被中断&lt;/strong>.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>对象终结&lt;/strong>规则: 对象的&lt;strong>构造函数执行结束&lt;/strong>先于finalize()方法的开始.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>传递性&lt;/strong>: A先于B, B先于C, 那么A先于C.&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="理解线程安全">理解线程安全&lt;/h2>
 &lt;p>一个类在可以被多个线程安全调用时就是线程安全的。&lt;/p>
 &lt;p>线程安全不是一个非真即假的命题，可以将共享数据按照安全程度的强弱顺序分成以下五类: 不可变、绝对线程安全、相对线程安全、线程兼容和线程对立。&lt;/p>
@@ -1007,7 +1151,7 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>还可以同步一个类, 两个线程调用同一个类的不同对象上的这种同步语句，也会进行同步。&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>还可以同步一个类, 两个线程调用同一个类的&lt;strong>不同对象上的这种同步语句，也会进行同步&lt;/strong>。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">SynchronizedExample&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">method&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">synchronized&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">SynchronizedExample&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">class&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
@@ -1029,9 +1173,11 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 代码&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同步语句块的实现使用的是 monitorenter 和 monitorexit 指令，其中 monitorenter 指令指向同步代码块的开始位置， monitorexit 指令则指明同步代码块的结束位置。**&lt;/p>
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>同步语句块的实现使用的是 monitorenter 和 monitorexit 指令&lt;/p>
+&lt;p>其中 &lt;strong>monitorenter 指令指向同步代码块的开始位置， monitorexit 指令则指明同步代码块的结束位置。&lt;/strong>&lt;/p>
 &lt;p>在执行monitorenter时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。&lt;/p>
-&lt;p>在执行 monitorexit 指令后，将锁计数器设为 0，表明锁被释放。如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。&lt;/p>
+&lt;p>在执行 monitorexit 指令后，将锁计数器设为 0，表明锁被释放。&lt;/p>
+&lt;p>如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。&lt;/p>
 &lt;h4 id="reentrantlock">ReentrantLock&lt;/h4>
 &lt;p>ReentrantLock是JUC包中的类，是一种可重入的互斥锁。&lt;/p>
 &lt;p>ReentrantLock可以替代synchronized进行同步，ReentrantLock可以提供更多的同步操作，如中断、超时、多个条件等。&lt;/p>
@@ -1082,6 +1228,24 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;p>CAS的条件是 操作和检查是原子性的. 互斥同步是无法保证的, 只能依靠硬件完成.&lt;/p>
 &lt;p>CAS指令有三个操作数，分别是内存位置V、旧的预期值A和新值B。CAS指令执行时，当且仅当V的值等于A时，将V的值更新为B，否则不做任何操作。&lt;/p>
 &lt;p>CAS的实现是C++中的一个原子操作, 但是Java中的CAS是通过JNI来调用C++的CAS指令实现的.&lt;/p>
+&lt;p>获取当前共享变量的值和期望值：&lt;/p>
+&lt;ul>
+&lt;li>CAS操作的第一步是获取共享变量的当前值，同时也需要提供一个期望值，这个期望值是用来比较共享变量的当前值是否与之相等的基准。&lt;/li>
+&lt;li>先获取共享变量得到旧的预期值A&lt;/li>
+&lt;li>执行业务，得到新值B&lt;/li>
+&lt;/ul>
+&lt;p>比较共享变量的当前值和期望值是否相等：&lt;/p>
+&lt;ul>
+&lt;li>在这一步，CAS会比较共享变量的当前值和之前提供的期望值是否相等。如果相等，说明共享变量的值符合预期，可以进行下一步操作。&lt;/li>
+&lt;/ul>
+&lt;p>更新共享变量的值：&lt;/p>
+&lt;ul>
+&lt;li>如果共享变量的当前值与期望值相等，CAS会将共享变量的值更新为要写入的新值。这个操作是原子性的，即在这个过程中不会有其他线程对该共享变量进行干扰。&lt;/li>
+&lt;/ul>
+&lt;p>处理失败的情况：&lt;/p>
+&lt;ul>
+&lt;li>如果共享变量的当前值与期望值不相等，说明此时有其他线程已经修改了共享变量的值。在这种情况下，当前线程需要重新获取共享变量的最新值，并重新执行步骤2和3，直至操作成功。&lt;/li>
+&lt;/ul>
 &lt;p>CAS的应用: AtomicInteger&lt;/p>
 &lt;p>JUC包中的原子类, 其中的compareAndSet方法和getAndIncrement方法都是基于CAS实现的。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">//incrementAndGet方法&lt;/span>&lt;span class="w">
@@ -1124,8 +1288,7 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;p>ThreadLocal类可以让每个线程都有自己的共享变量，从而避免了线程安全问题。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">ThreadLocalExample1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">static&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">main&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="o">[]&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">args&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">threadLocal1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
-&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">threadLocal2&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">threadLocal&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocal&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">thread1&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">(()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">threadLocal1&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">threadLocal2&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
@@ -1147,7 +1310,7 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;p>每个Thread都有一个ThreadLocalMap对象, 用于存储线程本地变量.&lt;/p>
 &lt;p>Thread类中定义了ThreadLocal.ThreadLocalMap 成员。
 &lt;code>ThreadLocal.ThreadLocalMap threadLocals = null;&lt;/code>&lt;/p>
-&lt;p>当调用get set时,先获取当前线程的ThreadLocalMap, 然后将ThreadLocal对象作为key, value作为value存入.&lt;/p>
+&lt;p>当调用get set时,&lt;strong>先获取当前线程的ThreadLocalMap&lt;/strong>, 然后将ThreadLocal对象作为key, value作为value存入.&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">set&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">T&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">Thread&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">currentThread&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">ThreadLocalMap&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">map&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">getMap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
@@ -1157,13 +1320,54 @@ JVM 内存结构和 Java 虚拟机的运行时区域相关，定义了 JVM 在�
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">createMap&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">t&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h5 id="threadlocal的问题----内存泄漏">ThreadLocal的问题 &amp;ndash; 内存泄漏&lt;/h5>
-&lt;p>ThreadLocalMap中的Entry的key是弱引用, value是强引用, 如果key被回收了, value不会被回收, 会导致内存泄漏.&lt;/p>
+&lt;p>ThreadLocalMap中的&lt;strong>Entry的key是弱引用&lt;/strong>, value是强引用, 如果key被回收了, value不会被回收, 会导致内存泄漏.&lt;/p>
 &lt;p>只要线程还在, ThreadLocalMap中的Entry就不会被回收.&lt;/p>
+&lt;p>ThreadLocal 对象可能会被提前回收,导致使用时出现 NullPointerException。因此,开发人员在使用 ThreadLocal 时,需要注意适当的生命周期管理,比如在线程结束时主动调用 remove() 方法清理副本信息。&lt;/p>
 &lt;p>解决方法:
 在使用完ThreadLocal后, 调用remove方法.&lt;/p>
 &lt;h4 id="可重入代码reentrant-code">可重入代码(Reentrant Code)&lt;/h4>
 &lt;p>也叫纯代码, 在代码执行的任何时刻, 都可以被中断, 转而执行另一段代码, 然后再回到原来的代码.&lt;/p>
 &lt;p>特征: 不依赖于任何共享的变量, 用到的状态变量都有方法的参数传递进来, 不会调用非可重入的方法.&lt;/p>
+&lt;p>可重入代码(Reentrant Code)是指一个函数/方法可以被同一线程多次调用而不会产生任何问题的代码。换句话说,在执行该函数/方法的过程中,如果遇到对自身的再次调用,函数能够正确处理这种情况,不会陷入死锁或其他异常状态。&lt;/p>
+&lt;p>举几个例子来说明可重入代码:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>synchronized 关键字&lt;/strong>:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">ReentrantExample&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">synchronized&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 执行一些操作&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">foo&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 可以再次调用自身&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在上述代码中,&lt;code>foo()&lt;/code> 方法使用了 &lt;code>synchronized&lt;/code> 关键字来确保线程安全。当一个线程进入 &lt;code>foo()&lt;/code> 方法时,它会获取该对象的锁。即使 &lt;code>foo()&lt;/code> 方法再次调用自身,由于线程已经持有了该对象的锁,所以不会发生死锁。这就是可重入的体现。&lt;/p>
+&lt;ol start="2">
+&lt;li>&lt;strong>ReentrantLock 类&lt;/strong>:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">class&lt;/span> &lt;span class="nc">ReentrantExample&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">private&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kd">final&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ReentrantLock&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">lock&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">ReentrantLock&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">void&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">foo&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">lock&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">lock&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">try&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 执行一些操作&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">foo&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 可以再次调用自身&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">finally&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">lock&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">unlock&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在这个例子中,我们使用 &lt;code>ReentrantLock&lt;/code> 来实现可重入的锁定机制。当一个线程进入 &lt;code>foo()&lt;/code> 方法并成功获得锁时,即使方法再次调用自身,由于线程已经持有了该锁,所以不会发生死锁。&lt;/p>
+&lt;ol start="3">
+&lt;li>&lt;strong>递归算法&lt;/strong>:&lt;/li>
+&lt;/ol>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">if&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">factorial&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">n&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">1&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="c1">// 可以递归调用自身&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在这个示例中,&lt;code>factorial()&lt;/code> 方法是一个递归算法。它可以在自身内部多次调用自身,而不会产生任何问题。这就是可重入代码的体现。&lt;/p>
+&lt;p>总的来说,可重入代码可以让同一个线程多次调用同一个函数/方法,而不会产生死锁或其他异常情况。这在多线程编程中非常重要,可以避免意外的并发问题。&lt;/p>
 &lt;h2 id="线程机制">线程机制&lt;/h2>
 &lt;h3 id="线程基本机制">线程基本机制&lt;/h3>
 &lt;h4 id="executor框架">Executor框架&lt;/h4>
@@ -2375,9 +2579,11 @@ JVM 中的 PC 寄存器是对物理 PC 寄存器的一种抽象模拟。&lt;/p>
 &lt;/ul>
 &lt;p>具备如下特点:&lt;/p>
 &lt;ul>
-&lt;li>空间整合: 整体来看是基于“标记 - 整理”算法实现的收集器，从局部(两个 Region 之间)上来看是基于“复制”算法实现的，这意味着运行期间不会产生内存空间碎片。&lt;/li>
+&lt;li>空间整合: 整体来看是基于“&lt;strong>标记-整理&lt;/strong>”算法实现的收集器，从局部(两个 Region 之间)上来看是基于“复制”算法实现的，这意味着运行期间不会产生内存空间碎片。&lt;/li>
 &lt;li>可预测的停顿: 能让使用者明确指定在一个长度为 M 毫秒的时间片段内，消耗在 GC 上的时间不得超过 N 毫秒。&lt;/li>
 &lt;/ul>
+&lt;p>CMS更适合低延迟、对停顿时间敏感的应用,如web服务器、交易系统等。
+G1更适合中大型堆、需要良好的吞吐量和可预测停顿时间的应用,如大数据处理系统、游戏服务器等。&lt;/p>
 &lt;h3 id="内存分配与回收策略">内存分配与回收策略&lt;/h3>
 &lt;p>针对HotSpot虚拟机,按照回收区域分为两大类:&lt;/p>
 &lt;ul>
