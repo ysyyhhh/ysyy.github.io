@@ -178,7 +178,7 @@ A: 虚函数表是在类的对象上的，每个对象都有一个虚函数表�
 &lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/stl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/stl/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="c基础">C++基础&lt;/h1>
 &lt;p>union 的赋值（考察大小端以及 union 的内存结构）
 union 的赋值（考察大小端以及 union 的内存结构）&lt;/p>
-&lt;p>C++类对象大小，主要是虚函数表、菱形继承、虚拟继承&lt;/p>
+&lt;h2 id="类型">类型&lt;/h2>
 &lt;h2 id="语法">语法&lt;/h2>
 &lt;h3 id="泛型">泛型&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">template&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="k">typename&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
@@ -321,4 +321,22 @@ cv.wait(lck);
 这部分已经被解锁
 */
 ```
-&lt;/code>&lt;/pre></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description/></item></channel></rss>
+&lt;/code>&lt;/pre></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description>&lt;h1 id="面向对象">面向对象&lt;/h1>
+&lt;h2 id="c类对象大小">C++类对象大小&lt;/h2>
+&lt;p>&lt;a href="https://www.cnblogs.com/ZY-Dream/p/10016731.html" target="_blank" rel="noopener">https://www.cnblogs.com/ZY-Dream/p/10016731.html&lt;/a>&lt;/p>
+&lt;p>主要是虚函数表、菱形继承、虚拟继承&lt;/p>
+&lt;p>类的大小与它的构造函数、析构函数和其他成员函数无关，与静态成员变量也无关。&lt;/p>
+&lt;p>普通的继承：类的大小 = 基类的大小 + 自身成员的大小
+虚拟继承：类的大小 = 基类的大小 + 自身成员的大小 + 虚基类表指针&lt;/p>
+&lt;p>空类：size == 1&lt;/p>
+&lt;p>有虚函数：有一个指向虚函数表的指针（vptr），size == 4&lt;/p>
+&lt;h2 id="加载顺序">加载顺序&lt;/h2>
+&lt;p>父类构造函数–&amp;gt;成员类对象构造函数–&amp;gt;自身构造函数&lt;/p>
+&lt;p>其中成员变量的初始化与声明顺序有关，构造函数的调用顺序是类派生列表中的顺序。&lt;/p>
+&lt;p>下面是C++类成员变量初始化顺序：
+1） 基类的静态变量或全局变量
+2） 派生类的静态变量或全局变量
+3） 基类的成员变量
+4） 派生类的成员变量&lt;/p>
+&lt;h2 id="析构顺序">析构顺序&lt;/h2>
+&lt;p>析构顺序与构造顺序相反&lt;/p></description></item></channel></rss>

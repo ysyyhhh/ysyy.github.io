@@ -14596,7 +14596,44 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;/div>&lt;/figure>
 &lt;/p>
 &lt;p>&lt;a href="https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6" target="_blank" rel="noopener">https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description>&lt;p>rpc调用的流程&lt;/p>
-&lt;p>如何实现注册中心的高可用&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
+&lt;p>如何实现注册中心的高可用&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
+&lt;h2 id="概述">概述&lt;/h2>
+&lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
+&lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>
+&lt;ul>
+&lt;li>词法分析：词法分析器将源程序中的字符序列转换成单词序列，单词是语言中的基本单位，如标识符、关键字、运算符、界符等。&lt;/li>
+&lt;li>语法分析：语法分析器将单词序列转换成语法树。&lt;/li>
+&lt;li>语义分析：语义分析器对语法树进行语义检查，如类型检查、作用域检查等。&lt;/li>
+&lt;li>中间代码生成：中间代码是一种抽象的机器语言，它比源程序更接近机器语言，但比机器语言更容易理解。&lt;/li>
+&lt;li>代码优化：代码优化器对中间代码进行优化，以提高程序的性能。&lt;/li>
+&lt;li>目标代码生成：目标代码生成器将中间代码转换成目标机器的机器语言。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="https://juejin.cn/post/7080832945136599077" target="_blank" rel="noopener">以Babel和V8来举例&lt;/a>&lt;/p>
+&lt;p>编译器的前端&lt;/p>
+&lt;ul>
+&lt;li>词法分析&lt;/li>
+&lt;li>语法分析&lt;/li>
+&lt;li>语义分析&lt;/li>
+&lt;li>中间代码(IR)生成&lt;/li>
+&lt;/ul>
+&lt;p>编译器的后端&lt;/p>
+&lt;ul>
+&lt;li>代码优化&lt;/li>
+&lt;li>目标代码生成&lt;/li>
+&lt;/ul>
+&lt;h2 id="编译器后端框架">编译器后端框架&lt;/h2>
+&lt;p>&lt;a href="https://freegeektime.com/100034101/153192/" target="_blank" rel="noopener">后端技术的重用：LLVM&lt;/a>&lt;/p>
+&lt;p>编译器后端功能&lt;/p>
+&lt;h3 id="编译优化">编译优化&lt;/h3>
+&lt;p>SSA&lt;/p>
+&lt;h3 id="目标代码生成">目标代码生成&lt;/h3>
+&lt;p>LLVM和GCC&lt;/p>
+&lt;ul>
+&lt;li>GCC是GNU Compiler Collection的缩写，是一个由GNU开发的编译器套件，它支持多种编程语言，如C、C++、Fortran、Java等。&lt;/li>
+&lt;li>LLVM是Low Level Virtual Machine的缩写，是一个编译器基础设施，它包括编译器、汇编器、链接器等，支持多种编程语言，如C、C++、Rust、Swift等。&lt;/li>
+&lt;li>LLVM和GCC都是开源软件，它们都是编译器后端的框架，可以用来开发编译器。&lt;/li>
+&lt;/ul>
+&lt;h3 id="llvm----low-level-virtual-machine">llvm &amp;ndash; Low Level Virtual Machine&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
 &lt;h2 id="结构">结构&lt;/h2>
 &lt;h3 id="请求报文结构">请求报文结构&lt;/h3>
 &lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
@@ -17229,6 +17266,19 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。&lt;/li>
 &lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在2MSL后关闭。TCP连接释放完成。&lt;/li>
 &lt;/ul>
+&lt;h3 id="四次挥手的状态转换">四次挥手的状态转换&lt;/h3>
+&lt;p>netstat -an&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e8%ae%a1%e7%bd%91%e5%9f%ba%e7%a1%80/%e7%8a%b6%e6%80%81%e8%bd%ac%e6%8d%a2%e5%9b%be.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+客户端处于 ESTABLISHED 状态时发送 FIN 报文，进入 FIN-WAIT-1 状态。&lt;/p>
+&lt;p>服务端收到 FIN 报文后,发送 ACK 报文确认,进入 CLOSE-WAIT 状态。&lt;/p>
+&lt;p>客户端收到 ACK 报文后,进入 FIN-WAIT-2 状态,等待服务端发送 FIN 报文。&lt;/p>
+&lt;p>服务端准备好关闭连接时,发送 FIN 报文,进入 LAST-ACK 状态。&lt;/p>
+&lt;p>客户端收到 FIN 报文后,发送 ACK 报文确认,进入 TIME-WAIT 状态,等待 2MSL(最大报文生存时间)后进入 CLOSED 状态。&lt;/p>
+&lt;p>服务端收到 ACK 报文后,进入 CLOSED 状态,TCP 连接关闭。&lt;/p>
 &lt;h3 id="tcp四次挥手原因">&lt;strong>TCP四次挥手原因&lt;/strong>:&lt;/h3>
 &lt;p>当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
 &lt;h3 id="tcp最后一次挥手客户端要等待2msl最长报文寿命时间的原因">&lt;strong>TCP最后一次挥手客户端要等待2MSL(最长报文寿命)时间的原因:&lt;/strong>&lt;/h3>
@@ -17949,7 +17999,7 @@ A: 虚函数表是在类的对象上的，每个对象都有一个虚函数表�
 &lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/stl/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/stl/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="c基础">C++基础&lt;/h1>
 &lt;p>union 的赋值（考察大小端以及 union 的内存结构）
 union 的赋值（考察大小端以及 union 的内存结构）&lt;/p>
-&lt;p>C++类对象大小，主要是虚函数表、菱形继承、虚拟继承&lt;/p>
+&lt;h2 id="类型">类型&lt;/h2>
 &lt;h2 id="语法">语法&lt;/h2>
 &lt;h3 id="泛型">泛型&lt;/h3>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">template&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="k">typename&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
@@ -18092,7 +18142,25 @@ cv.wait(lck);
 这部分已经被解锁
 */
 ```
-&lt;/code>&lt;/pre></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/javaio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/javaio/</guid><description>&lt;h1 id="java-io">Java IO&lt;/h1>
+&lt;/code>&lt;/pre></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/c++/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1/</guid><description>&lt;h1 id="面向对象">面向对象&lt;/h1>
+&lt;h2 id="c类对象大小">C++类对象大小&lt;/h2>
+&lt;p>&lt;a href="https://www.cnblogs.com/ZY-Dream/p/10016731.html" target="_blank" rel="noopener">https://www.cnblogs.com/ZY-Dream/p/10016731.html&lt;/a>&lt;/p>
+&lt;p>主要是虚函数表、菱形继承、虚拟继承&lt;/p>
+&lt;p>类的大小与它的构造函数、析构函数和其他成员函数无关，与静态成员变量也无关。&lt;/p>
+&lt;p>普通的继承：类的大小 = 基类的大小 + 自身成员的大小
+虚拟继承：类的大小 = 基类的大小 + 自身成员的大小 + 虚基类表指针&lt;/p>
+&lt;p>空类：size == 1&lt;/p>
+&lt;p>有虚函数：有一个指向虚函数表的指针（vptr），size == 4&lt;/p>
+&lt;h2 id="加载顺序">加载顺序&lt;/h2>
+&lt;p>父类构造函数–&amp;gt;成员类对象构造函数–&amp;gt;自身构造函数&lt;/p>
+&lt;p>其中成员变量的初始化与声明顺序有关，构造函数的调用顺序是类派生列表中的顺序。&lt;/p>
+&lt;p>下面是C++类成员变量初始化顺序：
+1） 基类的静态变量或全局变量
+2） 派生类的静态变量或全局变量
+3） 基类的成员变量
+4） 派生类的成员变量&lt;/p>
+&lt;h2 id="析构顺序">析构顺序&lt;/h2>
+&lt;p>析构顺序与构造顺序相反&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/javaio/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/javaio/</guid><description>&lt;h1 id="java-io">Java IO&lt;/h1>
 &lt;h2 id="java-io流介绍">Java IO流介绍&lt;/h2>
 &lt;p>Java IO流主要分为字节流和字符流，字节流主要用于处理二进制文件，字符流主要用于处理文本文件。&lt;/p>
 &lt;p>四个抽象类：&lt;/p>
@@ -22927,44 +22995,7 @@ spring-boot-starter-web：提供对 Web 应用的支持。&lt;/p>
 &lt;p>加密&lt;/p>
 &lt;ul>
 &lt;li>BCryptPasswordEncoder&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
-&lt;h2 id="概述">概述&lt;/h2>
-&lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
-&lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>
-&lt;ul>
-&lt;li>词法分析：词法分析器将源程序中的字符序列转换成单词序列，单词是语言中的基本单位，如标识符、关键字、运算符、界符等。&lt;/li>
-&lt;li>语法分析：语法分析器将单词序列转换成语法树。&lt;/li>
-&lt;li>语义分析：语义分析器对语法树进行语义检查，如类型检查、作用域检查等。&lt;/li>
-&lt;li>中间代码生成：中间代码是一种抽象的机器语言，它比源程序更接近机器语言，但比机器语言更容易理解。&lt;/li>
-&lt;li>代码优化：代码优化器对中间代码进行优化，以提高程序的性能。&lt;/li>
-&lt;li>目标代码生成：目标代码生成器将中间代码转换成目标机器的机器语言。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;a href="https://juejin.cn/post/7080832945136599077" target="_blank" rel="noopener">以Babel和V8来举例&lt;/a>&lt;/p>
-&lt;p>编译器的前端&lt;/p>
-&lt;ul>
-&lt;li>词法分析&lt;/li>
-&lt;li>语法分析&lt;/li>
-&lt;li>语义分析&lt;/li>
-&lt;li>中间代码(IR)生成&lt;/li>
-&lt;/ul>
-&lt;p>编译器的后端&lt;/p>
-&lt;ul>
-&lt;li>代码优化&lt;/li>
-&lt;li>目标代码生成&lt;/li>
-&lt;/ul>
-&lt;h2 id="编译器后端框架">编译器后端框架&lt;/h2>
-&lt;p>&lt;a href="https://freegeektime.com/100034101/153192/" target="_blank" rel="noopener">后端技术的重用：LLVM&lt;/a>&lt;/p>
-&lt;p>编译器后端功能&lt;/p>
-&lt;h3 id="编译优化">编译优化&lt;/h3>
-&lt;p>SSA&lt;/p>
-&lt;h3 id="目标代码生成">目标代码生成&lt;/h3>
-&lt;p>LLVM和GCC&lt;/p>
-&lt;ul>
-&lt;li>GCC是GNU Compiler Collection的缩写，是一个由GNU开发的编译器套件，它支持多种编程语言，如C、C++、Fortran、Java等。&lt;/li>
-&lt;li>LLVM是Low Level Virtual Machine的缩写，是一个编译器基础设施，它包括编译器、汇编器、链接器等，支持多种编程语言，如C、C++、Rust、Swift等。&lt;/li>
-&lt;li>LLVM和GCC都是开源软件，它们都是编译器后端的框架，可以用来开发编译器。&lt;/li>
-&lt;/ul>
-&lt;h3 id="llvm----low-level-virtual-machine">llvm &amp;ndash; Low Level Virtual Machine&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/docker/</guid><description>&lt;h1 id="docker相关技巧">docker相关技巧&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/docker/</guid><description>&lt;h1 id="docker相关技巧">docker相关技巧&lt;/h1>
 &lt;h2 id="记把深度学习项目装入docker">记把深度学习项目装入docker&lt;/h2>
 &lt;p>安装时出现选项&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-Dockerfile" data-lang="Dockerfile">&lt;span class="line">&lt;span class="cl">&lt;span class="c"># RUN apt-get install libglib2.0-dev -y&lt;/span>&lt;span class="err">
