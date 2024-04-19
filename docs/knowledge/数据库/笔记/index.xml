@@ -1631,6 +1631,13 @@ session一起访问的时候，就会遇到问题。&lt;/p>
 &lt;h3 id="42next-key锁">4.2Next-Key锁&lt;/h3>
 &lt;p>也属于行锁的一种，且&lt;strong>是INNODB的行锁默认算法&lt;/strong>，临键锁会把查询出
 的记录锁住，也会把&lt;strong>该范围查询内的所有间隙空间也会锁住&lt;/strong>，再之它会&lt;strong>把相邻的下一个区间也会锁住&lt;/strong>。&lt;/p>
+&lt;p>Next-Key是记录锁 + 间隙锁&lt;/p>
+&lt;p>记录锁：记录锁是对索引记录的锁，注意，它是针对索引记录，即它只锁定记录这一行数据。&lt;/p>
+&lt;p>间隙锁会所上一个区间&lt;/p>
+&lt;p>首先我们来看看 Next-Key Lock 的加锁规则：&lt;/p>
+&lt;p>锁的范围是左开右闭。
+如果是唯一非空索引的等值查询，Next-Key Lock 会退化成 Record Lock。
+普通索引上的等值查询，向后遍历时，最后一个不满足等值条件的时候，Next-Key Lock 会退化成 Gap Lock。&lt;/p>
 &lt;p>临键锁避免了在范围查询时出现脏读、重复读、幻读问题。
 加了临键锁之后，&lt;strong>在范围区间内数据不允许被修改和插入。&lt;/strong>&lt;/p>
 &lt;p>
