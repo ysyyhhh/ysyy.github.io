@@ -9489,7 +9489,45 @@ b. 然后对外层查询的每一行,检查是否在子查询的结果集中&lt;
 &lt;p>MySQL的单表最大记录如何计算&lt;/p>
 &lt;p>a为索引字段占用的空间
 b为非索引字段占用的空间&lt;/p>
-&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="redis基础">Redis基础&lt;/h1>
+&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
+&lt;h2 id="redis性能优化">Redis性能优化：&lt;/h2>
+&lt;h3 id="redis常见性能问题有哪些">Redis常见性能问题有哪些？&lt;/h3>
+&lt;p>Redis常见性能问题包括内存使用过高、网络延迟过高、持久化性能不佳等。&lt;/p>
+&lt;h3 id="redis的操作是原子性的吗">Redis的操作是原子性的吗？&lt;/h3>
+&lt;p>Redis的操作是原子性的，是因为它采用了单线程模型，每个操作都是原子性的，保证了数据的一致性。&lt;/p>
+&lt;h3 id="redis事务包括哪些命令">Redis事务包括哪些命令？&lt;/h3>
+&lt;p>Redis事务包括MULTI、EXEC、DISCARD和WATCH等命令。&lt;/p>
+&lt;h3 id="redis常见性能问题的解决方案有哪些">Redis常见性能问题的解决方案有哪些？&lt;/h3>
+&lt;p>Redis常见性能问题的解决方案包括优化数据结构、优化网络配置、优化持久化配置等。&lt;/p>
+&lt;h3 id="redis的同步机制有哪些">Redis的同步机制有哪些？&lt;/h3>
+&lt;p>Redis的同步机制包括主从复制和哨兵机制。&lt;/p>
+&lt;p>20、Pipeline的好处是什么？&lt;/p>
+&lt;p>Pipeline的好处包括减少网络延迟、提高吞吐量等，需要使用时可以将多个命令打包发送到Redis服务器上执行。&lt;/p>
+&lt;h2 id="redis其他问题">Redis其他问题：&lt;/h2>
+&lt;p>34、Redis事务是什么？&lt;/p>
+&lt;p>Redis事务是一组命令的集合，可以保证这组命令的原子性。&lt;/p>
+&lt;p>35、Redis key的过期时间可以通过哪些命令设置？&lt;/p>
+&lt;p>Redis key的过期时间可以通过EXPIRE命令设置，永久有效可以通过PERSIST命令设置。&lt;/p>
+&lt;p>36、如何进行内存优化？&lt;/p>
+&lt;p>可以通过优化数据结构、设置合理的过期时间、使用持久化机制等方式进行内存优化。&lt;/p>
+&lt;p>37、Redis回收进程是什么？&lt;/p>
+&lt;p>Redis回收进程会定期扫描内存中的数据，将过期的数据删除。&lt;/p>
+&lt;p>38、Redis的内存用完了会导致什么问题？&lt;/p>
+&lt;p>Redis的内存用完了会导致写操作失败，读操作仍然可以正常进行。&lt;/p>
+&lt;p>39、一个Redis实例最多能存放多少个keys？&lt;/p>
+&lt;p>一个Redis实例最多能存放约43亿个keys，List、Set、Sorted Set它们最多能存放约21亿个元素。&lt;/p>
+&lt;p>40、如何保证Redis中的数据都是热点数据？&lt;/p>
+&lt;p>可以使用热点数据分析和缓存预热等方式保证Redis中的数据都是热点数据。&lt;/p>
+&lt;p>41、Redis最适合的场景是什么？&lt;/p>
+&lt;p>Redis最适合的场景包括高并发、高性能、高可用性的应用场景，如电商、社交、游戏等。&lt;/p>
+&lt;p>42、如何扫描所有的key？&lt;/p>
+&lt;p>可以使用SCAN命令扫描所有的key，然后通过字符串匹配找出以某个固定的已知的前缀开头的key。&lt;/p>
+&lt;p>43、大量的key需要设置同一时间过期时需要注意什么？&lt;/p>
+&lt;p>需要注意的是，大量的key需要设置同一时间过期时，需要合理设置过期时间，避免过期时间集中在同一时间点。&lt;/p>
+&lt;p>44、如何使用Redis做异步队列？&lt;/p>
+&lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
+&lt;p>45、Redis分布式锁是什么？&lt;/p>
+&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="redis基础">Redis基础&lt;/h1>
 &lt;h2 id="redis基础知识">Redis基础知识：&lt;/h2>
 &lt;h3 id="redis是什么有什么用">Redis是什么？有什么用？&lt;/h3>
 &lt;p>Redis是一个开源的内存数据结构存储系统。&lt;/p>
