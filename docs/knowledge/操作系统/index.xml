@@ -155,7 +155,9 @@ select、poll 模型都只使用一个函数，而 epoll 模型使用三个函�
 &lt;ul>
 &lt;li>计算型的操作，利用协程来回切换执行，没有任何意义，来回切换并保存状态 反倒会降低性能。&lt;/li>
 &lt;li>IO型的操作，利用协程在IO等待时间就去切换执行其他任务，当IO操作结束后再自动回调，那么就会大大节省资源并提供性能，从而实现异步编程（不等待任务结束就可以去执行其他代码）。&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="内存管理">内存管理&lt;/h2>
+&lt;h2 id="网络系统">网络系统&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
 &lt;h2 id="第章-计算机系统概述">第⼀章 计算机系统概述&lt;/h2>
 &lt;h3 id="01-操作系统的概念定义">01 操作系统的概念（定义）&lt;/h3>
 &lt;p>概念（定义）&lt;/p>

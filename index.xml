@@ -6188,7 +6188,9 @@ select、poll 模型都只使用一个函数，而 epoll 模型使用三个函�
 &lt;ul>
 &lt;li>计算型的操作，利用协程来回切换执行，没有任何意义，来回切换并保存状态 反倒会降低性能。&lt;/li>
 &lt;li>IO型的操作，利用协程在IO等待时间就去切换执行其他任务，当IO操作结束后再自动回调，那么就会大大节省资源并提供性能，从而实现异步编程（不等待任务结束就可以去执行其他代码）。&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="内存管理">内存管理&lt;/h2>
+&lt;h2 id="网络系统">网络系统&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
 &lt;h2 id="第章-计算机系统概述">第⼀章 计算机系统概述&lt;/h2>
 &lt;h3 id="01-操作系统的概念定义">01 操作系统的概念（定义）&lt;/h3>
 &lt;p>概念（定义）&lt;/p>
@@ -9489,45 +9491,7 @@ b. 然后对外层查询的每一行,检查是否在子查询的结果集中&lt;
 &lt;p>MySQL的单表最大记录如何计算&lt;/p>
 &lt;p>a为索引字段占用的空间
 b为非索引字段占用的空间&lt;/p>
-&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/</guid><description>&lt;h1 id="redis">Redis&lt;/h1>
-&lt;h2 id="redis性能优化">Redis性能优化：&lt;/h2>
-&lt;h3 id="redis常见性能问题有哪些">Redis常见性能问题有哪些？&lt;/h3>
-&lt;p>Redis常见性能问题包括内存使用过高、网络延迟过高、持久化性能不佳等。&lt;/p>
-&lt;h3 id="redis的操作是原子性的吗">Redis的操作是原子性的吗？&lt;/h3>
-&lt;p>Redis的操作是原子性的，是因为它采用了单线程模型，每个操作都是原子性的，保证了数据的一致性。&lt;/p>
-&lt;h3 id="redis事务包括哪些命令">Redis事务包括哪些命令？&lt;/h3>
-&lt;p>Redis事务包括MULTI、EXEC、DISCARD和WATCH等命令。&lt;/p>
-&lt;h3 id="redis常见性能问题的解决方案有哪些">Redis常见性能问题的解决方案有哪些？&lt;/h3>
-&lt;p>Redis常见性能问题的解决方案包括优化数据结构、优化网络配置、优化持久化配置等。&lt;/p>
-&lt;h3 id="redis的同步机制有哪些">Redis的同步机制有哪些？&lt;/h3>
-&lt;p>Redis的同步机制包括主从复制和哨兵机制。&lt;/p>
-&lt;p>20、Pipeline的好处是什么？&lt;/p>
-&lt;p>Pipeline的好处包括减少网络延迟、提高吞吐量等，需要使用时可以将多个命令打包发送到Redis服务器上执行。&lt;/p>
-&lt;h2 id="redis其他问题">Redis其他问题：&lt;/h2>
-&lt;p>34、Redis事务是什么？&lt;/p>
-&lt;p>Redis事务是一组命令的集合，可以保证这组命令的原子性。&lt;/p>
-&lt;p>35、Redis key的过期时间可以通过哪些命令设置？&lt;/p>
-&lt;p>Redis key的过期时间可以通过EXPIRE命令设置，永久有效可以通过PERSIST命令设置。&lt;/p>
-&lt;p>36、如何进行内存优化？&lt;/p>
-&lt;p>可以通过优化数据结构、设置合理的过期时间、使用持久化机制等方式进行内存优化。&lt;/p>
-&lt;p>37、Redis回收进程是什么？&lt;/p>
-&lt;p>Redis回收进程会定期扫描内存中的数据，将过期的数据删除。&lt;/p>
-&lt;p>38、Redis的内存用完了会导致什么问题？&lt;/p>
-&lt;p>Redis的内存用完了会导致写操作失败，读操作仍然可以正常进行。&lt;/p>
-&lt;p>39、一个Redis实例最多能存放多少个keys？&lt;/p>
-&lt;p>一个Redis实例最多能存放约43亿个keys，List、Set、Sorted Set它们最多能存放约21亿个元素。&lt;/p>
-&lt;p>40、如何保证Redis中的数据都是热点数据？&lt;/p>
-&lt;p>可以使用热点数据分析和缓存预热等方式保证Redis中的数据都是热点数据。&lt;/p>
-&lt;p>41、Redis最适合的场景是什么？&lt;/p>
-&lt;p>Redis最适合的场景包括高并发、高性能、高可用性的应用场景，如电商、社交、游戏等。&lt;/p>
-&lt;p>42、如何扫描所有的key？&lt;/p>
-&lt;p>可以使用SCAN命令扫描所有的key，然后通过字符串匹配找出以某个固定的已知的前缀开头的key。&lt;/p>
-&lt;p>43、大量的key需要设置同一时间过期时需要注意什么？&lt;/p>
-&lt;p>需要注意的是，大量的key需要设置同一时间过期时，需要合理设置过期时间，避免过期时间集中在同一时间点。&lt;/p>
-&lt;p>44、如何使用Redis做异步队列？&lt;/p>
-&lt;p>我使用过Redis做异步队列，可以通过LIST数据结构实现。&lt;/p>
-&lt;p>45、Redis分布式锁是什么？&lt;/p>
-&lt;p>Redis分布式锁是一种基于Redis实现的分布式锁，可以通过SETNX命令实现。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="redis基础">Redis基础&lt;/h1>
+&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="redis基础">Redis基础&lt;/h1>
 &lt;h2 id="redis基础知识">Redis基础知识：&lt;/h2>
 &lt;h3 id="redis是什么有什么用">Redis是什么？有什么用？&lt;/h3>
 &lt;p>Redis是一个开源的内存数据结构存储系统。&lt;/p>
@@ -14633,8 +14597,11 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;div class="w-100" >&lt;img src="img/%e9%80%9a%e4%bf%a1%28RPC%29/RPC%e5%8e%9f%e7%90%86%e5%9b%be.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
-&lt;p>&lt;a href="https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6" target="_blank" rel="noopener">https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%9F%BA%E7%A1%80/</guid><description>&lt;p>rpc调用的流程&lt;/p>
-&lt;p>如何实现注册中心的高可用&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
+&lt;p>&lt;a href="https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6" target="_blank" rel="noopener">https://xie.infoq.cn/article/eda414b9ee0f2b11437b546d6&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="典型问题">典型问题&lt;/h2>
+&lt;p>秒杀&lt;/p>
+&lt;p>rpc调用的流程&lt;/p>
+&lt;p>如何实现注册中心的高可用&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
 &lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>
@@ -14671,7 +14638,7 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;li>LLVM是Low Level Virtual Machine的缩写，是一个编译器基础设施，它包括编译器、汇编器、链接器等，支持多种编程语言，如C、C++、Rust、Swift等。&lt;/li>
 &lt;li>LLVM和GCC都是开源软件，它们都是编译器后端的框架，可以用来开发编译器。&lt;/li>
 &lt;/ul>
-&lt;h3 id="llvm----low-level-virtual-machine">llvm &amp;ndash; Low Level Virtual Machine&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
+&lt;h3 id="llvm----low-level-virtual-machine">llvm &amp;ndash; Low Level Virtual Machine&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/http/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/http/</guid><description>&lt;h1 id="http">HTTP&lt;/h1>
 &lt;h2 id="结构">结构&lt;/h2>
 &lt;h3 id="请求报文结构">请求报文结构&lt;/h3>
 &lt;p>客户端发送一个请求报文给服务器，服务器根据请求报文中的信息进行处理，并将处理结果放入响应报文中返回给客户端。&lt;/p>
@@ -14725,11 +14692,34 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="http的方法">HTTP的方法&lt;/h2>
 &lt;p>HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD 方法。&lt;/p>
 &lt;p>HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。&lt;/p>
+&lt;h2 id="协议">协议&lt;/h2>
+&lt;p>&lt;a href="https://www.zhihu.com/question/20085992" target="_blank" rel="noopener">HTTP 是基于 TCP 还是 UDP 的&lt;/a>&lt;/p>
 &lt;h2 id="https">HTTPS&lt;/h2>
 &lt;p>HTTPS校验的哈希算法是什么&lt;/p>
 &lt;ul>
 &lt;li>RSA&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
+&lt;/ul>
+&lt;h2 id="版本">版本&lt;/h2>
+&lt;h3 id="http10">HTTP/1.0&lt;/h3>
+&lt;h3 id="http11">HTTP/1.1&lt;/h3>
+&lt;h3 id="http2">HTTP/2&lt;/h3>
+&lt;p>目前(2024.4)&lt;a href="https://docs.spring.io/spring-framework/reference/web/webmvc/mvc-http2.html" target="_blank" rel="noopener">Spring Web&lt;/a>默认还是HTTP/2&lt;/p>
+&lt;h3 id="http3">HTTP/3&lt;/h3>
+&lt;p>HTTP/3.0 之前是基于 TCP 协议的，而 HTTP/3.0 将弃用 TCP，改用 基于 UDP 的 QUIC 协议&lt;/p>
+&lt;h4 id="http2的队头阻塞问题">HTTP/2的队头阻塞问题&lt;/h4>
+&lt;ul>
+&lt;li>HTTP/2.0 在单个 TCP 连接上使用了多路复用
+&lt;ul>
+&lt;li>多个 HTTP 请求和响应共享一个 TCP 连接&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>受到 TCP 拥塞控制的影响，少量的丢包就可能导致整个 TCP 连接上的所有流被阻塞
+&lt;ul>
+&lt;li>如果其中一个请求或响应因为网络拥塞或丢包而被阻塞&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>那么后续的请求或响应也无法发送，导致整个连接的效率降低&lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/qa/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/qa/</guid><description>&lt;h3 id="tcp和udp的区别">TCP和UDP的区别&lt;/h3>
 &lt;p>TCP:
 User Datagram Protocol 用户数据报协议&lt;/p>
 &lt;ul>
@@ -14768,7 +14758,7 @@ User Datagram Protocol 用户数据报协议&lt;/p>
 &lt;p>Netty介绍
 Netty是一个异步的、基于事件驱动的网络应用框架，用以快速开发高性能、高可靠性的网络IO程序。
 Netty主要针对在TCP协议下，面向Clients端的高并发应用，或者Peer-to-Peer场景下的大量数据持续传输的应用。
-Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场景。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/socketio%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="io模型">I/O模型&lt;/h1>
+Netty本质是一个NIO框架，适用于服务器通讯相关的多种应用场景。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/socketio%E6%A8%A1%E5%9E%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/socketio%E6%A8%A1%E5%9E%8B/</guid><description>&lt;h1 id="io模型">I/O模型&lt;/h1>
 &lt;h2 id="一什么是io模型-及-io模型的分类">一、什么是I/O模型 及 I/O模型的分类&lt;/h2>
 &lt;p>Unix 有五种 I/O 模型：&lt;/p>
 &lt;p>阻塞式 I/O
@@ -14787,1335 +14777,7 @@ I/O 复用（select 和 poll）
 &lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3>
 &lt;h2 id="socket">Socket&lt;/h2>
 &lt;p>Socket listen怎么监听到TCP连接&lt;/p>
-&lt;p>释放连接的状态转换&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
-&lt;h2 id="1概述">1.概述&lt;/h2>
-&lt;p>LAN：Local Area Network，局域网&lt;/p>
-&lt;p>WAN：Wide Area Network，广域网&lt;/p>
-&lt;p>&lt;strong>ISP&lt;/strong> Internet Service Provider 因特网服务提供商&lt;/p>
-&lt;h3 id="1服务与协议">&lt;strong>1.服务与协议&lt;/strong>&lt;/h3>
-&lt;p>&lt;strong>协议&lt;/strong>是&lt;strong>水平&lt;/strong>的，&lt;strong>对等实体&lt;/strong>之间的&lt;strong>通信规则&lt;/strong>。&lt;strong>对等实体&lt;/strong>是指&lt;strong>同一层&lt;/strong>级&lt;strong>可发送接收&lt;/strong>信息的硬件或软件进程.&lt;/p>
-&lt;p>&lt;strong>服务&lt;/strong>是&lt;strong>垂直&lt;/strong>的，是由下层为上层通过&lt;strong>层间接口&lt;/strong>提供的. 下层实现的&lt;strong>所有功能不都是服务&lt;/strong>,只有能够&lt;strong>被上层看得见的&lt;/strong>功能才是服务. 上层使用下层的&lt;strong>SAP&lt;/strong>访问下层的服务.&lt;/p>
-&lt;p>&lt;strong>SAP Service Access Point&lt;/strong>:服务接入点.同⼀节点相邻两层交换信息的连接点.数据链路层的SAP是MAC地址，网络层的SAP是IP地址，传输层的SAP是端口.&lt;/p>
-&lt;p>SDU(服务数据单元):为完成⽤户所要求的功能⽽应传送的数据。&lt;/p>
-&lt;p>PCI(协议控制信息):控制协议操作的信息。&lt;/p>
-&lt;p>PDU(协议数据单元):n-PDU = n-SDU + n-PCI。 n-PDU = (n-1)-SDU。&lt;/p>
-&lt;p>&lt;strong>协议三要素：&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>语法: 规定信息格式&lt;/li>
-&lt;li>语义: 说明通信双方应当怎么做;用于协调与差错处理的控制信息&lt;/li>
-&lt;li>规则: (时序)定义了何时进行通信，先讲什么，后讲什么，讲话的速度等。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>服务的类型&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>面向连接服务与无连接服务
-&lt;ul>
-&lt;li>面向连接服务：双方通信前要&lt;strong>事先建立&lt;/strong>一条&lt;strong>通信线路&lt;/strong>. 该线路包括建立连接、使用连接(通信)、释放连接这三个过程。&lt;/li>
-&lt;li>无连接服务: 双方通信前不需要建立通信线路.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>可靠服务与不可靠服务
-&lt;ul>
-&lt;li>可靠服务:通过具有&lt;strong>检错,纠错,应答&lt;/strong>机制,保证&lt;strong>数据正确,可靠地&lt;/strong>传送到目的地.&lt;/li>
-&lt;li>不可靠服务: 不保证数据正确,可靠地传送到目的地.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>应答服务与不应答服务&lt;/li>
-&lt;/ul>
-&lt;h3 id="2模型">2.模型&lt;/h3>
-&lt;p>&lt;strong>层次模型的好处：&lt;/strong>&lt;/p>
-&lt;ol>
-&lt;li>降低复杂度；&lt;/li>
-&lt;li>标准化接口；&lt;/li>
-&lt;li>灵活性好;&lt;/li>
-&lt;li>易于实现和维护&lt;/li>
-&lt;/ol>
-&lt;h4 id="21-osi七层模型">&lt;strong>2.1 OSI七层模型&lt;/strong>&lt;/h4>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>&lt;/th>
-&lt;th>任务&lt;/th>
-&lt;th>功能&lt;/th>
-&lt;th>协议&lt;/th>
-&lt;th>传输单位&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>物理层&lt;/td>
-&lt;td>在物理媒介上为数据端设备执行任务&lt;/td>
-&lt;td>&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>比特&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>数据链路层&lt;/td>
-&lt;td>将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
-&lt;td>封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
-&lt;td>SDLC,HDLC,PPP,STP,帧中继&lt;/td>
-&lt;td>帧&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>网络层&lt;/td>
-&lt;td>将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
-&lt;td>1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
-&lt;td>IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
-&lt;td>数据报,IP分组&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>传输层&lt;/td>
-&lt;td>负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
-&lt;td>&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
-&lt;td>TCP, UDP&lt;/td>
-&lt;td>报文段TCP,用户数据报UDP&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>会话层&lt;/td>
-&lt;td>&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
-&lt;td>建立,管理,终止会话.也称建立同步SYN&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>表示层&lt;/td>
-&lt;td>处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
-&lt;td>抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>应用层&lt;/td>
-&lt;td>提供系统与⽤户的接口&lt;/td>
-&lt;td>为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
-&lt;td>FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;h4 id="22tcpip四层模型">2.2TCP/IP四层模型&lt;/h4>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-25-32.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;p>&lt;strong>网络接入层&lt;/strong>:物理层 + 数据链路层&lt;/p>
-&lt;p>&lt;strong>网际互联层&lt;/strong>:网络层&lt;/p>
-&lt;p>&lt;strong>传输层&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>应用层&lt;/strong>&lt;/p>
-&lt;h4 id="23五层模型">2.3五层模型&lt;/h4>
-&lt;p>①物理层:物理层&lt;/p>
-&lt;p>②数据链路层:数据链路层。&lt;/p>
-&lt;p>③⽹络层:⽹络层&lt;/p>
-&lt;p>④传输层:传输层&lt;/p>
-&lt;p>⑤应⽤层:会话层+表⽰层+应⽤层。&lt;strong>处理高级协议，显示问题，编码和会话控制等问题&lt;/strong>&lt;/p>
-&lt;h4 id="25各层设备">2.5各层设备&lt;/h4>
-&lt;p>&lt;strong>物理层设备&lt;/strong>:集线器Hub、中继器&lt;/p>
-&lt;p>&lt;strong>数据链路层设备&lt;/strong>: 网卡、交换机、网桥&lt;/p>
-&lt;p>&lt;strong>网络层设备&lt;/strong>:路由&lt;/p>
-&lt;h3 id="3物理网络拓扑结构">3.物理网络拓扑结构&lt;/h3>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-25-54.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;p>&lt;strong>总线拓扑&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>优点:所有的节点都能通信&lt;/li>
-&lt;li>缺点:一旦总线上的&lt;strong>一点断开&lt;/strong>,会影响到所有&lt;strong>两边的节点&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>双环型拓扑&lt;/strong>: 在环型拓扑基础上增加了一个冗余环路,增加了可靠性和灵活性.&lt;/p>
-&lt;p>&lt;strong>星型&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>优点:允许所有的节点方便的交流&lt;/li>
-&lt;li>缺点:中间节点崩溃会导致整个网络的崩溃.传输冲突也是一个严重的问题.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>网络型&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>优点:连通性和可靠性好&lt;/li>
-&lt;li>缺点:介质的连接和数量无法控制.&lt;/li>
-&lt;/ul>
-&lt;h2 id="2物理层">2.物理层&lt;/h2>
-&lt;p>&lt;strong>传输介质&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>UTP Unshielded Twisted Pair 非屏蔽双绞线&lt;/li>
-&lt;li>STP Shielded Twisted Pair 屏蔽双绞线 抗电磁干扰能力强&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>设备&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>中继器：用于放大数字信号&lt;/li>
-&lt;li>集线器：多个端口的中继器&lt;/li>
-&lt;li>特点：物理层设备既不能隔离冲突域也不能隔离广播域&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>三种通信方式&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>单⼯/ &lt;strong>simple&lt;/strong> Transmission:单向信号只能在⼀个⽅向上传播。(收⾳机)&lt;/li>
-&lt;li>半双⼯/ &lt;strong>half-Duplex&lt;/strong> Transmission：信号可双向传播，但不能同时传播。(对讲机)&lt;/li>
-&lt;li>全双⼯/ &lt;strong>full-Duplex&lt;/strong> Transmission：信号可以同时在两个⽅向上传播。(电话)&lt;/li>
-&lt;/ul>
-&lt;p>通道复用技术：&lt;/p>
-&lt;ul>
-&lt;li>频分复用（FDM，Frequency Division Multiplexing）：不同用户在不同频带，所用用户在同样时间占用不同带宽资源&lt;/li>
-&lt;li>时分复用（TDM，Time Division Multiplexing）：不同用户在同一时间段的不同时间片，所有用户在不同时间占用同样的频带宽度&lt;/li>
-&lt;li>波分复用（WDM，Wavelength Division Multiplexing）：光的频分复用&lt;/li>
-&lt;li>码分复用（CDM，Code Division Multiplexing）：不同用户使用不同的码，可以在同样时间使用同样频带通信&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>三种数据传输方式&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>电路交换
-&lt;ul>
-&lt;li>通信前为双方建立专有的通信线路&lt;/li>
-&lt;li>优点
-&lt;ul>
-&lt;li>传输快,时延小,&lt;strong>有序&lt;/strong>,避免冲突&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>缺点
-&lt;ul>
-&lt;li>信道利用率低,建立连接时间长,灵活性差&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>数据报交换
-&lt;ul>
-&lt;li>以报文为传输的数据单位, 采用&lt;strong>交换节点存储&lt;/strong>转发的方式&lt;/li>
-&lt;li>优点
-&lt;ul>
-&lt;li>线路利用率搞，无连接,动态分配路线,&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>缺点
-&lt;ul>
-&lt;li>交换节点存储要求大&lt;/li>
-&lt;li>&lt;strong>转发时延&lt;/strong>大&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>分组交换
-&lt;ul>
-&lt;li>面向连接的虚电路
-&lt;ul>
-&lt;li>通信前，在源主机和⽬的主机之间 建⽴⼀条虚连接，分组通过该路径顺序传送到⽬的主机。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>无连接的数据报
-&lt;ul>
-&lt;li>数据报的⽅式:将报⽂分割为较短的分组，交换机根据转发表转发分组传送到⽬的主机。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>将报文分割成多个分组，交换机根据&lt;strong>转发表&lt;/strong>逐个传输&lt;/li>
-&lt;li>优点
-&lt;ul>
-&lt;li>,简化交换节点的存储，加速传输&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>缺点
-&lt;ul>
-&lt;li>传输时延大&lt;/li>
-&lt;li>&lt;strong>失序&lt;/strong>,丢失重复问题&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>xDSL&lt;/strong> Digital Subscriber Line：用数字技术对现有的模拟电话用户线进行改造，使它能够承载宽带业务。前缀 x 则表示在数字用户线上实现的不同宽带方案。&lt;/p>
-&lt;p>&lt;strong>ADSL&lt;/strong> (Asymmetric Digital Subscriber Line) &lt;strong>非对称数字用户线&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>它因为上行和下行带宽不对 称，因此称为非对称数字用户线环路。&lt;/li>
-&lt;/ul>
-&lt;ul>
-&lt;li>属于DSL技术的一种，亦可称作非对称数字用户环路。是一种新的数据传输方式。&lt;/li>
-&lt;li>ADSL采用&lt;strong>频分复用&lt;/strong>技术把普通的电话线分成了电话、上行和下行三个相对独立的信道，从而避免了相互之间的干扰。即使边打电话边上网，也不会发生上网速率和通话质量下降的 情况。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>FTTx&lt;/strong> Fiber To The X：实现宽带居民接入网的方案。这里字母 x 可代表不同意思。&lt;/p>
-&lt;h2 id="3数据链路层">3.数据链路层&lt;/h2>
-&lt;p>主要信道：&lt;/p>
-&lt;ul>
-&lt;li>点对点信道&lt;/li>
-&lt;li>广播信道&lt;/li>
-&lt;/ul>
-&lt;h3 id="1九大功能">1.九大功能&lt;/h3>
-&lt;h4 id="11为网络层提供服务">1.1为网络层提供服务&lt;/h4>
-&lt;ul>
-&lt;li>无确认的无连接&lt;/li>
-&lt;li>有确认的无连接
-&lt;ul>
-&lt;li>不用建立链路，但目的主机收到帧后需要发送确认帧。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>有确认的有连接
-&lt;ul>
-&lt;li>建立连接，传输数据，释放连接。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h4 id="12链路管理">1.2链路管理&lt;/h4>
-&lt;p>管理建立、维持和释放链路的过程。&lt;/p>
-&lt;h4 id="13组帧-与-帧定界">1.3组帧 与 帧定界&lt;/h4>
-&lt;p>确定帧的&lt;strong>首部尾部&lt;/strong>等&lt;strong>控制信息&lt;/strong>的&lt;strong>界限&lt;/strong>。&lt;/p>
-&lt;h4 id="131字符计数法">1.3.1字符计数法&lt;/h4>
-&lt;p>&lt;strong>帧的头部&lt;/strong> 使用 &lt;strong>计数字段&lt;/strong> 标明帧内字符数&lt;/p>
-&lt;p>&lt;strong>缺点:&lt;/strong> 计数字段出错,会导致不能划分帧边界。&lt;/p>
-&lt;h4 id="132字符填充的首尾界符法">1.3.2字符填充的首尾界符法&lt;/h4>
-&lt;p>用于异步传输&lt;/p>
-&lt;p>当&lt;strong>信息字段中&lt;/strong>出现：&lt;/p>
-&lt;ul>
-&lt;li>7E标志字段 转成 5E&lt;/li>
-&lt;li>7D转义标记 转成 5D&lt;/li>
-&lt;li>ASCII码字符（小于0x20的） 前面加入7D并改变编码&lt;/li>
-&lt;/ul>
-&lt;h4 id="133比特填充首尾标志法">1.3.3比特填充首尾标志法&lt;/h4>
-&lt;p>用于同步传输,用硬件来实现.&lt;/p>
-&lt;p>每5个0后面加1个1.&lt;/p>
-&lt;h4 id="14帧同步">1.4帧同步&lt;/h4>
-&lt;p>在二进制比特流中，&lt;strong>确定帧的开始和结束位置&lt;/strong>。&lt;/p>
-&lt;h4 id="15透明传输">1.5透明传输&lt;/h4>
-&lt;p>不管什么样的比特流都能在链路上传输。&lt;/p>
-&lt;h4 id="16差错控制">1.6差错控制&lt;/h4>
-&lt;p>确认发送的数据帧是否被&lt;strong>正确&lt;/strong>接受。&lt;/p>
-&lt;ul>
-&lt;li>检错编码
-&lt;ul>
-&lt;li>奇偶校验法&lt;/li>
-&lt;li>循环冗余码CRC&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>纠错编码
-&lt;ul>
-&lt;li>海明码&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h4 id="17流量控制">1.7流量控制&lt;/h4>
-&lt;p>由接收方控制发送方的流量。&lt;/p>
-&lt;h5 id="171停等流量控制">1.7.1停等流量控制&lt;/h5>
-&lt;p>与可靠传输中一致&lt;/p>
-&lt;h5 id="172滑动窗口流量控制">1.7.2滑动窗口流量控制&lt;/h5>
-&lt;h4 id="18可靠传输">1.8可靠传输&lt;/h4>
-&lt;p>ARQ法 : Automatic Repeat reQuest 重传出错的帧.&lt;/p>
-&lt;p>本质上是使用&lt;strong>确认&lt;/strong>机制和&lt;strong>超时重传&lt;/strong>机制&lt;/p>
-&lt;p>ARQ分为&lt;/p>
-&lt;h5 id="181停等协议">1.8.1停等协议&lt;/h5>
-&lt;p>发送方发送一个帧之后,必须要等待对方确认后才可以发送下一个帧.&lt;/p>
-&lt;p>若等待时间超过规定时间,则发送方超时,重传原始帧.&lt;/p>
-&lt;h5 id="182gbn-后退n帧协议">1.8.2GBN 后退N帧协议&lt;/h5>
-&lt;ul>
-&lt;li>发送方发送完一个帧后,可以继续再发送若干帧. 发送方若收到确认帧,则可以继续发送.&lt;/li>
-&lt;li>对于每一个帧,发送方判断超时时,重传该帧即之后的所有帧(&lt;strong>包括被确认的帧&lt;/strong>).&lt;/li>
-&lt;li>接收方发现某个帧出错, 则&lt;strong>丢弃该帧和后续所有帧&lt;/strong>( &lt;strong>不返回否定帧&lt;/strong> ).&lt;/li>
-&lt;/ul>
-&lt;h5 id="183sr选择重传机制">1.8.3SR选择重传机制&lt;/h5>
-&lt;p>发送方只重传 &lt;strong>超时&lt;/strong> 或 &lt;strong>被出错(返回否定)&lt;/strong> 的帧.&lt;/p>
-&lt;p>接收方应当&lt;strong>加大接收窗口&lt;/strong> 来 接收&lt;strong>不连续但是未出现差错&lt;/strong>的帧,等重新收到出错帧的重传帧后⼀并提交给主机。&lt;/p>
-&lt;h4 id="19介质访问控制-局域网">1.9介质访问控制 局域网&lt;/h4>
-&lt;p>应用在&lt;strong>广播信道&lt;/strong>当中.&lt;/p>
-&lt;p>介质访问控制：使得 &lt;strong>使用信道的结点&lt;/strong> 隔离 &lt;strong>其他结点发送的信号&lt;/strong>,以协调活动结点的传输,&lt;/p>
-&lt;p>&lt;strong>介质访问控制协议处于MAC&lt;/strong>层。&lt;/p>
-&lt;h5 id="191信道划分">1.9.1信道划分&lt;/h5>
-&lt;p>通过&lt;strong>多路复用技术&lt;/strong>,把多个信号组合传入同一个物理信道.&lt;/p>
-&lt;ul>
-&lt;li>FDM 频分多路复用 将物理信道&lt;strong>根据频率&lt;/strong>划分 成 多个子信道,&lt;strong>每个子信道&lt;/strong>传输一种信号.&lt;/li>
-&lt;li>TDM 时分多路复用 将物理信道 按照时间划分成若干时间片, 不同信号轮流使用.&lt;/li>
-&lt;li>STDM 统计时分多路复用 在TDM的基础上,通过按实际需要来分配时间片.&lt;/li>
-&lt;li>WDM 波分多路复用 光的频分多路复用&lt;/li>
-&lt;li>CDM 码分多路复用 各个信号不同编码,既&lt;strong>共享信道频率又共享时间&lt;/strong>.
-&lt;ul>
-&lt;li>CDMA 码分多址&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h5 id="192随机访问">1.9.2随机访问&lt;/h5>
-&lt;p>通过&lt;strong>检测冲突&lt;/strong>的方法来实现介质访问控制.&lt;/p>
-&lt;ul>
-&lt;li>纯ALOHA协议 ：不检测直接发送,&lt;strong>若超时&lt;/strong>则随机时间重发.&lt;/li>
-&lt;li>时隙ALOHA协议： 不检测直接发送,&lt;strong>若超时&lt;/strong>则固定时隙重发.&lt;/li>
-&lt;li>CSMA协议 ：载波监听多点接入
-&lt;ul>
-&lt;li>1-坚持CSMA, 闲则发送,忙则继续监听&lt;/li>
-&lt;li>p-坚持CSMA, &lt;strong>闲&lt;/strong>则以&lt;strong>p的概率发送&lt;/strong>, 1-p的概率等待下一个时隙,忙则&lt;strong>等待随机时间&lt;/strong> &lt;strong>监听&lt;/strong>&lt;/li>
-&lt;li>非坚持CSMA, 闲则发送,忙则&lt;strong>等待随机时间&lt;/strong>重新监听.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>CSMA/CD 带碰撞检测的 CSMA
-&lt;ul>
-&lt;li>先听后发
-&lt;ul>
-&lt;li>发送前一直在监听,闲则发送.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>边听边发
-&lt;ul>
-&lt;li>发送的时候监听&lt;strong>是否有冲突&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>冲突停发
-&lt;ul>
-&lt;li>有冲突则停止发送.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>随机重发
-&lt;ul>
-&lt;li>停止发送后,随机一段时间重发&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>CSMA/CA (用于&lt;strong>无线网&lt;/strong>) Collision Avoidance
-&lt;ul>
-&lt;li>无线网进行碰撞检测的难度大,则将CSMA/CD的&lt;strong>碰撞检测&lt;/strong>改为了&lt;strong>碰撞避免&lt;/strong>.&lt;/li>
-&lt;li>发送数据时⼴播告知其他节点，让其他节点在某段时间内不要发送数据。利⽤ACK信号，对信道进⾏预约，以免出现碰撞。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h5 id="193轮询访问">1.9.3轮询访问&lt;/h5>
-&lt;p>适用于环型总线.&lt;/p>
-&lt;p>令牌传递协议:在环形⽹络中，只有得到令牌的主机才能够发送数据。&lt;/p>
-&lt;p>FDDI环(光纤分布式数据接口): 令牌环形网络的一种。&lt;/p>
-&lt;h3 id="2使用的协议">2.使用的协议&lt;/h3>
-&lt;p>&lt;strong>WAN(广域网)&lt;/strong>:覆盖范围很广的&lt;strong>长距离网络&lt;/strong>，由具有&lt;strong>存储转发功能的结点交换机&lt;/strong>和&lt;strong>连接链路&lt;/strong>组成。采用&lt;strong>交换&lt;/strong>技术。&lt;/p>
-&lt;p>&lt;strong>LAN(局域网)&lt;/strong>:某一较&lt;strong>小区域内&lt;/strong>由多台计算机相互连成的计算机网络。采用&lt;strong>广播&lt;/strong>技术。&lt;/p>
-&lt;h4 id="21-广域网的协议使用点对点信道">2.1 广域网的协议（使用点对点信道）&lt;/h4>
-&lt;p>&lt;strong>PPP Point To Point Protocol 点对点协议&lt;/strong>：&lt;/p>
-&lt;p>面向&lt;strong>字节&lt;/strong>的数据链路层协议，应用于&lt;strong>直接连接在两个节点的链路&lt;/strong>上，通过&lt;strong>拨号&lt;/strong>或者&lt;strong>专线&lt;/strong>方式，&lt;strong>建立点对点连接&lt;/strong>发送数据。&lt;/p>
-&lt;p>&lt;strong>HDLC High-Level Data Link Control 高级数据链路控制协议&lt;/strong>&lt;/p>
-&lt;p>面向&lt;strong>比特&lt;/strong>的数据链路层协议。提供了&lt;strong>编号&lt;/strong>和&lt;strong>确认&lt;/strong>机制，能够提供&lt;strong>可靠传输&lt;/strong>。&lt;/p>
-&lt;p>PPP&lt;strong>协议特点&lt;/strong>：&lt;/p>
-&lt;p>&lt;strong>简单&lt;/strong>——这是首要的要求&lt;/p>
-&lt;p>&lt;strong>不进行&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>纠错&lt;/li>
-&lt;li>流量控制&lt;/li>
-&lt;li>半双工或单工链路&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>三个组成部分&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>封装：一种封装多协议数据报的方法。PPP 封装提供了不同网络层协议同时在&lt;strong>同一链路传输的多路复用技术&lt;/strong>。&lt;/li>
-&lt;li>&lt;strong>LCP&lt;/strong>链路控制协议 LCP (Link Control Protocol)&lt;/li>
-&lt;li>&lt;strong>NCP&lt;/strong>网络控制协议 NCP (Network Control Protocol)&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>IPCP(网际协议控制协议)&lt;/strong>：用于&lt;strong>建立、配置&lt;/strong>和&lt;strong>检测&lt;/strong>数据链路连接的连接控制协议&lt;strong>LCP&lt;/strong> 以及 用于&lt;strong>建立和&lt;/strong>
-&lt;strong>配置&lt;/strong>不同网络层协议的网络控制协议&lt;strong>NCP协议簇&lt;/strong>。&lt;/p>
-&lt;h5 id="322-ppp-协议的帧格式">3.2.2 PPP 协议的帧格式&lt;/h5>
-&lt;p>PPP 是面向字节的，所有的 PPP 帧的长度都是整数字节。&lt;/p>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-26-17.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;p>&lt;strong>首部&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>标志字段&lt;/strong> F = 0x7E （符号“0x”表示后面的字符是用十六进制表示。十六进制的 7E 的二进制表示是 01111110） &lt;strong>标记首尾&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>地址字段&lt;/strong> A 只置为 0xFF。地址字段实际上并不起作用&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>控制字段&lt;/strong> C 通常置为 0x03&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>首部有5字节，尾部3字节&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>尾部&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>FCS：帧检验序列，一般由CRC得出但不是唯一方法
-&lt;ul>
-&lt;li>使用FCS表示使用了 &lt;strong>无差错接受&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>标志字段&lt;/strong> F=7E &lt;strong>标记首尾&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>透明传输&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>同步传输时 采用硬件来完成比特填充（和 HDLC 的做法一样）&lt;/li>
-&lt;li>异步传输时 &lt;strong>特殊的字符填充法&lt;/strong>，当&lt;strong>信息字段中&lt;/strong>出现：
-&lt;ul>
-&lt;li>7E标志字段 转成 5E&lt;/li>
-&lt;li>7D转义标记 转成 5D&lt;/li>
-&lt;li>ASCII码字符（小于0x20的） 前面加入7D并改变编码&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>PPP 不提供序号&lt;/strong> 和 &lt;strong>确认的可靠传输&lt;/strong>的原因：&lt;/p>
-&lt;ul>
-&lt;li>PPP 的信息字段放入的数据是 IP 数据报。&lt;strong>数据链路层&lt;/strong>的&lt;strong>可靠传输&lt;/strong>并&lt;strong>不能保证网络层的传输&lt;/strong>也是&lt;strong>可靠&lt;/strong>的&lt;/li>
-&lt;li>&lt;strong>帧检验序列 FCS&lt;/strong> 字段可&lt;strong>保证无差错接受&lt;/strong>&lt;/li>
-&lt;li>数据链路层出现差错的概率不大时，使用比较&lt;strong>简单&lt;/strong>的 PPP 协议较为合理。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>PPP 协议的工作状态&lt;/strong>：&lt;/p>
-&lt;ol>
-&lt;li>
-&lt;p>当&lt;strong>用户拨号接入 ISP&lt;/strong> 时，&lt;strong>路由器&lt;/strong>的调制解调器对拨号&lt;strong>做出确认&lt;/strong>，并&lt;strong>建立&lt;/strong>一条&lt;strong>物理连接&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>PC 机&lt;/strong> 向 &lt;strong>路由器发送&lt;/strong>一系列的 &lt;strong>LCP 分组&lt;/strong>（封装成多个 PPP 帧）。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>这些分组及其响应选择一些 &lt;strong>PPP 参数&lt;/strong>，和进行&lt;strong>网络层配置&lt;/strong>。&lt;strong>NCP&lt;/strong> 给新接入的 PC机&lt;strong>分配&lt;/strong>一个&lt;strong>临时的 IP 地址&lt;/strong>，使 &lt;strong>PC 机&lt;/strong>成为&lt;strong>因特网上的一个主机&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>通信完毕&lt;/strong>时，&lt;strong>NCP&lt;/strong> 释放&lt;strong>网络层连接&lt;/strong>，&lt;strong>收回&lt;/strong>原来分配出去的 &lt;strong>IP&lt;/strong> 地址。接着，&lt;strong>LCP&lt;/strong>释放&lt;strong>数据链路层连接&lt;/strong>。&lt;strong>最后释放&lt;/strong>的是&lt;strong>物理层连接&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;/ol>
-&lt;h4 id="22以太网协议使用广播信道">2.2以太网协议（使用广播信道）&lt;/h4>
-&lt;p>&lt;strong>局域网的特点&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>范围有限，站点有限&lt;/li>
-&lt;li>方便广播&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>局域网的规约&lt;/strong>&lt;/p>
-&lt;p>IEEE 802.3标准 —— &lt;strong>以太网&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>以太网分层&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>LLC 逻辑链路控制&lt;/strong> LLC (Logical Link Control)子层&lt;/p>
-&lt;ul>
-&lt;li>1.建⽴和释放数据链路层的&lt;strong>逻辑连接&lt;/strong>。2.提供与⽹络层的&lt;strong>接口&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>MAC 媒体接入控制&lt;/strong> MAC (Medium Access Control)子层。&lt;/p>
-&lt;ul>
-&lt;li>负责控制与&lt;strong>连接物理层的物理介质&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>适配器&lt;/strong>：&lt;/p>
-&lt;p>又称 通信适配器adapter 、&lt;strong>网络接口卡 NIC&lt;/strong> Network Interface Card 、&lt;strong>网卡&lt;/strong>&lt;/p>
-&lt;p>功能就是&lt;/p>
-&lt;ul>
-&lt;li>串行/并行转换&lt;/li>
-&lt;li>实现以太网协议&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>使用集线器的星形拓扑:&lt;/strong>&lt;/p>
-&lt;p>星形拓扑的中心是 集线器 hub&lt;/p>
-&lt;p>使用集线器的以太网&lt;strong>在逻辑上仍是一个总线网&lt;/strong>，各工作站使用的还是 CSMA/CD 协议，并共享逻辑上的总线。&lt;/p>
-&lt;p>&lt;strong>MAC地址&lt;/strong>&lt;/p>
-&lt;p>适配器从网络上每收到一个 MAC 帧就首先用硬件检查 MAC 帧中的 MAC 地址.&lt;/p>
-&lt;ul>
-&lt;li>如果是发往本站的帧则收下，然后再进行其他的处理。&lt;/li>
-&lt;li>否则就将此帧丢弃，不再进行其他的处理。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>MAC帧格式&lt;/strong>&lt;/p>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/image-20221027211935439.png" alt="image-20221027211935439" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;p>&lt;strong>类型字段&lt;/strong> 标志&lt;strong>上一层&lt;/strong>使用的协议&lt;/p>
-&lt;p>首部 14字节 尾部 4字节。&lt;/p>
-&lt;p>数据最少是 64-18 = 46字节.少于64时，数据字段后面加入整数字节填充。&lt;/p>
-&lt;p>在&lt;strong>MAC帧前面&lt;/strong>会加入用于&lt;strong>比特同步的8字节&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>无效的MAC帧&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>数据字段的长度与长度字段的值不一致；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>帧的长度不是整数个字节；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>用收到的帧检验序列 FCS 查出有差错；&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>数据字段的长度不在 46 ~ 1500 字节之间。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>有效的 MAC 帧长度为 64 ~ 1518 字节之间。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>对于检查出的无效 MAC 帧就简单地丢弃。以太网不负责重传丢弃的帧。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>以太网重要特性&lt;/strong>：&lt;/p>
-&lt;p>使用 CSMA/CD 协议的以太网&lt;strong>不能进行全双工通信&lt;/strong>而&lt;strong>只能进行双向交替通信（半双工通信）&lt;/strong>。&lt;/p>
-&lt;p>发送的不确定性使整个以太网的平均通信量远小于以太网的最高数据率。&lt;/p>
-&lt;h3 id="3设备及其特点">3.设备及其特点&lt;/h3>
-&lt;h4 id="31网桥">3.1网桥&lt;/h4>
-&lt;p>&lt;strong>用于连接多个以太网(局域网)&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>透明网桥&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>(选择的&lt;strong>不是最佳路由&lt;/strong>):按照自学习算法填写转发表，按转发表转发。&lt;/li>
-&lt;li>&lt;strong>工作原理&lt;/strong>
-&lt;ul>
-&lt;li>维护转发表：收到一个帧时，先将它的&lt;strong>源地址记录&lt;/strong>下来自学习。&lt;/li>
-&lt;li>拿目的地址比较转发表，如果找到对应项，直接往对应项记录的接口发送该帧。&lt;/li>
-&lt;li>否则，向出来接口X外的&lt;strong>其他接口广播&lt;/strong>该帧。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>STP(生成树协议)&lt;/strong>：
-&lt;ul>
-&lt;li>该协议应用于在&lt;strong>网络中建立树形拓扑&lt;/strong>，&lt;strong>消除&lt;/strong>网络中的&lt;strong>环路&lt;/strong>，&lt;strong>避免&lt;/strong>由于环路存在而造成的&lt;strong>广播风暴&lt;/strong>问题。&lt;/li>
-&lt;li>即&lt;strong>互连在一起的网桥在进行彼此通信后，就能找出原来的网络拓扑的一个子集&lt;/strong>。在这个子集里，整个连通的网络中不存在回路，即在任何两个站之间只有一条路径。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>所谓&lt;strong>自学习建立转发表&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;ol>
-&lt;li>MAC地址为A的设备A，发出的帧从接口X进入网桥。&lt;/li>
-&lt;li>根据反向操作，网桥知道一定能从接口X发送帧给A设备。&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>源路由网桥&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>(选择的是最佳路路由): 先发送 &lt;strong>发现帧&lt;/strong>，按返回结果转发。&lt;/li>
-&lt;li>&lt;strong>工作原理&lt;/strong>
-&lt;ul>
-&lt;li>源站以广播的方式发送发现帧，每个&lt;strong>发现帧记录所经过的所有路由&lt;/strong>。&lt;/li>
-&lt;li>发现帧到达目的后，返回源站。&lt;/li>
-&lt;li>源站从这些发现帧中选择最佳路由。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h4 id="32交换机">3.2交换机&lt;/h4>
-&lt;p>&lt;strong>交换式集线器&lt;/strong>常称为&lt;strong>以太网交换机(switch)&lt;strong>或&lt;/strong>第二层交换机&lt;/strong>.&lt;/p>
-&lt;p>以太网交换机:有十几个接口,实质上就是一个多接口的网桥。&lt;/p>
-&lt;p>以太网交换机的&lt;strong>每个接口都直接与主机相连&lt;/strong>，并且一般都工作在&lt;strong>全双工&lt;/strong>方式。&lt;/p>
-&lt;p>每个用户在通信时是独占传输媒体的带宽，对于拥有 &lt;em>N&lt;/em> 对接口的交换机的总容量为 &lt;em>N&lt;/em>´10 Mb/s。这正是交换机的最大优点。&lt;/p>
-&lt;p>&lt;strong>工作原理与透明网桥一致&lt;/strong>&lt;/p>
-&lt;p>可用来实现VLAN&lt;/p>
-&lt;p>&lt;strong>VLAN(虚拟局域网)&lt;/strong>: 网络中的站点&lt;strong>不拘泥于所处的物理位置&lt;/strong>，而可以根据需要灵活地加入不同的逻辑子网中的一种网络技术。&lt;/p>
-&lt;h4 id="33特点">3.3特点&lt;/h4>
-&lt;ul>
-&lt;li>数据链路层设备&lt;strong>能够隔离冲突域&lt;/strong>但&lt;strong>不能隔离广播域&lt;/strong>。&lt;/li>
-&lt;li>都&lt;strong>按MAC地址转发&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h2 id="4网络层">4.网络层&lt;/h2>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e7%bd%91%e7%bb%9c%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;p>&lt;strong>网络层提供的两种服务&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>面向有连接的虚电路服务&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>面向无连接的数据报服务&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>对比的方面&lt;/th>
-&lt;th>虚电路服务&lt;/th>
-&lt;th>数据报服务&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>思路&lt;/td>
-&lt;td>可靠通信应当由网络来保证&lt;/td>
-&lt;td>可靠通信应当由用户主机来保证&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>连接的建立&lt;/td>
-&lt;td>必须有&lt;/td>
-&lt;td>不需要&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>终点地址&lt;/td>
-&lt;td>仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
-&lt;td>每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>分组的转发&lt;/td>
-&lt;td>属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
-&lt;td>每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>当结点出故障时&lt;/td>
-&lt;td>所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
-&lt;td>出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>分组的顺序&lt;/td>
-&lt;td>总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
-&lt;td>到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>端到端的差错处理和流量控制&lt;/td>
-&lt;td>可以由网络负责，也可以由用户主机负责&lt;/td>
-&lt;td>由用户主机负责&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;strong>传统分类地址&lt;/strong>：&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>类别&lt;/th>
-&lt;th>网络号&lt;/th>
-&lt;th>主机号&lt;/th>
-&lt;th>第一个网络号&lt;/th>
-&lt;th>最后一个网络号&lt;/th>
-&lt;th>每个网络最大主机数&lt;/th>
-&lt;th>内网地址&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>A&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>126&lt;/td>
-&lt;td>16777214&lt;/td>
-&lt;td>10.0.0.0 到 10.255.255.255&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>B&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>128.1&lt;/td>
-&lt;td>191.255&lt;/td>
-&lt;td>65534&lt;/td>
-&lt;td>172.16.0.0 到 172.31.255.255&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>C&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>192.0.1&lt;/td>
-&lt;td>223.255.255&lt;/td>
-&lt;td>254&lt;/td>
-&lt;td>192.168.0.0 到 192.168.255.255&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>D&lt;/td>
-&lt;td>&lt;strong>组播地址&lt;/strong>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>224.0.0.0&lt;/td>
-&lt;td>239.255.255.255&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>E&lt;/td>
-&lt;td>保留&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;strong>特殊地址&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>广播地址&lt;/strong>：除网络号外全为1&lt;/li>
-&lt;li>127.0.0.1：本地保留地址&lt;/li>
-&lt;li>&lt;strong>0.0.0.0&lt;/strong>：设置了缺省网关时的缺省路由&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>内网地址&lt;/strong>：&lt;/p>
-&lt;p>RFC 1918 指明的专用地址(private address)（内网地址）&lt;/p>
-&lt;p>10.0.0.0 到 10.255.255.255&lt;/p>
-&lt;p>172.16.0.0 到 172.31.255.255&lt;/p>
-&lt;p>192.168.0.0 到 192.168.255.255&lt;/p>
-&lt;h3 id="41-路由协议igp-rip-ospf-bgp">4.1 路由协议(IGP RIP OSPF, BGP)&lt;/h3>
-&lt;p>&lt;strong>静态路由与动态路由&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>静态路由&lt;/strong>：非自适应路由，指由网络管理员&lt;strong>手工配置的路由&lt;/strong>信息。&lt;strong>简单开销小&lt;/strong>，但&lt;strong>不能及时适应&lt;/strong>网络变化。&lt;/li>
-&lt;li>&lt;strong>动态路由&lt;/strong>：自适应路由选择，&lt;strong>通过路由交换的信息&lt;/strong>来构造路由表。&lt;strong>复杂开销大，能适应&lt;/strong>变化。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>自治系统 AS&lt;/strong>
-(Autonomous System) ：&lt;/p>
-&lt;p>一个 AS 对其他 AS 表现出的是一个**单一的 **和 &lt;strong>一致的路由选择策略&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>IGP与EGP&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>内部网关协议 &lt;strong>IGP&lt;/strong> (Interior Gateway Protocol) 即在&lt;strong>一个自治系统内部使用的路由选择&lt;/strong>协议。目前这类路由选择协议使用得最多，如 &lt;strong>RIP 和 OSPF&lt;/strong> 协议。&lt;/li>
-&lt;li>外部网关协议&lt;strong>EGP&lt;/strong> (External Gateway Protocol) 在自治系统之间使用的。在外部网关协议中目前使用最多的是 &lt;strong>BGP&lt;/strong>-4。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>DV 距离向量 / DVP(Distance Vector Protocol) 距离矢量协议&lt;/strong> ：所有结点都&lt;strong>定期&lt;/strong>地将他们整个&lt;strong>路由表传送给&lt;/strong>所有与之直接&lt;strong>相邻的结点&lt;/strong>。RIP IGRP.&lt;/p>
-&lt;p>&lt;strong>LS 链路状态 / LSP(Link State Protocol) 链路状态协议&lt;/strong>： 主动测试&lt;strong>所有邻接结点的状态&lt;/strong>并定期将链路状态传播&lt;strong>给所有其他结点&lt;/strong>。OSPF&lt;/p>
-&lt;p>&lt;strong>IGRP（Interior Gateway Routing Protocol）与 EIGRP 增强:&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>Cisco 专用协议，以延迟，带宽，负载，可靠性为度量标准
-最大跳数：255 每 90 秒更新&lt;/li>
-&lt;/ul>
-&lt;p>**RIP **:&lt;/p>
-&lt;ul>
-&lt;li>基于&lt;strong>距离向量&lt;/strong>的路由选择协议（Bellman-Ford）
-&lt;ul>
-&lt;li>每个路由器维护从自己到其他网络的&lt;strong>跳数&lt;/strong>。&lt;/li>
-&lt;li>使用&lt;strong>UDP&lt;/strong>,按固定的时间间隔(30s) 和 相邻路由器 交换 自己的路由表,并维护自己的路由表。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>在带宽、配置和管理方面要求低，适合于规模较小的网络中&lt;/li>
-&lt;li>&lt;strong>好消息传播得快，而坏消息传播得慢&lt;/strong>。网络出故障的传播时间往往需要较长的时间(例如数分钟)。这是 RIP 的一个主要缺点。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>RIP工作原理&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>收到&lt;/strong>相邻路由器X的&lt;strong>RIP报文&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>修改RIP报文&lt;/strong>,把所有项目的下一跳字段改成X,距离++.&lt;/li>
-&lt;li>对于&lt;strong>每个项目&lt;/strong>
-&lt;ul>
-&lt;li>路由表中无该项目的&lt;strong>目的地址&lt;/strong>, 加入到路由表中.&lt;/li>
-&lt;li>否则, 路由表已有的下一跳是X,直接替换.&lt;/li>
-&lt;li>否则, 项目中的距离更小,直接替换.&lt;/li>
-&lt;li>否则,啥都不做.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>检测相邻路由器心跳&lt;/strong>:3分钟没有收到相邻路由器传报文,将与它的距离置为16(不可达)&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>OSPF&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>是&lt;strong>分布式的链路状态&lt;/strong>协议。
-&lt;ul>
-&lt;li>只有当链路状态&lt;strong>发生变化&lt;/strong>时，路由器&lt;strong>直接用 IP 数据报&lt;/strong>用&lt;strong>洪泛法&lt;/strong>向&lt;strong>所有路由器&lt;/strong>发送 &lt;strong>与自己的相邻路由器的链路状态LSA（依据LSA而不是Hello）&lt;/strong>.
-&lt;ul>
-&lt;li>“链路状态” 就是说明本路由器都和哪些路由器相邻，以及该链路的**“度量”**(metric)。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>Link - state database 链路状态数据库LSDB
-&lt;ul>
-&lt;li>全网的拓扑结构图.在全网范围内一致.&lt;/li>
-&lt;li>能够较快更新.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>OSPF工作原理&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>OSPF路由器相互发送 HELLO 报文，&lt;strong>建立邻居&lt;/strong>关系&lt;/li>
-&lt;li>&lt;strong>邻居&lt;/strong>路由器之间相互&lt;strong>通告自身的链路状态信息(LSA)&lt;/strong>;&lt;/li>
-&lt;li>&lt;strong>经过&lt;/strong>一段时间的 &lt;strong>LSA 泛洪&lt;/strong>后所有路由器&lt;strong>形成统一的 LSDB&lt;/strong>&lt;/li>
-&lt;li>路由器根据 SPF最短路 算法，以⾃⼰为根&lt;strong>计算最短⽣成树&lt;/strong>，&lt;strong>形成路由转发信息&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>BGP&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Border Gateway Protocol 边界网关协议,属于&lt;strong>EGP&lt;/strong>&lt;/p>
-&lt;p>BGP 是不同自治系统的路由器之间交换路由信息的协议。&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>边界网关协议 BGP 只能是力求寻找一条&lt;strong>能够到达目的网络且比较好&lt;/strong>的路由（不能兜圈子），而&lt;strong>并非要寻找一条最佳路由&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>BGP 协议交换路由信息的结点数量级是&lt;strong>自治系统数的量级&lt;/strong>，这要比这些自治系统中的网络数少很多。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>BGP &lt;strong>支持 CIDR&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>BGP工作原理&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>每个自治系统至少有一个路由器作为BGP发言人。&lt;/li>
-&lt;li>不同自治系统的
-BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统之间的路由信息。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>“转发”和“路由选择”的区别&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>“转发”(forwarding)就是&lt;strong>路由器根据转发表&lt;/strong>将用户的 &lt;strong>IP 数据报从合适的端口转发&lt;/strong>出去。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>“路由选择”(routing)则是按照&lt;strong>分布式算法&lt;/strong>，根据&lt;strong>从各相邻路由器得到的关于网络拓扑的变化&lt;/strong> 情况，动态地&lt;strong>改变所选择的路由&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>路由表&lt;/strong>是根据&lt;strong>路由选择算法&lt;/strong>得出的。而&lt;strong>转发表是从路由表得出&lt;/strong>的。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>ACL&lt;/strong>: 访问控制列表Access Control Lists
-一些告诉路由哪些包该拒绝哪些包能通过的序列集。可以根据源地址，目的地址，链路协议来决定。如果包没有在ACL找到相应的条目，则会被丢弃。&lt;/p>
-&lt;h3 id="42-ip多播组播igmpnat">4.2 IP多播/组播(IGMP,NAT)&lt;/h3>
-&lt;p>&lt;strong>多播/组播&lt;/strong>: 主机之间 &lt;strong>一对一组&lt;/strong>的通讯模式，同组的主机可接收此组内所有数据. 发送者只需要发送一次, &lt;strong>组播路由器&lt;/strong>只向有需求者复制并转发其所需数据。&lt;/p>
-&lt;p>&lt;strong>组播地址&lt;/strong>: 使用D类地址 224.0.0.0 ~ 239.255.255.255.每个D类地址标识一个组.&lt;/p>
-&lt;p>&lt;strong>IGMP&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>网际组管理协议 IGMP&lt;/strong> (Internet Group Management Protocol&lt;/li>
-&lt;li>&lt;strong>IGMP 使用 IP 数据报传递其报文&lt;/strong>，不把 IGMP 看成是一个单独的协议，而是属于&lt;strong>整个网际协议 IP 的一个组成部分&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>不是&lt;/strong>对所有组播成员管理的协议&lt;/li>
-&lt;li>不知道成员数和成员分布情况&lt;/li>
-&lt;li>让连接在本地局域网的&lt;strong>组播路由器&lt;/strong>知道是否有&lt;strong>主机加入/退出多播组&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>IGMP工作原理&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>主机的加入&lt;/strong>
-&lt;ul>
-&lt;li>想加入的主机,向&lt;strong>对应组播组的组播地址&lt;/strong>发送IGMP.&lt;/li>
-&lt;li>&lt;strong>本地组播路由器&lt;/strong>收到后,将&lt;strong>该组成员关系&lt;/strong>发送给&lt;strong>因特网&lt;/strong>上的&lt;strong>其他组播路由器&lt;/strong>.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>探询主机&lt;/strong>
-&lt;ul>
-&lt;li>本地&lt;strong>组播路由器周期性探询&lt;/strong>本地主机.主机收到后响应.&lt;/li>
-&lt;li>如有一个组经过几次探询都没有主机响应,则不再转发该组成员关系.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>VPN&lt;/strong>: 基于TCP/IP的虚拟专用网,分为内联网和外联网,使用&lt;strong>内网地址&lt;/strong>.&lt;/p>
-&lt;p>&lt;strong>NAT&lt;/strong>:Network Address Translation 网络地址转换:实现&lt;strong>专用网络地址和公用网络地址&lt;/strong>之间的转化。当私有网和公网主机通信的私有IP经过NAT时，&lt;strong>将IP包中的私有IP与NAT的公有IP进行转换&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>NAT&lt;/strong> 软件 ：需要在&lt;strong>专用网连接到因特网&lt;/strong>的&lt;strong>路由器&lt;/strong>上安装 &lt;strong>NAT&lt;/strong> 软件&lt;/p>
-&lt;p>&lt;strong>NAT路由器&lt;/strong>：装有 NAT 软件的路由器叫做 NAT路由器，它至少有一个有效的外部全球地址 IP&lt;em>G&lt;/em>。&lt;/p>
-&lt;p>&lt;strong>PAT/NAPT(端口地址转换)&lt;/strong>:将本地网上的多个设备映射到一个单一的公共ip地址。&lt;/p>
-&lt;h3 id="43-网际协议-ip">4.3 网际协议 IP&lt;/h3>
-&lt;p>TCP/IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。&lt;/p>
-&lt;p>&lt;strong>三种IP地址的编址方法&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>分类&lt;/strong>的 IP 地址（二级IP地址）。这是最基本的编址方法，&lt;/li>
-&lt;li>&lt;strong>子网&lt;/strong>的划分（三级IP地址）。这是对最基本的编址方法的改进，&lt;/li>
-&lt;li>构成&lt;strong>超网&lt;/strong>。这是比较新的&lt;strong>无分类编址 CIDR&lt;/strong>方法。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>传统分类方法&lt;/strong>：&lt;/p>
-&lt;table>
-&lt;thead>
-&lt;tr>
-&lt;th>类别&lt;/th>
-&lt;th>网络号&lt;/th>
-&lt;th>主机号&lt;/th>
-&lt;th>第一个网络号&lt;/th>
-&lt;th>最后一个网络号&lt;/th>
-&lt;th>每个网络最大主机数&lt;/th>
-&lt;/tr>
-&lt;/thead>
-&lt;tbody>
-&lt;tr>
-&lt;td>A&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>126&lt;/td>
-&lt;td>16777214&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>B&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>128.1&lt;/td>
-&lt;td>191.255&lt;/td>
-&lt;td>65534&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>C&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>192.0.1&lt;/td>
-&lt;td>223.255.255&lt;/td>
-&lt;td>254&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>D&lt;/td>
-&lt;td>组播地址&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>224.0.0.0&lt;/td>
-&lt;td>239.255.255.255&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;tr>
-&lt;td>E&lt;/td>
-&lt;td>保留&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;/tr>
-&lt;/tbody>
-&lt;/table>
-&lt;p>&lt;strong>划分子网方法&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>IP 地址中增加了一个 “&lt;strong>子网号&lt;/strong>字段”，使两级的 IP 地址变成为&lt;strong>三级&lt;/strong>的 IP 地址。划分子网已成为因特网的正式标准协议。&lt;/li>
-&lt;li>ABC类地址的&lt;strong>默认子网掩码&lt;/strong>就是对应网络号的位数。&lt;/li>
-&lt;li>255.0.0.0 / 255.255.0.0 / 255.255.255.0&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>子网掩码&lt;/strong>: 通过&lt;strong>与IP地址进行与操作&lt;/strong>，将IP地址划分成网络地址和主机地址两个部分。&lt;/p>
-&lt;p>&lt;strong>划分子网的匹配方法&lt;/strong>: 将IP地址 与 该网络的子网掩码相与得到网络号,判断是否匹配.(不能得出唯一网络地址)&lt;/p>
-&lt;p>&lt;strong>无分类编址CIDR&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>CIDR Classless Inter-Domain Routing &lt;strong>无分类域间路由选择&lt;/strong>：使用&lt;strong>各种长度的网络前缀&lt;/strong>来代替分类地址中的&lt;strong>网络号和子网号&lt;/strong>的一种子网划分方式。&lt;/li>
-&lt;li>格式：网络前缀 + 主机号。从三级地址回到两级地址。&lt;/li>
-&lt;li>CIDR记法 128.14.32.0/20. 20表示的是网络前缀位数。主机号位数 = 32 - 网络前缀位数&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>VLSM (Variable Length Subnet Mask) 变长子网掩码&lt;/strong>：在一个划分子网的网络中可同时使用几个不同的子网掩码。CIDR是在VLSM基础上研究出的。&lt;/p>
-&lt;p>&lt;strong>路由聚合(构成超网)&lt;/strong>: CIDR 地址块可以表示很多地址，这种地址的聚合常称为&lt;strong>路由聚合&lt;/strong>，它使得&lt;strong>路由表中的一个项目&lt;/strong>可以表示&lt;strong>很多个（例如上千个）&lt;strong>原来&lt;/strong>传统分类地址&lt;/strong>的&lt;strong>路由&lt;/strong>。&lt;/p>
-&lt;ul>
-&lt;li>缩短路由表尺寸&lt;/li>
-&lt;li>支持不连续子网&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>超网&lt;/strong>：前缀长度&lt;strong>不超过 23&lt;/strong> 位的 CIDR 地址块都包含了多个 C 类地址。&lt;strong>这些 C 类地址合起来&lt;/strong>就构成了超网。&lt;/p>
-&lt;p>&lt;strong>特定主机路由&lt;/strong>：为&lt;strong>特定的目的主机&lt;/strong> &lt;strong>指明一个路由&lt;/strong>。采用特定主机路由可使网络管理人员能够更&lt;strong>方便地控制&lt;/strong>网络和&lt;strong>测试&lt;/strong>网络，同时也可在需要考虑某种安全问题时采用这种特定主机路由。&lt;/p>
-&lt;p>&lt;strong>默认路由&lt;/strong>：采用默认路由可以&lt;strong>减少路由表所占用的空间&lt;/strong>和&lt;strong>搜索路由表所用的时间&lt;/strong>。 当目的网络&lt;strong>不在路由表中&lt;/strong>就选择&lt;strong>默认路由&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>如何找下一跳路由器&lt;/strong>：路由器将IP送交&lt;strong>下层网络接口软件&lt;/strong>，&lt;strong>使用 ARP&lt;/strong> 负责将下一跳路由器的 IP 地址转换成硬件地址。硬件地址放在MAC帧首部，&lt;strong>根据硬件地址找到下一跳&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>分组转发算法工作原理&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>数据包首部提取主机IP地址D&lt;/li>
-&lt;li>判断能否&lt;strong>直接交付&lt;/strong>
-&lt;ul>
-&lt;li>传统分类: 直接提取网络地址N,网络N与路由器直接相连就直接交付.&lt;/li>
-&lt;li>划分子网: 将路由器相连的各网络进行匹配.匹配成功就直接交付.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>判断是否有&lt;strong>特定路由&lt;/strong>
-&lt;ul>
-&lt;li>都是通过判断是否有&lt;strong>目的地址为D&lt;/strong>的特定路由&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>在路由表中查找
-&lt;ul>
-&lt;li>传统分类:直接一一匹配.&lt;/li>
-&lt;li>划分子网:IP地址 与 每一个项目的子网掩码相与后匹配.&lt;/li>
-&lt;li>无分类编址: 使用&lt;strong>二叉线索树&lt;/strong>进行&lt;strong>最长前缀匹配&lt;/strong>.前缀越长,地址块越小,地址越具体.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>使用默认路由, 如没有&lt;/li>
-&lt;li>报告转发失败.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>路由环路&lt;/strong>:用户的数据包不停在网络上循环发送，始终到达不了目的地，严重浪费网络资源。&lt;/p>
-&lt;p>&lt;strong>路由环路解决方法&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>Defining a Maximum/定义最大跳数(一般为15)：&lt;strong>超过最大跳数&lt;/strong>则&lt;strong>抛弃报文&lt;/strong>。&lt;/li>
-&lt;li>路由毒害/Route Poisoning:当路由信息的跳数超过定义最大跳时，不是直接从路由表中删除该路由信息，而是&lt;strong>向相邻路由发送&lt;/strong>相关路由信息，&lt;strong>通知其他路由该路径失效&lt;/strong>。&lt;/li>
-&lt;li>Split Horizon/&lt;strong>水平分割&lt;/strong>:路由器从某个接口接收到的更新信息&lt;strong>不允许再从这个接口发回去&lt;/strong>。&lt;/li>
-&lt;li>Hold-Down-Timers/抑制计时器器:如果一条路由更新的跳数大于路由表已记录的该路由的跳数，&lt;strong>启动计时器&lt;/strong>，在计时器超时前，路由器不再接收关于这条路由的更新信息。&lt;/li>
-&lt;/ul>
-&lt;h3 id="44-arp-rarp-dhcp">4.4 ARP RARP DHCP&lt;/h3>
-&lt;p>&lt;strong>ARP&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>ARP 地址解析协议：源主机在向目标主机&lt;strong>发送IP包前&lt;/strong>，通过&lt;strong>广播ARP请求包&lt;/strong>，将&lt;strong>目标主机的IP地址映射为MAC地址&lt;/strong>。&lt;/li>
-&lt;li>每一个主机都设有一个ARP 高速缓存(ARP cache)，里面有所在的局域网上的各主机和路由器的 &lt;strong>IP 地址到硬件地址&lt;/strong>的映射表。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>ARP的四种典型使用情况&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>发送方是主机 / 路由器，要发送IP数据报到&lt;strong>本网络的另一个主机&lt;/strong>。
-&lt;ul>
-&lt;li>用ARP找目的主机的硬件地址&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>发送方是主机 / 路由器，发送IP数据报的另一个网络上。
-&lt;ul>
-&lt;li>用ARP找到本网络 &lt;strong>另一个路由器&lt;/strong>的硬件地址。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>ARP工作原理&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>源主机在向⽬标主机发送 IP 包前，如果源主机不知道⽬标主机的 MAC地址。&lt;/li>
-&lt;li>源主机&lt;strong>向以太网所有计算机广播&lt;/strong>一个填有⽬标主机IP的&lt;strong>ARP请求包&lt;/strong>。&lt;/li>
-&lt;li>&lt;strong>目标主机接收请求&lt;/strong>后，向源主机回复填充上了⽬标主机的 MAC
-地址&lt;strong>ARP 应答包&lt;/strong>。&lt;/li>
-&lt;li>源主机得到 &lt;strong>ARP 应答&lt;/strong>后，将⽬标主机的 MAC 地址存入本机ARP高速缓存，便于下次使用。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>RARP(反向地址转换协议)&lt;/strong>:用于将局域网中的某个主机的&lt;strong>物理地址转换为IP地址&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>RARP协议工作原理&lt;/strong>:&lt;/p>
-&lt;ol>
-&lt;li>源主机发送一个&lt;strong>声明自己的MAC地址&lt;/strong>的&lt;strong>请求分配IP地址&lt;/strong>的本地的RARP广播包。&lt;/li>
-&lt;li>本地网段上的&lt;strong>RARP服务器&lt;/strong>收到此请求后，检查其RARP列表，查找该MAC地址对应的IP地址；&lt;/li>
-&lt;li>如果存在，RARP服务器就给源主机发送一个包含此IP地址响应数据包；如果不存在，&lt;strong>RARP服务器对此不做任何的响应&lt;/strong>；&lt;/li>
-&lt;li>源主机如果收到从RARP服务器的响应信息，就利用得到的IP地址进行通讯；如果一直没有收到
-RARP服务器的响应信息，表示初始化失败。&lt;/li>
-&lt;/ol>
-&lt;p>&lt;strong>DHCP（动态主机配置协议 !!应用层!! ）&lt;/strong>：用于给网络中的主机&lt;strong>动态分配&lt;/strong>IP地址。&lt;/p>
-&lt;p>&lt;strong>DHCP工作原理&lt;/strong>：&lt;/p>
-&lt;ol>
-&lt;li>寻找服务器：DHCP客户端广播”DHCP&lt;strong>发现&lt;/strong>消息”，寻找网络中的DHCP服务器。&lt;/li>
-&lt;li>提供IP地址: DHCP服务器收到“DHCP&lt;strong>发现&lt;/strong>消息”后，就广播”DHCP&lt;strong>提供&lt;/strong>消息”，包括提供&lt;strong>客户端的IP地址和&lt;/strong>
-&lt;strong>相关配置信息&lt;/strong>。&lt;/li>
-&lt;li>请求分配IP: DHCP客户端收到“DHCP&lt;strong>提供&lt;/strong>消息”，如果接收客户端提供的相关参数，则广播“DHCP&lt;strong>请求&lt;/strong>消息”向DHCP服务端请求使用该IP地址。&lt;/li>
-&lt;li>确认分配:DHCP服务端收
-到”DHCP&lt;strong>请求&lt;/strong>消息后“，广播”DHCP&lt;strong>确认&lt;/strong>消息“，将IP地址分配给DHCP客户端。&lt;/li>
-&lt;/ol>
-&lt;p>&lt;strong>DHCP和RARP的区别&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>RARP只能实现简单的从MAC地址到IP地址的&lt;strong>查询&lt;/strong>工作，RARP服务器上的
-MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li>
-&lt;li>DHCP可以实现除静态分配以外的&lt;strong>动态IP地址分配&lt;/strong>以及&lt;strong>IP地址租期管理等&lt;/strong>复杂功能。&lt;/li>
-&lt;/ul>
-&lt;h3 id="45-icmp">4.5 ICMP&lt;/h3>
-&lt;p>&lt;strong>ICMP(英特网控制报文协议):&lt;/strong> 用来给&lt;strong>主机或路由器报告差错和异常&lt;/strong>情况。ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据报发送出去。&lt;/p>
-&lt;p>一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。&lt;/p>
-&lt;p>&lt;strong>ICMP种类&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>ICMP 差错报告报文
-&lt;ul>
-&lt;li>终点不可达&lt;/li>
-&lt;li>源点抑制(Source quench)&lt;/li>
-&lt;li>时间超过&lt;/li>
-&lt;li>参数问题&lt;/li>
-&lt;li>改变路由（重定向）(Redirect)&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>ICMP 询问报文
-&lt;ul>
-&lt;li>有两类 &lt;strong>回送请求和回答报文&lt;/strong>、&lt;strong>时间戳请求和回答报文&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>PING&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>Packet InterNet Groper 分组网间探测 ：&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>PING 是&lt;strong>应用层直接使用网络层 ICMP&lt;/strong> 的例子，它没有通过运输层的 TCP 或UDP。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>用来测试两个主机之间的连通性。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>PING 使用了 ICMP &lt;strong>回送请求与回送回答报文&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>Traceroute/Trace&lt;/strong>：工作在&lt;strong>网络层&lt;/strong>，使用了&lt;strong>时间超过报文&lt;/strong>&lt;/p>
-&lt;h3 id="45设备">4.5设备&lt;/h3>
-&lt;p>网络层设备 &amp;ndash; 路由器: &lt;strong>既能隔离冲突域又能隔离广播域&lt;/strong>&lt;/p>
-&lt;h2 id="5传输层">5.传输层&lt;/h2>
-&lt;p>&lt;strong>传输层的功能&lt;/strong>:端到端的逻辑通信;收到的报文进行差错检测;提供面向连接的TCP和无连接的UDP.&lt;/p>
-&lt;p>&lt;strong>传输层提供的信道&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>使用TCP: 逻辑通信道就相当于一条全双工的可靠信道.&lt;/li>
-&lt;li>UDP:不可靠的无连接信道.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>运输协议数据单元 TPDU&lt;/strong>.Transport Protocol Data Unit&lt;/p>
-&lt;p>&lt;strong>TCP&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>Transmission Control Protocol 传输控制协议&lt;/li>
-&lt;li>提供&lt;strong>面向连接&lt;/strong>的、&lt;strong>可靠&lt;/strong>的&lt;strong>字节流&lt;/strong>服务&lt;/li>
-&lt;li>TPDU: TCP &lt;strong>报文段&lt;/strong>(segment)&lt;/li>
-&lt;li>传输开销大、报文头部大&lt;/li>
-&lt;li>&lt;strong>全双工&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>UDP&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>User Datagram Protocol 用户数据报协议&lt;/li>
-&lt;li>提供&lt;strong>面向事务&lt;/strong>的&lt;strong>简单不可靠&lt;/strong>信息传送服务&lt;/li>
-&lt;li>TPDU: UDP &lt;strong>报文或用户数据报&lt;/strong>。&lt;/li>
-&lt;li>传输开销小、报文头部小 &lt;strong>8字节&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>端口port&lt;/strong>：&lt;strong>2字节16位&lt;/strong>，用来&lt;strong>标识和区分某一台主机上的不同应用进程&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>套接字 Socket&lt;/strong>：由主机IP地址和端口号组成。唯一标识了某台主机上的某个应用进程。&lt;/p>
-&lt;p>HTTP 80，SNMP 161&lt;/p>
-&lt;p>DNS 53，SMTP 25&lt;/p>
-&lt;p>&lt;strong>TELNET 23&lt;/strong>，FTP 21&lt;/p>
-&lt;p>&lt;strong>TCP的三种可靠传输机制&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>TCP数据&lt;strong>编号&lt;/strong>: 建立连接时协定初始编号,每一个&lt;strong>字节&lt;/strong>对应一个&lt;strong>编号&lt;/strong>,保证数据有序提交应用层。&lt;/li>
-&lt;li>TCP数据&lt;strong>确认&lt;/strong>: 对接收到的数据的&lt;strong>最高序号表示确认&lt;/strong>。&lt;/li>
-&lt;li>TCP&lt;strong>重传&lt;/strong>机制: 设置计时器&lt;strong>超时重传&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>流量控制&lt;/strong>： 端与端之间通信量的控制。&lt;strong>让发送方的发送速率不要太快&lt;/strong>，既要让接收方来得及接收，也不要使网络发生拥塞。一般使用滑动窗口进行流量控制。&lt;/p>
-&lt;p>&lt;strong>拥塞控制&lt;/strong>：使网络能够承受现有的&lt;strong>网络负荷&lt;/strong>。本质是根据自己估算的网络拥塞程度&lt;strong>设置拥塞窗口的值cwnd&lt;/strong>来限定发送速率。&lt;/p>
-&lt;p>&lt;strong>TCP的拥塞控制四种方法&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>慢开始: cwnd = 1，每收到一个确认cwnd++&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>拥塞避免: 设置慢开始门限 ssthresh&lt;/p>
-&lt;ul>
-&lt;li>当 cwnd &amp;lt; ssthresh 时，使用慢开始算法。&lt;/li>
-&lt;li>当 cwnd &amp;gt; ssthresh 时，使用&lt;strong>拥塞避免算法&lt;/strong>：每过一个RTT往返时间cwnd++&lt;/li>
-&lt;li>出现拥塞时，ssthresh 为 cwnd/2 ，cwnd = 1&lt;/li>
-&lt;li>思想：乘法减小，加法增大&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>快重传:&lt;/p>
-&lt;ul>
-&lt;li>接收方&lt;strong>每收到一个 失序 的报文段&lt;/strong>后就&lt;strong>立即&lt;/strong>发出&lt;strong>重复确认&lt;/strong>。&lt;/li>
-&lt;li>发送方只要&lt;strong>一连收到三个重复确认&lt;/strong>就应当立即&lt;strong>重传对方尚未收到的报文段&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>快恢复: 发送方&lt;strong>一连收到三个重复确认&lt;/strong>，ssthresh = cwnd/2，但cwnd不变，此时是由RRT线性增大。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>TCP三次握手&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>第一次&lt;/strong>
-&lt;ul>
-&lt;li>客户机发送&lt;strong>连接请求报文段&lt;/strong>，请求建立连接&lt;/li>
-&lt;li>client：置为syn_send，发送请求 SYN = 1, seq = x&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>第二次&lt;/strong>
-&lt;ul>
-&lt;li>服务机收到请求后,发回&lt;strong>确认报文段&lt;/strong>.&lt;/li>
-&lt;li>同时发送自己的序列号.&lt;/li>
-&lt;li>server：置为syn_recvd,发送 SYN = 1,seq = y，ACK x.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>第三次&lt;/strong>
-&lt;ul>
-&lt;li>客户端收到确认后，发回&lt;strong>确认报文段&lt;/strong>.&lt;/li>
-&lt;li>A 的 TCP 通知上层应用进程，连接已经建立。&lt;/li>
-&lt;li>client:置为established&lt;/li>
-&lt;li>server 收到 该确认报文段后，置为established&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>TCP三次握手的原因&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>因为第二次服务端接收到连接请求的时候，也想建立连接，所以将SYN和ACK一起发送。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>第一次和第二次：为了保证&lt;strong>服务端能收接受到客户端&lt;/strong>的信息并能做出正确的应答。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>第二次和第三次：为了保证&lt;strong>客户端能收接受到服务端&lt;/strong>的信息并能做出正确的应答。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>TCP四次挥手过程&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>第一次&lt;/strong>：&lt;strong>客户端&lt;/strong>发送&lt;strong>FIN报文请求释放连接&lt;/strong>。用来关闭客户端到服务端的数据传送。单向关闭。&lt;/li>
-&lt;li>&lt;strong>第二次&lt;/strong>：&lt;strong>服务端&lt;/strong>收到这个FIN后，&lt;strong>发回ACK确认&lt;/strong>。客户端到服务端方向的连接释放，TCP处于半关闭。客户端无法向服务端发送数据，但服务端仍然可以向客户端发送数据。&lt;/li>
-&lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。&lt;/li>
-&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在
-2MSL后关闭。TCP连接释放完成。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>TCP四次挥手原因&lt;/strong>:
-当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
-&lt;p>&lt;strong>TCP最后一次挥手客户端要等待2MSL(最长报文寿命)时间的原因:&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>若&lt;strong>客户端&lt;/strong>发送&lt;strong>最后的ACK丢失&lt;/strong>，
-则&lt;strong>服务端会在经过MSL后重发FIN报文&lt;/strong>。若客户端此时已经关闭，则无法重发ACK，则&lt;strong>服务端则无法进入关闭状态&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>TCP建立的连接、虚电路建立的连接、电路交换三者区别：&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>TCP建立的连接&lt;/strong>：只是在TCP的TCB(传输控制块中)存储了&lt;strong>目的地址&lt;/strong>的&lt;strong>端口信息&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>虚电路路建立的连接&lt;/strong>：指通信前，在&lt;strong>源主机&lt;/strong>和&lt;strong>目的主机&lt;/strong>之间建立一条虚连接，&lt;strong>分组&lt;/strong>通过&lt;strong>该路径顺序&lt;/strong>
-传送到目的主机。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>电路交换&lt;/strong>：是建立&lt;strong>真实&lt;/strong>存在的&lt;strong>物理连接&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="6应用层">6.应用层&lt;/h2>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;h3 id="61-http">6.1 http&lt;/h3>
-&lt;p>&lt;strong>HTTP&lt;/strong>: HyperText Transfer Protocol 超文本传输协议&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>面向事务的(transaction-oriented)应用层&lt;/strong>协议。HTTP 使用 &lt;strong>TCP 连接进行可靠的&lt;/strong>传送。HTTP是客户端与服务端交互的协议。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>HTTPS&lt;/strong>：HTTP&lt;strong>通信接口部分用SSL和TLS协议代替&lt;/strong>。通常是HTTP直接和TCP通信，当使用SSL时，则演变为先和SSL通信，再由SSL和TCP通信了。&lt;/p>
-&lt;h3 id="62-电子邮件协议">6.2 &lt;strong>电子邮件协议&lt;/strong>&lt;/h3>
-&lt;p>都是基于TCP&lt;/p>
-&lt;ul>
-&lt;li>发送邮件的协议：SMTP&lt;/li>
-&lt;li>读取邮件的协议：POP3 和 IMAP&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>SMTP&lt;/strong>(简单邮件传输协议)：规定了两个相互通信的SMTP进程之间如何交换信息&lt;/p>
-&lt;p>&lt;strong>MIME&lt;/strong>: 在SMTP协议的基础上&lt;strong>增加了邮件主体的结构&lt;/strong>，并定义了&lt;strong>传送非ASCII码&lt;/strong>的编码规则。&lt;/p>
-&lt;p>&lt;strong>POP3&lt;/strong>(&lt;strong>邮局版本协议&lt;/strong>3): 支持客户端&lt;strong>远程管理在服务器上的电子邮件&lt;/strong>，邮件发送到服务器上，&lt;strong>客户端调用邮件客户机程序以连接服务器&lt;/strong>，并&lt;strong>下载&lt;/strong>所有未阅读的电子邮件。&lt;/p>
-&lt;p>&lt;strong>IMAP&lt;/strong>： Internet Message Access Protocol 互联网邮件访问协议 是一个&lt;strong>联机协议&lt;/strong>。当用户 PC 机上的 IMAP 客户程序打开 IMAP 服务器的邮箱时，用户就可看到邮件的首部。&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>优点&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>用户可以&lt;strong>在不同的地方使用不同的计算机&lt;/strong>随时上网阅读和处理自己的邮件&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>缺点&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>如果用户没有将邮件复制到自己的 PC 上，则邮件一直是存放在 IMAP 服务器上。因此&lt;strong>用户需要经常与 IMAP 服务器建立连接&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>SMTP POP IMAP 三者的区别&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>发信人的用户代理&lt;/strong> 向 &lt;strong>源邮件服务器发送邮件&lt;/strong>，以及&lt;strong>源邮件服务器&lt;/strong> 向 &lt;strong>目的邮件服务器发送邮件&lt;/strong>，都是使用 &lt;strong>SMTP&lt;/strong> 协议。&lt;/li>
-&lt;li>而 &lt;strong>POP&lt;/strong> 协议或 &lt;strong>IMAP&lt;/strong> 协议则是&lt;strong>用户&lt;/strong> 从 &lt;strong>目的邮件服务器&lt;/strong>上 &lt;strong>读取邮件&lt;/strong>所使用的协议。&lt;/li>
-&lt;/ul>
-&lt;h3 id="62-ftp">6.2 FTP&lt;/h3>
-&lt;p>&lt;strong>FTP&lt;/strong>：(文本传输协议File Transfer Protocol): 运行在TCP之上，用于在&lt;strong>异构网络&lt;/strong>中任意计算机之间传送文件。FTP 是一种不安全的协议.&lt;/p>
-&lt;p>&lt;strong>TFTP&lt;/strong>(简单文件传输协议 运行在UDP之上):用于在&lt;strong>客户端与服务端&lt;/strong>之间进行&lt;strong>简单文件传输&lt;/strong>。TFTP有自己的差错改正措施，不支持交互。&lt;/p>
-&lt;p>&lt;strong>FTP工作原理&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>使用&lt;strong>客户服务器&lt;/strong>方式。&lt;/li>
-&lt;li>可同时为多个客户进程提供服务。&lt;/li>
-&lt;li>FTP 的服务器进程由两大部分组成：&lt;strong>一个主进程&lt;/strong>，负责接受新的请求；另外有&lt;strong>若干个从属进程&lt;/strong>，负责处理单个请求。&lt;/li>
-&lt;li>使用两个TCP连接：
-&lt;ul>
-&lt;li>&lt;strong>控制连接&lt;/strong>在整个会话期间一直保持打开，FTP 客户发出的&lt;strong>传送请求&lt;/strong>通过控制连接&lt;strong>发送给&lt;/strong>服务器端的&lt;strong>控制进程&lt;/strong>。&lt;/li>
-&lt;li>用于传输文件的是“&lt;strong>数据连接&lt;/strong>”，被 控制连接 创建。&lt;strong>端口20&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="63-telnet">6.3 Telnet&lt;/h3>
-&lt;p>&lt;strong>TELNET&lt;/strong>：简单的&lt;strong>远程终端协议&lt;/strong>，使用C/S方式，使用TCP连接。&lt;/p>
-&lt;p>Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。&lt;/p>
-&lt;h3 id="64-sshsecure-shell-protocol安全的网络传输协议">6.4 SSH（Secure Shell Protocol，安全的网络传输协议）&lt;/h3>
-&lt;p>基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务&lt;/p>
-&lt;h3 id="65-rtpreal-time-transport-protocol实时传输协议">6.5 RTP（Real-time Transport Protocol，实时传输协议）&lt;/h3>
-&lt;p>通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。&lt;/p>
-&lt;h3 id="66-dns-domain-name-system域名系统">6.6 DNS (Domain Name System)域名系统&lt;/h3>
-&lt;p>基于 UDP 协议，用于解决域名和 IP 地址的映射问题。&lt;/p>
-&lt;p>因特网采用&lt;strong>层次结构的命名树&lt;/strong>作为主机的名字，并使用&lt;strong>分布式&lt;/strong>的域名系统 DNS。用来将域名转换为IP地址。&lt;/p>
-&lt;p>&lt;strong>域名服务器&lt;/strong>：&lt;strong>域名服务器程序在专&lt;/strong>设的结点上运行，运行该程序的机器称为&lt;strong>域名服务器&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>基础结构域名&lt;/strong>(infrastructure domain)：这种顶级域名只有一个，即 &lt;strong>arpa&lt;/strong>，用于&lt;strong>反向域名解析&lt;/strong>，因此又称为&lt;strong>反向域名&lt;/strong>。&lt;/p>
-&lt;p>&lt;strong>DNS查询方式 域名解析过程&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>主机向本地域名服务器&lt;/strong>的查询一般都是采用&lt;strong>递归查询&lt;/strong>。
-&lt;ul>
-&lt;li>知道则回复。如本地域名服务器不知道，则本地域名服务器就以 &lt;strong>DNS 客户&lt;/strong>的身份，&lt;strong>向其他域名服务器&lt;/strong>继续发出查询请求报文。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>本地域名服务器&lt;/strong>向&lt;strong>根域名服务器&lt;/strong>的查询通常是采用&lt;strong>迭代查询&lt;/strong>。
-&lt;ul>
-&lt;li>&lt;strong>根域名服务器要么&lt;/strong>给出所要查询的&lt;strong>IP 地址&lt;/strong>，要么告诉本地域名服务器：“你下一步&lt;strong>应当向哪一个域名服务器&lt;/strong>进行查询”。&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="65-其他概念">6.5 其他概念&lt;/h3>
-&lt;p>&lt;strong>WWW&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>万维网 WWW (World Wide Web)&lt;strong>并非某种特殊&lt;/strong>的&lt;strong>计算机网络&lt;/strong>。&lt;/li>
-&lt;li>是一个&lt;strong>大规模的、联机式&lt;/strong>的&lt;strong>信息储藏所&lt;/strong>。是&lt;strong>分布式超媒体&lt;/strong>(hypermedia)系统，它是&lt;strong>超文本&lt;/strong>(hypertext)系统的扩充。&lt;/li>
-&lt;li>&lt;strong>浏览器&lt;/strong>就是在用户计算机上的&lt;strong>万维网客户程序&lt;/strong>。&lt;/li>
-&lt;li>&lt;strong>万维网服务器&lt;/strong>：&lt;strong>万维网文档&lt;/strong>所&lt;strong>驻留的计算机&lt;/strong>的&lt;strong>运行服务器程序&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>页面&lt;/strong>(page)：在一个&lt;strong>客户程序主窗口上显示出&lt;/strong>的&lt;strong>万维网文档&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>HTML&lt;/strong>(HyperText &lt;strong>Markup&lt;/strong> Language 超文本标记语言): &lt;strong>文档结构标记语言&lt;/strong>，使用约定的标记对页面上的信息进行描述。&lt;/p>
-&lt;p>&lt;strong>URL&lt;/strong>: 统一资源定位符Uniform Resource Locator， 标识万维网上的各种文档。每个文档在整个因特网都具有唯一的URL。&lt;/p>
-&lt;ul>
-&lt;li>格式：协议(ftp/http)://主机:端口/路径。&lt;/li>
-&lt;/ul>
-&lt;p>
-&lt;figure >
-&lt;div class="flex justify-center ">
-&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/URL%e7%9a%84%e7%bb%84%e6%88%90.png" alt="" loading="lazy" data-zoomable />&lt;/div>
-&lt;/div>&lt;/figure>
-&lt;/p>
-&lt;ul>
-&lt;li>协议。URL 的前缀通常表示了该网址采用了何种应用层协议，通常有两种——HTTP 和 HTTPS。当然也有一些不太常见的前缀头，比如文件传输时用到的ftp:。&lt;/li>
-&lt;li>域名。域名便是访问网址的通用名，这里也有可能是网址的 IP 地址，域名可以理解为 IP 地址的可读版本，毕竟绝大部分人都不会选择记住一个网址的 IP 地址。&lt;/li>
-&lt;li>端口。如果指明了访问网址的端口的话，端口会紧跟在域名后面，并用一个冒号隔开。&lt;/li>
-&lt;li>资源路径。域名（端口）后紧跟的就是资源路径，从第一个/开始，表示从服务器上根目录开始进行索引到的文件路径，上图中要访问的文件就是服务器根目录下/path/to/myfile.html。早先的设计是该文件通常物理存储于服务器主机上，但现在随着网络技术的进步，该文件不一定会物理存储在服务器主机上，有可能存放在云上，而文件路径也有可能是虚拟的（遵循某种规则）。&lt;/li>
-&lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
-&lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
-&lt;/ul>
-&lt;h4 id="输入url后发生了什么">输入URL后发生了什么&lt;/h4>
-&lt;ul>
-&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/li>
-&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/li>
-&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%91%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%AE%A1%E7%BD%91/%E8%AE%A1%E7%BD%91%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;p>释放连接的状态转换&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="1概述">1.概述&lt;/h2>
 &lt;p>LAN：Local Area Network，局域网&lt;/p>
 &lt;p>WAN：Wide Area Network，广域网&lt;/p>
@@ -17447,7 +16109,13 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
 &lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
 &lt;/ul>
-&lt;h4 id="输入url后发生了什么">输入URL后发生了什么&lt;/h4>
+&lt;h2 id="输入url后发生了什么">输入URL后发生了什么&lt;/h2>
+&lt;h3 id="http">HTTP&lt;/h3>
+&lt;h3 id="dns">DNS&lt;/h3>
+&lt;h3 id="操作系统协议栈----http传输工作">操作系统协议栈 &amp;ndash; HTTP传输工作&lt;/h3>
+&lt;h3 id="tcp-1">TCP&lt;/h3>
+&lt;h3 id="ip">IP&lt;/h3>
+&lt;h3 id="mac">MAC&lt;/h3>
 &lt;ul>
 &lt;li>
 &lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/p>
@@ -17501,6 +16169,1338 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>
 &lt;p>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/p>
 &lt;/li>
+&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="协议">协议&lt;/h2>
+&lt;h2 id="工具">工具&lt;/h2>
+&lt;h3 id="tcpdump">tcpdump&lt;/h3>
+&lt;h3 id="wireshark">wireshark&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h2 id="1概述">1.概述&lt;/h2>
+&lt;p>LAN：Local Area Network，局域网&lt;/p>
+&lt;p>WAN：Wide Area Network，广域网&lt;/p>
+&lt;p>&lt;strong>ISP&lt;/strong> Internet Service Provider 因特网服务提供商&lt;/p>
+&lt;h3 id="1服务与协议">&lt;strong>1.服务与协议&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>协议&lt;/strong>是&lt;strong>水平&lt;/strong>的，&lt;strong>对等实体&lt;/strong>之间的&lt;strong>通信规则&lt;/strong>。&lt;strong>对等实体&lt;/strong>是指&lt;strong>同一层&lt;/strong>级&lt;strong>可发送接收&lt;/strong>信息的硬件或软件进程.&lt;/p>
+&lt;p>&lt;strong>服务&lt;/strong>是&lt;strong>垂直&lt;/strong>的，是由下层为上层通过&lt;strong>层间接口&lt;/strong>提供的. 下层实现的&lt;strong>所有功能不都是服务&lt;/strong>,只有能够&lt;strong>被上层看得见的&lt;/strong>功能才是服务. 上层使用下层的&lt;strong>SAP&lt;/strong>访问下层的服务.&lt;/p>
+&lt;p>&lt;strong>SAP Service Access Point&lt;/strong>:服务接入点.同⼀节点相邻两层交换信息的连接点.数据链路层的SAP是MAC地址，网络层的SAP是IP地址，传输层的SAP是端口.&lt;/p>
+&lt;p>SDU(服务数据单元):为完成⽤户所要求的功能⽽应传送的数据。&lt;/p>
+&lt;p>PCI(协议控制信息):控制协议操作的信息。&lt;/p>
+&lt;p>PDU(协议数据单元):n-PDU = n-SDU + n-PCI。 n-PDU = (n-1)-SDU。&lt;/p>
+&lt;p>&lt;strong>协议三要素：&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>语法: 规定信息格式&lt;/li>
+&lt;li>语义: 说明通信双方应当怎么做;用于协调与差错处理的控制信息&lt;/li>
+&lt;li>规则: (时序)定义了何时进行通信，先讲什么，后讲什么，讲话的速度等。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>服务的类型&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>面向连接服务与无连接服务
+&lt;ul>
+&lt;li>面向连接服务：双方通信前要&lt;strong>事先建立&lt;/strong>一条&lt;strong>通信线路&lt;/strong>. 该线路包括建立连接、使用连接(通信)、释放连接这三个过程。&lt;/li>
+&lt;li>无连接服务: 双方通信前不需要建立通信线路.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>可靠服务与不可靠服务
+&lt;ul>
+&lt;li>可靠服务:通过具有&lt;strong>检错,纠错,应答&lt;/strong>机制,保证&lt;strong>数据正确,可靠地&lt;/strong>传送到目的地.&lt;/li>
+&lt;li>不可靠服务: 不保证数据正确,可靠地传送到目的地.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>应答服务与不应答服务&lt;/li>
+&lt;/ul>
+&lt;h3 id="2模型">2.模型&lt;/h3>
+&lt;p>&lt;strong>层次模型的好处：&lt;/strong>&lt;/p>
+&lt;ol>
+&lt;li>降低复杂度；&lt;/li>
+&lt;li>标准化接口；&lt;/li>
+&lt;li>灵活性好;&lt;/li>
+&lt;li>易于实现和维护&lt;/li>
+&lt;/ol>
+&lt;h4 id="21-osi七层模型">&lt;strong>2.1 OSI七层模型&lt;/strong>&lt;/h4>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>&lt;/th>
+&lt;th>任务&lt;/th>
+&lt;th>功能&lt;/th>
+&lt;th>协议&lt;/th>
+&lt;th>传输单位&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>物理层&lt;/td>
+&lt;td>在物理媒介上为数据端设备执行任务&lt;/td>
+&lt;td>&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>比特&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>数据链路层&lt;/td>
+&lt;td>将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
+&lt;td>封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
+&lt;td>SDLC,HDLC,PPP,STP,帧中继&lt;/td>
+&lt;td>帧&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>网络层&lt;/td>
+&lt;td>将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
+&lt;td>1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
+&lt;td>IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
+&lt;td>数据报,IP分组&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>传输层&lt;/td>
+&lt;td>负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
+&lt;td>&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
+&lt;td>TCP, UDP&lt;/td>
+&lt;td>报文段TCP,用户数据报UDP&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>会话层&lt;/td>
+&lt;td>&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
+&lt;td>建立,管理,终止会话.也称建立同步SYN&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>表示层&lt;/td>
+&lt;td>处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
+&lt;td>抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>应用层&lt;/td>
+&lt;td>提供系统与⽤户的接口&lt;/td>
+&lt;td>为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
+&lt;td>FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;h4 id="22tcpip四层模型">2.2TCP/IP四层模型&lt;/h4>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-25-32.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>网络接入层&lt;/strong>:物理层 + 数据链路层&lt;/p>
+&lt;p>&lt;strong>网际互联层&lt;/strong>:网络层&lt;/p>
+&lt;p>&lt;strong>传输层&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>应用层&lt;/strong>&lt;/p>
+&lt;h4 id="23五层模型">2.3五层模型&lt;/h4>
+&lt;p>①物理层:物理层&lt;/p>
+&lt;p>②数据链路层:数据链路层。&lt;/p>
+&lt;p>③⽹络层:⽹络层&lt;/p>
+&lt;p>④传输层:传输层&lt;/p>
+&lt;p>⑤应⽤层:会话层+表⽰层+应⽤层。&lt;strong>处理高级协议，显示问题，编码和会话控制等问题&lt;/strong>&lt;/p>
+&lt;h4 id="25各层设备">2.5各层设备&lt;/h4>
+&lt;p>&lt;strong>物理层设备&lt;/strong>:集线器Hub、中继器&lt;/p>
+&lt;p>&lt;strong>数据链路层设备&lt;/strong>: 网卡、交换机、网桥&lt;/p>
+&lt;p>&lt;strong>网络层设备&lt;/strong>:路由&lt;/p>
+&lt;h3 id="3物理网络拓扑结构">3.物理网络拓扑结构&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-25-54.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>总线拓扑&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>优点:所有的节点都能通信&lt;/li>
+&lt;li>缺点:一旦总线上的&lt;strong>一点断开&lt;/strong>,会影响到所有&lt;strong>两边的节点&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>双环型拓扑&lt;/strong>: 在环型拓扑基础上增加了一个冗余环路,增加了可靠性和灵活性.&lt;/p>
+&lt;p>&lt;strong>星型&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>优点:允许所有的节点方便的交流&lt;/li>
+&lt;li>缺点:中间节点崩溃会导致整个网络的崩溃.传输冲突也是一个严重的问题.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>网络型&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>优点:连通性和可靠性好&lt;/li>
+&lt;li>缺点:介质的连接和数量无法控制.&lt;/li>
+&lt;/ul>
+&lt;h2 id="2物理层">2.物理层&lt;/h2>
+&lt;p>&lt;strong>传输介质&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>UTP Unshielded Twisted Pair 非屏蔽双绞线&lt;/li>
+&lt;li>STP Shielded Twisted Pair 屏蔽双绞线 抗电磁干扰能力强&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>设备&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>中继器：用于放大数字信号&lt;/li>
+&lt;li>集线器：多个端口的中继器&lt;/li>
+&lt;li>特点：物理层设备既不能隔离冲突域也不能隔离广播域&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>三种通信方式&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>单⼯/ &lt;strong>simple&lt;/strong> Transmission:单向信号只能在⼀个⽅向上传播。(收⾳机)&lt;/li>
+&lt;li>半双⼯/ &lt;strong>half-Duplex&lt;/strong> Transmission：信号可双向传播，但不能同时传播。(对讲机)&lt;/li>
+&lt;li>全双⼯/ &lt;strong>full-Duplex&lt;/strong> Transmission：信号可以同时在两个⽅向上传播。(电话)&lt;/li>
+&lt;/ul>
+&lt;p>通道复用技术：&lt;/p>
+&lt;ul>
+&lt;li>频分复用（FDM，Frequency Division Multiplexing）：不同用户在不同频带，所用用户在同样时间占用不同带宽资源&lt;/li>
+&lt;li>时分复用（TDM，Time Division Multiplexing）：不同用户在同一时间段的不同时间片，所有用户在不同时间占用同样的频带宽度&lt;/li>
+&lt;li>波分复用（WDM，Wavelength Division Multiplexing）：光的频分复用&lt;/li>
+&lt;li>码分复用（CDM，Code Division Multiplexing）：不同用户使用不同的码，可以在同样时间使用同样频带通信&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>三种数据传输方式&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>电路交换
+&lt;ul>
+&lt;li>通信前为双方建立专有的通信线路&lt;/li>
+&lt;li>优点
+&lt;ul>
+&lt;li>传输快,时延小,&lt;strong>有序&lt;/strong>,避免冲突&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>缺点
+&lt;ul>
+&lt;li>信道利用率低,建立连接时间长,灵活性差&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>数据报交换
+&lt;ul>
+&lt;li>以报文为传输的数据单位, 采用&lt;strong>交换节点存储&lt;/strong>转发的方式&lt;/li>
+&lt;li>优点
+&lt;ul>
+&lt;li>线路利用率搞，无连接,动态分配路线,&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>缺点
+&lt;ul>
+&lt;li>交换节点存储要求大&lt;/li>
+&lt;li>&lt;strong>转发时延&lt;/strong>大&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>分组交换
+&lt;ul>
+&lt;li>面向连接的虚电路
+&lt;ul>
+&lt;li>通信前，在源主机和⽬的主机之间 建⽴⼀条虚连接，分组通过该路径顺序传送到⽬的主机。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>无连接的数据报
+&lt;ul>
+&lt;li>数据报的⽅式:将报⽂分割为较短的分组，交换机根据转发表转发分组传送到⽬的主机。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>将报文分割成多个分组，交换机根据&lt;strong>转发表&lt;/strong>逐个传输&lt;/li>
+&lt;li>优点
+&lt;ul>
+&lt;li>,简化交换节点的存储，加速传输&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>缺点
+&lt;ul>
+&lt;li>传输时延大&lt;/li>
+&lt;li>&lt;strong>失序&lt;/strong>,丢失重复问题&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>xDSL&lt;/strong> Digital Subscriber Line：用数字技术对现有的模拟电话用户线进行改造，使它能够承载宽带业务。前缀 x 则表示在数字用户线上实现的不同宽带方案。&lt;/p>
+&lt;p>&lt;strong>ADSL&lt;/strong> (Asymmetric Digital Subscriber Line) &lt;strong>非对称数字用户线&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>它因为上行和下行带宽不对 称，因此称为非对称数字用户线环路。&lt;/li>
+&lt;/ul>
+&lt;ul>
+&lt;li>属于DSL技术的一种，亦可称作非对称数字用户环路。是一种新的数据传输方式。&lt;/li>
+&lt;li>ADSL采用&lt;strong>频分复用&lt;/strong>技术把普通的电话线分成了电话、上行和下行三个相对独立的信道，从而避免了相互之间的干扰。即使边打电话边上网，也不会发生上网速率和通话质量下降的 情况。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>FTTx&lt;/strong> Fiber To The X：实现宽带居民接入网的方案。这里字母 x 可代表不同意思。&lt;/p>
+&lt;h2 id="3数据链路层">3.数据链路层&lt;/h2>
+&lt;p>主要信道：&lt;/p>
+&lt;ul>
+&lt;li>点对点信道&lt;/li>
+&lt;li>广播信道&lt;/li>
+&lt;/ul>
+&lt;h3 id="1九大功能">1.九大功能&lt;/h3>
+&lt;h4 id="11为网络层提供服务">1.1为网络层提供服务&lt;/h4>
+&lt;ul>
+&lt;li>无确认的无连接&lt;/li>
+&lt;li>有确认的无连接
+&lt;ul>
+&lt;li>不用建立链路，但目的主机收到帧后需要发送确认帧。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>有确认的有连接
+&lt;ul>
+&lt;li>建立连接，传输数据，释放连接。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="12链路管理">1.2链路管理&lt;/h4>
+&lt;p>管理建立、维持和释放链路的过程。&lt;/p>
+&lt;h4 id="13组帧-与-帧定界">1.3组帧 与 帧定界&lt;/h4>
+&lt;p>确定帧的&lt;strong>首部尾部&lt;/strong>等&lt;strong>控制信息&lt;/strong>的&lt;strong>界限&lt;/strong>。&lt;/p>
+&lt;h4 id="131字符计数法">1.3.1字符计数法&lt;/h4>
+&lt;p>&lt;strong>帧的头部&lt;/strong> 使用 &lt;strong>计数字段&lt;/strong> 标明帧内字符数&lt;/p>
+&lt;p>&lt;strong>缺点:&lt;/strong> 计数字段出错,会导致不能划分帧边界。&lt;/p>
+&lt;h4 id="132字符填充的首尾界符法">1.3.2字符填充的首尾界符法&lt;/h4>
+&lt;p>用于异步传输&lt;/p>
+&lt;p>当&lt;strong>信息字段中&lt;/strong>出现：&lt;/p>
+&lt;ul>
+&lt;li>7E标志字段 转成 5E&lt;/li>
+&lt;li>7D转义标记 转成 5D&lt;/li>
+&lt;li>ASCII码字符（小于0x20的） 前面加入7D并改变编码&lt;/li>
+&lt;/ul>
+&lt;h4 id="133比特填充首尾标志法">1.3.3比特填充首尾标志法&lt;/h4>
+&lt;p>用于同步传输,用硬件来实现.&lt;/p>
+&lt;p>每5个0后面加1个1.&lt;/p>
+&lt;h4 id="14帧同步">1.4帧同步&lt;/h4>
+&lt;p>在二进制比特流中，&lt;strong>确定帧的开始和结束位置&lt;/strong>。&lt;/p>
+&lt;h4 id="15透明传输">1.5透明传输&lt;/h4>
+&lt;p>不管什么样的比特流都能在链路上传输。&lt;/p>
+&lt;h4 id="16差错控制">1.6差错控制&lt;/h4>
+&lt;p>确认发送的数据帧是否被&lt;strong>正确&lt;/strong>接受。&lt;/p>
+&lt;ul>
+&lt;li>检错编码
+&lt;ul>
+&lt;li>奇偶校验法&lt;/li>
+&lt;li>循环冗余码CRC&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>纠错编码
+&lt;ul>
+&lt;li>海明码&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="17流量控制">1.7流量控制&lt;/h4>
+&lt;p>由接收方控制发送方的流量。&lt;/p>
+&lt;h5 id="171停等流量控制">1.7.1停等流量控制&lt;/h5>
+&lt;p>与可靠传输中一致&lt;/p>
+&lt;h5 id="172滑动窗口流量控制">1.7.2滑动窗口流量控制&lt;/h5>
+&lt;h4 id="18可靠传输">1.8可靠传输&lt;/h4>
+&lt;p>ARQ法 : Automatic Repeat reQuest 重传出错的帧.&lt;/p>
+&lt;p>本质上是使用&lt;strong>确认&lt;/strong>机制和&lt;strong>超时重传&lt;/strong>机制&lt;/p>
+&lt;p>ARQ分为&lt;/p>
+&lt;h5 id="181停等协议">1.8.1停等协议&lt;/h5>
+&lt;p>发送方发送一个帧之后,必须要等待对方确认后才可以发送下一个帧.&lt;/p>
+&lt;p>若等待时间超过规定时间,则发送方超时,重传原始帧.&lt;/p>
+&lt;h5 id="182gbn-后退n帧协议">1.8.2GBN 后退N帧协议&lt;/h5>
+&lt;ul>
+&lt;li>发送方发送完一个帧后,可以继续再发送若干帧. 发送方若收到确认帧,则可以继续发送.&lt;/li>
+&lt;li>对于每一个帧,发送方判断超时时,重传该帧即之后的所有帧(&lt;strong>包括被确认的帧&lt;/strong>).&lt;/li>
+&lt;li>接收方发现某个帧出错, 则&lt;strong>丢弃该帧和后续所有帧&lt;/strong>( &lt;strong>不返回否定帧&lt;/strong> ).&lt;/li>
+&lt;/ul>
+&lt;h5 id="183sr选择重传机制">1.8.3SR选择重传机制&lt;/h5>
+&lt;p>发送方只重传 &lt;strong>超时&lt;/strong> 或 &lt;strong>被出错(返回否定)&lt;/strong> 的帧.&lt;/p>
+&lt;p>接收方应当&lt;strong>加大接收窗口&lt;/strong> 来 接收&lt;strong>不连续但是未出现差错&lt;/strong>的帧,等重新收到出错帧的重传帧后⼀并提交给主机。&lt;/p>
+&lt;h4 id="19介质访问控制-局域网">1.9介质访问控制 局域网&lt;/h4>
+&lt;p>应用在&lt;strong>广播信道&lt;/strong>当中.&lt;/p>
+&lt;p>介质访问控制：使得 &lt;strong>使用信道的结点&lt;/strong> 隔离 &lt;strong>其他结点发送的信号&lt;/strong>,以协调活动结点的传输,&lt;/p>
+&lt;p>&lt;strong>介质访问控制协议处于MAC&lt;/strong>层。&lt;/p>
+&lt;h5 id="191信道划分">1.9.1信道划分&lt;/h5>
+&lt;p>通过&lt;strong>多路复用技术&lt;/strong>,把多个信号组合传入同一个物理信道.&lt;/p>
+&lt;ul>
+&lt;li>FDM 频分多路复用 将物理信道&lt;strong>根据频率&lt;/strong>划分 成 多个子信道,&lt;strong>每个子信道&lt;/strong>传输一种信号.&lt;/li>
+&lt;li>TDM 时分多路复用 将物理信道 按照时间划分成若干时间片, 不同信号轮流使用.&lt;/li>
+&lt;li>STDM 统计时分多路复用 在TDM的基础上,通过按实际需要来分配时间片.&lt;/li>
+&lt;li>WDM 波分多路复用 光的频分多路复用&lt;/li>
+&lt;li>CDM 码分多路复用 各个信号不同编码,既&lt;strong>共享信道频率又共享时间&lt;/strong>.
+&lt;ul>
+&lt;li>CDMA 码分多址&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="192随机访问">1.9.2随机访问&lt;/h5>
+&lt;p>通过&lt;strong>检测冲突&lt;/strong>的方法来实现介质访问控制.&lt;/p>
+&lt;ul>
+&lt;li>纯ALOHA协议 ：不检测直接发送,&lt;strong>若超时&lt;/strong>则随机时间重发.&lt;/li>
+&lt;li>时隙ALOHA协议： 不检测直接发送,&lt;strong>若超时&lt;/strong>则固定时隙重发.&lt;/li>
+&lt;li>CSMA协议 ：载波监听多点接入
+&lt;ul>
+&lt;li>1-坚持CSMA, 闲则发送,忙则继续监听&lt;/li>
+&lt;li>p-坚持CSMA, &lt;strong>闲&lt;/strong>则以&lt;strong>p的概率发送&lt;/strong>, 1-p的概率等待下一个时隙,忙则&lt;strong>等待随机时间&lt;/strong> &lt;strong>监听&lt;/strong>&lt;/li>
+&lt;li>非坚持CSMA, 闲则发送,忙则&lt;strong>等待随机时间&lt;/strong>重新监听.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>CSMA/CD 带碰撞检测的 CSMA
+&lt;ul>
+&lt;li>先听后发
+&lt;ul>
+&lt;li>发送前一直在监听,闲则发送.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>边听边发
+&lt;ul>
+&lt;li>发送的时候监听&lt;strong>是否有冲突&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>冲突停发
+&lt;ul>
+&lt;li>有冲突则停止发送.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>随机重发
+&lt;ul>
+&lt;li>停止发送后,随机一段时间重发&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>CSMA/CA (用于&lt;strong>无线网&lt;/strong>) Collision Avoidance
+&lt;ul>
+&lt;li>无线网进行碰撞检测的难度大,则将CSMA/CD的&lt;strong>碰撞检测&lt;/strong>改为了&lt;strong>碰撞避免&lt;/strong>.&lt;/li>
+&lt;li>发送数据时⼴播告知其他节点，让其他节点在某段时间内不要发送数据。利⽤ACK信号，对信道进⾏预约，以免出现碰撞。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="193轮询访问">1.9.3轮询访问&lt;/h5>
+&lt;p>适用于环型总线.&lt;/p>
+&lt;p>令牌传递协议:在环形⽹络中，只有得到令牌的主机才能够发送数据。&lt;/p>
+&lt;p>FDDI环(光纤分布式数据接口): 令牌环形网络的一种。&lt;/p>
+&lt;h3 id="2使用的协议">2.使用的协议&lt;/h3>
+&lt;p>&lt;strong>WAN(广域网)&lt;/strong>:覆盖范围很广的&lt;strong>长距离网络&lt;/strong>，由具有&lt;strong>存储转发功能的结点交换机&lt;/strong>和&lt;strong>连接链路&lt;/strong>组成。采用&lt;strong>交换&lt;/strong>技术。&lt;/p>
+&lt;p>&lt;strong>LAN(局域网)&lt;/strong>:某一较&lt;strong>小区域内&lt;/strong>由多台计算机相互连成的计算机网络。采用&lt;strong>广播&lt;/strong>技术。&lt;/p>
+&lt;h4 id="21-广域网的协议使用点对点信道">2.1 广域网的协议（使用点对点信道）&lt;/h4>
+&lt;p>&lt;strong>PPP Point To Point Protocol 点对点协议&lt;/strong>：&lt;/p>
+&lt;p>面向&lt;strong>字节&lt;/strong>的数据链路层协议，应用于&lt;strong>直接连接在两个节点的链路&lt;/strong>上，通过&lt;strong>拨号&lt;/strong>或者&lt;strong>专线&lt;/strong>方式，&lt;strong>建立点对点连接&lt;/strong>发送数据。&lt;/p>
+&lt;p>&lt;strong>HDLC High-Level Data Link Control 高级数据链路控制协议&lt;/strong>&lt;/p>
+&lt;p>面向&lt;strong>比特&lt;/strong>的数据链路层协议。提供了&lt;strong>编号&lt;/strong>和&lt;strong>确认&lt;/strong>机制，能够提供&lt;strong>可靠传输&lt;/strong>。&lt;/p>
+&lt;p>PPP&lt;strong>协议特点&lt;/strong>：&lt;/p>
+&lt;p>&lt;strong>简单&lt;/strong>——这是首要的要求&lt;/p>
+&lt;p>&lt;strong>不进行&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>纠错&lt;/li>
+&lt;li>流量控制&lt;/li>
+&lt;li>半双工或单工链路&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>三个组成部分&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>封装：一种封装多协议数据报的方法。PPP 封装提供了不同网络层协议同时在&lt;strong>同一链路传输的多路复用技术&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>LCP&lt;/strong>链路控制协议 LCP (Link Control Protocol)&lt;/li>
+&lt;li>&lt;strong>NCP&lt;/strong>网络控制协议 NCP (Network Control Protocol)&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IPCP(网际协议控制协议)&lt;/strong>：用于&lt;strong>建立、配置&lt;/strong>和&lt;strong>检测&lt;/strong>数据链路连接的连接控制协议&lt;strong>LCP&lt;/strong> 以及 用于&lt;strong>建立和&lt;/strong>
+&lt;strong>配置&lt;/strong>不同网络层协议的网络控制协议&lt;strong>NCP协议簇&lt;/strong>。&lt;/p>
+&lt;h5 id="322-ppp-协议的帧格式">3.2.2 PPP 协议的帧格式&lt;/h5>
+&lt;p>PPP 是面向字节的，所有的 PPP 帧的长度都是整数字节。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/2024-03-06-16-26-17.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>首部&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>标志字段&lt;/strong> F = 0x7E （符号“0x”表示后面的字符是用十六进制表示。十六进制的 7E 的二进制表示是 01111110） &lt;strong>标记首尾&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>地址字段&lt;/strong> A 只置为 0xFF。地址字段实际上并不起作用&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>控制字段&lt;/strong> C 通常置为 0x03&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>首部有5字节，尾部3字节&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>尾部&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>FCS：帧检验序列，一般由CRC得出但不是唯一方法
+&lt;ul>
+&lt;li>使用FCS表示使用了 &lt;strong>无差错接受&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>标志字段&lt;/strong> F=7E &lt;strong>标记首尾&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>透明传输&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>同步传输时 采用硬件来完成比特填充（和 HDLC 的做法一样）&lt;/li>
+&lt;li>异步传输时 &lt;strong>特殊的字符填充法&lt;/strong>，当&lt;strong>信息字段中&lt;/strong>出现：
+&lt;ul>
+&lt;li>7E标志字段 转成 5E&lt;/li>
+&lt;li>7D转义标记 转成 5D&lt;/li>
+&lt;li>ASCII码字符（小于0x20的） 前面加入7D并改变编码&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>PPP 不提供序号&lt;/strong> 和 &lt;strong>确认的可靠传输&lt;/strong>的原因：&lt;/p>
+&lt;ul>
+&lt;li>PPP 的信息字段放入的数据是 IP 数据报。&lt;strong>数据链路层&lt;/strong>的&lt;strong>可靠传输&lt;/strong>并&lt;strong>不能保证网络层的传输&lt;/strong>也是&lt;strong>可靠&lt;/strong>的&lt;/li>
+&lt;li>&lt;strong>帧检验序列 FCS&lt;/strong> 字段可&lt;strong>保证无差错接受&lt;/strong>&lt;/li>
+&lt;li>数据链路层出现差错的概率不大时，使用比较&lt;strong>简单&lt;/strong>的 PPP 协议较为合理。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>PPP 协议的工作状态&lt;/strong>：&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>当&lt;strong>用户拨号接入 ISP&lt;/strong> 时，&lt;strong>路由器&lt;/strong>的调制解调器对拨号&lt;strong>做出确认&lt;/strong>，并&lt;strong>建立&lt;/strong>一条&lt;strong>物理连接&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>PC 机&lt;/strong> 向 &lt;strong>路由器发送&lt;/strong>一系列的 &lt;strong>LCP 分组&lt;/strong>（封装成多个 PPP 帧）。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>这些分组及其响应选择一些 &lt;strong>PPP 参数&lt;/strong>，和进行&lt;strong>网络层配置&lt;/strong>。&lt;strong>NCP&lt;/strong> 给新接入的 PC机&lt;strong>分配&lt;/strong>一个&lt;strong>临时的 IP 地址&lt;/strong>，使 &lt;strong>PC 机&lt;/strong>成为&lt;strong>因特网上的一个主机&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>通信完毕&lt;/strong>时，&lt;strong>NCP&lt;/strong> 释放&lt;strong>网络层连接&lt;/strong>，&lt;strong>收回&lt;/strong>原来分配出去的 &lt;strong>IP&lt;/strong> 地址。接着，&lt;strong>LCP&lt;/strong>释放&lt;strong>数据链路层连接&lt;/strong>。&lt;strong>最后释放&lt;/strong>的是&lt;strong>物理层连接&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h4 id="22以太网协议使用广播信道">2.2以太网协议（使用广播信道）&lt;/h4>
+&lt;p>&lt;strong>局域网的特点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>范围有限，站点有限&lt;/li>
+&lt;li>方便广播&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>局域网的规约&lt;/strong>&lt;/p>
+&lt;p>IEEE 802.3标准 —— &lt;strong>以太网&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>以太网分层&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>LLC 逻辑链路控制&lt;/strong> LLC (Logical Link Control)子层&lt;/p>
+&lt;ul>
+&lt;li>1.建⽴和释放数据链路层的&lt;strong>逻辑连接&lt;/strong>。2.提供与⽹络层的&lt;strong>接口&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>MAC 媒体接入控制&lt;/strong> MAC (Medium Access Control)子层。&lt;/p>
+&lt;ul>
+&lt;li>负责控制与&lt;strong>连接物理层的物理介质&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>适配器&lt;/strong>：&lt;/p>
+&lt;p>又称 通信适配器adapter 、&lt;strong>网络接口卡 NIC&lt;/strong> Network Interface Card 、&lt;strong>网卡&lt;/strong>&lt;/p>
+&lt;p>功能就是&lt;/p>
+&lt;ul>
+&lt;li>串行/并行转换&lt;/li>
+&lt;li>实现以太网协议&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>使用集线器的星形拓扑:&lt;/strong>&lt;/p>
+&lt;p>星形拓扑的中心是 集线器 hub&lt;/p>
+&lt;p>使用集线器的以太网&lt;strong>在逻辑上仍是一个总线网&lt;/strong>，各工作站使用的还是 CSMA/CD 协议，并共享逻辑上的总线。&lt;/p>
+&lt;p>&lt;strong>MAC地址&lt;/strong>&lt;/p>
+&lt;p>适配器从网络上每收到一个 MAC 帧就首先用硬件检查 MAC 帧中的 MAC 地址.&lt;/p>
+&lt;ul>
+&lt;li>如果是发往本站的帧则收下，然后再进行其他的处理。&lt;/li>
+&lt;li>否则就将此帧丢弃，不再进行其他的处理。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>MAC帧格式&lt;/strong>&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/image-20221027211935439.png" alt="image-20221027211935439" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>类型字段&lt;/strong> 标志&lt;strong>上一层&lt;/strong>使用的协议&lt;/p>
+&lt;p>首部 14字节 尾部 4字节。&lt;/p>
+&lt;p>数据最少是 64-18 = 46字节.少于64时，数据字段后面加入整数字节填充。&lt;/p>
+&lt;p>在&lt;strong>MAC帧前面&lt;/strong>会加入用于&lt;strong>比特同步的8字节&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>无效的MAC帧&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>数据字段的长度与长度字段的值不一致；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>帧的长度不是整数个字节；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>用收到的帧检验序列 FCS 查出有差错；&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>数据字段的长度不在 46 ~ 1500 字节之间。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>有效的 MAC 帧长度为 64 ~ 1518 字节之间。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于检查出的无效 MAC 帧就简单地丢弃。以太网不负责重传丢弃的帧。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>以太网重要特性&lt;/strong>：&lt;/p>
+&lt;p>使用 CSMA/CD 协议的以太网&lt;strong>不能进行全双工通信&lt;/strong>而&lt;strong>只能进行双向交替通信（半双工通信）&lt;/strong>。&lt;/p>
+&lt;p>发送的不确定性使整个以太网的平均通信量远小于以太网的最高数据率。&lt;/p>
+&lt;h3 id="3设备及其特点">3.设备及其特点&lt;/h3>
+&lt;h4 id="31网桥">3.1网桥&lt;/h4>
+&lt;p>&lt;strong>用于连接多个以太网(局域网)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>透明网桥&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>(选择的&lt;strong>不是最佳路由&lt;/strong>):按照自学习算法填写转发表，按转发表转发。&lt;/li>
+&lt;li>&lt;strong>工作原理&lt;/strong>
+&lt;ul>
+&lt;li>维护转发表：收到一个帧时，先将它的&lt;strong>源地址记录&lt;/strong>下来自学习。&lt;/li>
+&lt;li>拿目的地址比较转发表，如果找到对应项，直接往对应项记录的接口发送该帧。&lt;/li>
+&lt;li>否则，向出来接口X外的&lt;strong>其他接口广播&lt;/strong>该帧。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>STP(生成树协议)&lt;/strong>：
+&lt;ul>
+&lt;li>该协议应用于在&lt;strong>网络中建立树形拓扑&lt;/strong>，&lt;strong>消除&lt;/strong>网络中的&lt;strong>环路&lt;/strong>，&lt;strong>避免&lt;/strong>由于环路存在而造成的&lt;strong>广播风暴&lt;/strong>问题。&lt;/li>
+&lt;li>即&lt;strong>互连在一起的网桥在进行彼此通信后，就能找出原来的网络拓扑的一个子集&lt;/strong>。在这个子集里，整个连通的网络中不存在回路，即在任何两个站之间只有一条路径。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>所谓&lt;strong>自学习建立转发表&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;ol>
+&lt;li>MAC地址为A的设备A，发出的帧从接口X进入网桥。&lt;/li>
+&lt;li>根据反向操作，网桥知道一定能从接口X发送帧给A设备。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>源路由网桥&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>(选择的是最佳路路由): 先发送 &lt;strong>发现帧&lt;/strong>，按返回结果转发。&lt;/li>
+&lt;li>&lt;strong>工作原理&lt;/strong>
+&lt;ul>
+&lt;li>源站以广播的方式发送发现帧，每个&lt;strong>发现帧记录所经过的所有路由&lt;/strong>。&lt;/li>
+&lt;li>发现帧到达目的后，返回源站。&lt;/li>
+&lt;li>源站从这些发现帧中选择最佳路由。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="32交换机">3.2交换机&lt;/h4>
+&lt;p>&lt;strong>交换式集线器&lt;/strong>常称为&lt;strong>以太网交换机(switch)&lt;strong>或&lt;/strong>第二层交换机&lt;/strong>.&lt;/p>
+&lt;p>以太网交换机:有十几个接口,实质上就是一个多接口的网桥。&lt;/p>
+&lt;p>以太网交换机的&lt;strong>每个接口都直接与主机相连&lt;/strong>，并且一般都工作在&lt;strong>全双工&lt;/strong>方式。&lt;/p>
+&lt;p>每个用户在通信时是独占传输媒体的带宽，对于拥有 &lt;em>N&lt;/em> 对接口的交换机的总容量为 &lt;em>N&lt;/em>´10 Mb/s。这正是交换机的最大优点。&lt;/p>
+&lt;p>&lt;strong>工作原理与透明网桥一致&lt;/strong>&lt;/p>
+&lt;p>可用来实现VLAN&lt;/p>
+&lt;p>&lt;strong>VLAN(虚拟局域网)&lt;/strong>: 网络中的站点&lt;strong>不拘泥于所处的物理位置&lt;/strong>，而可以根据需要灵活地加入不同的逻辑子网中的一种网络技术。&lt;/p>
+&lt;h4 id="33特点">3.3特点&lt;/h4>
+&lt;ul>
+&lt;li>数据链路层设备&lt;strong>能够隔离冲突域&lt;/strong>但&lt;strong>不能隔离广播域&lt;/strong>。&lt;/li>
+&lt;li>都&lt;strong>按MAC地址转发&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h2 id="4网络层">4.网络层&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e7%bd%91%e7%bb%9c%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>&lt;strong>网络层提供的两种服务&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>面向有连接的虚电路服务&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>面向无连接的数据报服务&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>对比的方面&lt;/th>
+&lt;th>虚电路服务&lt;/th>
+&lt;th>数据报服务&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>思路&lt;/td>
+&lt;td>可靠通信应当由网络来保证&lt;/td>
+&lt;td>可靠通信应当由用户主机来保证&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>连接的建立&lt;/td>
+&lt;td>必须有&lt;/td>
+&lt;td>不需要&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>终点地址&lt;/td>
+&lt;td>仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
+&lt;td>每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>分组的转发&lt;/td>
+&lt;td>属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
+&lt;td>每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>当结点出故障时&lt;/td>
+&lt;td>所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
+&lt;td>出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>分组的顺序&lt;/td>
+&lt;td>总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
+&lt;td>到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>端到端的差错处理和流量控制&lt;/td>
+&lt;td>可以由网络负责，也可以由用户主机负责&lt;/td>
+&lt;td>由用户主机负责&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>传统分类地址&lt;/strong>：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>类别&lt;/th>
+&lt;th>网络号&lt;/th>
+&lt;th>主机号&lt;/th>
+&lt;th>第一个网络号&lt;/th>
+&lt;th>最后一个网络号&lt;/th>
+&lt;th>每个网络最大主机数&lt;/th>
+&lt;th>内网地址&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>A&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>24&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>126&lt;/td>
+&lt;td>16777214&lt;/td>
+&lt;td>10.0.0.0 到 10.255.255.255&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>B&lt;/td>
+&lt;td>16&lt;/td>
+&lt;td>16&lt;/td>
+&lt;td>128.1&lt;/td>
+&lt;td>191.255&lt;/td>
+&lt;td>65534&lt;/td>
+&lt;td>172.16.0.0 到 172.31.255.255&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>C&lt;/td>
+&lt;td>24&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>192.0.1&lt;/td>
+&lt;td>223.255.255&lt;/td>
+&lt;td>254&lt;/td>
+&lt;td>192.168.0.0 到 192.168.255.255&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>D&lt;/td>
+&lt;td>&lt;strong>组播地址&lt;/strong>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>224.0.0.0&lt;/td>
+&lt;td>239.255.255.255&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>E&lt;/td>
+&lt;td>保留&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>特殊地址&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>广播地址&lt;/strong>：除网络号外全为1&lt;/li>
+&lt;li>127.0.0.1：本地保留地址&lt;/li>
+&lt;li>&lt;strong>0.0.0.0&lt;/strong>：设置了缺省网关时的缺省路由&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>内网地址&lt;/strong>：&lt;/p>
+&lt;p>RFC 1918 指明的专用地址(private address)（内网地址）&lt;/p>
+&lt;p>10.0.0.0 到 10.255.255.255&lt;/p>
+&lt;p>172.16.0.0 到 172.31.255.255&lt;/p>
+&lt;p>192.168.0.0 到 192.168.255.255&lt;/p>
+&lt;h3 id="41-路由协议igp-rip-ospf-bgp">4.1 路由协议(IGP RIP OSPF, BGP)&lt;/h3>
+&lt;p>&lt;strong>静态路由与动态路由&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>静态路由&lt;/strong>：非自适应路由，指由网络管理员&lt;strong>手工配置的路由&lt;/strong>信息。&lt;strong>简单开销小&lt;/strong>，但&lt;strong>不能及时适应&lt;/strong>网络变化。&lt;/li>
+&lt;li>&lt;strong>动态路由&lt;/strong>：自适应路由选择，&lt;strong>通过路由交换的信息&lt;/strong>来构造路由表。&lt;strong>复杂开销大，能适应&lt;/strong>变化。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>自治系统 AS&lt;/strong>
+(Autonomous System) ：&lt;/p>
+&lt;p>一个 AS 对其他 AS 表现出的是一个**单一的 **和 &lt;strong>一致的路由选择策略&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>IGP与EGP&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>内部网关协议 &lt;strong>IGP&lt;/strong> (Interior Gateway Protocol) 即在&lt;strong>一个自治系统内部使用的路由选择&lt;/strong>协议。目前这类路由选择协议使用得最多，如 &lt;strong>RIP 和 OSPF&lt;/strong> 协议。&lt;/li>
+&lt;li>外部网关协议&lt;strong>EGP&lt;/strong> (External Gateway Protocol) 在自治系统之间使用的。在外部网关协议中目前使用最多的是 &lt;strong>BGP&lt;/strong>-4。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>DV 距离向量 / DVP(Distance Vector Protocol) 距离矢量协议&lt;/strong> ：所有结点都&lt;strong>定期&lt;/strong>地将他们整个&lt;strong>路由表传送给&lt;/strong>所有与之直接&lt;strong>相邻的结点&lt;/strong>。RIP IGRP.&lt;/p>
+&lt;p>&lt;strong>LS 链路状态 / LSP(Link State Protocol) 链路状态协议&lt;/strong>： 主动测试&lt;strong>所有邻接结点的状态&lt;/strong>并定期将链路状态传播&lt;strong>给所有其他结点&lt;/strong>。OSPF&lt;/p>
+&lt;p>&lt;strong>IGRP（Interior Gateway Routing Protocol）与 EIGRP 增强:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>Cisco 专用协议，以延迟，带宽，负载，可靠性为度量标准
+最大跳数：255 每 90 秒更新&lt;/li>
+&lt;/ul>
+&lt;p>**RIP **:&lt;/p>
+&lt;ul>
+&lt;li>基于&lt;strong>距离向量&lt;/strong>的路由选择协议（Bellman-Ford）
+&lt;ul>
+&lt;li>每个路由器维护从自己到其他网络的&lt;strong>跳数&lt;/strong>。&lt;/li>
+&lt;li>使用&lt;strong>UDP&lt;/strong>,按固定的时间间隔(30s) 和 相邻路由器 交换 自己的路由表,并维护自己的路由表。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>在带宽、配置和管理方面要求低，适合于规模较小的网络中&lt;/li>
+&lt;li>&lt;strong>好消息传播得快，而坏消息传播得慢&lt;/strong>。网络出故障的传播时间往往需要较长的时间(例如数分钟)。这是 RIP 的一个主要缺点。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>RIP工作原理&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>收到&lt;/strong>相邻路由器X的&lt;strong>RIP报文&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>修改RIP报文&lt;/strong>,把所有项目的下一跳字段改成X,距离++.&lt;/li>
+&lt;li>对于&lt;strong>每个项目&lt;/strong>
+&lt;ul>
+&lt;li>路由表中无该项目的&lt;strong>目的地址&lt;/strong>, 加入到路由表中.&lt;/li>
+&lt;li>否则, 路由表已有的下一跳是X,直接替换.&lt;/li>
+&lt;li>否则, 项目中的距离更小,直接替换.&lt;/li>
+&lt;li>否则,啥都不做.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>检测相邻路由器心跳&lt;/strong>:3分钟没有收到相邻路由器传报文,将与它的距离置为16(不可达)&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>OSPF&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>是&lt;strong>分布式的链路状态&lt;/strong>协议。
+&lt;ul>
+&lt;li>只有当链路状态&lt;strong>发生变化&lt;/strong>时，路由器&lt;strong>直接用 IP 数据报&lt;/strong>用&lt;strong>洪泛法&lt;/strong>向&lt;strong>所有路由器&lt;/strong>发送 &lt;strong>与自己的相邻路由器的链路状态LSA（依据LSA而不是Hello）&lt;/strong>.
+&lt;ul>
+&lt;li>“链路状态” 就是说明本路由器都和哪些路由器相邻，以及该链路的**“度量”**(metric)。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Link - state database 链路状态数据库LSDB
+&lt;ul>
+&lt;li>全网的拓扑结构图.在全网范围内一致.&lt;/li>
+&lt;li>能够较快更新.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>OSPF工作原理&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>OSPF路由器相互发送 HELLO 报文，&lt;strong>建立邻居&lt;/strong>关系&lt;/li>
+&lt;li>&lt;strong>邻居&lt;/strong>路由器之间相互&lt;strong>通告自身的链路状态信息(LSA)&lt;/strong>;&lt;/li>
+&lt;li>&lt;strong>经过&lt;/strong>一段时间的 &lt;strong>LSA 泛洪&lt;/strong>后所有路由器&lt;strong>形成统一的 LSDB&lt;/strong>&lt;/li>
+&lt;li>路由器根据 SPF最短路 算法，以⾃⼰为根&lt;strong>计算最短⽣成树&lt;/strong>，&lt;strong>形成路由转发信息&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>BGP&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Border Gateway Protocol 边界网关协议,属于&lt;strong>EGP&lt;/strong>&lt;/p>
+&lt;p>BGP 是不同自治系统的路由器之间交换路由信息的协议。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>边界网关协议 BGP 只能是力求寻找一条&lt;strong>能够到达目的网络且比较好&lt;/strong>的路由（不能兜圈子），而&lt;strong>并非要寻找一条最佳路由&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>BGP 协议交换路由信息的结点数量级是&lt;strong>自治系统数的量级&lt;/strong>，这要比这些自治系统中的网络数少很多。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>BGP &lt;strong>支持 CIDR&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>BGP工作原理&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>每个自治系统至少有一个路由器作为BGP发言人。&lt;/li>
+&lt;li>不同自治系统的
+BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统之间的路由信息。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>“转发”和“路由选择”的区别&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>“转发”(forwarding)就是&lt;strong>路由器根据转发表&lt;/strong>将用户的 &lt;strong>IP 数据报从合适的端口转发&lt;/strong>出去。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>“路由选择”(routing)则是按照&lt;strong>分布式算法&lt;/strong>，根据&lt;strong>从各相邻路由器得到的关于网络拓扑的变化&lt;/strong> 情况，动态地&lt;strong>改变所选择的路由&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>路由表&lt;/strong>是根据&lt;strong>路由选择算法&lt;/strong>得出的。而&lt;strong>转发表是从路由表得出&lt;/strong>的。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>ACL&lt;/strong>: 访问控制列表Access Control Lists
+一些告诉路由哪些包该拒绝哪些包能通过的序列集。可以根据源地址，目的地址，链路协议来决定。如果包没有在ACL找到相应的条目，则会被丢弃。&lt;/p>
+&lt;h3 id="42-ip多播组播igmpnat">4.2 IP多播/组播(IGMP,NAT)&lt;/h3>
+&lt;p>&lt;strong>多播/组播&lt;/strong>: 主机之间 &lt;strong>一对一组&lt;/strong>的通讯模式，同组的主机可接收此组内所有数据. 发送者只需要发送一次, &lt;strong>组播路由器&lt;/strong>只向有需求者复制并转发其所需数据。&lt;/p>
+&lt;p>&lt;strong>组播地址&lt;/strong>: 使用D类地址 224.0.0.0 ~ 239.255.255.255.每个D类地址标识一个组.&lt;/p>
+&lt;p>&lt;strong>IGMP&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>网际组管理协议 IGMP&lt;/strong> (Internet Group Management Protocol&lt;/li>
+&lt;li>&lt;strong>IGMP 使用 IP 数据报传递其报文&lt;/strong>，不把 IGMP 看成是一个单独的协议，而是属于&lt;strong>整个网际协议 IP 的一个组成部分&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>不是&lt;/strong>对所有组播成员管理的协议&lt;/li>
+&lt;li>不知道成员数和成员分布情况&lt;/li>
+&lt;li>让连接在本地局域网的&lt;strong>组播路由器&lt;/strong>知道是否有&lt;strong>主机加入/退出多播组&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IGMP工作原理&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>主机的加入&lt;/strong>
+&lt;ul>
+&lt;li>想加入的主机,向&lt;strong>对应组播组的组播地址&lt;/strong>发送IGMP.&lt;/li>
+&lt;li>&lt;strong>本地组播路由器&lt;/strong>收到后,将&lt;strong>该组成员关系&lt;/strong>发送给&lt;strong>因特网&lt;/strong>上的&lt;strong>其他组播路由器&lt;/strong>.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>探询主机&lt;/strong>
+&lt;ul>
+&lt;li>本地&lt;strong>组播路由器周期性探询&lt;/strong>本地主机.主机收到后响应.&lt;/li>
+&lt;li>如有一个组经过几次探询都没有主机响应,则不再转发该组成员关系.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>VPN&lt;/strong>: 基于TCP/IP的虚拟专用网,分为内联网和外联网,使用&lt;strong>内网地址&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>NAT&lt;/strong>:Network Address Translation 网络地址转换:实现&lt;strong>专用网络地址和公用网络地址&lt;/strong>之间的转化。当私有网和公网主机通信的私有IP经过NAT时，&lt;strong>将IP包中的私有IP与NAT的公有IP进行转换&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>NAT&lt;/strong> 软件 ：需要在&lt;strong>专用网连接到因特网&lt;/strong>的&lt;strong>路由器&lt;/strong>上安装 &lt;strong>NAT&lt;/strong> 软件&lt;/p>
+&lt;p>&lt;strong>NAT路由器&lt;/strong>：装有 NAT 软件的路由器叫做 NAT路由器，它至少有一个有效的外部全球地址 IP&lt;em>G&lt;/em>。&lt;/p>
+&lt;p>&lt;strong>PAT/NAPT(端口地址转换)&lt;/strong>:将本地网上的多个设备映射到一个单一的公共ip地址。&lt;/p>
+&lt;h3 id="43-网际协议-ip">4.3 网际协议 IP&lt;/h3>
+&lt;p>TCP/IP 协议中最重要的协议之一，属于网络层的协议，主要作用是定义数据包的格式、对数据包进行路由和寻址，以便它们可以跨网络传播并到达正确的目的地。目前 IP 协议主要分为两种，一种是过去的 IPv4，另一种是较新的 IPv6，目前这两种协议都在使用，但后者已经被提议来取代前者。&lt;/p>
+&lt;p>&lt;strong>三种IP地址的编址方法&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>分类&lt;/strong>的 IP 地址（二级IP地址）。这是最基本的编址方法，&lt;/li>
+&lt;li>&lt;strong>子网&lt;/strong>的划分（三级IP地址）。这是对最基本的编址方法的改进，&lt;/li>
+&lt;li>构成&lt;strong>超网&lt;/strong>。这是比较新的&lt;strong>无分类编址 CIDR&lt;/strong>方法。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>传统分类方法&lt;/strong>：&lt;/p>
+&lt;table>
+&lt;thead>
+&lt;tr>
+&lt;th>类别&lt;/th>
+&lt;th>网络号&lt;/th>
+&lt;th>主机号&lt;/th>
+&lt;th>第一个网络号&lt;/th>
+&lt;th>最后一个网络号&lt;/th>
+&lt;th>每个网络最大主机数&lt;/th>
+&lt;/tr>
+&lt;/thead>
+&lt;tbody>
+&lt;tr>
+&lt;td>A&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>24&lt;/td>
+&lt;td>1&lt;/td>
+&lt;td>126&lt;/td>
+&lt;td>16777214&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>B&lt;/td>
+&lt;td>16&lt;/td>
+&lt;td>16&lt;/td>
+&lt;td>128.1&lt;/td>
+&lt;td>191.255&lt;/td>
+&lt;td>65534&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>C&lt;/td>
+&lt;td>24&lt;/td>
+&lt;td>8&lt;/td>
+&lt;td>192.0.1&lt;/td>
+&lt;td>223.255.255&lt;/td>
+&lt;td>254&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>D&lt;/td>
+&lt;td>组播地址&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>224.0.0.0&lt;/td>
+&lt;td>239.255.255.255&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;tr>
+&lt;td>E&lt;/td>
+&lt;td>保留&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;td>&lt;/td>
+&lt;/tr>
+&lt;/tbody>
+&lt;/table>
+&lt;p>&lt;strong>划分子网方法&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>IP 地址中增加了一个 “&lt;strong>子网号&lt;/strong>字段”，使两级的 IP 地址变成为&lt;strong>三级&lt;/strong>的 IP 地址。划分子网已成为因特网的正式标准协议。&lt;/li>
+&lt;li>ABC类地址的&lt;strong>默认子网掩码&lt;/strong>就是对应网络号的位数。&lt;/li>
+&lt;li>255.0.0.0 / 255.255.0.0 / 255.255.255.0&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>子网掩码&lt;/strong>: 通过&lt;strong>与IP地址进行与操作&lt;/strong>，将IP地址划分成网络地址和主机地址两个部分。&lt;/p>
+&lt;p>&lt;strong>划分子网的匹配方法&lt;/strong>: 将IP地址 与 该网络的子网掩码相与得到网络号,判断是否匹配.(不能得出唯一网络地址)&lt;/p>
+&lt;p>&lt;strong>无分类编址CIDR&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>CIDR Classless Inter-Domain Routing &lt;strong>无分类域间路由选择&lt;/strong>：使用&lt;strong>各种长度的网络前缀&lt;/strong>来代替分类地址中的&lt;strong>网络号和子网号&lt;/strong>的一种子网划分方式。&lt;/li>
+&lt;li>格式：网络前缀 + 主机号。从三级地址回到两级地址。&lt;/li>
+&lt;li>CIDR记法 128.14.32.0/20. 20表示的是网络前缀位数。主机号位数 = 32 - 网络前缀位数&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>VLSM (Variable Length Subnet Mask) 变长子网掩码&lt;/strong>：在一个划分子网的网络中可同时使用几个不同的子网掩码。CIDR是在VLSM基础上研究出的。&lt;/p>
+&lt;p>&lt;strong>路由聚合(构成超网)&lt;/strong>: CIDR 地址块可以表示很多地址，这种地址的聚合常称为&lt;strong>路由聚合&lt;/strong>，它使得&lt;strong>路由表中的一个项目&lt;/strong>可以表示&lt;strong>很多个（例如上千个）&lt;strong>原来&lt;/strong>传统分类地址&lt;/strong>的&lt;strong>路由&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>缩短路由表尺寸&lt;/li>
+&lt;li>支持不连续子网&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>超网&lt;/strong>：前缀长度&lt;strong>不超过 23&lt;/strong> 位的 CIDR 地址块都包含了多个 C 类地址。&lt;strong>这些 C 类地址合起来&lt;/strong>就构成了超网。&lt;/p>
+&lt;p>&lt;strong>特定主机路由&lt;/strong>：为&lt;strong>特定的目的主机&lt;/strong> &lt;strong>指明一个路由&lt;/strong>。采用特定主机路由可使网络管理人员能够更&lt;strong>方便地控制&lt;/strong>网络和&lt;strong>测试&lt;/strong>网络，同时也可在需要考虑某种安全问题时采用这种特定主机路由。&lt;/p>
+&lt;p>&lt;strong>默认路由&lt;/strong>：采用默认路由可以&lt;strong>减少路由表所占用的空间&lt;/strong>和&lt;strong>搜索路由表所用的时间&lt;/strong>。 当目的网络&lt;strong>不在路由表中&lt;/strong>就选择&lt;strong>默认路由&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>如何找下一跳路由器&lt;/strong>：路由器将IP送交&lt;strong>下层网络接口软件&lt;/strong>，&lt;strong>使用 ARP&lt;/strong> 负责将下一跳路由器的 IP 地址转换成硬件地址。硬件地址放在MAC帧首部，&lt;strong>根据硬件地址找到下一跳&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>分组转发算法工作原理&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>数据包首部提取主机IP地址D&lt;/li>
+&lt;li>判断能否&lt;strong>直接交付&lt;/strong>
+&lt;ul>
+&lt;li>传统分类: 直接提取网络地址N,网络N与路由器直接相连就直接交付.&lt;/li>
+&lt;li>划分子网: 将路由器相连的各网络进行匹配.匹配成功就直接交付.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>判断是否有&lt;strong>特定路由&lt;/strong>
+&lt;ul>
+&lt;li>都是通过判断是否有&lt;strong>目的地址为D&lt;/strong>的特定路由&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>在路由表中查找
+&lt;ul>
+&lt;li>传统分类:直接一一匹配.&lt;/li>
+&lt;li>划分子网:IP地址 与 每一个项目的子网掩码相与后匹配.&lt;/li>
+&lt;li>无分类编址: 使用&lt;strong>二叉线索树&lt;/strong>进行&lt;strong>最长前缀匹配&lt;/strong>.前缀越长,地址块越小,地址越具体.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>使用默认路由, 如没有&lt;/li>
+&lt;li>报告转发失败.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>路由环路&lt;/strong>:用户的数据包不停在网络上循环发送，始终到达不了目的地，严重浪费网络资源。&lt;/p>
+&lt;p>&lt;strong>路由环路解决方法&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>Defining a Maximum/定义最大跳数(一般为15)：&lt;strong>超过最大跳数&lt;/strong>则&lt;strong>抛弃报文&lt;/strong>。&lt;/li>
+&lt;li>路由毒害/Route Poisoning:当路由信息的跳数超过定义最大跳时，不是直接从路由表中删除该路由信息，而是&lt;strong>向相邻路由发送&lt;/strong>相关路由信息，&lt;strong>通知其他路由该路径失效&lt;/strong>。&lt;/li>
+&lt;li>Split Horizon/&lt;strong>水平分割&lt;/strong>:路由器从某个接口接收到的更新信息&lt;strong>不允许再从这个接口发回去&lt;/strong>。&lt;/li>
+&lt;li>Hold-Down-Timers/抑制计时器器:如果一条路由更新的跳数大于路由表已记录的该路由的跳数，&lt;strong>启动计时器&lt;/strong>，在计时器超时前，路由器不再接收关于这条路由的更新信息。&lt;/li>
+&lt;/ul>
+&lt;h3 id="44-arp-rarp-dhcp">4.4 ARP RARP DHCP&lt;/h3>
+&lt;p>&lt;strong>ARP&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>ARP 地址解析协议：源主机在向目标主机&lt;strong>发送IP包前&lt;/strong>，通过&lt;strong>广播ARP请求包&lt;/strong>，将&lt;strong>目标主机的IP地址映射为MAC地址&lt;/strong>。&lt;/li>
+&lt;li>每一个主机都设有一个ARP 高速缓存(ARP cache)，里面有所在的局域网上的各主机和路由器的 &lt;strong>IP 地址到硬件地址&lt;/strong>的映射表。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>ARP的四种典型使用情况&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>发送方是主机 / 路由器，要发送IP数据报到&lt;strong>本网络的另一个主机&lt;/strong>。
+&lt;ul>
+&lt;li>用ARP找目的主机的硬件地址&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>发送方是主机 / 路由器，发送IP数据报的另一个网络上。
+&lt;ul>
+&lt;li>用ARP找到本网络 &lt;strong>另一个路由器&lt;/strong>的硬件地址。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>ARP工作原理&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>源主机在向⽬标主机发送 IP 包前，如果源主机不知道⽬标主机的 MAC地址。&lt;/li>
+&lt;li>源主机&lt;strong>向以太网所有计算机广播&lt;/strong>一个填有⽬标主机IP的&lt;strong>ARP请求包&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>目标主机接收请求&lt;/strong>后，向源主机回复填充上了⽬标主机的 MAC
+地址&lt;strong>ARP 应答包&lt;/strong>。&lt;/li>
+&lt;li>源主机得到 &lt;strong>ARP 应答&lt;/strong>后，将⽬标主机的 MAC 地址存入本机ARP高速缓存，便于下次使用。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>RARP(反向地址转换协议)&lt;/strong>:用于将局域网中的某个主机的&lt;strong>物理地址转换为IP地址&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>RARP协议工作原理&lt;/strong>:&lt;/p>
+&lt;ol>
+&lt;li>源主机发送一个&lt;strong>声明自己的MAC地址&lt;/strong>的&lt;strong>请求分配IP地址&lt;/strong>的本地的RARP广播包。&lt;/li>
+&lt;li>本地网段上的&lt;strong>RARP服务器&lt;/strong>收到此请求后，检查其RARP列表，查找该MAC地址对应的IP地址；&lt;/li>
+&lt;li>如果存在，RARP服务器就给源主机发送一个包含此IP地址响应数据包；如果不存在，&lt;strong>RARP服务器对此不做任何的响应&lt;/strong>；&lt;/li>
+&lt;li>源主机如果收到从RARP服务器的响应信息，就利用得到的IP地址进行通讯；如果一直没有收到
+RARP服务器的响应信息，表示初始化失败。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>DHCP（动态主机配置协议 !!应用层!! ）&lt;/strong>：用于给网络中的主机&lt;strong>动态分配&lt;/strong>IP地址。&lt;/p>
+&lt;p>&lt;strong>DHCP工作原理&lt;/strong>：&lt;/p>
+&lt;ol>
+&lt;li>寻找服务器：DHCP客户端广播”DHCP&lt;strong>发现&lt;/strong>消息”，寻找网络中的DHCP服务器。&lt;/li>
+&lt;li>提供IP地址: DHCP服务器收到“DHCP&lt;strong>发现&lt;/strong>消息”后，就广播”DHCP&lt;strong>提供&lt;/strong>消息”，包括提供&lt;strong>客户端的IP地址和&lt;/strong>
+&lt;strong>相关配置信息&lt;/strong>。&lt;/li>
+&lt;li>请求分配IP: DHCP客户端收到“DHCP&lt;strong>提供&lt;/strong>消息”，如果接收客户端提供的相关参数，则广播“DHCP&lt;strong>请求&lt;/strong>消息”向DHCP服务端请求使用该IP地址。&lt;/li>
+&lt;li>确认分配:DHCP服务端收
+到”DHCP&lt;strong>请求&lt;/strong>消息后“，广播”DHCP&lt;strong>确认&lt;/strong>消息“，将IP地址分配给DHCP客户端。&lt;/li>
+&lt;/ol>
+&lt;p>&lt;strong>DHCP和RARP的区别&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>RARP只能实现简单的从MAC地址到IP地址的&lt;strong>查询&lt;/strong>工作，RARP服务器上的
+MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li>
+&lt;li>DHCP可以实现除静态分配以外的&lt;strong>动态IP地址分配&lt;/strong>以及&lt;strong>IP地址租期管理等&lt;/strong>复杂功能。&lt;/li>
+&lt;/ul>
+&lt;h3 id="45-icmp">4.5 ICMP&lt;/h3>
+&lt;p>&lt;strong>ICMP(英特网控制报文协议):&lt;/strong> 用来给&lt;strong>主机或路由器报告差错和异常&lt;/strong>情况。ICMP 报文作为 IP 层数据报的数据，加上数据报的首部，组成 IP 数据报发送出去。&lt;/p>
+&lt;p>一种用于传输网络状态和错误消息的协议，常用于网络诊断和故障排除。例如，Ping 工具就使用了 ICMP 协议来测试网络连通性。&lt;/p>
+&lt;p>&lt;strong>ICMP种类&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>ICMP 差错报告报文
+&lt;ul>
+&lt;li>终点不可达&lt;/li>
+&lt;li>源点抑制(Source quench)&lt;/li>
+&lt;li>时间超过&lt;/li>
+&lt;li>参数问题&lt;/li>
+&lt;li>改变路由（重定向）(Redirect)&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>ICMP 询问报文
+&lt;ul>
+&lt;li>有两类 &lt;strong>回送请求和回答报文&lt;/strong>、&lt;strong>时间戳请求和回答报文&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>PING&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>Packet InterNet Groper 分组网间探测 ：&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>PING 是&lt;strong>应用层直接使用网络层 ICMP&lt;/strong> 的例子，它没有通过运输层的 TCP 或UDP。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>用来测试两个主机之间的连通性。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>PING 使用了 ICMP &lt;strong>回送请求与回送回答报文&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>Traceroute/Trace&lt;/strong>：工作在&lt;strong>网络层&lt;/strong>，使用了&lt;strong>时间超过报文&lt;/strong>&lt;/p>
+&lt;h3 id="45设备">4.5设备&lt;/h3>
+&lt;p>网络层设备 &amp;ndash; 路由器: &lt;strong>既能隔离冲突域又能隔离广播域&lt;/strong>&lt;/p>
+&lt;h2 id="5传输层">5.传输层&lt;/h2>
+&lt;p>&lt;strong>传输层的功能&lt;/strong>:端到端的逻辑通信;收到的报文进行差错检测;提供面向连接的TCP和无连接的UDP.&lt;/p>
+&lt;p>&lt;strong>传输层提供的信道&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>使用TCP: 逻辑通信道就相当于一条全双工的可靠信道.&lt;/li>
+&lt;li>UDP:不可靠的无连接信道.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>运输协议数据单元 TPDU&lt;/strong>.Transport Protocol Data Unit&lt;/p>
+&lt;p>&lt;strong>TCP&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>Transmission Control Protocol 传输控制协议&lt;/li>
+&lt;li>提供&lt;strong>面向连接&lt;/strong>的、&lt;strong>可靠&lt;/strong>的&lt;strong>字节流&lt;/strong>服务&lt;/li>
+&lt;li>TPDU: TCP &lt;strong>报文段&lt;/strong>(segment)&lt;/li>
+&lt;li>传输开销大、报文头部大&lt;/li>
+&lt;li>&lt;strong>全双工&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>UDP&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>User Datagram Protocol 用户数据报协议&lt;/li>
+&lt;li>提供&lt;strong>面向事务&lt;/strong>的&lt;strong>简单不可靠&lt;/strong>信息传送服务&lt;/li>
+&lt;li>TPDU: UDP &lt;strong>报文或用户数据报&lt;/strong>。&lt;/li>
+&lt;li>传输开销小、报文头部小 &lt;strong>8字节&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>端口port&lt;/strong>：&lt;strong>2字节16位&lt;/strong>，用来&lt;strong>标识和区分某一台主机上的不同应用进程&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>套接字 Socket&lt;/strong>：由主机IP地址和端口号组成。唯一标识了某台主机上的某个应用进程。&lt;/p>
+&lt;p>HTTP 80，SNMP 161&lt;/p>
+&lt;p>DNS 53，SMTP 25&lt;/p>
+&lt;p>&lt;strong>TELNET 23&lt;/strong>，FTP 21&lt;/p>
+&lt;p>&lt;strong>TCP的三种可靠传输机制&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>TCP数据&lt;strong>编号&lt;/strong>: 建立连接时协定初始编号,每一个&lt;strong>字节&lt;/strong>对应一个&lt;strong>编号&lt;/strong>,保证数据有序提交应用层。&lt;/li>
+&lt;li>TCP数据&lt;strong>确认&lt;/strong>: 对接收到的数据的&lt;strong>最高序号表示确认&lt;/strong>。&lt;/li>
+&lt;li>TCP&lt;strong>重传&lt;/strong>机制: 设置计时器&lt;strong>超时重传&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>流量控制&lt;/strong>： 端与端之间通信量的控制。&lt;strong>让发送方的发送速率不要太快&lt;/strong>，既要让接收方来得及接收，也不要使网络发生拥塞。一般使用滑动窗口进行流量控制。&lt;/p>
+&lt;p>&lt;strong>拥塞控制&lt;/strong>：使网络能够承受现有的&lt;strong>网络负荷&lt;/strong>。本质是根据自己估算的网络拥塞程度&lt;strong>设置拥塞窗口的值cwnd&lt;/strong>来限定发送速率。&lt;/p>
+&lt;p>&lt;strong>TCP的拥塞控制四种方法&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>慢开始: cwnd = 1，每收到一个确认cwnd++&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>拥塞避免: 设置慢开始门限 ssthresh&lt;/p>
+&lt;ul>
+&lt;li>当 cwnd &amp;lt; ssthresh 时，使用慢开始算法。&lt;/li>
+&lt;li>当 cwnd &amp;gt; ssthresh 时，使用&lt;strong>拥塞避免算法&lt;/strong>：每过一个RTT往返时间cwnd++&lt;/li>
+&lt;li>出现拥塞时，ssthresh 为 cwnd/2 ，cwnd = 1&lt;/li>
+&lt;li>思想：乘法减小，加法增大&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>快重传:&lt;/p>
+&lt;ul>
+&lt;li>接收方&lt;strong>每收到一个 失序 的报文段&lt;/strong>后就&lt;strong>立即&lt;/strong>发出&lt;strong>重复确认&lt;/strong>。&lt;/li>
+&lt;li>发送方只要&lt;strong>一连收到三个重复确认&lt;/strong>就应当立即&lt;strong>重传对方尚未收到的报文段&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>快恢复: 发送方&lt;strong>一连收到三个重复确认&lt;/strong>，ssthresh = cwnd/2，但cwnd不变，此时是由RRT线性增大。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>TCP三次握手&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>第一次&lt;/strong>
+&lt;ul>
+&lt;li>客户机发送&lt;strong>连接请求报文段&lt;/strong>，请求建立连接&lt;/li>
+&lt;li>client：置为syn_send，发送请求 SYN = 1, seq = x&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>第二次&lt;/strong>
+&lt;ul>
+&lt;li>服务机收到请求后,发回&lt;strong>确认报文段&lt;/strong>.&lt;/li>
+&lt;li>同时发送自己的序列号.&lt;/li>
+&lt;li>server：置为syn_recvd,发送 SYN = 1,seq = y，ACK x.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>第三次&lt;/strong>
+&lt;ul>
+&lt;li>客户端收到确认后，发回&lt;strong>确认报文段&lt;/strong>.&lt;/li>
+&lt;li>A 的 TCP 通知上层应用进程，连接已经建立。&lt;/li>
+&lt;li>client:置为established&lt;/li>
+&lt;li>server 收到 该确认报文段后，置为established&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>TCP三次握手的原因&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>因为第二次服务端接收到连接请求的时候，也想建立连接，所以将SYN和ACK一起发送。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>第一次和第二次：为了保证&lt;strong>服务端能收接受到客户端&lt;/strong>的信息并能做出正确的应答。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>第二次和第三次：为了保证&lt;strong>客户端能收接受到服务端&lt;/strong>的信息并能做出正确的应答。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>TCP四次挥手过程&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>第一次&lt;/strong>：&lt;strong>客户端&lt;/strong>发送&lt;strong>FIN报文请求释放连接&lt;/strong>。用来关闭客户端到服务端的数据传送。单向关闭。&lt;/li>
+&lt;li>&lt;strong>第二次&lt;/strong>：&lt;strong>服务端&lt;/strong>收到这个FIN后，&lt;strong>发回ACK确认&lt;/strong>。客户端到服务端方向的连接释放，TCP处于半关闭。客户端无法向服务端发送数据，但服务端仍然可以向客户端发送数据。&lt;/li>
+&lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。&lt;/li>
+&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在
+2MSL后关闭。TCP连接释放完成。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>TCP四次挥手原因&lt;/strong>:
+当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
+&lt;p>&lt;strong>TCP最后一次挥手客户端要等待2MSL(最长报文寿命)时间的原因:&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>若&lt;strong>客户端&lt;/strong>发送&lt;strong>最后的ACK丢失&lt;/strong>，
+则&lt;strong>服务端会在经过MSL后重发FIN报文&lt;/strong>。若客户端此时已经关闭，则无法重发ACK，则&lt;strong>服务端则无法进入关闭状态&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>TCP建立的连接、虚电路建立的连接、电路交换三者区别：&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>TCP建立的连接&lt;/strong>：只是在TCP的TCB(传输控制块中)存储了&lt;strong>目的地址&lt;/strong>的&lt;strong>端口信息&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>虚电路路建立的连接&lt;/strong>：指通信前，在&lt;strong>源主机&lt;/strong>和&lt;strong>目的主机&lt;/strong>之间建立一条虚连接，&lt;strong>分组&lt;/strong>通过&lt;strong>该路径顺序&lt;/strong>
+传送到目的主机。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>电路交换&lt;/strong>：是建立&lt;strong>真实&lt;/strong>存在的&lt;strong>物理连接&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="6应用层">6.应用层&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/%e5%ba%94%e7%94%a8%e5%b1%82%e5%8d%8f%e8%ae%ae.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="61-http">6.1 http&lt;/h3>
+&lt;p>&lt;strong>HTTP&lt;/strong>: HyperText Transfer Protocol 超文本传输协议&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>面向事务的(transaction-oriented)应用层&lt;/strong>协议。HTTP 使用 &lt;strong>TCP 连接进行可靠的&lt;/strong>传送。HTTP是客户端与服务端交互的协议。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>HTTPS&lt;/strong>：HTTP&lt;strong>通信接口部分用SSL和TLS协议代替&lt;/strong>。通常是HTTP直接和TCP通信，当使用SSL时，则演变为先和SSL通信，再由SSL和TCP通信了。&lt;/p>
+&lt;h3 id="62-电子邮件协议">6.2 &lt;strong>电子邮件协议&lt;/strong>&lt;/h3>
+&lt;p>都是基于TCP&lt;/p>
+&lt;ul>
+&lt;li>发送邮件的协议：SMTP&lt;/li>
+&lt;li>读取邮件的协议：POP3 和 IMAP&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>SMTP&lt;/strong>(简单邮件传输协议)：规定了两个相互通信的SMTP进程之间如何交换信息&lt;/p>
+&lt;p>&lt;strong>MIME&lt;/strong>: 在SMTP协议的基础上&lt;strong>增加了邮件主体的结构&lt;/strong>，并定义了&lt;strong>传送非ASCII码&lt;/strong>的编码规则。&lt;/p>
+&lt;p>&lt;strong>POP3&lt;/strong>(&lt;strong>邮局版本协议&lt;/strong>3): 支持客户端&lt;strong>远程管理在服务器上的电子邮件&lt;/strong>，邮件发送到服务器上，&lt;strong>客户端调用邮件客户机程序以连接服务器&lt;/strong>，并&lt;strong>下载&lt;/strong>所有未阅读的电子邮件。&lt;/p>
+&lt;p>&lt;strong>IMAP&lt;/strong>： Internet Message Access Protocol 互联网邮件访问协议 是一个&lt;strong>联机协议&lt;/strong>。当用户 PC 机上的 IMAP 客户程序打开 IMAP 服务器的邮箱时，用户就可看到邮件的首部。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>优点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>用户可以&lt;strong>在不同的地方使用不同的计算机&lt;/strong>随时上网阅读和处理自己的邮件&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>缺点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>如果用户没有将邮件复制到自己的 PC 上，则邮件一直是存放在 IMAP 服务器上。因此&lt;strong>用户需要经常与 IMAP 服务器建立连接&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>SMTP POP IMAP 三者的区别&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>发信人的用户代理&lt;/strong> 向 &lt;strong>源邮件服务器发送邮件&lt;/strong>，以及&lt;strong>源邮件服务器&lt;/strong> 向 &lt;strong>目的邮件服务器发送邮件&lt;/strong>，都是使用 &lt;strong>SMTP&lt;/strong> 协议。&lt;/li>
+&lt;li>而 &lt;strong>POP&lt;/strong> 协议或 &lt;strong>IMAP&lt;/strong> 协议则是&lt;strong>用户&lt;/strong> 从 &lt;strong>目的邮件服务器&lt;/strong>上 &lt;strong>读取邮件&lt;/strong>所使用的协议。&lt;/li>
+&lt;/ul>
+&lt;h3 id="62-ftp">6.2 FTP&lt;/h3>
+&lt;p>&lt;strong>FTP&lt;/strong>：(文本传输协议File Transfer Protocol): 运行在TCP之上，用于在&lt;strong>异构网络&lt;/strong>中任意计算机之间传送文件。FTP 是一种不安全的协议.&lt;/p>
+&lt;p>&lt;strong>TFTP&lt;/strong>(简单文件传输协议 运行在UDP之上):用于在&lt;strong>客户端与服务端&lt;/strong>之间进行&lt;strong>简单文件传输&lt;/strong>。TFTP有自己的差错改正措施，不支持交互。&lt;/p>
+&lt;p>&lt;strong>FTP工作原理&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>使用&lt;strong>客户服务器&lt;/strong>方式。&lt;/li>
+&lt;li>可同时为多个客户进程提供服务。&lt;/li>
+&lt;li>FTP 的服务器进程由两大部分组成：&lt;strong>一个主进程&lt;/strong>，负责接受新的请求；另外有&lt;strong>若干个从属进程&lt;/strong>，负责处理单个请求。&lt;/li>
+&lt;li>使用两个TCP连接：
+&lt;ul>
+&lt;li>&lt;strong>控制连接&lt;/strong>在整个会话期间一直保持打开，FTP 客户发出的&lt;strong>传送请求&lt;/strong>通过控制连接&lt;strong>发送给&lt;/strong>服务器端的&lt;strong>控制进程&lt;/strong>。&lt;/li>
+&lt;li>用于传输文件的是“&lt;strong>数据连接&lt;/strong>”，被 控制连接 创建。&lt;strong>端口20&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="63-telnet">6.3 Telnet&lt;/h3>
+&lt;p>&lt;strong>TELNET&lt;/strong>：简单的&lt;strong>远程终端协议&lt;/strong>，使用C/S方式，使用TCP连接。&lt;/p>
+&lt;p>Telnet 协议的最大缺点之一是所有数据（包括用户名和密码）均以明文形式发送，这有潜在的安全风险。这就是为什么如今很少使用 Telnet，而是使用一种称为 SSH 的非常安全的网络传输协议的主要原因。&lt;/p>
+&lt;h3 id="64-sshsecure-shell-protocol安全的网络传输协议">6.4 SSH（Secure Shell Protocol，安全的网络传输协议）&lt;/h3>
+&lt;p>基于 TCP 协议，通过加密和认证机制实现安全的访问和文件传输等业务&lt;/p>
+&lt;h3 id="65-rtpreal-time-transport-protocol实时传输协议">6.5 RTP（Real-time Transport Protocol，实时传输协议）&lt;/h3>
+&lt;p>通常基于 UDP 协议，但也支持 TCP 协议。它提供了端到端的实时传输数据的功能，但不包含资源预留存、不保证实时传输质量，这些功能由 WebRTC 实现。&lt;/p>
+&lt;h3 id="66-dns-domain-name-system域名系统">6.6 DNS (Domain Name System)域名系统&lt;/h3>
+&lt;p>基于 UDP 协议，用于解决域名和 IP 地址的映射问题。&lt;/p>
+&lt;p>因特网采用&lt;strong>层次结构的命名树&lt;/strong>作为主机的名字，并使用&lt;strong>分布式&lt;/strong>的域名系统 DNS。用来将域名转换为IP地址。&lt;/p>
+&lt;p>&lt;strong>域名服务器&lt;/strong>：&lt;strong>域名服务器程序在专&lt;/strong>设的结点上运行，运行该程序的机器称为&lt;strong>域名服务器&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>基础结构域名&lt;/strong>(infrastructure domain)：这种顶级域名只有一个，即 &lt;strong>arpa&lt;/strong>，用于&lt;strong>反向域名解析&lt;/strong>，因此又称为&lt;strong>反向域名&lt;/strong>。&lt;/p>
+&lt;p>&lt;strong>DNS查询方式 域名解析过程&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>主机向本地域名服务器&lt;/strong>的查询一般都是采用&lt;strong>递归查询&lt;/strong>。
+&lt;ul>
+&lt;li>知道则回复。如本地域名服务器不知道，则本地域名服务器就以 &lt;strong>DNS 客户&lt;/strong>的身份，&lt;strong>向其他域名服务器&lt;/strong>继续发出查询请求报文。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>本地域名服务器&lt;/strong>向&lt;strong>根域名服务器&lt;/strong>的查询通常是采用&lt;strong>迭代查询&lt;/strong>。
+&lt;ul>
+&lt;li>&lt;strong>根域名服务器要么&lt;/strong>给出所要查询的&lt;strong>IP 地址&lt;/strong>，要么告诉本地域名服务器：“你下一步&lt;strong>应当向哪一个域名服务器&lt;/strong>进行查询”。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="65-其他概念">6.5 其他概念&lt;/h3>
+&lt;p>&lt;strong>WWW&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>万维网 WWW (World Wide Web)&lt;strong>并非某种特殊&lt;/strong>的&lt;strong>计算机网络&lt;/strong>。&lt;/li>
+&lt;li>是一个&lt;strong>大规模的、联机式&lt;/strong>的&lt;strong>信息储藏所&lt;/strong>。是&lt;strong>分布式超媒体&lt;/strong>(hypermedia)系统，它是&lt;strong>超文本&lt;/strong>(hypertext)系统的扩充。&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>就是在用户计算机上的&lt;strong>万维网客户程序&lt;/strong>。&lt;/li>
+&lt;li>&lt;strong>万维网服务器&lt;/strong>：&lt;strong>万维网文档&lt;/strong>所&lt;strong>驻留的计算机&lt;/strong>的&lt;strong>运行服务器程序&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>页面&lt;/strong>(page)：在一个&lt;strong>客户程序主窗口上显示出&lt;/strong>的&lt;strong>万维网文档&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>HTML&lt;/strong>(HyperText &lt;strong>Markup&lt;/strong> Language 超文本标记语言): &lt;strong>文档结构标记语言&lt;/strong>，使用约定的标记对页面上的信息进行描述。&lt;/p>
+&lt;p>&lt;strong>URL&lt;/strong>: 统一资源定位符Uniform Resource Locator， 标识万维网上的各种文档。每个文档在整个因特网都具有唯一的URL。&lt;/p>
+&lt;ul>
+&lt;li>格式：协议(ftp/http)://主机:端口/路径。&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e7%bd%91%e7%bb%9c%e5%9f%ba%e7%a1%80/URL%e7%9a%84%e7%bb%84%e6%88%90.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>协议。URL 的前缀通常表示了该网址采用了何种应用层协议，通常有两种——HTTP 和 HTTPS。当然也有一些不太常见的前缀头，比如文件传输时用到的ftp:。&lt;/li>
+&lt;li>域名。域名便是访问网址的通用名，这里也有可能是网址的 IP 地址，域名可以理解为 IP 地址的可读版本，毕竟绝大部分人都不会选择记住一个网址的 IP 地址。&lt;/li>
+&lt;li>端口。如果指明了访问网址的端口的话，端口会紧跟在域名后面，并用一个冒号隔开。&lt;/li>
+&lt;li>资源路径。域名（端口）后紧跟的就是资源路径，从第一个/开始，表示从服务器上根目录开始进行索引到的文件路径，上图中要访问的文件就是服务器根目录下/path/to/myfile.html。早先的设计是该文件通常物理存储于服务器主机上，但现在随着网络技术的进步，该文件不一定会物理存储在服务器主机上，有可能存放在云上，而文件路径也有可能是虚拟的（遵循某种规则）。&lt;/li>
+&lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
+&lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
+&lt;/ul>
+&lt;h4 id="输入url后发生了什么">输入URL后发生了什么&lt;/h4>
+&lt;ul>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/li>
 &lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E8%BD%AF%E4%BB%B6%E6%B5%8B%E8%AF%95/%E7%A8%8B%E5%BA%8F%E5%88%86%E6%9E%90/</guid><description>&lt;h3 id="程序分析主要关注两大方面">程序分析主要关注两大方面：&lt;/h3>
 &lt;ul>
 &lt;li>&lt;strong>程序优化&lt;/strong>侧重于提高程序的性能，通过对程序中关键函数的跟踪或者运行时信息的统计，找到系统性能的瓶颈，从而采取进一步行动对程序进行优化，同时减少资源使用。&lt;/li>
