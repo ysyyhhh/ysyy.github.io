@@ -12,7 +12,258 @@ grep&lt;/p>
 &lt;p>grep命令一般怎么使用？
 grep [option] pattern file&lt;/p>
 &lt;p>Linux统计一个文件有多少行的命令？
-wc -l filename&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
+wc -l filename&lt;/p>
+&lt;h2 id="资源相关">资源相关&lt;/h2>
+&lt;h3 id="内存相关">内存相关&lt;/h3>
+&lt;p>内存查看
+free -m&lt;/p>
+&lt;p>内存使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: &lt;span class="m">1888&lt;/span> &lt;span class="m">155&lt;/span> &lt;span class="m">1406&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">326&lt;/span> &lt;span class="m">1616&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: &lt;span class="m">2047&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">2047&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>total: 总内存&lt;/li>
+&lt;li>used: 已使用内存&lt;/li>
+&lt;li>free: 空闲内存&lt;/li>
+&lt;li>shared: 共享内存&lt;/li>
+&lt;li>buff/cache: 缓存内存&lt;/li>
+&lt;li>available: 可用内存&lt;/li>
+&lt;/ul>
+&lt;h3 id="磁盘相关">磁盘相关&lt;/h3>
+&lt;p>磁盘查看
+df -h&lt;/p>
+&lt;p>磁盘使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udev 935M &lt;span class="m">0&lt;/span> 935M 0% /dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 192M 1.4M 191M 1% /run
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>Size: 总磁盘大小&lt;/li>
+&lt;li>Used: 已使用磁盘大小&lt;/li>
+&lt;li>Avail: 可用磁盘大小&lt;/li>
+&lt;li>Use%: 使用百分比&lt;/li>
+&lt;li>Mounted on: 挂载点&lt;/li>
+&lt;/ul>
+&lt;h3 id="cpu相关">CPU相关&lt;/h3>
+&lt;p>CPU查看
+top&lt;/p>
+&lt;p>CPU使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">top - 10:00:01 up 1:00, &lt;span class="m">1&lt;/span> user, load average: 0.00, 0.00, 0.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tasks: &lt;span class="m">88&lt;/span> total, &lt;span class="m">1&lt;/span> running, &lt;span class="m">87&lt;/span> sleeping, &lt;span class="m">0&lt;/span> stopped, &lt;span class="m">0&lt;/span> zombie
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%Cpu&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>: 0.0 us, 0.0 sy, 0.0 ni,100.0 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 st
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">KiB Mem : &lt;span class="m">1936&lt;/span> total, &lt;span class="m">1456&lt;/span> free, &lt;span class="m">116&lt;/span> used, &lt;span class="m">364&lt;/span> buff/cache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>load average: 1分钟、5分钟、15分钟的平均负载&lt;/li>
+&lt;li>Tasks: 进程信息&lt;/li>
+&lt;li>%Cpu(s): CPU使用情况&lt;/li>
+&lt;li>KiB Mem: 内存使用情况&lt;/li>
+&lt;/ul>
+&lt;h2 id="进程相关">进程相关&lt;/h2>
+&lt;h3 id="进程查看">进程查看&lt;/h3>
+&lt;p>ps
+含义: 显示当前用户的进程信息
+不加aux的话, 只会显示当前终端的进程&lt;/p>
+&lt;p>ps aux
+含义: a表示显示所有进程，u表示显示用户信息，x表示显示没有控制终端的进程&lt;/p>
+&lt;p>ps -ef&lt;/p>
+&lt;ul>
+&lt;li>e: 显示所有进程&lt;/li>
+&lt;li>f: 显示全格式&lt;/li>
+&lt;/ul>
+&lt;p>ps -ef | grep java&lt;/p>
+&lt;p>输出:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">root &lt;span class="m">1023&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="m">0&lt;/span> 10:00 ? 00:00:00 /usr/bin/java
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找内存占用最高的进程
+ps aux &amp;ndash;sort=-%mem | head&lt;/p>
+&lt;h2 id="网络相关">网络相关&lt;/h2>
+&lt;h3 id="网络配置查看">网络配置查看&lt;/h3>
+&lt;p>ifconfig
+包含的信息:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">eth0 Link encap:Ethernet HWaddr 00:0C:29:3D:5D:7A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet addr:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Bcast:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Mask:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 addr:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collisions:0 txqueuelen:1000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>网口的连接状态标志: UP表示网口已经启用，DOWN表示网口未启用, RUNNING表示网口正在运行，而STOPPED表示网口已经停止&lt;/p>
+&lt;p>MTU大小: 默认值是 1500 字节，其作用主要是限制网络包的大小，如果 IP 层有一个数据报要传，而且网络包的长度比链路层的 MTU 还大，那么 IP 层就需要进行分片&lt;/p>
+&lt;p>网口的 IP 地址、子网掩码、MAC 地址、网关地址&lt;/p>
+&lt;p>网络包收发的统计信息&lt;/p>
+&lt;ul>
+&lt;li>RX packets: 接收的数据包的数量&lt;/li>
+&lt;li>TX packets: 发送的数据包的数量&lt;/li>
+&lt;/ul>
+&lt;p>errors: 出错的数据包的数量
+dropped: 丢弃的数据包的数量
+overruns: 数据包在接收时超出了缓冲区的大小
+frame: 数据包在接收时出现了 CRC 错误&lt;/p>
+&lt;h3 id="socket信息查看">socket信息查看&lt;/h3>
+&lt;p>netstat
+含义: 显示网络状态信息&lt;/p>
+&lt;p>netstat -an
+含义: 显示所有的网络连接，不进行域名解析
+输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Proto Recv-Q Send-Q Local Address Foreign Address State
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp6 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udp 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udp6 0 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>netstat -an | grep 8080
+含义: 查看端口是否被占用&lt;/p>
+&lt;p>ss
+含义: 显示套接字信息&lt;/p>
+&lt;p>ss -ltnp&lt;/p>
+&lt;ul>
+&lt;li>l: 显示LISTIEN监听状态的套接字&lt;/li>
+&lt;li>t: 显示 TCP 协议的套接字&lt;/li>
+&lt;li>n: 不显示名字,而是以数字的方式显示ip和端口&lt;/li>
+&lt;li>p: 显示进程信息&lt;/li>
+&lt;/ul>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">State Recv-Q Send-Q Local Address:Port Peer Address:Port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">LISTEN 0 128
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>都包含了:&lt;/p>
+&lt;p>socket 的状态（State）
+接收队列（Recv-Q）
+发送队列（Send-Q）
+本地地址（Local Address）
+远端地址（Foreign Address）
+进程 PID
+进程名称（PID/Program name）&lt;/p>
+&lt;p>接收队列（Recv-Q）和发送队列（Send-Q）比较特殊，在不同的 socket 状态。它们表示的含义是不同的。&lt;/p>
+&lt;p>当 socket 状态处于 Established时：&lt;/p>
+&lt;p>Recv-Q 表示 socket 缓冲区中还没有被应用程序读取的字节数；
+Send-Q 表示 socket 缓冲区中还没有被远端主机确认的字节数；&lt;/p>
+&lt;p>而当 socket 状态处于 Listen 时：&lt;/p>
+&lt;p>Recv-Q 表示全连接队列的长度；
+Send-Q 表示全连接队列的最大长度；&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Linux%e5%91%bd%e4%bb%a4/TCP%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>全连接队列指的是服务器与客户端完了 TCP 三次握手后，还没有被 accept() 系统调用取走连接的队列。&lt;/p>
+&lt;h3 id="网络吞吐量查看">网络吞吐量查看&lt;/h3>
+&lt;p>sar
+含义: 查看系统的网络吞吐量&lt;/p>
+&lt;p>用法是给 sar 增加 -n 参数就可以查看网络的统计信息，比如&lt;/p>
+&lt;p>sar -n DEV，显示网口的统计数据；
+sar -n EDEV，显示关于网络错误的统计数据；
+sar -n TCP，显示 TCP 的统计数据&lt;/p>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">10:00:01 IFACE rxpck/s txpck/s rxkB/s txkB/s rxcmp/s txcmp/s rxmcst/s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10:10:01 eth0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10:20:01 eth0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>它们的含义：&lt;/p>
+&lt;p>rxpck/s 和 txpck/s 分别是接收和发送的 PPS，单位为包 / 秒。
+rxkB/s 和 txkB/s 分别是接收和发送的吞吐率，单位是 KB/ 秒。
+rxcmp/s 和 txcmp/s 分别是接收和发送的压缩数据包数，单位是包 / 秒。&lt;/p>
+&lt;p>对于带宽，我们可以使用 ethtool 命令来查询，它的单位通常是 Gb/s 或者 Mb/s，不过注意这里小写字母 b ，表示比特而不是字节。我们通常提到的千兆网卡、万兆网卡等，单位也都是比特（bit）。如下你可以看到， eth0 网卡就是一个千兆网卡：&lt;/p>
+&lt;h3 id="连通性和延时">连通性和延时&lt;/h3>
+&lt;p>ping
+含义: 测试网络连通性&lt;/p>
+&lt;p>ping -c 4 &lt;a href="https://www.baidu.com" target="_blank" rel="noopener">www.baidu.com&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>c: 指定发送的数据包数量&lt;/li>
+&lt;li>i: 指定发送数据包的时间间隔&lt;/li>
+&lt;li>s: 指定发送数据包的大小&lt;/li>
+&lt;/ul>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">PING baidu.com (39.156.66.10) 56(84) bytes of data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=1 ttl=50 time=24.2 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=2 ttl=50 time=23.1 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=3 ttl=50 time=25.8 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">^C
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- baidu.com ping statistics ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3 packets transmitted, 3 received, 0% packet loss, time 2053ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rtt min/avg/max/mdev = 23.114/24.375/25.778/1.092 ms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>icmp_seq: ICMP 数据包的序列号&lt;/li>
+&lt;li>ttl: 生存时间&lt;/li>
+&lt;li>time: 延迟时间&lt;/li>
+&lt;/ul>
+&lt;p>ping 不通服务器并不代表 HTTP 请求也不通，因为有的服务器的防火墙是会禁用 ICMP 协议的&lt;/p>
+&lt;p>traceroute
+含义: 显示数据包到达目的地的路径&lt;/p>
+&lt;p>traceroute &lt;a href="https://www.baidu.com" target="_blank" rel="noopener">www.baidu.com&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">traceroute to www.baidu.com (180.101.50.242), 30 hops max, 60 byte packets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 LAPTOP-7CCB4DQK.mshome.net (172.19.208.1) 0.254 ms 0.233 ms 0.224 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 172.21.24.1 (172.21.24.1) 9.785 ms 9.779 ms 9.772 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 172.28.255.52 (172.28.255.52) 9.766 ms 7.236 ms 9.754 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 * * *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 58.213.8.1 (58.213.8.1) 12.624 ms 12.618 ms 12.613 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 58.217.231.201 (58.217.231.201) 9.715 ms 58.217.231.217 (58.217.231.217) 8.304 ms 61.155.254.37 (61.155.254.37) 8.291 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 * * *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8 58.213.95.54 (58.213.95.54) 6.556 ms 58.213.94.222 (58.213.94.222) 7.334 ms 58.213.95.222 (58.213.95.222) 6.338 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 9 * * *
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>1: 第几跳&lt;/li>
+&lt;li>2: 路由器的 IP 地址&lt;/li>
+&lt;li>3: 三次 ICMP 数据包的延迟时间&lt;/li>
+&lt;li>*: 丢包&lt;/li>
+&lt;/ul>
+&lt;h2 id="日志分析">日志分析&lt;/h2>
+&lt;p>如何从日志分析 PV、UV？&lt;/p>
+&lt;p>很多时候，我们观察程序是否如期运行，或者是否有错误，最直接的方式就是看运行日志，当然要想从日志快速查到我们想要的信息，前提是程序打印的日志要精炼、精准。&lt;/p>
+&lt;p>但日志涵盖的信息远不止于此，比如对于 nginx 的 access.log 日志，我们可以根据日志信息分析用户行为。&lt;/p>
+&lt;p>什么用户行为呢？比如分析出哪个页面访问次数（PV）最多，访问人数（UV）最多，以及哪天访问量最多，哪个请求访问最多等等。&lt;/p>
+&lt;h3 id="查看日志大小">查看日志大小&lt;/h3>
+&lt;p>&lt;code>ls -lh&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>l: 列表显示&lt;/li>
+&lt;li>h: 显示文件大小&lt;/li>
+&lt;li>a: 显示所有文件, 包括隐藏文件&lt;/li>
+&lt;/ul>
+&lt;p>通过这个查看日志大小后&lt;/p>
+&lt;p>如果日志文件数据量太大, 使用cat会导致终端卡死&lt;/p>
+&lt;p>可以使用scp传到其他服务器上查看&lt;/p>
+&lt;h3 id="用less而不是cat">用less,而不是cat&lt;/h3>
+&lt;p>less不会一次性读取整个文件, 而是按需读取, 所以对于大文件来说, less更加高效&lt;/p>
+&lt;p>如果想要查看文件的最后几行, 可以使用tail&lt;/p>
+&lt;p>如果想要实时查看文件, 可以使用tail -f&lt;/p>
+&lt;h3 id="日志分析-pv分析-page-view">日志分析 PV分析 Page View&lt;/h3>
+&lt;p>用户访问一个页面就是一次 PV&lt;/p>
+&lt;p>对于日志文件来说, 行数可以代表 PV&lt;/p>
+&lt;p>Linux统计一个文件有多少行
+wc -l filename&lt;/p>
+&lt;h3 id="pv分组">PV分组&lt;/h3>
+&lt;p>nginx的access.log日志文件中, 有访问时间的西欧模型/&lt;/p>
+&lt;p>如果要按时间分组, 可以先把时间提取出来, 然后再统计&lt;/p>
+&lt;p>时间在第四列, 可以使用awk提取&lt;/p>
+&lt;p>awk &amp;lsquo;{print $4}&amp;rsquo; access.log
+输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:03
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以继续使用awk的substr 函数提取时间&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print substr($4, 2, 11)}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以使用sort排序, 然后使用uniq统计&lt;/p>
+&lt;p>uniq -c是统计重复行的次数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print substr($4, 2, 11)}&amp;#39; access.log | sort | uniq -c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> 3 10/Dec/2021
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用 uniq -c 命令前，先要进行 sort 排序&lt;/p>
+&lt;p>uniq 的去重是基于相邻行的.&lt;/p>
+&lt;h3 id="uv分析-unique-visitor">UV分析 Unique Visitor&lt;/h3>
+&lt;p>UV是指独立访客数，即一天内访问网站的不同IP地址的人数&lt;/p>
+&lt;p>如果要统计UV, 可以使用awk提取IP地址&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $1}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="终端分析">终端分析&lt;/h3>
+&lt;p>如果要统计不同终端的访问量, 可以使用awk提取终端信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $12}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="top3请求">TOP3请求&lt;/h3>
+&lt;p>如果要统计访问量最多的请求, 可以使用awk提取请求信息
+然后使用sort排序, 然后使用uniq统计
+最后使用head -n 3查看前三个&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $7}&amp;#39; access.log | sort | uniq -c | sort -nr | head -n 3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
 &lt;h4 id="五种io模型">五种IO模型&lt;/h4>
 &lt;ol>
 &lt;li>阻塞式I/O模型：当应用程序调用I/O操作时，如果数据没有准备好，应用程序会一直等待，直到数据准备好为止。&lt;/li>

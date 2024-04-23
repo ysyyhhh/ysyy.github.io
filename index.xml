@@ -6045,7 +6045,258 @@ grep&lt;/p>
 &lt;p>grep命令一般怎么使用？
 grep [option] pattern file&lt;/p>
 &lt;p>Linux统计一个文件有多少行的命令？
-wc -l filename&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
+wc -l filename&lt;/p>
+&lt;h2 id="资源相关">资源相关&lt;/h2>
+&lt;h3 id="内存相关">内存相关&lt;/h3>
+&lt;p>内存查看
+free -m&lt;/p>
+&lt;p>内存使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl"> total used free shared buff/cache available
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Mem: &lt;span class="m">1888&lt;/span> &lt;span class="m">155&lt;/span> &lt;span class="m">1406&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">326&lt;/span> &lt;span class="m">1616&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Swap: &lt;span class="m">2047&lt;/span> &lt;span class="m">0&lt;/span> &lt;span class="m">2047&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>total: 总内存&lt;/li>
+&lt;li>used: 已使用内存&lt;/li>
+&lt;li>free: 空闲内存&lt;/li>
+&lt;li>shared: 共享内存&lt;/li>
+&lt;li>buff/cache: 缓存内存&lt;/li>
+&lt;li>available: 可用内存&lt;/li>
+&lt;/ul>
+&lt;h3 id="磁盘相关">磁盘相关&lt;/h3>
+&lt;p>磁盘查看
+df -h&lt;/p>
+&lt;p>磁盘使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">Filesystem Size Used Avail Use% Mounted on
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udev 935M &lt;span class="m">0&lt;/span> 935M 0% /dev
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tmpfs 192M 1.4M 191M 1% /run
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>Size: 总磁盘大小&lt;/li>
+&lt;li>Used: 已使用磁盘大小&lt;/li>
+&lt;li>Avail: 可用磁盘大小&lt;/li>
+&lt;li>Use%: 使用百分比&lt;/li>
+&lt;li>Mounted on: 挂载点&lt;/li>
+&lt;/ul>
+&lt;h3 id="cpu相关">CPU相关&lt;/h3>
+&lt;p>CPU查看
+top&lt;/p>
+&lt;p>CPU使用情况&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">top - 10:00:01 up 1:00, &lt;span class="m">1&lt;/span> user, load average: 0.00, 0.00, 0.00
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Tasks: &lt;span class="m">88&lt;/span> total, &lt;span class="m">1&lt;/span> running, &lt;span class="m">87&lt;/span> sleeping, &lt;span class="m">0&lt;/span> stopped, &lt;span class="m">0&lt;/span> zombie
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">%Cpu&lt;span class="o">(&lt;/span>s&lt;span class="o">)&lt;/span>: 0.0 us, 0.0 sy, 0.0 ni,100.0 id, 0.0 wa, 0.0 hi, 0.0 si, 0.0 st
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">KiB Mem : &lt;span class="m">1936&lt;/span> total, &lt;span class="m">1456&lt;/span> free, &lt;span class="m">116&lt;/span> used, &lt;span class="m">364&lt;/span> buff/cache
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>load average: 1分钟、5分钟、15分钟的平均负载&lt;/li>
+&lt;li>Tasks: 进程信息&lt;/li>
+&lt;li>%Cpu(s): CPU使用情况&lt;/li>
+&lt;li>KiB Mem: 内存使用情况&lt;/li>
+&lt;/ul>
+&lt;h2 id="进程相关">进程相关&lt;/h2>
+&lt;h3 id="进程查看">进程查看&lt;/h3>
+&lt;p>ps
+含义: 显示当前用户的进程信息
+不加aux的话, 只会显示当前终端的进程&lt;/p>
+&lt;p>ps aux
+含义: a表示显示所有进程，u表示显示用户信息，x表示显示没有控制终端的进程&lt;/p>
+&lt;p>ps -ef&lt;/p>
+&lt;ul>
+&lt;li>e: 显示所有进程&lt;/li>
+&lt;li>f: 显示全格式&lt;/li>
+&lt;/ul>
+&lt;p>ps -ef | grep java&lt;/p>
+&lt;p>输出:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">root &lt;span class="m">1023&lt;/span> &lt;span class="m">1&lt;/span> &lt;span class="m">0&lt;/span> 10:00 ? 00:00:00 /usr/bin/java
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>找内存占用最高的进程
+ps aux &amp;ndash;sort=-%mem | head&lt;/p>
+&lt;h2 id="网络相关">网络相关&lt;/h2>
+&lt;h3 id="网络配置查看">网络配置查看&lt;/h3>
+&lt;p>ifconfig
+包含的信息:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">eth0 Link encap:Ethernet HWaddr 00:0C:29:3D:5D:7A
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet addr:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Bcast:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> Mask:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> inet6 addr:
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> UP BROADCAST RUNNING MULTICAST MTU:1500 Metric:1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> RX packets:0 errors:0 dropped:0 overruns:0 frame:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> TX packets:0 errors:0 dropped:0 overruns:0 carrier:0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> collisions:0 txqueuelen:1000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>网口的连接状态标志: UP表示网口已经启用，DOWN表示网口未启用, RUNNING表示网口正在运行，而STOPPED表示网口已经停止&lt;/p>
+&lt;p>MTU大小: 默认值是 1500 字节，其作用主要是限制网络包的大小，如果 IP 层有一个数据报要传，而且网络包的长度比链路层的 MTU 还大，那么 IP 层就需要进行分片&lt;/p>
+&lt;p>网口的 IP 地址、子网掩码、MAC 地址、网关地址&lt;/p>
+&lt;p>网络包收发的统计信息&lt;/p>
+&lt;ul>
+&lt;li>RX packets: 接收的数据包的数量&lt;/li>
+&lt;li>TX packets: 发送的数据包的数量&lt;/li>
+&lt;/ul>
+&lt;p>errors: 出错的数据包的数量
+dropped: 丢弃的数据包的数量
+overruns: 数据包在接收时超出了缓冲区的大小
+frame: 数据包在接收时出现了 CRC 错误&lt;/p>
+&lt;h3 id="socket信息查看">socket信息查看&lt;/h3>
+&lt;p>netstat
+含义: 显示网络状态信息&lt;/p>
+&lt;p>netstat -an
+含义: 显示所有的网络连接，不进行域名解析
+输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">Proto Recv-Q Send-Q Local Address Foreign Address State
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">tcp6 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udp 0 0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">udp6 0 0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>netstat -an | grep 8080
+含义: 查看端口是否被占用&lt;/p>
+&lt;p>ss
+含义: 显示套接字信息&lt;/p>
+&lt;p>ss -ltnp&lt;/p>
+&lt;ul>
+&lt;li>l: 显示LISTIEN监听状态的套接字&lt;/li>
+&lt;li>t: 显示 TCP 协议的套接字&lt;/li>
+&lt;li>n: 不显示名字,而是以数字的方式显示ip和端口&lt;/li>
+&lt;li>p: 显示进程信息&lt;/li>
+&lt;/ul>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">State Recv-Q Send-Q Local Address:Port Peer Address:Port
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">LISTEN 0 128
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>都包含了:&lt;/p>
+&lt;p>socket 的状态（State）
+接收队列（Recv-Q）
+发送队列（Send-Q）
+本地地址（Local Address）
+远端地址（Foreign Address）
+进程 PID
+进程名称（PID/Program name）&lt;/p>
+&lt;p>接收队列（Recv-Q）和发送队列（Send-Q）比较特殊，在不同的 socket 状态。它们表示的含义是不同的。&lt;/p>
+&lt;p>当 socket 状态处于 Established时：&lt;/p>
+&lt;p>Recv-Q 表示 socket 缓冲区中还没有被应用程序读取的字节数；
+Send-Q 表示 socket 缓冲区中还没有被远端主机确认的字节数；&lt;/p>
+&lt;p>而当 socket 状态处于 Listen 时：&lt;/p>
+&lt;p>Recv-Q 表示全连接队列的长度；
+Send-Q 表示全连接队列的最大长度；&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Linux%e5%91%bd%e4%bb%a4/TCP%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>全连接队列指的是服务器与客户端完了 TCP 三次握手后，还没有被 accept() 系统调用取走连接的队列。&lt;/p>
+&lt;h3 id="网络吞吐量查看">网络吞吐量查看&lt;/h3>
+&lt;p>sar
+含义: 查看系统的网络吞吐量&lt;/p>
+&lt;p>用法是给 sar 增加 -n 参数就可以查看网络的统计信息，比如&lt;/p>
+&lt;p>sar -n DEV，显示网口的统计数据；
+sar -n EDEV，显示关于网络错误的统计数据；
+sar -n TCP，显示 TCP 的统计数据&lt;/p>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">10:00:01 IFACE rxpck/s txpck/s rxkB/s txkB/s rxcmp/s txcmp/s rxmcst/s
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10:10:01 eth0
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10:20:01 eth0
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>它们的含义：&lt;/p>
+&lt;p>rxpck/s 和 txpck/s 分别是接收和发送的 PPS，单位为包 / 秒。
+rxkB/s 和 txkB/s 分别是接收和发送的吞吐率，单位是 KB/ 秒。
+rxcmp/s 和 txcmp/s 分别是接收和发送的压缩数据包数，单位是包 / 秒。&lt;/p>
+&lt;p>对于带宽，我们可以使用 ethtool 命令来查询，它的单位通常是 Gb/s 或者 Mb/s，不过注意这里小写字母 b ，表示比特而不是字节。我们通常提到的千兆网卡、万兆网卡等，单位也都是比特（bit）。如下你可以看到， eth0 网卡就是一个千兆网卡：&lt;/p>
+&lt;h3 id="连通性和延时">连通性和延时&lt;/h3>
+&lt;p>ping
+含义: 测试网络连通性&lt;/p>
+&lt;p>ping -c 4 &lt;a href="https://www.baidu.com" target="_blank" rel="noopener">www.baidu.com&lt;/a>&lt;/p>
+&lt;ul>
+&lt;li>c: 指定发送的数据包数量&lt;/li>
+&lt;li>i: 指定发送数据包的时间间隔&lt;/li>
+&lt;li>s: 指定发送数据包的大小&lt;/li>
+&lt;/ul>
+&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">PING baidu.com (39.156.66.10) 56(84) bytes of data.
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=1 ttl=50 time=24.2 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=2 ttl=50 time=23.1 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">64 bytes from 39.156.66.10 (39.156.66.10): icmp_seq=3 ttl=50 time=25.8 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">^C
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">--- baidu.com ping statistics ---
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">3 packets transmitted, 3 received, 0% packet loss, time 2053ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">rtt min/avg/max/mdev = 23.114/24.375/25.778/1.092 ms
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>icmp_seq: ICMP 数据包的序列号&lt;/li>
+&lt;li>ttl: 生存时间&lt;/li>
+&lt;li>time: 延迟时间&lt;/li>
+&lt;/ul>
+&lt;p>ping 不通服务器并不代表 HTTP 请求也不通，因为有的服务器的防火墙是会禁用 ICMP 协议的&lt;/p>
+&lt;p>traceroute
+含义: 显示数据包到达目的地的路径&lt;/p>
+&lt;p>traceroute &lt;a href="https://www.baidu.com" target="_blank" rel="noopener">www.baidu.com&lt;/a>&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">traceroute to www.baidu.com (180.101.50.242), 30 hops max, 60 byte packets
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 1 LAPTOP-7CCB4DQK.mshome.net (172.19.208.1) 0.254 ms 0.233 ms 0.224 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 2 172.21.24.1 (172.21.24.1) 9.785 ms 9.779 ms 9.772 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 3 172.28.255.52 (172.28.255.52) 9.766 ms 7.236 ms 9.754 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 4 * * *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 5 58.213.8.1 (58.213.8.1) 12.624 ms 12.618 ms 12.613 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 6 58.217.231.201 (58.217.231.201) 9.715 ms 58.217.231.217 (58.217.231.217) 8.304 ms 61.155.254.37 (61.155.254.37) 8.291 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 7 * * *
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 8 58.213.95.54 (58.213.95.54) 6.556 ms 58.213.94.222 (58.213.94.222) 7.334 ms 58.213.95.222 (58.213.95.222) 6.338 ms
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> 9 * * *
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>1: 第几跳&lt;/li>
+&lt;li>2: 路由器的 IP 地址&lt;/li>
+&lt;li>3: 三次 ICMP 数据包的延迟时间&lt;/li>
+&lt;li>*: 丢包&lt;/li>
+&lt;/ul>
+&lt;h2 id="日志分析">日志分析&lt;/h2>
+&lt;p>如何从日志分析 PV、UV？&lt;/p>
+&lt;p>很多时候，我们观察程序是否如期运行，或者是否有错误，最直接的方式就是看运行日志，当然要想从日志快速查到我们想要的信息，前提是程序打印的日志要精炼、精准。&lt;/p>
+&lt;p>但日志涵盖的信息远不止于此，比如对于 nginx 的 access.log 日志，我们可以根据日志信息分析用户行为。&lt;/p>
+&lt;p>什么用户行为呢？比如分析出哪个页面访问次数（PV）最多，访问人数（UV）最多，以及哪天访问量最多，哪个请求访问最多等等。&lt;/p>
+&lt;h3 id="查看日志大小">查看日志大小&lt;/h3>
+&lt;p>&lt;code>ls -lh&lt;/code>&lt;/p>
+&lt;ul>
+&lt;li>l: 列表显示&lt;/li>
+&lt;li>h: 显示文件大小&lt;/li>
+&lt;li>a: 显示所有文件, 包括隐藏文件&lt;/li>
+&lt;/ul>
+&lt;p>通过这个查看日志大小后&lt;/p>
+&lt;p>如果日志文件数据量太大, 使用cat会导致终端卡死&lt;/p>
+&lt;p>可以使用scp传到其他服务器上查看&lt;/p>
+&lt;h3 id="用less而不是cat">用less,而不是cat&lt;/h3>
+&lt;p>less不会一次性读取整个文件, 而是按需读取, 所以对于大文件来说, less更加高效&lt;/p>
+&lt;p>如果想要查看文件的最后几行, 可以使用tail&lt;/p>
+&lt;p>如果想要实时查看文件, 可以使用tail -f&lt;/p>
+&lt;h3 id="日志分析-pv分析-page-view">日志分析 PV分析 Page View&lt;/h3>
+&lt;p>用户访问一个页面就是一次 PV&lt;/p>
+&lt;p>对于日志文件来说, 行数可以代表 PV&lt;/p>
+&lt;p>Linux统计一个文件有多少行
+wc -l filename&lt;/p>
+&lt;h3 id="pv分组">PV分组&lt;/h3>
+&lt;p>nginx的access.log日志文件中, 有访问时间的西欧模型/&lt;/p>
+&lt;p>如果要按时间分组, 可以先把时间提取出来, 然后再统计&lt;/p>
+&lt;p>时间在第四列, 可以使用awk提取&lt;/p>
+&lt;p>awk &amp;lsquo;{print $4}&amp;rsquo; access.log
+输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:01
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:02
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">[10/Dec/2021:10:00:03
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>也可以继续使用awk的substr 函数提取时间&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print substr($4, 2, 11)}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">10/Dec/2021
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>可以使用sort排序, 然后使用uniq统计&lt;/p>
+&lt;p>uniq -c是统计重复行的次数&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print substr($4, 2, 11)}&amp;#39; access.log | sort | uniq -c
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>输出&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl"> 3 10/Dec/2021
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>使用 uniq -c 命令前，先要进行 sort 排序&lt;/p>
+&lt;p>uniq 的去重是基于相邻行的.&lt;/p>
+&lt;h3 id="uv分析-unique-visitor">UV分析 Unique Visitor&lt;/h3>
+&lt;p>UV是指独立访客数，即一天内访问网站的不同IP地址的人数&lt;/p>
+&lt;p>如果要统计UV, 可以使用awk提取IP地址&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $1}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="终端分析">终端分析&lt;/h3>
+&lt;p>如果要统计不同终端的访问量, 可以使用awk提取终端信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $12}&amp;#39; access.log
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="top3请求">TOP3请求&lt;/h3>
+&lt;p>如果要统计访问量最多的请求, 可以使用awk提取请求信息
+然后使用sort排序, 然后使用uniq统计
+最后使用head -n 3查看前三个&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">awk &amp;#39;{print $7}&amp;#39; access.log | sort | uniq -c | sort -nr | head -n 3
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/linux%E7%BC%96%E7%A8%8B/</guid><description>&lt;h1 id="linux">Linux&lt;/h1>
 &lt;h4 id="五种io模型">五种IO模型&lt;/h4>
 &lt;ol>
 &lt;li>阻塞式I/O模型：当应用程序调用I/O操作时，如果数据没有准备好，应用程序会一直等待，直到数据准备好为止。&lt;/li>
@@ -14442,7 +14693,44 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 基于分布式键值存储系统比如 Redis 、Etcd 实现分布式锁。
 关系型数据库的方式一般是通过唯一索引或者排他锁实现。不过，一般不会使用这种方式，问题太多比如性能太差、不具备锁失效机制。&lt;/p>
 &lt;p>基于 ZooKeeper 或者 Redis 实现分布式锁这两种实现方式要用的更多一些，我专门写了一篇文章来详细介绍这两种方案：分布式锁常见实现方案总结。&lt;/p>
-&lt;h2 id="分布式事务">分布式事务&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description>&lt;h1 id="消息队列">消息队列&lt;/h1>
+&lt;h2 id="分布式事务">分布式事务&lt;/h2>
+&lt;p>两阶段提交是一种常用的分布式事务处理协议,它分为以下两个阶段:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>准备阶段(Phase 1):&lt;/p>
+&lt;ul>
+&lt;li>协调者(Coordinator)询问参与者(Participant)是否准备好提交事务。&lt;/li>
+&lt;li>参与者检查自己是否准备好提交,并反馈给协调者。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>
+&lt;p>提交阶段(Phase 2):&lt;/p>
+&lt;ul>
+&lt;li>如果所有参与者都准备好了,协调者会发出提交命令。&lt;/li>
+&lt;li>参与者执行提交操作,并向协调者发送提交完成通知。&lt;/li>
+&lt;li>协调者收到所有参与者的提交完成通知后,整个事务提交成功。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ol>
+&lt;p>在你描述的场景中,协调者在收到参与者提交完成通知后挂掉了,这种情况下参与者可以采取以下措施:&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>重试:参与者可以尝试重复发送提交完成通知,直到协调者恢复。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>超时重试:如果长时间没有收到协调者的响应,参与者可以假设协调者已经挂掉,启动超时恢复机制。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>手动介入:如果前两种方法无法解决,可能需要人工介入,检查系统状态并决定如何进行事务恢复。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>使用日志:参与者可以记录事务的执行状态和结果,以便在协调者恢复后重现事务处理过程。&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>总之,两阶段提交协议提供了一种可靠的分布式事务处理机制,但在某些极端情况下,如协调者故障,参与者需要采取一定的措施来保证事务的一致性和完整性。&lt;/p>
+&lt;h2 id="todo-分布式缓存">TODO: 分布式缓存&lt;/h2>
+&lt;h3 id="一致性哈希算法">一致性哈希算法&lt;/h3>
+&lt;h3 id="redis使用的哈希槽">Redis使用的哈希槽&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description>&lt;h1 id="消息队列">消息队列&lt;/h1>
 &lt;h2 id="mq的作用">MQ的作用&lt;/h2>
 &lt;h3 id="解耦">解耦&lt;/h3>
 &lt;p>场景：A订单系统，B库存系统，A下单后需要减少库存。
@@ -14601,7 +14889,11 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;h2 id="典型问题">典型问题&lt;/h2>
 &lt;p>秒杀&lt;/p>
 &lt;p>rpc调用的流程&lt;/p>
-&lt;p>如何实现注册中心的高可用&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
+&lt;p>如何实现注册中心的高可用&lt;/p>
+&lt;p>十亿条淘宝购买记录，怎么获取出现最多的前十个&lt;/p>
+&lt;p>这是一道典型的有限内存的海量数据处理的题目。一般这类题目的解答无非是以下几种：&lt;/p>
+&lt;p>分治，hash映射，堆排序，双层桶划分，Bloom Filter，bitmap，数据库索引，mapreduce等。&lt;/p>
+&lt;p>具体情形都有很多不同的方案。这类题目可以到网上搜索一下，了解下套路，后面就基本都会了。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E9%9B%86%E7%BE%A4/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="编译原理基础">编译原理基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;p>&lt;a href="https://messiahhh.github.io/blog/docs/%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86/" target="_blank" rel="noopener">编译原理概述&lt;/a>&lt;/p>
 &lt;p>编译原理是计算机科学的一个重要分支，它研究如何将高级语言翻译成机器语言。编译原理的研究内容包括词法分析、语法分析、语义分析、中间代码生成、代码优化和目标代码生成等。&lt;/p>
@@ -14689,21 +14981,352 @@ API 文档： 如果计划将 API 暴露给组织以外的开发人员，那么�
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> // 省略...
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">body&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">&amp;lt;/&lt;/span>&lt;span class="nt">html&lt;/span>&lt;span class="p">&amp;gt;&lt;/span>
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="http的方法">HTTP的方法&lt;/h3>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="请求方法">请求方法&lt;/h3>
 &lt;p>HTTP1.0 定义了三种请求方法： GET, POST 和 HEAD 方法。&lt;/p>
 &lt;p>HTTP1.1 新增了六种请求方法：OPTIONS、PUT、PATCH、DELETE、TRACE 和 CONNECT 方法。&lt;/p>
+&lt;p>按照RFC的定义:&lt;/p>
+&lt;ul>
+&lt;li>GET：请求指定的页面信息，并返回实体主体。&lt;/li>
+&lt;li>HEAD：类似于 GET 请求，只不过返回的响应中没有具体的内容，用于获取报头。&lt;/li>
+&lt;li>POST：向指定资源提交数据进行处理请求（例如提交表单或者上传文件）。数据被包含在请求体中。POST 请求可能会导致新的资源的建立和/或已有资源的修改。&lt;/li>
+&lt;li>PUT：从客户端向服务器传送的数据取代指定的文档的内容。&lt;/li>
+&lt;li>DELETE：请求服务器删除指定的页面。&lt;/li>
+&lt;li>CONNECT：HTTP/1.1 协议中预留给能够将连接改为管道方式的代理服务器。&lt;/li>
+&lt;/ul>
+&lt;p>如果遵守RFC的定义去实现，那么 GET 方法就是安全且幂等的, POST 方法就是不安全且非幂等的。&lt;/p>
+&lt;p>这里的安全: GET方法是只读的，不会改变服务器的状态.&lt;/p>
+&lt;p>幂等: 对同一URL的多次请求，返回的结果是一样的&lt;/p>
+&lt;ul>
+&lt;li>因此可以对幂等的GET请求做缓存, 缓存可以做到浏览器本身上（彻底避免浏览器发请求），也可以做到代理上（如nginx），而且在浏览器中 GET 请求可以保存为书签。&lt;/li>
+&lt;/ul>
+&lt;p>实际实现中:&lt;/p>
+&lt;ul>
+&lt;li>是否幂等和安全，不是由方法本身决定的，而是由程序员的实现决定的。&lt;/li>
+&lt;li>GET也可以带body.&lt;/li>
+&lt;li>POST也可以带URL的参数.&lt;/li>
+&lt;/ul>
 &lt;h3 id="http版本">HTTP版本&lt;/h3>
 &lt;p>见&lt;a href="##%e7%89%88%e6%9c%ac">版本&lt;/a>&lt;/p>
-&lt;h3 id="todo-状态码">TODO: 状态码&lt;/h3>
-&lt;h3 id="heading">&lt;/h3>
-&lt;h2 id="协议">协议&lt;/h2>
-&lt;p>&lt;a href="https://www.zhihu.com/question/20085992" target="_blank" rel="noopener">HTTP 是基于 TCP 还是 UDP 的&lt;/a>&lt;/p>
-&lt;h2 id="https">HTTPS&lt;/h2>
-&lt;p>HTTPS校验的哈希算法是什么&lt;/p>
+&lt;h3 id="状态码">状态码&lt;/h3>
+&lt;p>1xx 类状态码属于&lt;strong>提示信息&lt;/strong>，是协议处理中的一种中间状态，实际用到的比较少。&lt;/p>
+&lt;p>2xx 类状态码表示&lt;strong>服务器成功处理&lt;/strong>了客户端的请求，也是我们最愿意看到的状态。&lt;/p>
 &lt;ul>
-&lt;li>RSA&lt;/li>
+&lt;li>
+&lt;p>「200 OK」是最常见的成功状态码，表示一切正常。如果是非 HEAD 请求，服务器返回的响应头都会有 body 数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「204 No Content」也是常见的成功状态码，与 200 OK 基本相同，但响应头没有 body 数据。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「206 Partial Content」是应用于 HTTP 分块下载或断点续传，表示响应返回的 body 数据并不是资源的全部，而是其中的一部分，也是服务器处理成功的状态。&lt;/p>
+&lt;/li>
 &lt;/ul>
-&lt;h2 id="版本">版本&lt;/h2>
+&lt;p>3xx 类状态码表示&lt;strong>客户端请求的资源发生了变动&lt;/strong>，需要客户端用新的 URL 重新发送请求获取资源，也就是&lt;strong>重定向&lt;/strong>。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>「301 Moved Permanently」表示永久重定向，说明请求的资源已经不存在了，需改用新的 URL 再次访问。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「302 Found」表示临时重定向，说明请求的资源还在，但暂时需要用另一个 URL 来访问。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>301 和 302 都会在响应头里使用字段 Location，指明后续要跳转的 URL，浏览器会自动重定向新的 URL。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「304 Not Modified」不具有跳转的含义，表示资源未修改，&lt;strong>重定向已存在的缓冲文件，也称缓存重定向&lt;/strong>，也就是告诉客户端可以继续使用缓存资源，用于缓存控制。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>4xx 类状态码表示&lt;strong>客户端发送的报文有误&lt;/strong>，服务器无法处理，也就是错误码的含义。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>「400 Bad Request」表示客户端请求的报文有错误，但只是个笼统的错误。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「403 Forbidden」表示服务器禁止访问资源，并不是客户端的请求出错。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「404 Not Found」表示请求的资源在服务器上不存在或未找到，所以无法提供给客户端。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>5xx 类状态码表示客户端请求报文正确，但是&lt;strong>服务器处理时内部发生了错误&lt;/strong>，属于服务器端的错误码。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>「500 Internal Server Error」与 400 类型，是个笼统通用的错误码，服务器发生了什么错误，我们并不知道。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「501 Not Implemented」表示客户端请求的功能还不支持，类似“即将开业，敬请期待”的意思。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「502 Bad Gateway」通常是服务器作为网关或代理时返回的错误码，表示服务器自身工作正常，访问后端服务器发生了错误。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>「503 Service Unavailable」表示服务器当前很忙，暂时无法响应客户端，类似“网络服务正忙，请稍后重试”的意思。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="content-length">Content-Length&lt;/h3>
+&lt;p>服务器在返回数据时，会有 Content-Length 字段，表明本次回应的数据长度。&lt;/p>
+&lt;p>HTTP解决TCP &amp;ldquo;粘包&amp;rdquo; 问题的方法&lt;/p>
+&lt;ul>
+&lt;li>HTTP 协议通过设置回车符、换行符作为 HTTP header 的边界&lt;/li>
+&lt;li>通过 Content-Length 字段作为 HTTP body 的边界&lt;/li>
+&lt;/ul>
+&lt;p>&lt;a href="./TCP.md#%e9%9d%a2%e5%90%91%e5%ad%97%e8%8a%82%e6%b5%81%e7%9a%84%e5%8d%8f%e8%ae%ae">TCP粘包问题&lt;/a>&lt;/p>
+&lt;h3 id="connect">Connect&lt;/h3>
+&lt;p>最常用于客户端要求服务器使用「HTTP 长连接」机制，以便其他请求复用。&lt;/p>
+&lt;p>&lt;a href="./TCP.md#HTTP%e7%9a%84keep-alive">HTTP的keep-alive&lt;/a>&lt;/p>
+&lt;h3 id="控制返回内容的字段">控制返回内容的字段&lt;/h3>
+&lt;p>&lt;code>Accept&lt;/code> 字段用于告诉服务器，客户端希望接收什么格式的数据。&lt;/p>
+&lt;ul>
+&lt;li>例如：&lt;code>Accept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>Content-Type&lt;/code> 字段用于服务器回应时，告诉客户端，本次数据是什么格式。&lt;/p>
+&lt;ul>
+&lt;li>例如：&lt;code>Content-Type: text/html; charset=UTF-8&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>Accept-Encoding&lt;/code> 字段用于告诉服务器，客户端支持的压缩格式。&lt;/p>
+&lt;ul>
+&lt;li>例如：&lt;code>Accept-Encoding: gzip, deflate&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;p>&lt;code>Content-Encoding&lt;/code> 字段用于服务器回应时，告诉客户端，本次数据采用了什么压缩格式。&lt;/p>
+&lt;ul>
+&lt;li>例如：&lt;code>Content-Encoding: gzip&lt;/code>&lt;/li>
+&lt;/ul>
+&lt;h2 id="http缓存">HTTP缓存&lt;/h2>
+&lt;p>对于一些具有重复性的 HTTP 请求，比如每次请求得到的数据都一样的，我们可以把这对「请求-响应」的数据都缓存在本地. 下次就直接读取本地的数据，不必在通过网络获取服务器的响应了，这样的话 HTTP/1.1 的性能肯定肉眼可见的提升。&lt;/p>
+&lt;p>即, 通过缓存技术避免发送 HTTP 请求&lt;/p>
+&lt;p>HTTP 设计者早在之前就考虑到了这点，因此 HTTP 协议的头部有不少是针对缓存的字段。&lt;/p>
+&lt;p>HTTP 缓存有两种实现方式，分别是强制缓存和协商缓存。&lt;/p>
+&lt;h3 id="强制缓存">强制缓存&lt;/h3>
+&lt;p>只要浏览器判断缓存没有过期，则直接使用浏览器的本地缓存，决定是否使用缓存的主动性在于浏览器这边。&lt;/p>
+&lt;p>如下图中，返回的是 200 状态码，但在 size 项中标识的是 from disk cache，就是使用了强制缓存。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/HTTP/%e5%bc%ba%e5%88%b6%e7%bc%93%e5%ad%98.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>强缓存是利用下面这两个 HTTP 响应头部（Response Header）字段实现的，它们都用来表示资源在客户端缓存的有效期：&lt;/p>
+&lt;ul>
+&lt;li>Cache-Control， 是一个相对时间；&lt;/li>
+&lt;li>Expires，是一个绝对时间；&lt;/li>
+&lt;/ul>
+&lt;p>如果 HTTP 响应头部同时有 Cache-Control 和 Expires 字段的话，&lt;strong>Cache-Control 的优先级高于 Expires&lt;/strong> 。&lt;/p>
+&lt;p>Cache-control 选项更多一些，设置更加精细，所以建议使用 Cache-Control 来实现强缓存。&lt;/p>
+&lt;p>具体的实现流程如下：&lt;/p>
+&lt;ol>
+&lt;li>当浏览器第一次请求访问服务器资源时，&lt;strong>服务器&lt;/strong>会在返回这个资源的同时，&lt;strong>在Response 头部加上 Cache-Control&lt;/strong>，Cache-Control 中设置了过期时间大小；&lt;/li>
+&lt;li>浏览器再次请求访问服务器中的该资源时，会先通过请求资源的时间与 Cache-Control 中设置的过期时间大小，来计算出该资源是否过期，&lt;strong>如果没有，则使用该缓存，否则重新请求服务&lt;/strong>&lt;/li>
+&lt;li>服务器再次收到请求后，会再次更新 Response 头部的 Cache-Control。&lt;/li>
+&lt;/ol>
+&lt;h3 id="协商缓存">协商缓存&lt;/h3>
+&lt;p>某些请求的响应码是 304&lt;/p>
+&lt;p>是服务端告知客户端可以使用本地缓存的资源,这种方式叫做协商缓存。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/HTTP/%e5%8d%8f%e5%95%86%e7%bc%93%e5%ad%98%e8%bf%87%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>协商缓存就是与服务端协商之后，通过协商结果来判断是否使用本地缓存。&lt;/p>
+&lt;p>协商缓存可以基于两种头部来实现。&lt;/p>
+&lt;p>第一种：&lt;/p>
+&lt;ul>
+&lt;li>响应头部中的 Last-Modified 字段: 标示这个响应资源的最后修改时间&lt;/li>
+&lt;li>请求头部中的 If-Modified-Since 字段: 服务器收到请求后发现有 If-Modified-Since 则与被请求资源的最后修改时间进行对比（Last-Modified），如果最后修改时间较新（大），说明资源又被改过，则返回最新资源，HTTP 200 OK；如果最后修改时间较旧（小），说明资源无新修改，直接响应 HTTP 304 走缓存。&lt;/li>
+&lt;/ul>
+&lt;p>第二种：&lt;/p>
+&lt;ul>
+&lt;li>响应头部中的 ETag 字段: 唯一标识响应资源&lt;/li>
+&lt;li>请求头部中的 If-None-Match 字段: 当资源过期时，浏览器发现响应头里有 Etag，则再次向服务器发起请求时，会将请求头 If-None-Match 值设置为 Etag 的值。服务器收到请求后进行比对，如果资源没有变化返回 304，如果资源变化了返回 200。&lt;/li>
+&lt;/ul>
+&lt;p>第一种实现方式是基于时间实现的，第二种实现方式是基于一个唯一标识实现的，相对来说后者可以更加准确地判断文件内容是否被修改，避免由于时间篡改导致的不可靠问题。&lt;/p>
+&lt;p>如果在第一次请求资源的时候，服务端返回的 HTTP 响应头部同时有 Etag 和 Last-Modified 字段，Etag 优先级更高。&lt;/p>
+&lt;p>**为什么 ETag 的优先级更高？**这是因为 ETag 主要能解决 Last-Modified 几个比较难以解决的问题：&lt;/p>
+&lt;ul>
+&lt;li>在没有修改文件内容情况下文件的最后修改时间可能也会改变，这会导致客户端认为这文件被改动了，从而重新请求；&lt;/li>
+&lt;li>可能有些文件是在秒级以内修改的，If-Modified-Since 能检查到的粒度是秒级的，使用 Etag就能够保证这种需求下客户端在 1 秒内能刷新多次；&lt;/li>
+&lt;li>有些服务器不能精确获取文件的最后修改时间。&lt;/li>
+&lt;/ul>
+&lt;p>注意，协商缓存这两个字段&lt;strong>都需要配合强制缓存中 Cache-Control 字段&lt;/strong>来使用.
+&lt;strong>只有在未能命中强制缓存的时候，才能发起带有协商缓存字段的请求&lt;/strong>。&lt;/p>
+&lt;h2 id="https">HTTPS&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>HTTPS 在 TCP 和 HTTP 网络层之间加入了 SSL/TLS 安全协议，使得报文能够加密传输。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HTTPS 在 TCP 三次握手之后，还需进行 SSL/TLS 的握手过程，才可进入加密报文传输。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HTTP 默认端口号是 80，HTTPS 默认端口号是 443。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>HTTPS 协议需要向 CA（证书权威机构）申请数字证书，来保证服务器的身份是可信的。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>HTTP的风险&lt;/p>
+&lt;ul>
+&lt;li>窃听风险，比如通信链路上可以获取通信内容，用户号容易没。&lt;/li>
+&lt;li>篡改风险，比如强制植入垃圾广告，视觉污染，用户眼容易瞎。&lt;/li>
+&lt;li>冒充风险，比如冒充淘宝网站，用户钱容易没。&lt;/li>
+&lt;/ul>
+&lt;p>HTTPS的解决方案&lt;/p>
+&lt;ul>
+&lt;li>信息加密：交互信息无法被窃取，但你的号会因为「自身忘记」账号而没。
+&lt;ul>
+&lt;li>使用&lt;strong>混合加密&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>校验机制：无法篡改通信内容，篡改了就不能正常显示(但百度「竞价排名」依然可以搜索垃圾广告)
+&lt;ul>
+&lt;li>使用&lt;strong>摘要算法&lt;/strong>, 校验数据的完整性&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>身份证书：证明淘宝是真的淘宝网，但你的钱还是会因为「剁手」而没。
+&lt;ul>
+&lt;li>公钥放入&lt;strong>数字证书&lt;/strong>中.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="混合加密">混合加密&lt;/h3>
+&lt;p>HTTPS 采用的是对称加密和非对称加密结合的「混合加密」方式：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>通信建立前&lt;/strong>, 采用 &lt;strong>非对称加密的方式交换「会话秘钥」&lt;/strong>
+&lt;ul>
+&lt;li>这里是公钥加密，私钥解密 &amp;ndash; 保证内容安全&lt;/li>
+&lt;li>公私钥是服务器生成的，私钥保密，公钥发送给客户端&lt;/li>
+&lt;li>客户端使用公钥加密&lt;strong>协商生成的随机数&lt;/strong>,用于&lt;strong>各自生成相同的「会话秘钥」&lt;/strong>，发送给服务器，服务器使用私钥解密, 具体&lt;a href="#TLS%e6%8f%a1%e6%89%8b">见TLS握手&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>通信过程中, 全部使用 &lt;strong>对称加密的「会话秘钥」&lt;/strong> 的方式加密明文数据。&lt;/li>
+&lt;/ul>
+&lt;p>采用「混合加密」的方式的原因：&lt;/p>
+&lt;ul>
+&lt;li>对称加密只使用一个密钥，运算速度快，密钥必须保密，&lt;strong>无法做到安全的密钥交换&lt;/strong>。&lt;/li>
+&lt;li>非对称加密使用两个密钥：公钥和私钥，公钥可以任意分发而私钥保密，解决了密钥交换问题但速度慢。&lt;/li>
+&lt;/ul>
+&lt;h3 id="摘要算法和数字签名">摘要算法和数字签名&lt;/h3>
+&lt;p>摘要算法（哈希函数）来计算出内容的哈希值&lt;/p>
+&lt;p>存在问题: 不能保证「内容 + 哈希值」不会被中间人替换，因为这里缺少对客户端收到的消息是否来源于服务端的证明。&lt;/p>
+&lt;p>数字签名: 使用非对称加密算法对哈希值进行加密&lt;/p>
+&lt;ul>
+&lt;li>这里是私钥加密，公钥解密 &amp;ndash; 保证数据完整性&lt;/li>
+&lt;/ul>
+&lt;p>私钥是由服务端保管，然后&lt;strong>服务端会向客户端颁发对应的公钥&lt;/strong>。如果客户端收到的信息，能被公钥解密，就说明该消息是由服务器发送的。&lt;/p>
+&lt;h3 id="数字证书">数字证书&lt;/h3>
+&lt;p>数字证书是由 CA（证书权威机构）颁发的，用于证明服务器身份的一种方式。&lt;/p>
+&lt;p>即, 验证服务器最开始发送的公钥是否是&lt;strong>真实的服务器的公钥&lt;/strong>&lt;/p>
+&lt;p>需要确定CA是可信的, CA有一对公私钥是可信的, 服务器和客户端都知道CA的公钥.&lt;/p>
+&lt;ol>
+&lt;li>服务器使用CA的公钥加密 &lt;code>自己要提交证明的内容(服务器的公钥)&lt;/code>，发送给CA&lt;/li>
+&lt;li>CA使用自己的私钥解密，得到服务器的公钥&lt;/li>
+&lt;li>CA使用自己的私钥加密 &lt;code>服务器的公钥&lt;/code>, 即做了数字签名, 颁发数字证书: &lt;code>服务器信息 + 服务器的公钥 + CA的数字签名&lt;/code>&lt;/li>
+&lt;/ol>
+&lt;p>客户端验证服务器身份:&lt;/p>
+&lt;ol>
+&lt;li>客户端收到服务器的数字证书&lt;/li>
+&lt;li>客户端使用CA的公钥解密数字签名，得到服务器的公钥, 证明服务器的公钥是真实的&lt;/li>
+&lt;li>使用服务器的公钥进行后续加密&lt;/li>
+&lt;/ol>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/HTTP/%e6%95%b0%e5%ad%97%e8%af%81%e4%b9%a6%e9%a2%81%e5%8f%91%e8%bf%87%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="tls握手">TLS握手&lt;/h3>
+&lt;ol>
+&lt;li>客户端向服务器索要并验证服务器的公钥。&lt;/li>
+&lt;li>双方协商生产「会话秘钥」。&lt;/li>
+&lt;/ol>
+&lt;p>TLS握手可基于RSA算法和ECDHE算法&lt;/p>
+&lt;p>实际涉及四次通信:&lt;/p>
+&lt;ol>
+&lt;li>客户端向服务器发送一个「Client Hello」消息，包含了
+&lt;ol>
+&lt;li>客户端支持的SSL/TLS 版本&lt;/li>
+&lt;li>随机数(Client Random), 用于生成会话密钥&lt;/li>
+&lt;li>客户端支持的加密算法, 如RSA, AES等&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>服务器收到「Client Hello」消息后，会回复一个「Server Hello」消息,包含了
+&lt;ol>
+&lt;li>确认TLS协议版本,如果浏览器不支持,则关闭加密通信&lt;/li>
+&lt;li>随机数(Server Random), 用于生成会话密钥&lt;/li>
+&lt;li>确认的加密算法&lt;/li>
+&lt;li>&lt;strong>服务器的数字证书(包含服务器的公钥)&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>客户端收到「Server Hello」消息后，会验证服务器的数字证书，如果验证通过, 会生成一个随机数(pre-master key). &lt;strong>客户端将使用三个随机数生成「会话秘钥」&lt;/strong>. 向服务器发送如下信息:
+&lt;ol>
+&lt;li>使用&lt;strong>服务器的公钥加密后&lt;/strong>的一个随机数(pre-master key)&lt;/li>
+&lt;li>加密通信算法改变通知&lt;/li>
+&lt;li>客户端握手结束通知, 表示客户端握手阶段结束, 包含之前所有内容的摘要&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>服务器收到客户端的信息后, 使用自己的私钥解密pre-master key, &lt;strong>使用三个随机数生成「会话秘钥」&lt;/strong>, 之后发送如下信息:
+&lt;ol>
+&lt;li>加密通信算法改变通知&lt;/li>
+&lt;li>服务器握手结束通知, 表示服务器握手阶段结束, 包含之前所有内容的摘要&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>实际上, 上述过程会存在前向安全问题和证书信任链的问题&lt;/p>
+&lt;h3 id="前向安全问题">前向安全问题&lt;/h3>
+&lt;p>RSA 算法的 HTTPS 存在「前向安全」的问题：如果服务端的私钥泄漏了，过去被第三方截获的所有 TLS 通讯密文都会被破解。&lt;/p>
+&lt;p>ECDHE 密钥协商算法解决了这个问题，目前大部分网站都使用 ECDHE 算法。&lt;/p>
+&lt;p>ECDHE 密钥协商算法是 DH 算法演进过来的。&lt;/p>
+&lt;h4 id="todo-dh算法">TODO: DH算法&lt;/h4>
+&lt;p>DH 算法是非对称加密算法， 因此它可以用于密钥交换，该算法的核心数学思想是离散对数。&lt;/p>
+&lt;p>根据私钥生成的方式，DH 算法分为两种实现：&lt;/p>
+&lt;ul>
+&lt;li>static DH 算法，这个是已经被废弃了；&lt;/li>
+&lt;li>DHE 算法，现在常用的；&lt;/li>
+&lt;/ul>
+&lt;p>static DH 算法不具备前向安全性&lt;/p>
+&lt;p>DHE算法保证前向安全性: 双方的私钥在每次密钥交换通信时，都是随机生成的、临时的，这个方式也就是 DHE 算法，E 全称是 ephemeral（临时性的）。&lt;/p>
+&lt;p>ECDHE 算法是在 DHE 算法的基础上利用了 ECC 椭圆曲线特性，可以用更少的计算量计算出公钥，以及最终的会话密钥。&lt;/p>
+&lt;h4 id="使用ecdhe算法的握手过程">使用ECDHE算法的握手过程&lt;/h4>
+&lt;p>第一次与RSA算法的握手过程一样&lt;a href="#TLS%e6%8f%a1%e6%89%8b">RSA握手过程&lt;/a>，&lt;/p>
+&lt;ol>
+&lt;li>在第二次握手中,服务器还会发送「Server Key Exchange」消息
+&lt;ol>
+&lt;li>包括了服务端的椭圆曲线公钥&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>客户端会生成一个随机数作为客户端椭圆曲线的私钥，然后再根据服务端前面给的信息，生成客户端的椭圆曲线公钥，然后用「Client Key Exchange」消息发给服务端
+&lt;ol>
+&lt;li>最终的会话密钥，就是用「客户端随机数 + 服务端随机数 + x（ECDHE 算法算出的共享密钥） 」三个材料生成的。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;h3 id="证书信任链的问题">证书信任链的问题&lt;/h3>
+&lt;p>我们向 CA 申请的证书一般不是根证书签发的，而是由中间证书签发的，比如百度的证书，从下图你可以看到，证书的层级有三级:
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/HTTP/%e8%af%81%e4%b9%a6%e5%b1%82%e7%ba%a7.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>总括来说，由于用户信任 GlobalSign，所以由 GlobalSign 所担保的 baidu.com 可以被信任，另外由于用户信任操作系统或浏览器的软件商，所以由软件商预载了根证书的 GlobalSign 都可被信任。&lt;/p>
+&lt;p>为什么需要证书链这么麻烦的流程？Root CA 为什么不直接颁发证书，而是要搞那么多中间层级呢？&lt;/p>
+&lt;p>这是为了&lt;strong>确保根证书的绝对安全性&lt;/strong>，将根证书隔离地越严格越好，不然&lt;strong>根证书如果失守了，那么整个信任链都会有问题。&lt;/strong>&lt;/p>
+&lt;h3 id="https-一定安全可靠吗">HTTPS 一定安全可靠吗？&lt;/h3>
+&lt;p>问题场景是这样的：客户端通过浏览器向服务端发起 HTTPS 请求时，被「假基站」转发到了一个**「中间人服务器」**，于是客户端是和「中间人服务器」完成了 TLS 握手，然后这个「中间人服务器」再与真正的服务端完成 TLS 握手。&lt;/p>
+&lt;p>实际情况:&lt;/p>
+&lt;ul>
+&lt;li>用户会收到一个「伪造的数字证书」，这个数字证书是「中间人服务器」伪造的.&lt;/li>
+&lt;li>如果用户同意信任这个数字证书，那么「中间人服务器」就可以解密客户端发来的数据，然后再加密转发给服务端，这样就实现了「中间人攻击」。&lt;/li>
+&lt;/ul>
+&lt;p>HTTPS 协议本身到目前为止还是没有任何漏洞的，即使你成功进行中间人攻击，本质上是利用了客户端的漏洞（&lt;strong>用户点击继续访问或者被恶意导入伪造的根证书&lt;/strong>），并不是 HTTPS 不够安全。&lt;/p>
+&lt;p>也可以使用 &lt;strong>HTTPS 双向认证&lt;/strong> 解决这个问题&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/HTTP/HTTPS%e5%8f%8c%e5%90%91%e8%ae%a4%e8%af%81.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h2 id="版本及特性">版本及特性&lt;/h2>
+&lt;p>&lt;a href="https://www.zhihu.com/question/20085992" target="_blank" rel="noopener">HTTP 是基于 TCP 还是 UDP 的&lt;/a>&lt;/p>
 &lt;h3 id="http10">HTTP/1.0&lt;/h3>
 &lt;h3 id="http11">HTTP/1.1&lt;/h3>
 &lt;h3 id="http2">HTTP/2&lt;/h3>
@@ -14781,7 +15404,63 @@ I/O 复用（select 和 poll）
 &lt;h3 id="事件驱动模式">事件驱动模式&lt;/h3>
 &lt;h2 id="socket">Socket&lt;/h2>
 &lt;p>Socket listen怎么监听到TCP连接&lt;/p>
-&lt;p>释放连接的状态转换&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;p>释放连接的状态转换&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/tcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/tcp/</guid><description>&lt;h1 id="tcp">TCP&lt;/h1>
+&lt;h2 id="tcp和http的keep-alive区别">TCP和HTTP的keep-alive区别&lt;/h2>
+&lt;h3 id="tcp的keep-alive">TCP的keep-alive&lt;/h3>
+&lt;p>TCP 的 Keepalive 是 &lt;strong>TCP 的保活机制&lt;/strong>，检测的是对端主机是否存活（而不是进程）&lt;/p>
+&lt;p>原理：&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/TCP/TCP%e4%bf%9d%e6%b4%bb%e6%9c%ba%e5%88%b6.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ol>
+&lt;li>如果两端的 TCP 连接一直没有数据交互，达到了触发 TCP 保活机制的条件，那么内核里的 TCP 协议栈就会发送探测报文。&lt;/li>
+&lt;li>如果对端程序是正常工作的。当 TCP 保活的探测报文发送给对端, 对端会正常响应，这样 TCP 保活时间会被重置，等待下一个 TCP 保活时间的到来。&lt;/li>
+&lt;li>如果对端主机宕机（注意&lt;strong>不是进程崩溃，进程崩溃后操作系统在回收进程资源的时候，会发送 FIN 报文&lt;/strong>，而主机宕机则是无法感知的，所以需要 TCP 保活机制来探测对方是不是发生了主机宕机）。或对端由于其他原因导致报文不可达。当 TCP 保活的探测报文发送给对端后没有响应，连续几次，&lt;strong>达到保活探测次数&lt;/strong>后，TCP 会报告该 TCP 连接已经死亡。&lt;/li>
+&lt;/ol>
+&lt;p>TCP 保活机制可以在双方没有数据交互的情况，通过探测报文，来确定对方的 TCP 连接是否存活，&lt;strong>这个工作是在内核完成的&lt;/strong>。&lt;/p>
+&lt;p>默认情况：
+默认情况TCP 保活机制是关闭的，应用程序需要通过设置需要通过 socket 接口设置 SO_KEEPALIVE 选项才能够生效。&lt;/p>
+&lt;h3 id="http的keep-alive">HTTP的keep-alive&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/TCP/HTTP%e9%95%bf%e8%bf%9e%e6%8e%a5.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>HTTP 的 Keepalive 是 &lt;strong>HTTP 长连接&lt;/strong>，目的是在一次TCP连接中可以发送多个HTTP请求，减少建立和关闭连接的开销。&lt;/p>
+&lt;p>在 HTTP 1.0 中默认是关闭的，如果浏览器要开启 Keep-Alive，它必须在请求的包头中添加：&lt;code>Connection: Keep-Alive&lt;/code>。&lt;/p>
+&lt;p>在 HTTP 1.1 开始, 默认是开启的，如果要关闭 Keep-Alive，可以在请求的包头中添加：&lt;code>Connection: close&lt;/code>。&lt;/p>
+&lt;p>HTTP长连接支持了HTTP流水线,但同时也带来了队头阻塞问题。&lt;/p>
+&lt;p>同时为了避免TCP连接一直保持，web 服务软件一般都会提供 keepalive_timeout 参数，用来指定 HTTP 长连接的超时时间。&lt;/p>
+&lt;h4 id="http-流水线">HTTP 流水线&lt;/h4>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/TCP/HTTP%e6%b5%81%e6%b0%b4%e7%ba%bf.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>HTTP 流水线: 客户端可以先一次性发送多个请求，而在发送过程中不需先等待服务器的回应，可以减少整体的响应时间。&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>服务器还是按照顺序响应, 即先响应第一个请求，再响应第二个请求，以此类推。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>而且要等服务器响应完客户端&lt;strong>第一批发送的请求&lt;/strong>后，客户端&lt;strong>才能发出下一批的请求&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>于是就有了队头阻塞问题，即前面的请求处理时间过长，导致后面的请求被阻塞。&lt;/p>
+&lt;h4 id="队头阻塞">队头阻塞&lt;/h4>
+&lt;p>实际上队头阻塞问题由两种,一种是TCP本身的队头阻塞，一种是HTTP的队头阻塞。&lt;/p>
+&lt;ul>
+&lt;li>TCP本身的队头阻塞：TCP是一个面向字节流的协议，如果一个数据包丢失，那么后面的数据包都会被阻塞，直到丢失的数据包被重传成功。&lt;/li>
+&lt;li>HTTP/1.x 的队头阻塞: 当顺序发送的请求序列中的一个请求因为某种原因被阻塞时，在后面排队的所有请求也一并被阻塞&lt;/li>
+&lt;li>HTTP/2 的队头阻塞: HTTP/2 通过多路复用解决了HTTP/1.x的队头阻塞问题，可以同时发送多个请求，而且不会被阻塞。&lt;/li>
+&lt;li>HTTP/3 的队头阻塞: HTTP/3 使用了 UDP + QUIC 协议，解决了TCP队头阻塞问题。&lt;/li>
+&lt;/ul>
+&lt;h2 id="面向字节流的协议">面向字节流的协议&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>LAN：Local Area Network，局域网&lt;/li>
@@ -14827,6 +15506,12 @@ I/O 复用（select 和 poll）
 &lt;li>灵活性好&lt;/li>
 &lt;li>易于实现和维护&lt;/li>
 &lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%9f%ba%e7%a1%80/%e6%af%8f%e4%b8%80%e5%b1%82%e5%8d%8f%e8%ae%ae%e7%9a%84%e5%b0%81%e8%a3%85.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
 &lt;p>OSI七层模型**&lt;/p>
 &lt;table>
 &lt;thead>
@@ -14993,13 +15678,14 @@ I/O 复用（select 和 poll）
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
-&lt;h2 id="3-todo-数据链路层">3. TODO: 数据链路层&lt;/h2>
+&lt;h2 id="数据链路层-1">数据链路层&lt;/h2>
 &lt;p>
 &lt;figure >
 &lt;div class="flex justify-center ">
 &lt;div class="w-100" >&lt;img src="img/%e5%9f%ba%e7%a1%80/TCP/IP%e5%8d%8f%e8%ae%ae%e6%a0%88.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
+&lt;p>生成了 IP 头部之后，接下来要交给网络接口层（Link Layer）在 IP 头部的前面加上 MAC 头部，并封装成数据帧（Data frame）发送到网络上。&lt;/p>
 &lt;h3 id="使用的协议">使用的协议&lt;/h3>
 &lt;p>&lt;strong>WAN(广域网)&lt;/strong>:覆盖范围很广的&lt;strong>长距离网络&lt;/strong>，由具有&lt;strong>存储转发功能的结点交换机&lt;/strong>和&lt;strong>连接链路&lt;/strong>组成。采用&lt;strong>交换&lt;/strong>技术。&lt;/p>
 &lt;p>&lt;strong>LAN(局域网)&lt;/strong>:某一较&lt;strong>小区域内&lt;/strong>由多台计算机相互连成的计算机网络。采用&lt;strong>广播&lt;/strong>技术。&lt;/p>
@@ -15075,6 +15761,7 @@ I/O 复用（select 和 poll）
 &lt;li>如果是发往本站的帧则收下，然后再进行其他的处理。&lt;/li>
 &lt;li>否则就将此帧丢弃，不再进行其他的处理。&lt;/li>
 &lt;/ul>
+&lt;p>可以通过 ARP 协议获取对方的 MAC 地址&lt;/p>
 &lt;p>&lt;strong>MAC帧格式&lt;/strong>&lt;/p>
 &lt;p>
 &lt;figure >
@@ -15511,16 +16198,24 @@ I/O 复用（select 和 poll）
 &lt;li>&lt;strong>超网&lt;/strong>: 比较新的&lt;strong>无分类编址 CIDR&lt;/strong>方法&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>传统分类地址&lt;/strong>：&lt;/p>
+&lt;p>IP = 网络号 + 主机号
+网络号的长度决定了整个因特网中能容纳多少网络，主机号的长度决定每个网络能容纳多少台主机。&lt;/p>
+&lt;p>IPv4规定，因特网地址长度为32比特（IPv6规定地址长度为128比特）。IPv4的地址空间为2^32，即4 294 967 296个IP地址。IP地址一般用点分十进制数表示，例如202.119.84.120。这四个用点分隔的段分别对应四个字节。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%9f%ba%e7%a1%80/IP%e4%bc%a0%e7%bb%9f%e5%88%86%e7%b1%bb%e5%9c%b0%e5%9d%80.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
 &lt;th>类别&lt;/th>
-&lt;th>网络号()&lt;/th>
-&lt;th>主机号&lt;/th>
+&lt;th>网络号(bit)&lt;/th>
+&lt;th>主机号(bit)&lt;/th>
 &lt;th>网络号范围&lt;/th>
 &lt;th>每个网络最大主机数&lt;/th>
 &lt;th>内网地址&lt;/th>
-&lt;th>&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
@@ -15528,35 +16223,31 @@ I/O 复用（select 和 poll）
 &lt;td>A&lt;/td>
 &lt;td>8&lt;/td>
 &lt;td>24&lt;/td>
-&lt;td>1.0.0.0 - 126.&lt;/td>
-&lt;td>16777214 = 2^24 - 2&lt;/td>
-&lt;td>10.0.0.0 到 10.255.255.255&lt;/td>
-&lt;td>&lt;/td>
+&lt;td>1~127&lt;/td>
+&lt;td>16777214(2^24-2)&lt;/td>
+&lt;td>10.0.0.0~10.255.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>B&lt;/td>
 &lt;td>16&lt;/td>
 &lt;td>16&lt;/td>
-&lt;td>128.1&lt;/td>
-&lt;td>191.255&lt;/td>
-&lt;td>65534 = 2^16 - 2&lt;/td>
-&lt;td>172.16.0.0 到 172.31.255.255&lt;/td>
+&lt;td>128.1~191.255&lt;/td>
+&lt;td>65534(2^16-2)&lt;/td>
+&lt;td>172.16.0.0~172.31.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>C&lt;/td>
 &lt;td>24&lt;/td>
 &lt;td>8&lt;/td>
-&lt;td>192.0.1&lt;/td>
-&lt;td>223.255.255&lt;/td>
-&lt;td>254 = 2^8 - 2&lt;/td>
-&lt;td>192.168.0.0 到 192.168.255.255&lt;/td>
+&lt;td>192.0.1~223.255.255&lt;/td>
+&lt;td>254(2^8 - 2)&lt;/td>
+&lt;td>192.168.0.0~192.168.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
 &lt;td>D&lt;/td>
 &lt;td>&lt;strong>组播地址&lt;/strong>&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>224.0.0.0&lt;/td>
-&lt;td>239.255.255.255&lt;/td>
+&lt;td>224.0.0.0~239.255.255.255&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;/tr>
@@ -15567,18 +16258,15 @@ I/O 复用（select 和 poll）
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
 &lt;td>&lt;/td>
-&lt;td>&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
-&lt;p>16777214 = 2^24 - 2&lt;/p>
-&lt;p>65534 = 2^16 - 2&lt;/p>
-&lt;p>254 = 2^8 - 2&lt;/p>
 &lt;p>&lt;strong>特殊地址&lt;/strong>：&lt;/p>
 &lt;ul>
+&lt;li>主机号不能为全0和全1&lt;/li>
 &lt;li>&lt;strong>广播地址&lt;/strong>：除网络号外全为1&lt;/li>
-&lt;li>127.0.0.1：本地保留地址&lt;/li>
 &lt;li>&lt;strong>0.0.0.0&lt;/strong>：设置了缺省网关时的缺省路由&lt;/li>
+&lt;li>127.0.0.1：本地保留地址&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>内网地址&lt;/strong>：&lt;/p>
 &lt;p>RFC 1918 指明的专用地址(private address)（内网地址）&lt;/p>
@@ -15587,7 +16275,7 @@ I/O 复用（select 和 poll）
 &lt;p>192.168.0.0 到 192.168.255.255&lt;/p>
 &lt;p>&lt;strong>划分子网方法&lt;/strong>：&lt;/p>
 &lt;ul>
-&lt;li>IP 地址中增加了一个 “&lt;strong>子网号&lt;/strong>字段”，使两级的 IP 地址变成为&lt;strong>三级&lt;/strong>的 IP 地址。划分子网已成为因特网的正式标准协议。&lt;/li>
+&lt;li>IP 地址中增加了一个 “&lt;strong>子网号&lt;/strong>字段”，使两级的 IP 地址变成为&lt;strong>三级&lt;/strong>的 IP 地址。&lt;strong>划分子网已成为因特网的正式标准协议&lt;/strong>。&lt;/li>
 &lt;li>ABC类地址的&lt;strong>默认子网掩码&lt;/strong>就是对应网络号的位数。&lt;/li>
 &lt;li>255.0.0.0 / 255.255.0.0 / 255.255.255.0&lt;/li>
 &lt;/ul>
@@ -15600,6 +16288,8 @@ I/O 复用（select 和 poll）
 &lt;li>CIDR记法 128.14.32.0/20. 20表示的是网络前缀位数。主机号位数 = 32 - 网络前缀位数&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>VLSM (Variable Length Subnet Mask) 变长子网掩码&lt;/strong>：在一个划分子网的网络中可同时使用几个不同的子网掩码。CIDR是在VLSM基础上研究出的。&lt;/p>
+&lt;p>IP 协议的寻址作用是下一个目的地
+路由则是根据「下一个目的地」选择路径。&lt;/p>
 &lt;p>&lt;strong>路由聚合(构成超网)&lt;/strong>: CIDR 地址块可以表示很多地址，这种地址的聚合常称为&lt;strong>路由聚合&lt;/strong>，它使得&lt;strong>路由表中的一个项目&lt;/strong>可以表示&lt;strong>很多个（例如上千个）&lt;strong>原来&lt;/strong>传统分类地址&lt;/strong>的&lt;strong>路由&lt;/strong>。&lt;/p>
 &lt;ul>
 &lt;li>缩短路由表尺寸&lt;/li>
@@ -16112,7 +16802,7 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;p>&lt;strong>HTML&lt;/strong>(HyperText &lt;strong>Markup&lt;/strong> Language 超文本标记语言): &lt;strong>文档结构标记语言&lt;/strong>，使用约定的标记对页面上的信息进行描述。&lt;/p>
 &lt;p>&lt;strong>URL&lt;/strong>: 统一资源定位符Uniform Resource Locator， 标识万维网上的各种文档。每个文档在整个因特网都具有唯一的URL。&lt;/p>
 &lt;ul>
-&lt;li>格式：协议(ftp/http)://主机:端口/路径。&lt;/li>
+&lt;li>格式：&lt;code>协议(ftp/http)://主机:端口/路径&lt;/code>。&lt;/li>
 &lt;/ul>
 &lt;p>
 &lt;figure >
@@ -16128,9 +16818,40 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;li>参数。参数是浏览器在向服务器提交请求时，在 URL 中附带的参数。服务器解析请求时，会提取这些参数。参数采用键值对的形式key=value，每一个键值对使用&amp;amp;隔开。参数的具体含义和请求操作的具体方法有关。&lt;/li>
 &lt;li>锚点。锚点顾名思义，是在要访问的页面上的一个锚。要访问的页面大部分都多于一页，如果指定了锚点，那么在客户端显示该网页是就会定位到锚点处，相当于一个小书签。值得一提的是，在 URL 中，锚点以#开头，并且不会作为请求的一部分发送给服务端&lt;/li>
 &lt;/ul>
-&lt;h2 id="todo-在浏览器上输入url后发生了什么">TODO: 在浏览器上输入URL后发生了什么&lt;/h2>
-&lt;h3 id="http-1">HTTP&lt;/h3>
-&lt;h3 id="dns">DNS&lt;/h3>
+&lt;h2 id="在浏览器上输入url后发生了什么">在浏览器上输入URL后发生了什么&lt;/h2>
+&lt;h3 id="1解析url">1.解析URL&lt;/h3>
+&lt;p>获得:&lt;/p>
+&lt;ul>
+&lt;li>协议&lt;/li>
+&lt;li>域名&lt;/li>
+&lt;li>端口&lt;/li>
+&lt;li>资源路径
+&lt;ul>
+&lt;li>当资源路径为空时，服务器会默认返回一个 index.html 文件。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="2通过dns获得ip">2.通过DNS获得IP&lt;/h3>
+&lt;h3 id="3建立tcp连接">3.建立TCP连接&lt;/h3>
+&lt;h3 id="4建立tls连接">4.建立TLS连接&lt;/h3>
+&lt;h3 id="heading">&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%9f%ba%e7%a1%80/HTTP%e6%8a%a5%e6%96%87%e6%a0%bc%e5%bc%8f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>请求行:&lt;/p>
+&lt;ul>
+&lt;li>方法: GET&lt;/li>
+&lt;li>sp: 空格&lt;/li>
+&lt;li>URL&lt;/li>
+&lt;li>版本: HTTP/1.1
+&lt;ul>
+&lt;li>版本的选择是由&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h3 id="操作系统协议栈----http传输工作">操作系统协议栈 &amp;ndash; HTTP传输工作&lt;/h3>
 &lt;h3 id="tcp-1">TCP&lt;/h3>
 &lt;h3 id="ip">IP&lt;/h3>
@@ -16193,7 +16914,9 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;h2 id="协议">协议&lt;/h2>
 &lt;h2 id="工具">工具&lt;/h2>
 &lt;h3 id="tcpdump">tcpdump&lt;/h3>
-&lt;h3 id="wireshark">wireshark&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h3 id="wireshark">wireshark&lt;/h3>
+&lt;p>网络层
+openwrt&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E7%AC%94%E8%AE%B0/%E7%BD%91%E7%BB%9C%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="1概述">1.概述&lt;/h2>
 &lt;p>LAN：Local Area Network，局域网&lt;/p>
 &lt;p>WAN：Wide Area Network，广域网&lt;/p>
@@ -20747,6 +21470,63 @@ final方法可以被重载吗?&lt;/p>
 &lt;div class="w-100" >&lt;img src="img/JUC%28Java%e5%b9%b6%e5%8f%91%29/ReentrantReadWriteLock.png" alt="" loading="lazy" data-zoomable />&lt;/div>
 &lt;/div>&lt;/figure>
 &lt;/p>
+&lt;h3 id="todo-synchronized-原理和核心优化">TODO: synchronized 原理和核心优化&lt;/h3>
+&lt;p>synchronized 在 JDK 1.5 时性能是比较低的，然而在后续的版本中经过各种优化迭代，它的性能也得到了前所未有的提升&lt;/p>
+&lt;p>synchronized 核心优化方案主要包含以下 4 个：&lt;/p>
+&lt;ul>
+&lt;li>锁膨胀&lt;/li>
+&lt;li>锁消除&lt;/li>
+&lt;li>锁粗化&lt;/li>
+&lt;li>自适应自旋锁&lt;/li>
+&lt;/ul>
+&lt;p>锁膨胀和自适应自旋锁是 synchronized 关键字自身的优化实现，而锁消除和锁粗化是 JVM 虚拟机对 synchronized 提供的优化方案&lt;/p>
+&lt;h4 id="锁膨胀">锁膨胀&lt;/h4>
+&lt;p>指 synchronized 从无锁升级到偏向锁，再到轻量级锁，最后到重量级锁的过程，它叫做锁膨胀也叫做锁升级。
+JDK 1.6 之前，synchronized 是重量级锁，也就是说 synchronized 在释放和获取锁时都会从用户态转换成内核态，而转换的效率是比较低的。但有了锁膨胀机制之后，synchronized 的状态就多了无锁、偏向锁以及轻量级锁了，这时候在进行并发操作时，大部分的场景都不需要用户态到内核态的转换了，这样就大幅的提升了 synchronized 的性能。&lt;/p>
+&lt;p>偏向锁执行流程&lt;/p>
+&lt;p>当一个线程访问同步代码块并获取锁时，会在对象头的 Mark Word 里存储锁偏向的线程 ID&lt;/p>
+&lt;p>在线程进入和退出同步块时不再通过 CAS 操作来加锁和解锁，
+而是检测 Mark Word 里是否存储着指向当前线程的偏向锁&lt;/p>
+&lt;ul>
+&lt;li>如果 Mark Word 中的线程 ID 和访问的线程 ID 一致，则可以直接进入同步块进行代码执行&lt;/li>
+&lt;li>如果线程 ID 不同，则使用 CAS 尝试获取锁，如果获取成功则进入同步块执行代码，否则会将锁的状态升级为轻量级锁。
+​&lt;/li>
+&lt;/ul>
+&lt;p>轻量级锁
+引入轻量级锁的目的是在没有多线程竞争的前提下，减少传统的重量级锁使用操作系统 Mutex Lock（互斥锁）产生的性能消耗。&lt;/p>
+&lt;p>如果使用 Mutex Lock 每次获取锁和释放锁的操作都会带来用户态和内核态的切换，这样系统的性能开销是很大的。
+​
+当关闭偏向锁或者多个线程竞争偏向锁时就会导致偏向锁升级为轻量级锁，轻量级锁的获取和释放都通过 CAS 完成的，其中锁获取可能会通过一定次数的自旋来完成。
+​&lt;/p>
+&lt;p>重量级锁&lt;/p>
+&lt;p>依赖监视器 Monitor 实现方法同步或代码块同步的&lt;/p>
+&lt;p>代码块同步使用的是 monitorenter 和 monitorexit 指令来实现的&lt;/p>
+&lt;p>monitorenter 指令是在编译后插入到同步代码块的开始位置&lt;/p>
+&lt;p>monitorexit 是插入到方法结束处和异常处的，任何对象都有一个 Monitor 与之关联，当且一个 Monitor 被持有后，它将处于锁定状态。&lt;/p>
+&lt;p>​&lt;/p>
+&lt;h4 id="锁消除">锁消除&lt;/h4>
+&lt;p>锁消除指的是在某些情况下，JVM 虚拟机如果检测不到某段代码被共享和竞争的可能性，就会将这段代码所属的同步锁消除掉，从而到底提高程序性能的目的。&lt;/p>
+&lt;p>锁消除的依据是&lt;strong>逃逸分析&lt;/strong>的数据支持，如 StringBuffer 的 append() 方法，或 Vector 的 add() 方法，在很多情况下是可以进行锁消除的&lt;/p>
+&lt;h4 id="锁粗化">锁粗化&lt;/h4>
+&lt;p>锁粗化是指，将多个连续的加锁、解锁操作连接在一起，扩展成一个范围更大的锁。&lt;/p>
+&lt;p>我只听说锁“细化”可以提高程序的执行效率，也就是将锁的范围尽可能缩小，这样在锁竞争时，等待获取锁的线程才能更早的获取锁，从而提高程序的运行效率，但锁粗化是如何提高性能的呢？&lt;/p>
+&lt;p>没错，锁细化的观点在大多数情况下都是成立了，但是一系列连续加锁和解锁的操作，也会导致不必要的性能开销，从而影响程序的执行效率，比如这段代码：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-java" data-lang="java">&lt;span class="line">&lt;span class="cl">&lt;span class="kd">public&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">String&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="nf">method&lt;/span>&lt;span class="p">()&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">StringBuilder&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sb&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="k">new&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">StringBuilder&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">for&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">0&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">10&lt;/span>&lt;span class="p">;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="p">{&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 伪代码：加锁操作&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="n">sb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">append&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s">&amp;#34;i:&amp;#34;&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">);&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="c1">// 伪代码：解锁操作&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="k">return&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="n">sb&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="na">toString&lt;/span>&lt;span class="p">();&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w">&lt;/span>&lt;span class="p">}&lt;/span>&lt;span class="w">
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果我们直接在 for 循环的外层加一把锁，那么对于同一个对象操作这段代码的性能就会提高很多&lt;/p>
+&lt;h4 id="自适应自旋锁">自适应自旋锁&lt;/h4>
+&lt;p>自适应自旋锁是指，自旋锁在 JDK 1.6 之后，引入了自适应自旋锁的机制，自旋锁的自适应性是指自旋的次数不再是固定的，而是由前一次在同一个锁上的自旋时间及锁的拥有者的状态来决定的。&lt;/p>
+&lt;p>自旋锁优点在于它避免一些线程的挂起和恢复操作，因为挂起线程和恢复线程都需要从用户态转入内核态，这个过程是比较慢的，所以通过自旋的方式可以一定程度上避免线程挂起和恢复所造成的性能开销。&lt;/p>
+&lt;p>但是，如果长时间自旋还获取不到锁，那么也会造成一定的资源浪费，所以我们通常会给自旋设置一个固定的值来避免一直自旋的性能开销。然而对于 synchronized 关键字来说，它的自旋锁更加的“智能”，synchronized 中的自旋锁是自适应自旋锁&lt;/p>
+&lt;p>线程自旋的次数不再是固定的值，而是一个动态改变的值，这个值会根据前一次自旋获取锁的状态来决定此次自旋的次数。&lt;/p>
+&lt;p>如果线程自旋成功了，则下次自旋的次数会增多，如果失败，下次自旋的次数会减少。&lt;/p>
 &lt;h2 id="线程池">线程池&lt;/h2>
 &lt;h3 id="线程池概念">线程池概念&lt;/h3>
 &lt;p>线程池提供了一种限制和管理资源（包括执行一个任务）的方式。 每个线程池还维护一些基本统计信息，例如已完成任务的数量。&lt;/p>
@@ -21488,6 +22268,31 @@ JVM 中的 PC 寄存器是对物理 PC 寄存器的一种抽象模拟。&lt;/p>
 &lt;h4 id="运行时常量池">运行时常量池&lt;/h4>
 &lt;p>JVM 为每个已加载的类型（类或接口）都维护一个常量池。池中的数据项像数组项一样，是通过索引访问的&lt;/p>
 &lt;h4 id="todo-方法区的垃圾回收">TODO: 方法区的垃圾回收&lt;/h4>
+&lt;h3 id="java对象在内存中的布局">Java对象在内存中的布局&lt;/h3>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/JVM/Java%e5%af%b9%e8%b1%a1%e5%9c%a8%e5%86%85%e5%ad%98%e4%b8%ad%e7%9a%84%e5%b8%83%e5%b1%80.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>对象头(Header)
+&lt;ul>
+&lt;li>Mark Word: 存储对象的hashCode、GC分代年龄、锁状态标志、线程持有的锁、偏向线程ID、偏向时间戳等信息&lt;/li>
+&lt;li>Class Metadata Address: 类型指针指向对象的类元数据，JVM通过这个指针确定该对象是哪个类的实例&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>实例数据(Instance Data)
+&lt;ul>
+&lt;li>存储对象真正有效的数据信息&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>对齐填充(Padding)
+&lt;ul>
+&lt;li>由于HotSpot VM的自动内存管理系统要求对象起始地址必须是8字节的整数倍，填充数据不是必然存在的，仅仅是为了字节对齐&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="jvm垃圾回收机制">JVM垃圾回收机制&lt;/h2>
 &lt;h3 id="判断一个对象是否可被回收">判断一个对象是否可被回收&lt;/h3>
 &lt;h4 id="引用计数法">引用计数法&lt;/h4>
