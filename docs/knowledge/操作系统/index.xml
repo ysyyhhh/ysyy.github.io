@@ -404,11 +404,198 @@ select、poll 模型都只使用一个函数，而 epoll 模型使用三个函�
 &lt;p>协程完全由程序所控制（在用户态执行），带来的好处是性能大幅度的提升。&lt;/p>
 &lt;p>协程的使用&lt;/p>
 &lt;ul>
-&lt;li>计算型的操作，利用协程来回切换执行，没有任何意义，来回切换并保存状态 反倒会降低性能。&lt;/li>
+&lt;li>计算型的操作，利.用协程来回切换执行，没有任何意义，来回切换并保存状态 反倒会降低性能。&lt;/li>
 &lt;li>IO型的操作，利用协程在IO等待时间就去切换执行其他任务，当IO操作结束后再自动回调，那么就会大大节省资源并提供性能，从而实现异步编程（不等待任务结束就可以去执行其他代码）。&lt;/li>
 &lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="cpu">CPU&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/CPU%e4%b8%89%e7%ba%a7%e7%bc%93%e5%ad%98.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>64位系统中：
+寄存器：一次能处理8字节数据
+L1缓存：一次能处理64字节数据
+L2缓存：一次能处理512字节数据
+L3缓存：一次能处理4096字节数据&lt;/p>
+&lt;p>分为：&lt;/p>
+&lt;ul>
+&lt;li>数据缓存&lt;/li>
+&lt;li>指令缓存&lt;/li>
+&lt;/ul>
+&lt;p>提升缓存的命中率 -&amp;gt; 提升程序的性能&lt;/p>
+&lt;p>提升数据缓存的命中率&lt;/p>
+&lt;ul>
+&lt;li>空间局部性: 一旦访问了某个存储单元，很可能在不久之后再次访问附近的存储单元, Cache Line会将附近的存储单元一并加载到缓存中,&lt;/li>
+&lt;/ul>
+&lt;p>提升指令缓存的命中率&lt;/p>
+&lt;ul>
+&lt;li>CPU的分支预测机制: 分支预测可以预测到接下来要执行 if 里的指令，还是 else 指令的话，就可以「提前」把这些指令放在指令缓存中，这样 CPU 可以直接从 Cache 读取到指令，于是执行速度就会很快。&lt;/li>
+&lt;/ul>
+&lt;p>比如&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// arr是随机的
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 操作1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="k">for&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">;&lt;/span> &lt;span class="n">i&lt;/span>&lt;span class="o">++&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">arr&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="mi">10&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 操作
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">// 操作2 排序
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span>&lt;span class="n">sort&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">arr&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">arr&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mi">100&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>如果先进行操作2，再进行操作1. 那么可以进行分支预测，将&lt;code>if (arr[i] &amp;lt; 10)&lt;/code>的指令放入指令缓存中，这样就可以提高指令缓存的命中率。&lt;/p>
+&lt;p>提升多核CPU的命中率&lt;/p>
+&lt;p>因为L3缓存是共享的，而L1,L2缓存不是共享的.
+因此如果因为进程每次被分配到不同的核心上，那么L1,L2缓存的命中率就会降低，因为每次都要重新加载数据到L1,L2缓存中。&lt;/p>
+&lt;p>为了防止因为切换到不同的核心，而导致缓存命中率下降的问题，我们可以把线程绑定在某一个 CPU 核心上，这样性能可以得到非常可观的提升&lt;/p>
+&lt;p>如: &lt;code>sched_setaffinity&lt;/code> 函数可以将线程绑定到某一个CPU核心上。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;sched.h&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="nf">sched_setaffinity&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">pid_t&lt;/span> &lt;span class="n">pid&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">size_t&lt;/span> &lt;span class="n">cpusetsize&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="k">const&lt;/span> &lt;span class="n">cpu_set_t&lt;/span> &lt;span class="o">*&lt;/span>&lt;span class="n">mask&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h3 id="cpu缓存一致性">CPU缓存一致性&lt;/h3>
+&lt;p>现在 CPU 都是多核的，由于 L1/L2 Cache 是多个核心各自独有的，那么会带来多核心的缓存一致性（Cache Coherence） 的问题，如果不能保证缓存一致性的问题，就可能造成结果错误。&lt;/p>
+&lt;p>解决机制:&lt;/p>
+&lt;ul>
+&lt;li>写传播: 某个 CPU 核心里的 Cache 数据更新时，必须要传播到其他核心的 Cache&lt;/li>
+&lt;li>事务的串行化: 某个 CPU 核心里对数据的操作顺序，必须在其他核心看起来顺序是一样的&lt;/li>
+&lt;/ul>
+&lt;p>基于总线嗅探机制的 MESI 协议，就满足上面了这两点&lt;/p>
+&lt;p>总线嗅探方法很简单， CPU 需要每时每刻监听总线上的一切活动，但是不管别的核心的 Cache 是否缓存相同的数据，都需要发出一个广播事件&lt;/p>
+&lt;p>整个 MESI 的状态可以用一个有限状态机来表示它的状态流转&lt;/p>
+&lt;p>当 Cache Line 状态是「已修改」或者「独占」状态时，修改更新其数据不需要发送广播给其他 CPU 核心，这在一定程度上减少了总线带宽压力&lt;/p>
+&lt;ul>
+&lt;li>M(Modified): 表示数据已经被修改，且只存在于当前 CPU 的 Cache 中&lt;/li>
+&lt;li>E(Exclusive): 表示数据只存在于当前 CPU 的 Cache 中，但是没有被修改&lt;/li>
+&lt;li>S(Shared): 表示数据存在于多个 CPU 的 Cache 中，且没有被修改&lt;/li>
+&lt;li>I(Invalid): 表示数据无效，需要从内存中重新读取&lt;/li>
+&lt;/ul>
+&lt;h3 id="伪共享问题">伪共享问题&lt;/h3>
+&lt;p>MESI解决了多核CPU的缓存一致性问题，但是还有伪共享问题.&lt;/p>
+&lt;p>如果 1 号和 2 号 CPU 核心这样持续交替的分别修改变量 A 和 B，Cache 并没有起到缓存的效果，虽然变量 A 和 B 之间其实并没有任何的关系，但是因为同时归属于一个 Cache Line&lt;/p>
+&lt;p>多个线程同时读写同一个 Cache Line 的不同变量时，而导致 CPU Cache 失效的现象称为伪共享&lt;/p>
+&lt;p>Linux内核有 __cache_aligned_in_smp 宏，可以解决伪共享问题&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#ifdef __cache_aligned_in_smp
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define __cacheline_aligned_in_smp __cache_aligned
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#else
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#define __cacheline_aligned_in_smp
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#endif
+&lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>多核系统里, __cache_aligned 是 64 字节，也就是一个 Cache Line 的大小&lt;/p>
+&lt;p>防止伪共享现象的发生，可以采用上面的宏定义使得变量在 Cache Line 里是&lt;strong>对齐&lt;/strong>的&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-C++" data-lang="C++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">struct&lt;/span> &lt;span class="nc">mystruct&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">a&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">b&lt;/span> &lt;span class="n">__cacheline_aligned_in_smp&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>这样就可以保证变量 a 和 b 不会在同一个 Cache Line 里，从而避免伪共享问题&lt;/p>
+&lt;h3 id="中断">中断&lt;/h3>
+&lt;p>通过查看 /proc/softirqs 的 内容来知晓「软中断」的运行情况，以及 /proc/interrupts 的 内容来知晓「硬中断」的运行情况。&lt;/p>
+&lt;p>中断处理程序的上部分和下半部可以理解为：&lt;/p>
+&lt;p>上半部直接处理硬件请求，也就是硬中断，主要是负责耗时短的工作，特点是快速执行；
+下半部是由内核触发，也就说软中断，主要是负责上半部未完成的工作，通常都是&lt;strong>耗时比较长的事情&lt;/strong>，特点是延迟执行；&lt;/p>
+&lt;p>定位软中断 CPU 使用率过高的问题？&lt;/p>
+&lt;ul>
+&lt;li>通过 &lt;code>top&lt;/code> 命令查看软中断的 CPU 使用率&lt;/li>
+&lt;li>通过&lt;code>watch -n 1 cat /proc/softirqs&lt;/code>查看软中断的运行情况&lt;/li>
+&lt;/ul>
 &lt;h2 id="内存管理">内存管理&lt;/h2>
-&lt;h2 id="网络系统">网络系统&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
+&lt;h2 id="网络系统">网络系统&lt;/h2>
+&lt;h3 id="零拷贝">零拷贝&lt;/h3>
+&lt;p>零拷贝（Zero-copy）技术，因为我们没有在内存层面去拷贝数据，也就是说全程没有通过 CPU 来搬运数据，所有的数据都是通过 DMA 来进行传输的&lt;/p>
+&lt;p>DMA: 在进行 I/O 设备和内存的数据传输的时候，数据搬运的工作全部交给 DMA 控制器，而 CPU 不再参与任何与数据搬运相关的事情，这样 CPU 就可以去处理别的事务。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e4%bc%a0%e7%bb%9f%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e8%bf%87%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>传统的文件传输：&lt;/p>
+&lt;ul>
+&lt;li>共发生了 4 次用户态与内核态的上下文切换
+&lt;ul>
+&lt;li>因为发生了两次系统调用，一次是 read() ，一次是 write()&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>发送了 4 次数据拷贝
+&lt;ul>
+&lt;li>第一次拷贝，把磁盘上的数据拷贝到操作系统内核的缓冲区里，这个拷贝的过程是通过 DMA 搬运的。&lt;/li>
+&lt;li>第二次拷贝，把内核缓冲区的数据拷贝到用户的缓冲区里，于是我们应用程序就可以使用这部分数据了，这个拷贝到过程是由 CPU 完成的&lt;/li>
+&lt;li>第三次拷贝，把刚才拷贝到用户的缓冲区里的数据，再拷贝到内核的 socket 的缓冲区里，这个过程依然还是由 CPU 搬运的。&lt;/li>
+&lt;li>第四次拷贝，把内核的 socket 缓冲区里的数据，拷贝到网卡的缓冲区里，这个过程又是由 DMA 搬运的。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>减少切换次数就要减少系统调用次数&lt;/p>
+&lt;p>减少数据拷贝可以通过利用缓存区&lt;/p>
+&lt;p>传统的文件传输方式会历经 4 次数据拷贝，而且这里面，「从内核的读缓冲区拷贝到用户的缓冲区里，再从用户的缓冲区里拷贝到 socket 的缓冲区里」，这个过程是没有必要的。&lt;/p>
+&lt;p>实现零拷贝的方式：&lt;/p>
+&lt;ul>
+&lt;li>mmap + write&lt;/li>
+&lt;li>sendfile&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/mmap%e7%9a%84%e6%96%87%e4%bb%b6%e4%bc%a0%e8%be%93%e8%bf%87%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>mmap() 系统调用函数会直接把内核缓冲区里的数据「映射」到用户空间&lt;/p>
+&lt;p>但仍然需要 4 次上下文切换，因为系统调用还是 2 次。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/sendfile%e4%bc%a0%e8%be%93%e8%bf%87%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>但上面的仍有CPU参与拷贝.&lt;/p>
+&lt;p>SG-DMA (The Scatter-Gather Direct Memory Access)：是一种 DMA 的方式，可以让 DMA 控制器在一个传输过程中，不需要 CPU 的干预，就可以完成多个不连续的数据块的传输。 需要网卡支持.&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e4%bd%bf%e7%94%a8SG-DMA%e7%9c%9f%e6%ad%a3%e7%9a%84%e9%9b%b6%e6%8b%b7%e8%b4%9d.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>只需要 2 次上下文切换和数据拷贝次数，就可以完成文件的传输，而且 2 次的数据拷贝过程，都不需要通过 CPU，2 次都是由 DMA 来搬运。&lt;/p>
+&lt;p>零拷贝技术可以把文件传输的性能提高至少一倍以上&lt;/p>
+&lt;p>零拷贝的应用:&lt;/p>
+&lt;ul>
+&lt;li>Kafka&lt;/li>
+&lt;/ul>
+&lt;h4 id="pagecache-内核缓存区作用">PageCache 内核缓存区作用&lt;/h4>
+&lt;p>PageCache 的优点主要是两个：&lt;/p>
+&lt;ul>
+&lt;li>缓存最近被访问的数据；&lt;/li>
+&lt;li>预读功能: 假设 read 方法每次只会读 32 KB 的字节，虽然 read 刚开始只会读 0 ～ 32 KB 的字节，但内核会把其后面的 32～64 KB 也读取到 PageCache(空间局部性)&lt;/li>
+&lt;/ul>
+&lt;p>但大文件传输的情况下, PageCache 会不起作用，那就白白浪费 DMA 多做的一次数据拷贝，造成性能的降低，即使使用了 PageCache 的零拷贝也会损失性能&lt;/p>
+&lt;h4 id="大文件传输">大文件传输&lt;/h4>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e6%b2%a1%e6%9c%89%e7%bb%95%e8%bf%87PageCache.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>会阻塞read&lt;/p>
+&lt;p>在高并发的场景下，针对大文件的传输的方式，应该使用「异步 I/O + 直接 I/O」来替代零拷贝技术&lt;/p>
+&lt;p>使用异步I/O来绕开 PageCache 的限制 , 又称 直接 I/O&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e5%bc%82%e6%ad%a5I/O%e4%bc%a0%e8%be%93%e5%a4%a7%e6%96%87%e4%bb%b6.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>传输文件的时候，我们要根据文件的大小来使用不同的方式：&lt;/p>
+&lt;ul>
+&lt;li>传输大文件的时候，使用「异步 I/O + 直接 I/O」；&lt;/li>
+&lt;li>传输小文件的时候，则使用「零拷贝技术」；&lt;/li>
+&lt;/ul>
+&lt;p>在 nginx 中，我们可以用如下配置，来根据文件的大小来使用不同的方式：&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">location /video/ {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> sendfile on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> aio on;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> directio 1024m;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>当文件大小大于 directio 值后，使用「异步 I/O + 直接 I/O」，否则使用「零拷贝技术」。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E5%9F%BA%E7%A1%80%E7%A0%94/</guid><description>&lt;h1 id="操作系统基础">操作系统基础&lt;/h1>
 &lt;h2 id="第章-计算机系统概述">第⼀章 计算机系统概述&lt;/h2>
 &lt;h3 id="01-操作系统的概念定义">01 操作系统的概念（定义）&lt;/h3>
 &lt;p>概念（定义）&lt;/p>
@@ -2669,10 +2856,12 @@ Unix系统中采⽤了成组链接法对磁盘空闲块进⾏管理
 &lt;p>优先级调度适⽤于 实时系统 ；&lt;/p>
 &lt;p>⾼响应⽐调度、时间⽚轮转调度、多级反馈队列调度适⽤于 分时系统 ；&lt;/p>
 &lt;p>1）先来先服务 FCFS 调度算法；
-适⽤于进程调度和作业调度；&lt;/p>
+适⽤于进程调度和作业调度；
+优缺点: 简单、公平,不会产生饥饿现象，因为⼀个长作业会拖累后⾯的短作业；&lt;/p>
 &lt;p>2）优先级调度算法；
 适⽤于进程调度和作业调度；
-优先级：&lt;/p>
+优缺点： 可能会产生饥饿现象,即低优先级进程长期得不到服务。静态优先级不够灵活,动态优先级可以更好地反映进程当前状态。剥夺式优先级可能会导致进程频繁切换,影响性能&lt;/p>
+&lt;p>优先级：&lt;/p>
 &lt;ul>
 &lt;li>系统进程 &amp;gt; ⽤户进程&lt;/li>
 &lt;li>交互型进程 &amp;gt; ⾮交互型进⾏&lt;/li>
@@ -2683,19 +2872,28 @@ Unix系统中采⽤了成组链接法对磁盘空闲块进⾏管理
 &lt;/ul>
 &lt;p>3）短作业优先 SJF 调度算法；
 适⽤于进程调度和作业调度；
-SJF调度 的平均等待时间、平均周转时间最少；&lt;/p>
+SJF调度 的平均等待时间、平均周转时间最少；
+优缺点: 提高系统的整体吞吐量，导致⻓作业饥饿；&lt;/p>
 &lt;p>4）⾼响应比调度算法；
 主要⽤于作业调度；
 响应⽐⾼的先调度（取决于 已等待时间 与 需要服务时间 ）；
 已等待时间越⻓响应⽐越⾼；
-需要服务时间越⼩响应⽐越⾼；&lt;/p>
+需要服务时间越⼩响应⽐越⾼；
+优缺点：需要估计作业的服务时间,实现复杂度较高&lt;/p>
 &lt;p>5）时间⽚轮转调度算法；
-⽤于进程调度；&lt;/p>
+⽤于进程调度；
+优先级：需要设置合理的时间片长度,过长会降低响应时间,过短会增加进程切换开销&lt;/p>
 &lt;p>6）多级反馈队列调度算法；
 ⽤于进程调度；
 设置多个不同优先级的队列，优先级越⾼的队列对应的可执⾏时间⽚越⼩；
 初始进程放⼊第⼀级队列队尾，按FCFS排队，在第⼀级未执⾏完后放⼊第⼆级；
 知道前⼀级队列为空时，才执⾏下⼀级队列；&lt;/p>
+&lt;p>Linux中的CFS Completely Fair Scheduler 完全公平调度器
+为每个任务安排一个虚拟运行时间 vruntime，如果一个任务在运行，其运行的越久，该任务的 vruntime 自然就会越大，而没有被运行的任务，vruntime 是不会变化的。&lt;/p>
+&lt;p>那么，在 CFS 算法调度的时候，会优先选择 vruntime 少的任务，以保证每个任务的公平性。&lt;/p>
+&lt;p>CFS使用红黑树来存储所有的进程，红黑树是一种自平衡的二叉查找树，可以保证在 O(logN) 的时间复杂度内完成查找、插入、删除等操作。&lt;/p>
+&lt;p>优点：公平、高效、低延迟
+缺点：复杂度高、难以调试、&lt;/p>
 &lt;h4 id="225-僵尸进程和孤儿进程">2.2.5 僵尸进程和孤儿进程&lt;/h4>
 &lt;p>当一个进程调用 exit()系统调用结束自己的生命时，内核会释放该进程的所有资源，包括打开的文件、占用的内存等，但是该进程对应的 &lt;strong>PCB 依然存在于系统中&lt;/strong>。这些信息只有在父进程调用 wait()或 waitpid()系统调用时才会被释放，&lt;strong>以便让父进程得到子进程的状态信息&lt;/strong>&lt;/p>
 &lt;p>僵尸进程：&lt;/p>

@@ -26,4 +26,5 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 测试配置文件是否正确&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">nginx -t
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item></channel></rss>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="nginx-配置">nginx 配置&lt;/h2>
+&lt;p>加权轮询&lt;/p></description></item></channel></rss>

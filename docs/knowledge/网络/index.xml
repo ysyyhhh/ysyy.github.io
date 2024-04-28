@@ -473,6 +473,51 @@ I/O 复用（select 和 poll）
 &lt;h2 id="socket">Socket&lt;/h2>
 &lt;p>Socket listen怎么监听到TCP连接&lt;/p>
 &lt;p>释放连接的状态转换&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/tcp/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/tcp/</guid><description>&lt;h1 id="tcp">TCP&lt;/h1>
+&lt;p>控制位:
+ACK：该位为 1 时，「确认应答」的字段变为有效，TCP 规定除了最初建立连接时的 SYN 包之外该位必须设置为 1 。
+RST：该位为 1 时，表示 TCP 连接中出现异常必须强制断开连接。
+SYN：该位为 1 时，表示希望建立连接，并在其「序列号」的字段进行序列号初始值的设定。
+FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连接。当通信结束希望断开连接时，通信双方的主机之间就可以相互交换 FIN 位为 1 的 TCP 段。&lt;/p>
+&lt;p>netstat -napt&lt;/p>
+&lt;h2 id="三次握手">三次握手&lt;/h2>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/TCP/%e4%b8%89%e6%ac%a1%e6%8f%a1%e6%89%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;ul>
+&lt;li>一开始，客户端和服务端都处于 CLOSE 状态。先是服务端主动监听某个端口，处于 LISTEN 状态&lt;/li>
+&lt;li>客户端会随机初始化序号（client_isn），将此序号置于 TCP 首部的「序号」字段中，同时把 SYN 标志位置为 1，表示 SYN 报文。接着把第一个 SYN 报文发送给服务端，表示向服务端发起连接，该报文不包含应用层数据，之后客户端处于 SYN-SENT 状态。&lt;/li>
+&lt;li>服务端收到客户端的 SYN 报文后，首先服务端也随机初始化自己的序号（server_isn），将此序号填入 TCP 首部的「序号」字段中，其次把 TCP 首部的「确认应答号」字段填入 client_isn + 1, 接着把 SYN 和 ACK 标志位置为 1。最后把该报文发给客户端，该报文也不包含应用层数据，之后服务端处于 SYN-RCVD 状态。&lt;/li>
+&lt;li>客户端收到服务端报文后，还要向服务端回应最后一个应答报文，首先该应答报文 TCP 首部 ACK 标志位置为 1 ，其次「确认应答号」字段填入 server_isn + 1 ，最后把报文发送给服务端，这次报文可以携带客户到服务端的数据，之后客户端处于 ESTABLISHED 状态。&lt;/li>
+&lt;li>服务端收到客户端的应答报文后，也进入 ESTABLISHED 状态。&lt;/li>
+&lt;/ul>
+&lt;p>第三次握手是可以携带数据的，前两次握手是不可以携带数据的，这也是面试常问的题。&lt;/p>
+&lt;h2 id="四次挥手">四次挥手&lt;/h2>
+&lt;ul>
+&lt;li>
+&lt;p>客户端打算关闭连接，此时会发送一个 TCP 首部 FIN 标志位被置为 1 的报文，也即 FIN 报文，之后客户端进入 FIN_WAIT_1 状态。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>服务端收到该报文后，就向客户端发送 ACK 应答报文，接着服务端进入 CLOSE_WAIT 状态。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客户端收到服务端的 ACK 应答报文后，之后进入 FIN_WAIT_2 状态。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>等待服务端处理完数据后，也向客户端发送 FIN 报文，之后服务端进入 LAST_ACK 状态。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客户端收到服务端的 FIN 报文后，回一个 ACK 应答报文，之后进入 TIME_WAIT 状态&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>服务端收到了 ACK 应答报文后，就进入了 CLOSE 状态，至此服务端已经完成连接的关闭。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>客户端在经过 2MSL 一段时间后，自动进入 CLOSE 状态，至此客户端也完成连接的关闭。&lt;/p>
+&lt;/li>
+&lt;/ul>
 &lt;h2 id="tcp和http的keep-alive区别">TCP和HTTP的keep-alive区别&lt;/h2>
 &lt;h3 id="tcp的keep-alive">TCP的keep-alive&lt;/h3>
 &lt;p>TCP 的 Keepalive 是 &lt;strong>TCP 的保活机制&lt;/strong>，检测的是对端主机是否存活（而不是进程）&lt;/p>

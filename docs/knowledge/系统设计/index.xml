@@ -1,5 +1,81 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>系统设计 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/index.xml" rel="self" type="application/rss+xml"/><description>系统设计</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>系统设计</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%89%E5%85%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
+&lt;h2 id="高性能设计">高性能设计&lt;/h2>
+&lt;h3 id="cdn">CDN&lt;/h3>
+&lt;h3 id="负载均衡">负载均衡&lt;/h3>
+&lt;p>服务端负载均衡&lt;/p>
+&lt;p>应用于系统外部 和 网关层 中间,&lt;/p>
+&lt;p>软件负载均衡 。软件负载均衡通过软件（比如 LVS、Nginx、HAproxy ）实现负载均衡功能&lt;/p>
+&lt;p>硬件负载均衡 。硬件负载均衡通过硬件设备（比如 F5、Radware ）实现负载均衡功能&lt;/p>
+&lt;p>四层负载均衡 工作在 OSI 模型第四层，也就是传输层.&lt;/p>
+&lt;ul>
+&lt;li>能够看到数据包里的源端口地址以及目的端口地址，会基于这些信息通过一定的负载均衡算法将数据包转发到后端真实服务器。&lt;/li>
+&lt;/ul>
+&lt;p>执行第七层负载均衡的设备通常被称为 反向代理服务器 。&lt;/p>
+&lt;ul>
+&lt;li>核心是报文内容（如 URL、Cookie）层面的负载均衡&lt;/li>
+&lt;/ul>
+&lt;p>客户端负载均衡&lt;/p>
+&lt;p>主要应用于系统内部的不同的服务之间，可以使用现成的负载均衡组件来实现。
+Dubbo 属于是默认自带了负载均衡功能&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e8%b4%9f%e8%bd%bd%e5%9d%87%e8%a1%a1.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h4 id="负载均衡算法">负载均衡算法&lt;/h4>
+&lt;p>随机算法: 有一个比较明显的缺陷：部分机器在一段时间之内无法被随机到，毕竟是概率算法，就算是大家权重一样， 也可能会出现这种情况。&lt;/p>
+&lt;p>轮询法: 没有配置权重的话，每个请求按时间顺序逐一分配到不同的服务器处理。如果配置权重的话，权重越高的服务器被访问的次数就越多&lt;/p>
+&lt;p>两次随机法: 两次随机算法是在随机算法的基础上进行了改进，通过两次随机选择来提高随机性，减少因随机数分布不均匀而导致的性能问题。&lt;/p>
+&lt;p>哈希算法: 根据客户端 IP 地址或者请求 URL 计算哈希值，然后对服务器列表的大小进行取模运算，得到的结果就是要访问的服务器序号。&lt;/p>
+&lt;p>一致性哈希法: 一致性哈希算法是一种分布式算法，主要用于负载均衡。一致性哈希算法的基本思想是将整个哈希值空间组织成一个虚拟的圆环，&lt;/p>
+&lt;p>最小连接数法: 最小连接数法是根据后端服务器的当前连接情况来决定请求应该分发到哪一台服务器上，选择当前连接数最少的服务器来处理当前请求。&lt;/p>
+&lt;p>加权最小连接数法: 加权最小连接数法是在最小连接数法的基础上增加了权重的概念，权重越高的服务器被选中的概率越大。&lt;/p>
+&lt;p>最快响应时间法: 最快响应时间法是根据后端服务器的响应时间来决定请求应该分发到哪一台服务器上，选择响应时间最短的服务器来处理当前请求。&lt;/p>
+&lt;h4 id="七层负载均衡解决方案">七层负载均衡解决方案&lt;/h4>
+&lt;p>DNS 解析&lt;/p>
+&lt;p>反向代理。&lt;/p>
+&lt;h3 id="数据库优化">数据库优化&lt;/h3>
+&lt;h3 id="消息队列">消息队列&lt;/h3>
+&lt;h2 id="高可用设计">高可用设计&lt;/h2>
 &lt;h2 id="典型问题">典型问题&lt;/h2>
+&lt;h3 id="百万用户抢券的系统设计">百万用户抢券的系统设计&lt;/h3>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/iZ9BX6cCCp_TB-SC3knuew" target="_blank" rel="noopener">字节高并发优惠券系统&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://juejin.cn/post/6844903847031226382" target="_blank" rel="noopener">如何设计一个百万级用户的抽奖系统？&lt;/a>&lt;/p>
+&lt;h4 id="负载均衡层限流">负载均衡层限流&lt;/h4>
+&lt;ol>
+&lt;li>配置过滤脚本&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>判断如果同一个用户在1分钟之内多次发送请求来进行抽奖，就认为是恶意重复抽奖，或者是他们自己写的脚本在刷奖，这种流量一律认为是无效流量，在负载均衡设备那个层次就给直接屏蔽掉。&lt;/li>
+&lt;li>使得请求的QPS为真实的用户数&lt;/li>
+&lt;/ul>
+&lt;ol start="2">
+&lt;li>开奖后暴力拦截&lt;/li>
+&lt;/ol>
+&lt;p>1000个券，可能有1000万人来抢，但是只有1000个券，所以在券抢完后，就可以直接拦截所有请求，不再进行后续的处理。&lt;/p>
+&lt;p>即拦截无效流量
+做到50万人一起请求，结果就可能2万请求到了后台的Tomcat抽奖服务中，48万请求直接拦截掉了。&lt;/p>
+&lt;p>可以通过Redis来共享抽奖状态&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/Redis%e5%85%b1%e4%ba%ab%e6%8a%bd%e5%a5%96%e7%8a%b6%e6%80%81.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h4 id="服务层">服务层&lt;/h4>
+&lt;p>线程数优化，选择合适的线程数&lt;/p>
+&lt;p>用Redis代替MySQL实现业务逻辑&lt;/p>
+&lt;h5 id="限流削峰">限流削峰&lt;/h5>
+&lt;p>如果确实发放几w以上的奖品，那么抽奖服务还会调用礼品服务。&lt;/p>
+&lt;p>而礼品服务等后续服务可能非常耗时，且不易扩展部署。&lt;/p>
+&lt;p>可以通过消息中间件进行流量削峰，将抽奖服务和礼品服务解耦，礼品服务可以慢慢处理，不会影响抽奖服务的性能。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/%e5%ae%9e%e6%88%98%e6%a2%b3%e7%90%86/%e6%b5%81%e9%87%8f%e5%89%8a%e5%b3%b0%e5%90%8e.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
 &lt;p>秒杀&lt;/p>
 &lt;p>rpc调用的流程&lt;/p>
 &lt;p>如何实现注册中心的高可用&lt;/p>

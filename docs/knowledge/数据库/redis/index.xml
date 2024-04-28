@@ -38,6 +38,12 @@
 &lt;p>很多时候，要确保事务中的数据没有被其他客户端修改才执行该事务。&lt;/p>
 &lt;p>Redis提供了watch命令来解决这类问题，这是一种乐观锁的机制。&lt;/p>
 &lt;p>客户端通过watch命令，要求服务器对一个或多个key进行监视，如果在客户端执行事务之前，这些key发生了变化，则服务器将拒绝执行客户端提交的事务，并向它返回一个空值。&lt;/p>
+&lt;p>26、Redis的密码可以通过哪些方式设置和验证？&lt;/p>
+&lt;p>Redis的密码可以通过配置文件设置，验证密码可以使用AUTH命令。&lt;/p>
+&lt;p>32、Redis集群可以选择不同的数据库吗？&lt;/p>
+&lt;p>Redis集群可以选择不同的数据库，通过SELECT命令进行切换。&lt;/p>
+&lt;p>33、如何测试Redis的连通性？&lt;/p>
+&lt;p>可以使用PING命令测试Redis的连通性。&lt;/p>
 &lt;h2 id="redis数据结构">Redis数据结构&lt;/h2>
 &lt;p>这里从原理的角度分析Redis的数据结构&lt;/p>
 &lt;p>一个Redis节点包含多个database（非cluster模式下默认是16个，cluster模式下只能是1个）&lt;/p>
@@ -177,53 +183,347 @@
 &lt;/li>
 &lt;/ul>
 &lt;p>在实际应用中，可以根据实际情况选择RDB和AOF中的一种或两种持久化机制。如果数据的安全性和一致性比较重要，可以选择AOF；如果数据的恢复速度比较重要，可以选择RDB；如果两者都比较重要，可以同时使用两种持久化机制。&lt;/p>
+&lt;h3 id="aof-日志实现">AOF 日志实现&lt;/h3>
+&lt;p>先执行命令，再把数据写入日志&lt;/p>
+&lt;p>Reids 是先执行写操作命令后，才将该命令记录到 AOF 日志里的，这么做其实有两个好处。&lt;/p>
+&lt;ul>
+&lt;li>避免额外的检查开销：&lt;/li>
+&lt;li>&lt;strong>不阻塞当前写&lt;/strong>操作命令的执行：因为当写操作命令执行成功后，才会将命令记录到 AOF 日志。&lt;/li>
+&lt;/ul>
+&lt;p>当然，这样做也会带来风险：&lt;/p>
+&lt;ul>
+&lt;li>数据可能会丢失： 执行写操作命令和记录日志是两个过程，那当 Redis 在还没来得及将命令写入到硬盘时，服务器发生宕机了，这个数据就会有丢失的风险。&lt;/li>
+&lt;li>可能阻塞其他操作： 由于写操作命令执行成功后才记录到 AOF 日志，所以不会阻塞当前命令的执行，但因为 AOF 日志也是在主线程中执行，所以当 &lt;strong>Redis 把日志文件写入磁盘时&lt;/strong>，还是会阻塞后续的操作无法执行&lt;/li>
+&lt;/ul>
+&lt;h4 id="aof-写回策略">AOF 写回策略&lt;/h4>
+&lt;ol>
+&lt;li>Redis 执行完写操作命令后，会将命令追加到 server.aof_buf 缓冲区；&lt;/li>
+&lt;li>通过 write() 系统调用，将 aof_buf 缓冲区的数据写入到 AOF 文件，此时数据并没有写入到硬盘，而是拷贝到了内核缓冲区 page cache，等待内核将数据写入硬盘；&lt;/li>
+&lt;li>具体&lt;strong>内核缓冲区的数据什么时候写入到硬盘，由内核决定&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;ul>
+&lt;li>always：每次写操作都会同步到磁盘上，保证数据的完整性和一致性，但是会影响性能；&lt;/li>
+&lt;li>everysec：每秒钟同步一次，可以平衡性能和数据安全；&lt;/li>
+&lt;li>no：不同步，由操作系统控制写回，性能最好，但是数据安全性最差。&lt;/li>
+&lt;/ul>
+&lt;h4 id="aof-重写机制----解决aof-过大问题">AOF 重写机制 &amp;ndash; 解决AOF 过大问题&lt;/h4>
+&lt;p>当 AOF 文件的大小超过所设定的阈值后，Redis 就会启用 AOF 重写机制，来压缩 AOF 文件。&lt;/p>
+&lt;p>在重写时，&lt;strong>读取当前数据库中的所有键值对&lt;/strong>，然后将每一个键值对用一条命令记录到「新的 AOF 文件」&lt;/p>
+&lt;p>重写 AOF 过程是由后台子进程 bgrewriteaof 来完成的&lt;/p>
+&lt;ul>
+&lt;li>重写期间，主进程可以继续处理命令请求，从而避免阻塞主进程&lt;/li>
+&lt;li>子进程带有主进程的数据副本，这里使用子进程而不是线程，因为如果是使用线程，多线程之间会共享内存，那么在修改共享内存数据的时候，需要通过加锁来保证数据的安全，而这样就会降低性能。&lt;/li>
+&lt;/ul>
+&lt;p>写时复制，发生不一致怎么办
+AOF 重写缓冲区，这个缓冲区在创建 bgrewriteaof 子进程之后开始使用。&lt;/p>
+&lt;p>在重写 AOF 期间，当 Redis 执行完一个写命令之后，它会&lt;strong>同时将这个写命令写入到 「AOF 缓冲区」和 「AOF 重写缓冲区」&lt;/strong>&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Redis%e5%9f%ba%e7%a1%80/AOF%e9%87%8d%e5%86%99%e5%ad%90%e8%bf%9b%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>主进程收到该信号后，会调用一个信号处理函数，该函数主要做以下工作：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>将 AOF 重写缓冲区中的所有内容追加到新的 AOF 的文件&lt;/strong>中，使得新旧两个 AOF 文件所保存的数据库状态一致；&lt;/li>
+&lt;li>新的 AOF 的文件进行改名，覆盖现有的 AOF 文件。&lt;/li>
+&lt;/ul>
+&lt;p>信号函数执行完后，主进程就可以继续像往常一样处理命令了。&lt;/p>
+&lt;h3 id="rdb快照">RDB快照&lt;/h3>
+&lt;p>RDB 快照就是记录某一个瞬间的内存数据，记录的是实际数据
+Redis 的快照是全量快照&lt;/p>
+&lt;p>Redis 恢复数据时，直接将 RDB 文件读入内存就可以，快速&lt;/p>
+&lt;p>RDB 做快照时会阻塞线程吗？&lt;/p>
+&lt;p>有两个命令来生成RDB文件，SAVE和BGSAVE&lt;/p>
+&lt;ul>
+&lt;li>SAVE会阻塞线程，直到RDB文件生成完毕&lt;/li>
+&lt;li>BGSAVE不会阻塞线程，会fork一个子进程来生成RDB文件&lt;/li>
+&lt;/ul>
+&lt;p>Redis可以通过配置文件来实现每隔多久自动执行bgsave&lt;/p>
+&lt;p>RDB 在执行快照的时候，数据能修改吗？
+可以修改，基于写时复制技术&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Redis%e5%9f%ba%e7%a1%80/fork%e5%ad%90%e8%bf%9b%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>主线程执行写操作，则被修改的数据会复制一份副本，然后 bgsave 子进程会把该副本数据写入 RDB 文件&lt;/p>
+&lt;p>也就是写入RDB文件的数据是fork前的数据。&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Redis%e5%9f%ba%e7%a1%80/%e5%86%99%e6%97%b6%e5%a4%8d%e5%88%b6.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h3 id="混合持久化">混合持久化&lt;/h3>
+&lt;p>fork 出来的重写子进程会先将与主线程共享的内存数据以 RDB 方式写入到 AOF 文件&lt;/p>
+&lt;p>然后主线程处理的操作命令会被记录在重写缓冲区里，重写缓冲区里的增量命令会以 AOF 方式写入到 AOF 文件&lt;/p>
+&lt;p>写入完成后通知主进程将新的含有 RDB 格式和 AOF 格式的 AOF 文件替换旧的的 AOF 文件。&lt;/p>
+&lt;p>混合持久化，AOF 文件的前半部分是 RDB 格式的全量数据，后半部分是 AOF 格式的增量数据。&lt;/p>
+&lt;p>混合持久化优点：&lt;/p>
+&lt;ul>
+&lt;li>混合持久化结合了 RDB 和 AOF 持久化的优点，开头为 RDB 的格式，使得 Redis 可以更快的启动，同时结合 AOF 的优点，有减低了大量数据丢失的风险。&lt;/li>
+&lt;/ul>
+&lt;p>混合持久化缺点：&lt;/p>
+&lt;ul>
+&lt;li>AOF 文件中添加了 RDB 格式的内容，使得 AOF 文件的可读性变得很差；&lt;/li>
+&lt;li>兼容性差，如果开启混合持久化，那么此混合持久化 AOF 文件，就不能用在 Redis 4.0 之前版本了&lt;/li>
+&lt;/ul>
+&lt;h3 id="redis的持久化机制的优缺点有哪些">Redis的持久化机制的优缺点有哪些？&lt;/h3>
+&lt;p>Redis的持久化机制包括RDB和AOF两种方式，各自的优缺点包括数据恢复速度、数据安全性、数据一致性等方面。&lt;/p>
+&lt;p>RDB方式是将Redis的内存数据快照保存到磁盘上，优点是恢复速度快，缺点是可能会丢失最近一次快照之后的数据。&lt;/p>
+&lt;p>AOF方式是将Redis的写操作以追加的方式记录到一个日志文件中，优点是可以保证数据的完整性和一致性，缺点是日志文件可能会很大。&lt;/p>
+&lt;h3 id="大key对持久化的影响">大Key对持久化的影响&lt;/h3>
+&lt;h2 id="redis-事务">Redis 事务&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="redis应用">Redis应用&lt;/h1>
+&lt;h2 id="redis分布式应用">Redis分布式应用&lt;/h2>
+&lt;h3 id="分布式锁">分布式锁&lt;/h3>
+&lt;p>分布式锁实现：&lt;/p>
+&lt;p>原始方式：setnx key true（死锁）/set key true ex 30 nx（锁误删）-&amp;gt; 锁重入问题。&lt;/p>
+&lt;p>Redis 的 SET 命令有个 NX 参数可以实现「key不存在才插入」，所以可以用它来实现分布式锁：&lt;/p>
+&lt;ul>
+&lt;li>如果 key 不存在，则显示插入成功，可以用来表示加锁成功；&lt;/li>
+&lt;li>如果 key 存在，则会显示插入失败，可以用来表示加锁失败。&lt;/li>
+&lt;/ul>
+&lt;p>三个条件:&lt;/p>
+&lt;ul>
+&lt;li>枷锁包括了读取锁变量、检查锁变量值和设置锁变量值三个操作，但需要以原子操作的方式, 需要使用SET + NX&lt;/li>
+&lt;li>锁变量需要设置过期时间，以免客户端拿到锁后发生异常，导致锁一直无法释放, 加上 EX/PX
+&lt;ul>
+&lt;li>EX: 秒&lt;/li>
+&lt;li>PX: 毫秒&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>需要能区分来自不同客户端的加锁操作，以免在释放锁时，出现误释放操作, 使用uuid等分布式唯一ID&lt;/li>
+&lt;/ul>
+&lt;p>命令格式&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">set lock_key unique_id NX PX 30000
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;ul>
+&lt;li>lock_key: 锁的key&lt;/li>
+&lt;li>unique_id: 客户端唯一ID&lt;/li>
+&lt;li>NX: key不存在时才设置成功&lt;/li>
+&lt;li>PX 30000: 设置过期时间为30秒&lt;/li>
+&lt;/ul>
+&lt;p>解锁一般要使用 Lua 脚本来保证原子性，因为 Redis 的删除操作不是原子的，可能会导致误删。&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-lua" data-lang="lua">&lt;span class="line">&lt;span class="cl">&lt;span class="o">//&lt;/span> &lt;span class="err">先比较是否是自己的锁，再删除&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">if&lt;/span> &lt;span class="n">redis.call&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;get&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">KEYS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">ARGV&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="kr">then&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">return&lt;/span> &lt;span class="n">redis.call&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;del&amp;#34;&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">KEYS&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">])&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">else&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kr">return&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="kr">end&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Redis分布式锁的优点:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>性能高&lt;/strong>：Redis 是单线程的，所以性能非常高，可以支持高并发的请求。&lt;/li>
+&lt;li>实现简单：使用 Redis 的 setnx 命令就可以实现分布式锁，非常简单。&lt;/li>
+&lt;li>避免单点故障: Redis 支持主从复制和集群，可以避免单点故障。&lt;/li>
+&lt;/ul>
+&lt;p>缺点:&lt;/p>
+&lt;ul>
+&lt;li>超时时间设置: 过长影响性能.
+&lt;ul>
+&lt;li>合理超时时间设置: 基于续约机制，每隔一段时间对锁进行续约，保证锁不会过期。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>锁的不可靠性: 旧主节点宕机，新主节点上的锁丢失。
+&lt;ul>
+&lt;li>可以使用 Redlock 算法解决这个问题，Redlock 算法是 Redis 官方提供的一种分布式锁算法，可以保证在大部分节点正常运行的情况下，分布式锁可以正常工作。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;p>TODO: Redis 如何解决集群情况下分布式锁的可靠性？&lt;/p>
+&lt;h3 id="分布式session登录">分布式session登录&lt;/h3>
+&lt;p>Redisson 框架实现方式：Redis + Lua 实现。&lt;/p>
+&lt;h2 id="redis过期删除-和-内存淘汰策略">Redis过期删除 和 内存淘汰策略&lt;/h2>
+&lt;h3 id="redis过期键的删除策略">Redis过期键的删除策略&lt;/h3>
+&lt;p>Redis过期键的删除策略包括定期删除和惰性删除。&lt;/p>
+&lt;p>惰性删除：客户端访问一个key的时候，Redis会先检查它的过期时间，如果发现过期就立刻删除这个key。
+缺点: 浪费内存&lt;/p>
+&lt;p>定期删除：Redis会将设置了过期时间的key放到一个独立的字典中，并对该字典进行每秒10次的过期扫描，&lt;/p>
+&lt;p>过期扫描不会遍历字典中所有的key，而是采用了一种简单的贪心策略。该策略的删除逻辑如下：&lt;/p>
+&lt;ol>
+&lt;li>从过期字典中随机选择20个key；&lt;/li>
+&lt;li>删除这20个key中&lt;strong>已过期的key&lt;/strong>；&lt;/li>
+&lt;li>如果已过期key的比例超过25%(大于5个)，则&lt;strong>重复步骤1&lt;/strong>。&lt;/li>
+&lt;/ol>
+&lt;p>为了保证定期删除不会出现&lt;strong>循环过度&lt;/strong>，导致线程卡死现象，为此增加了定期删除循环流程的时间上限，默认不会超过 25ms&lt;/p>
+&lt;p>缺点: 不好控制频率, 过快可能导致CPU占用过高&lt;/p>
+&lt;p>Redis1实际使用的是定期删除和惰性删除相结合的方式来删除过期键。&lt;/p>
+&lt;h4 id="redis持久化时对过期键的处理">Redis持久化时对过期键的处理&lt;/h4>
+&lt;p>&lt;strong>RDB 中对过期键的处理&lt;/strong>&lt;/p>
+&lt;p>RDB 生成阶段: 会检查 key 是否过期，如果过期则不会将其写入 RDB 文件。&lt;/p>
+&lt;p>RDB 加载阶段: 根据服务器是主还是从&lt;/p>
+&lt;ul>
+&lt;li>主服务器: 会在加载 RDB 文件时，跳过过期的 key&lt;/li>
+&lt;li>从服务器: 全部加载进去, 因为在进行主从复制时会清空,所以没什么影响.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>AOF 中对过期键的处理&lt;/strong>&lt;/p>
+&lt;p>AOF 文件写入阶段: 不会主动删除过期键, 当key被删除时, 在AOF文件中追加一条DEL命令&lt;/p>
+&lt;p>AOF 文件重写阶段: 会对Redis中的过期键进行检查, 不会将过期键写入到新的AOF文件中&lt;/p>
+&lt;h3 id="redis内存淘汰策略">Redis内存淘汰策略&lt;/h3>
+&lt;p>运行内存达到了某个阀值，就会触发内存淘汰机制，这个阀值就是我们设置的最大运行内存，此值在 Redis 的配置文件中可以找到，配置项为 maxmemory&lt;/p>
+&lt;p>分为两类:&lt;/p>
+&lt;p>不进行数据淘汰&lt;/p>
+&lt;ul>
+&lt;li>neo-eviction&lt;/li>
+&lt;/ul>
+&lt;p>进行数据淘汰的策略&lt;/p>
+&lt;p>在过期时间内进行淘汰&lt;/p>
+&lt;ul>
+&lt;li>volatile-lru：从设置了过期时间的 key 中挑选最近最少使用的 key 淘汰&lt;/li>
+&lt;li>volatile-ttl：从设置了过期时间的 key 中挑选将要过期的 key 淘汰&lt;/li>
+&lt;li>volatile-random：从设置了过期时间的 key 中随机挑选 key 淘汰&lt;/li>
+&lt;li>volatile-lfu：从设置了过期时间的 key 中挑选最少使用的 key 淘汰&lt;/li>
+&lt;/ul>
+&lt;p>在所有数据范围进行淘汰&lt;/p>
+&lt;ul>
+&lt;li>allkeys-lru：从所有 key 中挑选最近最少使用的 key 淘汰&lt;/li>
+&lt;li>allkeys-random：从所有 key 中随机挑选 key 淘汰&lt;/li>
+&lt;li>allkeys-lfu：从所有 key 中挑选最少使用的 key 淘汰&lt;/li>
+&lt;/ul>
+&lt;p>lfu是Redis4.0之后新增的&lt;/p>
+&lt;h4 id="lru的实现">LRU的实现&lt;/h4>
+&lt;p>实现近似的LRU&lt;/p>
+&lt;p>在 Redis 的对象结构体中添加一个额外的字段，用于记录此数据的最后一次访问时间&lt;/p>
+&lt;p>会使用随机采样的方式来淘汰数据，它是随机取 5 个值（此值可配置），然后淘汰最久没有使用的那个。&lt;/p>
+&lt;p>优点:&lt;/p>
+&lt;ul>
+&lt;li>不维护大链表，节省内存&lt;/li>
+&lt;li>不需要移动链表，提高效率&lt;/li>
+&lt;/ul>
+&lt;p>缺点:&lt;/p>
+&lt;ul>
+&lt;li>缓存污染问题: 应用一次读取了大量的数据，而这些数据只会被读取这一次，那么这些数据会留存在 Redis 缓存中很长一段时间&lt;/li>
+&lt;/ul>
+&lt;h4 id="lfu的引入和实现">LFU的引入和实现&lt;/h4>
+&lt;p>Least Frequently Used，最近最不常用&lt;/p>
+&lt;p>根据数据访问次数来淘汰数据的，它的核心思想是“如果数据过去被访问多次，那么将来被访问的频率也更高”&lt;/p>
+&lt;p>相比于 LRU 算法的实现，多记录了「数据的访问频次」的信息&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">typedef&lt;/span> &lt;span class="k">struct&lt;/span> &lt;span class="nc">redisObject&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 24 bits，用于记录对象的访问信息
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="kt">unsigned&lt;/span> &lt;span class="nl">lru&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="mi">24&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">...&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span> &lt;span class="n">robj&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>在 LRU 算法中，Redis 对象头的 24 bits 的 lru 字段是用来记录 key 的访问时间戳，因此在 LRU 模式下，Redis可以根据对象头中的 lru 字段记录的值，来比较最后一次 key 的访问时间长，从而淘汰最久未被使用的 key。&lt;/p>
+&lt;p>在 LFU 算法中，Redis对象头的 24 bits 的 lru 字段被分成两段来存储，高 16bit 存储 ldt(Last Decrement Time)，用来记录 key 的访问时间戳；低 8bit 存储 logc(Logistic Counter)，用来记录 key 的访问频次。&lt;/p>
+&lt;h3 id="如何设计redis-key的过期时间">如何设计Redis Key的过期时间？&lt;/h3>
+&lt;ol>
+&lt;li>热点数据不设置过期时间，&lt;strong>使其达到“物理”上的永不过期&lt;/strong>，可以避免缓存击穿问题；&lt;/li>
+&lt;li>在设置过期时间时，可以&lt;strong>附加一个随机数&lt;/strong>，避免大量的key同时过期，导致缓存雪崩。&lt;/li>
+&lt;/ol>
+&lt;h2 id="redis-缓存设计">Redis 缓存设计&lt;/h2>
 &lt;h3 id="缓存雪崩缓存穿透缓存预热缓存更新和缓存降级是什么">缓存雪崩、缓存穿透、缓存预热、缓存更新和缓存降级是什么？&lt;/h3>
 &lt;h4 id="缓存穿透">缓存穿透&lt;/h4>
-&lt;p>客户端查询根本不存在的数据，使得请求直达存储层，导致其负载过大，甚至宕机。出现这种情况的原因，可能是业务层误将缓存和库中的数据删除了，也可能是有人恶意攻击，专门访问库中不存在的数据。&lt;/p>
+&lt;p>客户端&lt;strong>查询根本不存在的数据，使得请求直达存储层&lt;/strong>，导致其负载过大，甚至宕机。出现这种情况的原因，可能是业务层误将缓存和库中的数据删除了，也可能是有人&lt;strong>恶意攻击，专门访问库中不存在的数据&lt;/strong>。&lt;/p>
 &lt;p>解决方案：&lt;/p>
 &lt;ol>
 &lt;li>缓存空对象：存储层未命中后，仍然将空值存入缓存层，客户端再次访问数据时，缓存层会直接返回空值。&lt;/li>
 &lt;li>布隆过滤器：将数据存入布隆过滤器，访问缓存之前以过滤器拦截，若请求的数据不存在则直接返回空值。&lt;/li>
+&lt;li>非法请求的限制：当有大量恶意请求访问不存在的数据的时候，也会发生缓存穿透，因此在 API 入口处我们要判断求请求参数是否合理，请求参数是否含有非法值、请求字段是否存在，如果判断出是恶意请求就直接返回错误，避免进一步访问缓存和数据库。&lt;/li>
 &lt;/ol>
 &lt;h4 id="缓存击穿">缓存击穿&lt;/h4>
-&lt;p>一份热点数据，它的访问量非常大。在其缓存失效的瞬间，大量请求直达存储层，导致服务崩溃。&lt;/p>
+&lt;p>&lt;strong>一份热点数据，它的访问量非常大&lt;/strong>。在其&lt;strong>缓存失效&lt;/strong>的瞬间，大量请求直达存储层，导致服务崩溃。&lt;/p>
 &lt;p>解决方案：&lt;/p>
 &lt;ol>
-&lt;li>永不过期：热点数据不设置过期时间，所以不会出现上述问题，这是“物理”上的永不过期。或者为每个数据设置逻辑过期时间，当发现该数据逻辑过期时，使用单独的线程重建缓存。&lt;/li>
+&lt;li>永不过期：热点数据不设置过期时间，所以不会出现上述问题，这是“物理”上的永不过期。或者为每个数据设置逻辑过期时间，当发现该数据&lt;strong>逻辑过期时，使用单独的线程重建缓存&lt;/strong>。&lt;/li>
 &lt;li>加互斥锁：对数据的访问加互斥锁，当一个线程访问该数据时，其他线程只能等待。这个线程访问过后，缓存中的数据将被重建，届时其他线程就可以直接从缓存中取值。&lt;/li>
 &lt;/ol>
 &lt;h4 id="缓存雪崩">缓存雪崩&lt;/h4>
-&lt;p>在某一时刻，缓存层无法继续提供服务，导致所有的请求直达存储层，造成数据库宕机。可能是缓存中有大量数据同时过期，也可能是Redis节点发生故障，导致大量请求无法得到处理。&lt;/p>
+&lt;p>在&lt;strong>某一时刻&lt;/strong>，缓存层无法继续提供服务，导致大量请求直达存储层，造成数据库宕机。可能是&lt;strong>缓存中有大量数据同时过期&lt;/strong>，也可能是Redis&lt;strong>节点发生故障，导致大量请求无法得到处理&lt;/strong>。&lt;/p>
 &lt;p>解决方案：&lt;/p>
 &lt;ol>
 &lt;li>避免数据同时过期：设置过期时间时，附加一个随机数，避免大量的key同时过期。&lt;/li>
 &lt;li>启用降级和熔断措施：在发生雪崩时，若应用访问的不是核心数据，则直接返回预定义信息/空值/错误信息。或者在发生雪崩时，对于访问缓存接口的请求，客户端并不会把请求发给Redis，而是直接返回。&lt;/li>
 &lt;li>构建高可用的Redis服务：采用哨兵或集群模式，部署多个Redis实例，个别节点宕机，依然可以保持服务的整体可用。&lt;/li>
 &lt;/ol>
-&lt;h3 id="redis过期键的删除策略有哪些">Redis过期键的删除策略有哪些？&lt;/h3>
-&lt;p>Redis过期键的删除策略包括定期删除和惰性删除。&lt;/p>
-&lt;p>惰性删除：客户端访问一个key的时候，Redis会先检查它的过期时间，如果发现过期就立刻删除这个key。&lt;/p>
-&lt;p>定期删除：Redis会将设置了过期时间的key放到一个独立的字典中，并对该字典进行每秒10次的过期扫描，&lt;/p>
-&lt;p>过期扫描不会遍历字典中所有的key，而是采用了一种简单的贪心策略。该策略的删除逻辑如下：&lt;/p>
-&lt;ol>
-&lt;li>从过期字典中随机选择20个key；&lt;/li>
-&lt;li>删除这20个key中已过期的key；&lt;/li>
-&lt;li>如果已过期key的比例超过25%，则重复步骤1。&lt;/li>
-&lt;/ol>
-&lt;h3 id="redis的回收策略有哪些">Redis的回收策略有哪些？&lt;/h3>
-&lt;p>Redis的回收策略包括noeviction、allkeys-lru、volatile-lru、allkeys-random和volatile-random等。&lt;/p>
-&lt;h3 id="redis的持久化机制的优缺点有哪些">Redis的持久化机制的优缺点有哪些？&lt;/h3>
-&lt;p>Redis的持久化机制包括RDB和AOF两种方式，各自的优缺点包括数据恢复速度、数据安全性、数据一致性等方面。&lt;/p>
-&lt;p>RDB方式是将Redis的内存数据快照保存到磁盘上，优点是恢复速度快，缺点是可能会丢失最近一次快照之后的数据。&lt;/p>
-&lt;p>AOF方式是将Redis的写操作以追加的方式记录到一个日志文件中，优点是可以保证数据的完整性和一致性，缺点是日志文件可能会很大。&lt;/p>
-&lt;h3 id="保证缓存与数据库的双写一致性--">保证缓存与数据库的双写一致性&amp;ndash;&lt;/h3>
+&lt;h3 id="动态缓存热点数据策略设计">动态缓存热点数据策略设计&lt;/h3>
+&lt;p>通过数据最新访问时间来做排名，并过滤掉不常访问的数据，只留下经常访问的数据&lt;/p>
+&lt;p>只缓存用户经常访问的 Top 1000 的商品。具体细节如下：&lt;/p>
+&lt;ul>
+&lt;li>先通过缓存系统做一个&lt;strong>排序队列（比如存放 1000 个商品）&lt;/strong>，系统会根据商品的访问时间，更新队列信息，越是&lt;strong>最近访问的商品排名越靠前&lt;/strong>；&lt;/li>
+&lt;li>同时系统会&lt;strong>定期过滤掉队列中排名最后的 200 个商品&lt;/strong>，然后再从数据库中&lt;strong>随机读取出 200 个商品加入队列中&lt;/strong>；&lt;/li>
+&lt;li>这样当&lt;strong>请求每次到达的时候，会先从队列中获取商品 ID，如果命中，就根据 ID 再从另一个缓存数据结构中读取实际的商品信息&lt;/strong>，并返回。&lt;/li>
+&lt;li>在 Redis 中可以用 zadd 方法和 zrange 方法来完成排序队列和获取 200 个商品的操作。&lt;/li>
+&lt;/ul>
+&lt;h3 id="缓存与数据库的双写一致性缓存更新策略">缓存与数据库的双写一致性(缓存更新策略)&lt;/h3>
+&lt;p>常见的缓存更新策略共有3种：&lt;/p>
+&lt;ul>
+&lt;li>Cache Aside（旁路缓存）策略；
+&lt;ul>
+&lt;li>先更新数据库，再删除缓存。&lt;/li>
+&lt;li>Cache Aside 策略适合&lt;strong>读多写少的场景，不适合写多的场景&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Read/Write Through（读穿 / 写穿）策略；
+&lt;ul>
+&lt;li>先更新数据库，再更新缓存。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>Write Back（写回）策略；&lt;/li>
+&lt;/ul>
+&lt;p>实际开发中，Redis 和 MySQL 的更新策略用的是 Cache Aside，&lt;/p>
+&lt;h4 id="先更新数据库再删除缓存-cache-aside">先更新数据库再删除缓存 (Cache Aside)&lt;/h4>
+&lt;p>写策略的步骤：&lt;/p>
+&lt;ul>
+&lt;li>先更新数据库中的数据，再删除缓存中的数据。&lt;/li>
+&lt;/ul>
+&lt;p>读策略的步骤：&lt;/p>
+&lt;ul>
+&lt;li>如果读取的数据命中了缓存，则直接返回数据；&lt;/li>
+&lt;li>如果读取的数据没有命中缓存，则从数据库中读取数据，然后将数据写入到缓存，并且返回给用户。&lt;/li>
+&lt;/ul>
+&lt;p>不能先删除缓存再更新数据库的原因:&lt;/p>
+&lt;ul>
+&lt;li>「读+写」并发时, 数据不一致.&lt;/li>
+&lt;/ul>
+&lt;p>即删除了缓存之后, 还没有更新数据库, 这时候另一个线程读取了缓存, 由于缓存被删除, 从数据库中读取了旧数据.&lt;/p>
+&lt;h4 id="先更新数据库再更新缓存-readwrite-through读穿--写穿策略">先更新数据库再更新缓存 Read/Write Through（读穿 / 写穿）策略&lt;/h4>
+&lt;p>当有数据更新的时候，先查询要写入的数据在缓存中是否已经存在：&lt;/p>
+&lt;ul>
+&lt;li>如果缓存中数据已经存在，则&lt;strong>更新缓存中的数据&lt;/strong>，并且&lt;strong>由缓存组件同步更新到数据库中&lt;/strong>，然后缓存组件告知应用程序更新完成。&lt;/li>
+&lt;li>如果缓存中数据不存在，直接更新数据库，然后返回；&lt;/li>
+&lt;/ul>
+&lt;p>不常使用的原因:&lt;/p>
+&lt;ul>
+&lt;li>原因是我们经常使用的分布式缓存组件，无论是 Memcached 还是 Redis 都&lt;strong>不提供写入数据库和自动加载数据库中的数据的功能&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;h4 id="只更新缓存-write-back写回策略">只更新缓存 Write Back（写回）策略&lt;/h4>
+&lt;p>Write Back 策略特别适合写多的场景，因为发生写操作的时候， 只需要更新缓存，就立马返回了。&lt;/p>
+&lt;p>比如，写文件的时候，实际上是写入到文件系统的缓存就返回了，并不会写磁盘。&lt;/p>
+&lt;p>但是带来的问题是，数据不是强一致性的，而且会有数据丢失的风险，&lt;/p>
+&lt;h4 id="保证-先更新数据库再删除缓存-操作成功">保证 先更新数据库再删除缓存 操作成功&lt;/h4>
+&lt;p>如果 在删除缓存（第二个操作）的时候失败了，导致缓存中的数据是旧值，而数据库是最新值。&lt;/p>
+&lt;p>采用异步操作缓存&lt;/p>
+&lt;p>&lt;strong>重试机制&lt;/strong>&lt;/p>
+&lt;p>引入消息队列，将第二个操作（删除缓存）要操作的数据加入到消息队列，由消费者来操作数据。&lt;/p>
+&lt;ul>
+&lt;li>如果&lt;strong>应用删除缓存失败，可以从消息队列中重新读取数据&lt;/strong>，然后再次删除缓存，这个就是重试机制。当然，如果重试超过的一定次数，还是没有成功，我们就需要向业务层发送报错信息了。&lt;/li>
+&lt;li>如果删除缓存成功，就要把数据从消息队列中移除，避免重复操作，否则就继续重试。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>订阅 MySQL binlog，再操作缓存&lt;/strong>&lt;/p>
+&lt;p>阿里的Canal 中间件就是这个策略&lt;/p>
+&lt;p>通过订阅 binlog 日志，拿到具体要操作的数据，然后再执行缓存删除&lt;/p>
+&lt;p>Canal 模拟 MySQL 主从复制的交互协议，把自己伪装成一个 MySQL 的从节点，向 MySQL 主节点发送 dump 请求，MySQL 收到请求后，就会开始推送 Binlog 给 Canal，Canal 解析 Binlog 字节流之后，转换为便于读取的结构化数据，供下游程序订阅使用。&lt;/p>
+&lt;h4 id="延迟双删">延迟双删&lt;/h4>
+&lt;p>针对「先删除缓存，再更新数据库」方案在「读 + 写」并发请求而造成缓存不一致的解决办法是「延迟双删」&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#删除缓存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">redis.delKey(X)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#更新数据库
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">db.update(X)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#睡眠
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">Thread.sleep(N)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#再删除缓存
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">redis.delKey(X)
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>睡眠时间是为了确保请求 A 在睡眠的时候，请求 B 能够在这这一段时间完成「从数据库读取数据，再把缺失的缓存写入缓存」的操作，然后请求 A 睡眠完，再删除缓存&lt;/p>
+&lt;h4 id="双写一致性策略分析">双写一致性策略分析&lt;/h4>
 &lt;p>四种同步策略：&lt;/p>
 &lt;p>想要保证缓存与数据库的双写一致，一共有4种方式，即4种同步策略：&lt;/p>
 &lt;ol>
 &lt;li>先更新缓存，再更新数据库；&lt;/li>
 &lt;li>先更新数据库，再更新缓存；&lt;/li>
 &lt;li>先删除缓存，再更新数据库；&lt;/li>
-&lt;li>先更新数据库，再删除缓存。&lt;/li>
+&lt;li>先更新数据库，再删除缓存&lt;/li>
 &lt;/ol>
 &lt;p>从这4种同步策略中，我们需要作出比较的是：&lt;/p>
 &lt;ol>
@@ -263,42 +563,203 @@
 &lt;li>进程B从数据库成功获取数据，然后将数据更新到了缓存。&lt;/li>
 &lt;/ol>
 &lt;p>最终，缓存和数据库的数据是一致的，但仍然是旧的数据。而我们的期望是二者数据一致，并且是新的数据。&lt;/p>
-&lt;h3 id="你要如何设计redis的过期时间">你要如何设计Redis的过期时间？&lt;/h3>
+&lt;p>总结:&lt;/p>
+&lt;ul>
+&lt;li>「先更新数据库，再删除缓存」的方案虽然保证了数据库与缓存的数据一致性，但是每次更新数据的时候，缓存的数据都会被删除，这样会对缓存的命中率带来影响。&lt;/li>
+&lt;li>&lt;strong>对缓存命中率有很高的要求&lt;/strong>，我们可以采用「更新数据库 + 更新缓存」的方案，因为更新缓存并不会出现缓存未命中的情况。
+&lt;ul>
+&lt;li>带来的问题: 写入顺序的不同造成数据的不一致&lt;/li>
+&lt;li>解决方法:
+&lt;ul>
+&lt;li>更新缓存前加锁, 保证写入顺序的一致性&lt;/li>
+&lt;li>在更新完缓存时，给缓存加上较短的过期时间&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="redis集群">Redis集群&lt;/h2>
+&lt;p>Redis可以采用一主多从的方式实现集群，也可以采用哨兵模式实现集群。&lt;/p>
+&lt;p>Redis集群的原理： 将数据分散到多个节点上存储，通过主从复制和哨兵机制保证数据的可用性和一致性。&lt;/p>
+&lt;p>Redis集群最大节点个数是16384。&lt;/p>
+&lt;h3 id="主从复制">主从复制&lt;/h3>
+&lt;p>主服务器可以进行读写操作，当发生写操作时自动将写操作同步给从服务器&lt;/p>
+&lt;p>&lt;strong>从服务器一般是只读&lt;/strong>，并接受主服务器同步过来写操作命令，然后执行这条命令。&lt;/p>
+&lt;p>主从服务器之间的命令复制是异步进行的&lt;/p>
+&lt;p>使用 replicaof（Redis 5.0 之前使用 slaveof）命令形成主服务器和从服务器的关系&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 服务器 B 执行这条命令&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">replicaof &amp;lt;服务器 A 的 IP 地址&amp;gt; &amp;lt;服务器 A 的 Redis 端口号&amp;gt;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>服务器 B 就会变成服务器 A 的「从服务器」，然后与主服务器进行第一次同步。&lt;/p>
+&lt;p>第一次同步的过程可分为三个阶段：&lt;/p>
+&lt;ul>
+&lt;li>第一阶段是建立链接、协商同步；&lt;/li>
+&lt;li>第二阶段是主服务器同步数据给从服务器；&lt;/li>
+&lt;li>第三阶段是主服务器发送新写操作命令给从服务器&lt;/li>
+&lt;/ul>
+&lt;p>命令传播:&lt;/p>
+&lt;p>完成第一次同步后，双方之间就会维护一个 基于TCP长连接的命令传播。&lt;/p>
+&lt;h4 id="分摊主服务器压力">分摊主服务器压力&lt;/h4>
+&lt;p>第一次数据同步的过程中，主服务器会做两件耗时的操作：生成 RDB 文件和传输 RDB 文件. 如果从服务器多,会影响主服务器的性能。&lt;/p>
+&lt;p>&lt;strong>从服务器可以有自己的从服务器&lt;/strong>，我们可以把拥有从服务器的从服务器当作经理角色，它不仅可以接收主服务器的同步数据，自己也可以同时作为主服务器的形式将数据同步给从服务器&lt;/p>
+&lt;p>主服务器生成 RDB 和传输 RDB 的压力可以分摊到充当经理角色的从服务器&lt;/p>
+&lt;p>在「从服务器」上执行下面这条命令，使其作为目标服务器的从服务器&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">replicaof &amp;lt;目标服务器的IP&amp;gt; 6379
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="增量复制">增量复制&lt;/h4>
+&lt;p>2.8之前会全部重新同步&lt;/p>
+&lt;p>从 Redis 2.8 开始，网络断开又恢复后，从主从服务器会采用增量复制的方式继续同步, 即之后只会把网络断开期间主服务器接收到的写操作命令，同步给从服务器&lt;/p>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Redis%e5%ba%94%e7%94%a8/%e5%a2%9e%e9%87%8f%e5%a4%8d%e8%af%95%e6%b5%81%e7%a8%8b.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;p>主服务器怎么知道要将哪些增量数据发送给从服务器呢？&lt;/p>
+&lt;ul>
+&lt;li>repl_backlog_buffer，是一个「环形」缓冲区，用于主从服务器断连后，从中找到差异的数据；&lt;/li>
+&lt;li>replication offset，标记上面那个缓冲区的同步进度，主从服务器都有各自的偏移量，主服务器使用 master_repl_offset 来记录自己「写」到的位置，从服务器使用 slave_repl_offset 来记录自己「读」到的位置。&lt;/li>
+&lt;/ul>
+&lt;p>在主服务器进行命令传播时，不仅会将写命令发送给从服务器，还会将写命令写入到 repl_backlog_buffer 缓冲区里，因此 这个缓冲区里会保存着最近传播的写命令。&lt;/p>
+&lt;p>网络断开后，当从服务器重新连上主服务器时，从服务器会通过 psync 命令将自己的复制偏移量 slave_repl_offset 发送给主服务器，主服务器根据自己的 master_repl_offset 和 slave_repl_offset 之间的差距，然后来决定对从服务器执行哪种同步操作：&lt;/p>
+&lt;ul>
+&lt;li>如果判断出&lt;strong>从服务器要读取的数据&lt;/strong>还在 repl_backlog_buffer 缓冲区里，那么主服务器将采用增量同步的方式；&lt;/li>
+&lt;li>相反，如果判断出&lt;strong>从服务器要读取的数据&lt;/strong>已经不存在 repl_backlog_buffer 缓冲区里，那么主服务器将采用全量同步的方式。&lt;/li>
+&lt;/ul>
+&lt;p>为了避免在网络恢复时，主服务器频繁地使用全量同步的方式，我们应该调整下 repl_backlog_buffer 缓冲区大小，尽可能的大一些&lt;/p>
+&lt;p>修改方法, 配置文件中的字段:
+&lt;code>repl-backlog-size 1mb&lt;/code>&lt;/p>
+&lt;h3 id="哨兵模式">哨兵模式&lt;/h3>
+&lt;p>解决的问题: 主从服务器出现故障宕机时，需要手动进行恢复。&lt;/p>
+&lt;p>作用:&lt;/p>
+&lt;ul>
+&lt;li>监控主从服务器的运行状态&lt;/li>
+&lt;li>提供主从节点故障转移功能&lt;/li>
+&lt;/ul>
+&lt;p>
+&lt;figure >
+&lt;div class="flex justify-center ">
+&lt;div class="w-100" >&lt;img src="img/Redis%e5%ba%94%e7%94%a8/%e5%93%a8%e5%85%b5%e6%a8%a1%e5%bc%8f.png" alt="" loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;/figure>
+&lt;/p>
+&lt;h4 id="监控">监控&lt;/h4>
+&lt;p>每隔 1 秒给所有主从节点发送 PING 命令，当主从节点收到 PING 命令后，会发送一个响应命令给哨兵&lt;/p>
+&lt;p>如果主节点或者从节点没有在规定的时间内响应哨兵的 PING 命令，哨兵就会将它们标记为「主观下线」。这个「规定的时间」是配置项 down-after-milliseconds 参数设定的，单位是毫秒。&lt;/p>
+&lt;p>为了减少误判的情况，哨兵在部署的时候不会只部署一个节点，而是用多个节点部署成&lt;strong>哨兵集群&lt;/strong>（最少需要三台机器来部署哨兵集群），通过多个哨兵节点一起判断，就可以就可以避免单个哨兵因为自身网络状况不好，而误判主节点下线的情况&lt;/p>
+&lt;p>当一个哨兵判断主节点为「主观下线」后，就会向其他哨兵发起命令，其他哨兵收到这个命令后，就会根据自身和主节点的网络状况，做出赞成投票或者拒绝投票的响应。当**超过半数的哨兵节点都认为主节点为「主观下线」**时，就会将主节点标记为「客观下线」。&lt;/p>
+&lt;h4 id="选主">选主&lt;/h4>
+&lt;p>从哨兵集群中选出一个哨兵节点作为领导者，这个领导者负责进行故障转移的操作&lt;/p>
+&lt;p>候选者: 判断主节点为「客观下线」的那个节点&lt;/p>
+&lt;p>选举过程:&lt;/p>
+&lt;ul>
+&lt;li>候选者主动向哨兵集群发起选举请求&lt;/li>
+&lt;li>每个哨兵节点都会对候选者进行投票
+&lt;ul>
+&lt;li>投给自己(只有候选者可以)&lt;/li>
+&lt;li>投给其他哨兵&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>任何一个候选者同时满足
+&lt;ul>
+&lt;li>半数以上赞成票&lt;/li>
+&lt;li>票数大于等于配置文件的 &lt;code>quorum&lt;/code> 参数&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h5 id="哨兵节点至少要有三个">哨兵节点至少要有三个&lt;/h5>
+&lt;p>如果一个哨兵想要成功成为 Leader，必须获得 2 票，而不是 1 票&lt;/p>
+&lt;p>挂掉一个还能进行投票&lt;/p>
+&lt;p>挂掉两个就需要人为介入或增加哨兵节点&lt;/p>
+&lt;p>quorum 的值建议设置为哨兵个数的二分之一加 1，例如 3 个哨兵就设置 2，5 个哨兵设置为 3，而且哨兵节点的数量应该是奇数。&lt;/p>
+&lt;h4 id="主从故障转移">主从故障转移&lt;/h4>
 &lt;ol>
-&lt;li>热点数据不设置过期时间，使其达到“物理”上的永不过期，可以避免缓存击穿问题；&lt;/li>
-&lt;li>在设置过期时间时，可以附加一个随机数，避免大量的key同时过期，导致缓存雪崩。&lt;/li>
+&lt;li>在已下线主节点（旧主节点）属下的&lt;strong>所有「从节点」里面，挑选出一个从节点&lt;/strong>，并将其转换为主节点。&lt;/li>
+&lt;li>让已下线主节点属下的&lt;strong>所有「从节点」修改复制目标&lt;/strong>，修改为复制「新主节点」；&lt;/li>
+&lt;li>将新主节点的 IP 地址和信息，通过「发布者/订阅者机制」&lt;strong>通知给客户端&lt;/strong>；&lt;/li>
+&lt;li>继续监视旧主节点，&lt;strong>当这个旧主节点重新上线时，将它设置为新主节点的从节点&lt;/strong>&lt;/li>
 &lt;/ol>
-&lt;h2 id="redis-事务">Redis 事务&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%BA%94%E7%94%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/redis/redis%E5%BA%94%E7%94%A8/</guid><description>&lt;h1 id="redis应用">Redis应用&lt;/h1>
-&lt;h2 id="redis应用-1">Redis应用&lt;/h2>
-&lt;h3 id="分布式锁">分布式锁&lt;/h3>
-&lt;p>分布式锁实现：&lt;/p>
-&lt;p>原始方式：setnx key true（死锁）/set key true ex 30 nx（锁误删）-&amp;gt; 锁重入问题。&lt;/p>
-&lt;p>Redisson 框架实现方式：Redis + Lua 实现。&lt;/p>
-&lt;h3 id="分布式session登录">分布式session登录&lt;/h3>
-&lt;h2 id="redis集群">Redis集群：&lt;/h2>
-&lt;p>22、Redis集群的原理是什么？&lt;/p>
-&lt;p>Redis集群的原理是将数据分散到多个节点上存储，通过主从复制和哨兵机制保证数据的可用性和一致性。&lt;/p>
+&lt;h4 id="哨兵集群的组成">哨兵集群的组成&lt;/h4>
+&lt;p>哨兵节点之间是通过 Redis 的发布者/订阅者机制来相互发现的。&lt;/p>
+&lt;ul>
+&lt;li>互相感知: 在主从集群中，主节点上有一个名为__sentinel__:hello的频道，不同哨兵就是通过它来相互发现，实现互相通信的。&lt;/li>
+&lt;li>建立连接: 哨兵会每 10 秒一次的频率向主节点发送 INFO 命令来获取所有「从节点」的信息, 从而可以建立连接&lt;/li>
+&lt;/ul>
+&lt;h3 id="切片集群模式">切片集群模式&lt;/h3>
+&lt;p>当 Redis 缓存数据量大到一台服务器无法缓存, 需要切片集群&lt;/p>
+&lt;p>Redis 3.0 之后的版本支持切片集群模式，它将数据分布在不同的服务器上，以此来降低系统对单主节点的依赖，从而提高 Redis 服务的读写性能。&lt;/p>
+&lt;p>Redis Cluster 方案采用哈希槽（Hash Slot），来处理数据和节点之间的映射关系。在 Redis Cluster 方案中，一个切片集群共有 16384 个哈希槽&lt;/p>
+&lt;ul>
+&lt;li>根据键值对的 key，按照 CRC16 算法 (opens new window)计算一个 16 bit 的值。&lt;/li>
+&lt;li>再用 16bit 值对 16384 取模，得到 0~16383 范围内的模数，每个模数代表一个相应编号的哈希槽。&lt;/li>
+&lt;/ul>
+&lt;p>哈希槽映射到Redis节点方式:&lt;/p>
+&lt;ul>
+&lt;li>平均分配: 将 16384 个哈希槽均匀分配到每个 Redis 节点上&lt;/li>
+&lt;li>手动分配: 指定每个 Redis 节点负责的哈希槽范围
+&lt;ul>
+&lt;li>在手动分配哈希槽时，&lt;strong>需要把 16384 个槽都分配完&lt;/strong>，否则 Redis 集群无法正常工作。&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h4 id="为什么不使用一致性哈希">为什么不使用一致性哈希&lt;/h4>
+&lt;p>&lt;a href="https://mp.weixin.qq.com/s/Q68UN34-BqxyQFtkJL98lg" target="_blank" rel="noopener">得物面试：为啥Redis用哈希槽，不用一致性哈希？&lt;/a>&lt;/p>
+&lt;h3 id="集群脑裂问题">集群脑裂问题&lt;/h3>
+&lt;p>Redis架构一般是一主多从.&lt;/p>
+&lt;ul>
+&lt;li>如果主节点与从节点断开&lt;/li>
+&lt;li>但不与客户端断开&lt;/li>
+&lt;/ul>
+&lt;p>从节点中会选举出一个新主节点.&lt;/p>
+&lt;p>但此时客户端还在与旧主节点通信, 会集群出现两个主节点&lt;/p>
+&lt;p>脑裂问题:&lt;/p>
+&lt;ul>
+&lt;li>当旧主节点和新主节点之间网络恢复后, 会出现数据不一致问题
+leader哨兵会把旧主节点设置为从节点(A), A向新主节点请求同步数据.&lt;/li>
+&lt;li>第一次是全量同步, 旧主节点A会清空本地数据. 那么之前&lt;strong>客户端写入A的数据就会丢失&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;p>解决方案:&lt;/p>
+&lt;p>当主节点发现从节点下线或者通信超时的总数量小于阈值时，那么禁止主节点进行写数据，直接把错误返回给客户端。&lt;/p>
+&lt;p>对应的参数:&lt;/p>
+&lt;ul>
+&lt;li>min-slaves-to-write x，主节点必须要有至少 x 个从节点连接，如果小于这个数，主节点会禁止写数据。&lt;/li>
+&lt;li>min-slaves-max-lag x，主从数据复制和同步的延迟不能超过 x 秒，如果超过，主节点会禁止写数据。&lt;/li>
+&lt;/ul>
+&lt;p>这样在选举完后, 不会出现丢失问题, 因为旧主节点不会再接收写请求.&lt;/p>
+&lt;h2 id="redis实战">Redis实战&lt;/h2>
+&lt;h3 id="redis实现延迟队列">Redis实现延迟队列&lt;/h3>
+&lt;p>使用有序集合（ZSet）的方式来实现延迟消息队列的，ZSet 有一个 Score 属性可以用来存储延迟执行的时间&lt;/p>
+&lt;p>使用 zadd score1 value1 命令就可以一直往内存中生产消息。再利用 &lt;strong>zrangebysocre 查询符合条件的所有待处理的任务， 通过循环执行队列任务&lt;/strong>即可。&lt;/p>
+&lt;h3 id="redis的大key处理">Redis的大Key处理&lt;/h3>
+&lt;h3 id="redis是否支持事务">Redis是否支持事务&lt;/h3>
+&lt;p>Redis 支持事务，但是 Redis 的事务和数据库的事务是不同的。&lt;/p>
+&lt;p>开启事务, 使用 MULTI 命令，然后执行多个命令，最后使用 EXEC 命令来执行事务中的所有命令。&lt;/p>
+&lt;p>Redis 提供了 DISCARD 命令，但是这个命令只能用来主动放弃事务执行，把暂存的命令队列清空.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">#读取 count 的值4
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1:6379&amp;gt; GET count
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;#34;1&amp;#34;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#开启事务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1:6379&amp;gt; MULTI
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#发送事务的第一个操作，对count减1
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1:6379&amp;gt; DECR count
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">QUEUED
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#执行DISCARD命令，主动放弃事务
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1:6379&amp;gt; DISCARD
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">OK
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">#再次读取a:stock的值，值没有被修改
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">127.0.0.1:6379&amp;gt; GET count
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&amp;#34;1&amp;#34;
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>因此 Redis 并&lt;strong>不一定保证原子性&lt;/strong>&lt;/p>
+&lt;p>Redis 的事务是通过 MULTI 和 EXEC 命令来实现的，它的事务是一个单独的操作，不会被其他客户端的命令打断。&lt;/p>
+&lt;p>Redis的事务是不支持回滚的&lt;/p>
+&lt;p>作者不支持事务回滚的原因有以下两个：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Redis 事务的执行时，错误通常都是编程错误造成的&lt;/strong>，这种错误通常只会出现在开发环境中，而很少会在实际的生产环境中出现，所以他认为没有必要为 Redis 开发事务回滚功能；&lt;/li>
+&lt;li>不支持事务回滚是因为这种复杂的功能和 Redis 追求的简单高效的设计主旨不符合。&lt;/li>
+&lt;/ul>
+&lt;p>这里不支持事务回滚，指的是不支持事务运行时错误的事务回滚。&lt;/p>
+&lt;h2 id="其他">其他&lt;/h2>
 &lt;p>23、Redis集群会导致整个集群不可用的情况有哪些？&lt;/p>
 &lt;p>Redis集群会导致整个集群不可用的情况包括节点故障、网络分区等。&lt;/p>
 &lt;p>24、Redis支持的Java客户端有哪些？&lt;/p>
 &lt;p>Redis支持的Java客户端包括Jedis、Lettuce、Redisson等，官方推荐使用Lettuce。&lt;/p>
 &lt;p>25、Jedis与Redisson对比的优缺点有哪些？&lt;/p>
-&lt;p>Jedis与Redisson对比的优缺点包括性能、功能、易用性等方面。&lt;/p>
-&lt;p>26、Redis的密码可以通过哪些方式设置和验证？&lt;/p>
-&lt;p>Redis的密码可以通过配置文件设置，验证密码可以使用AUTH命令。&lt;/p>
-&lt;p>27、Redis哈希槽的概念是什么？&lt;/p>
-&lt;p>Redis哈希槽的概念是将所有的key分散到不同的槽中存储，每个槽对应一个节点，通过哈希算法计算key所在的槽。&lt;/p>
-&lt;p>Redis为何用哈希槽而不用一致性哈希？&lt;/p>
-&lt;p>&lt;a href="https://mp.weixin.qq.com/s/Q68UN34-BqxyQFtkJL98lg" target="_blank" rel="noopener">得物面试：为啥Redis用哈希槽，不用一致性哈希？&lt;/a>&lt;/p>
-&lt;p>28、Redis集群的主从复制模型是什么？&lt;/p>
-&lt;p>Redis集群的主从复制模型是将数据分散到多个节点上存储，每个节点都可以作为主节点或从节点，通过主从复制保证数据的可用性和一致性。&lt;/p>
-&lt;p>29、Redis集群不会有写操作丢失吗？&lt;/p>
-&lt;p>Redis集群不会有写操作丢失，因为它采用了主从复制和哨兵机制，可以保证数据的可用性和一致性。&lt;/p>
-&lt;p>30、Redis集群之间如何进行数据复制和故障转移？&lt;/p>
-&lt;p>Redis集群之间通过主从复制和哨兵机制进行数据复制和故障转移。&lt;/p>
-&lt;p>31、Redis集群最大节点个数是多少？&lt;/p>
-&lt;p>Redis集群最大节点个数是16384。&lt;/p>
-&lt;p>32、Redis集群可以选择不同的数据库吗？&lt;/p>
-&lt;p>Redis集群可以选择不同的数据库，通过SELECT命令进行切换。&lt;/p>
-&lt;p>33、如何测试Redis的连通性？&lt;/p>
-&lt;p>可以使用PING命令测试Redis的连通性。&lt;/p></description></item></channel></rss>
+&lt;p>Jedis与Redisson对比的优缺点包括性能、功能、易用性等方面。&lt;/p></description></item></channel></rss>
