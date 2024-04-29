@@ -1,4 +1,4 @@
-<!doctype html><!-- This site was created with Hugo Blox. https://hugoblox.com --><!-- Last Published: April 28, 2024 --><html lang=en-us dir=ltr data-wc-theme-default=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo Blox Builder 0.2.0"><meta name=author content="吴德盛"><meta name=description content="Redis应用 Redis分布式应用 分布式锁 分布式锁实现：
+<!doctype html><!-- This site was created with Hugo Blox. https://hugoblox.com --><!-- Last Published: April 29, 2024 --><html lang=en-us dir=ltr data-wc-theme-default=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo Blox Builder 0.2.0"><meta name=author content="吴德盛"><meta name=description content="Redis应用 Redis分布式应用 分布式锁 分布式锁实现：
 原始方式：setnx key true（死锁）/set key true ex 30 nx（锁误删）-> 锁重入问题。
 Redis 的 SET 命令有个 NX 参数可以实现「key不存在才插入」，所以可以用它来实现分布式锁：
 如果 key 不存在，则显示插入成功，可以用来表示加锁成功； 如果 key 存在，则会显示插入失败，可以用来表示加锁失败。 三个条件:
