@@ -6012,8 +6012,11 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="w"> &lt;/span>&lt;span class="nt">path&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">/path/to/mysql/data&lt;/span>&lt;span class="w">
 &lt;/span>&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/guide/%E9%83%A8%E7%BD%B2/%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/guide/%E9%83%A8%E7%BD%B2/%E9%83%A8%E7%BD%B2%E6%89%8B%E5%86%8C/</guid><description>&lt;h1 id="部署手册">部署手册&lt;/h1>
 &lt;h2 id="docker-镜像上传到私有仓库">docker 镜像上传到私有仓库&lt;/h2>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">docker login -u username -p password registry.cn-hangzhou.aliyuncs.com
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker build -t image .
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker login -u username -p password registry.cn-hangzhou.aliyuncs.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># docker login --username=夜宵也还行 registry.cn-hangzhou.aliyuncs.com&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker tag image registry.cn-hangzhou.aliyuncs.com/username/image:tag
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">docker push registry.cn-hangzhou.aliyuncs.com/username/image:tag
@@ -25423,6 +25426,10 @@ spring-boot-starter-web：提供对 Web 应用的支持。&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 3. 执行git rm --cached path/to/submodule&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 4. 执行rm -rf .git/modules/path/to/submodule&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 5. 执行rm -rf path/to/submodule&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="gitignore">gitignore&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">在已忽略文件夹中不忽略指定文件夹：
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">/libs/*
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">!/libs/extend/
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/git/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/git/%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5/</guid><description>&lt;p>多个笔记之间存在关联, 可以先在mind-wings内笔记搜索, 再搜索百度.&lt;/p>
 &lt;p>笔记格式为&lt;/p>
 &lt;ul>
