@@ -25754,8 +25754,12 @@ ingress中使用prefix的转发规则时,无法获取路径中的query&lt;/p>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="nginx-配置">nginx 配置&lt;/h2>
 &lt;p>加权轮询&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/npm/npm/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/npm/npm/</guid><description>&lt;h1 id="npm">npm&lt;/h1>
 &lt;h2 id="docker中的npm">docker中的npm&lt;/h2>
+&lt;p>&lt;a href="https://blog.csdn.net/wenxuankeji/article/details/135658361" target="_blank" rel="noopener">解决npm慢&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置npm源&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm config &lt;span class="nb">set&lt;/span> registry https://registry.npm.taobao.org
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># npm install 时查看详细信息&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install --verbose
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/python/conda/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/python/conda/</guid><description>&lt;h1 id="conda">conda&lt;/h1>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 查看环境&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda env list
