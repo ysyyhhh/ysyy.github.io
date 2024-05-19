@@ -127,6 +127,21 @@
 &lt;p>在启动时需要设置环境变量DISPLAY&lt;/p>
 &lt;h3 id="win下的情况">win下的情况&lt;/h3>
 &lt;p>参考&lt;a href="https://www.cnblogs.com/larva-zhh/p/10531824.html" target="_blank" rel="noopener">在Docker for Windows中运行GUI程序&lt;/a>&lt;/p>
+&lt;p>报错：
+libGL error: No matching fbConfigs or visuals found&lt;/p>
+&lt;p>libGL error: failed to load driver: swrast&lt;/p>
+&lt;p>解决办法：&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://bbs.huaweicloud.com/blogs/281862" target="_blank" rel="noopener">https://bbs.huaweicloud.com/blogs/281862&lt;/a>&lt;/li>
+&lt;li>或取消勾选 native opengl&lt;/li>
+&lt;/ul>
+&lt;h3 id="ubuntu下的情况">ubuntu下的情况&lt;/h3>
+&lt;p>安装虚拟显示屏
+&lt;a href="https://blog.csdn.net/Ber_Bai/article/details/127768374" target="_blank" rel="noopener">https://blog.csdn.net/Ber_Bai/article/details/127768374&lt;/a>&lt;/p>
+&lt;p>挂载卷传入 /tmp/.X11-unix
+DISPLAY一般是:1.0&lt;/p>
+&lt;p>在宿主机上
+xhost +&lt;/p>
 &lt;h2 id="前后端项目静态资源转发">前后端项目静态资源转发&lt;/h2>
 &lt;p>后端 springboot时：
 把静态资源放在static目录下，然后在application中配置&lt;/p>

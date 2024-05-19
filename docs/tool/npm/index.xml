@@ -2,7 +2,12 @@
 &lt;h2 id="docker中的npm">docker中的npm&lt;/h2>
 &lt;p>&lt;a href="https://blog.csdn.net/wenxuankeji/article/details/135658361" target="_blank" rel="noopener">解决npm慢&lt;/a>&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置npm源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm config &lt;span class="nb">set&lt;/span> registry https://registry.npm.taobao.org
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm config &lt;span class="nb">set&lt;/span> registry https://registry.npmmirror.com
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 原有域名弃用了&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">## https://npm.taobao.org =&amp;gt; https://npmmirror.com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># https://registry.npm.taobao.org =&amp;gt; https://registry.npmmirror.com&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># npm install 时查看详细信息&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">npm install --verbose
