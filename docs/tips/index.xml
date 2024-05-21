@@ -333,9 +333,6 @@ xhost +&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 设置tsinghua源&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo cp /etc/apt/sources.list /etc/apt/sources.list.bak
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">sudo sed -i &lt;span class="s1">&amp;#39;s/archive.ubuntu.com/mirrors.tuna.tsinghua.edu.cn/g&amp;#39;&lt;/span> /etc/apt/sources.list
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 更新源&lt;/span>
-&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">s
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/piplineaction/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/piplineaction/</guid><description>&lt;p>&lt;a href="https://docs.github.com/en/actions/migrating-to-github-actions/manual-migrations/migrating-from-gitlab-cicd-to-github-actions" target="_blank" rel="noopener">github action&lt;/a>&lt;/p>
 &lt;p>&lt;a href="https://docs.gitlab.com/ee/ci/" target="_blank" rel="noopener">gitlab pipline&lt;/a>&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/server/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/server/</guid><description>&lt;h1 id="服务器">服务器&lt;/h1>
 &lt;h2 id="scp传输文件">scp传输文件&lt;/h2>
