@@ -16,6 +16,9 @@
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 删除环境&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda remove -n py3 --all
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># 导出环境为.tar&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">conda pack -n &amp;lt;env_name&amp;gt; -o &amp;lt;env_name&amp;gt;.tar.gz
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="迁移时可能会出现pip问题">迁移时可能会出现pip问题&lt;/h2>
 &lt;p>可以在yml的pip:上面加上pip&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-yml" data-lang="yml">&lt;span class="line">&lt;span class="cl">&lt;span class="nt">name&lt;/span>&lt;span class="p">:&lt;/span>&lt;span class="w"> &lt;/span>&lt;span class="l">py3&lt;/span>&lt;span class="w">
