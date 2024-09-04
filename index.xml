@@ -1027,42 +1027,42 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>线程数&lt;/th>
-&lt;th>加速比&lt;/th>
+&lt;th style="text-align: left">线程数&lt;/th>
+&lt;th style="text-align: left">加速比&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>2&lt;/td>
-&lt;td>1.97&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
+&lt;td style="text-align: left">1.97&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>3&lt;/td>
-&lt;td>1.63&lt;/td>
+&lt;td style="text-align: left">3&lt;/td>
+&lt;td style="text-align: left">1.63&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>4&lt;/td>
-&lt;td>2.31&lt;/td>
+&lt;td style="text-align: left">4&lt;/td>
+&lt;td style="text-align: left">2.31&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>5&lt;/td>
-&lt;td>2.37&lt;/td>
+&lt;td style="text-align: left">5&lt;/td>
+&lt;td style="text-align: left">2.37&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>6&lt;/td>
-&lt;td>3.08&lt;/td>
+&lt;td style="text-align: left">6&lt;/td>
+&lt;td style="text-align: left">3.08&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>7&lt;/td>
-&lt;td>3.15&lt;/td>
+&lt;td style="text-align: left">7&lt;/td>
+&lt;td style="text-align: left">3.15&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>8&lt;/td>
-&lt;td>3.74&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">3.74&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>16&lt;/td>
-&lt;td>5.14&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">5.14&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -16448,62 +16448,62 @@ FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连�
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>&lt;/th>
-&lt;th>任务&lt;/th>
-&lt;th>功能&lt;/th>
-&lt;th>协议&lt;/th>
-&lt;th>传输单位&lt;/th>
+&lt;th style="text-align: left">&lt;/th>
+&lt;th style="text-align: left">任务&lt;/th>
+&lt;th style="text-align: left">功能&lt;/th>
+&lt;th style="text-align: left">协议&lt;/th>
+&lt;th style="text-align: left">传输单位&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>物理层&lt;/td>
-&lt;td>在物理媒介上为数据端设备执行任务&lt;/td>
-&lt;td>&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>比特&lt;/td>
+&lt;td style="text-align: left">物理层&lt;/td>
+&lt;td style="text-align: left">在物理媒介上为数据端设备执行任务&lt;/td>
+&lt;td style="text-align: left">&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">比特&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>数据链路&lt;/td>
-&lt;td>将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
-&lt;td>封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
-&lt;td>SDLC,HDLC,PPP,STP,帧中继&lt;/td>
-&lt;td>帧&lt;/td>
+&lt;td style="text-align: left">数据链路&lt;/td>
+&lt;td style="text-align: left">将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
+&lt;td style="text-align: left">封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
+&lt;td style="text-align: left">SDLC,HDLC,PPP,STP,帧中继&lt;/td>
+&lt;td style="text-align: left">帧&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>网络层&lt;/td>
-&lt;td>将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
-&lt;td>1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
-&lt;td>IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
-&lt;td>数据报,IP分组&lt;/td>
+&lt;td style="text-align: left">网络层&lt;/td>
+&lt;td style="text-align: left">将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
+&lt;td style="text-align: left">1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
+&lt;td style="text-align: left">数据报,IP分组&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>传输层&lt;/td>
-&lt;td>负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
-&lt;td>&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
-&lt;td>TCP, UDP&lt;/td>
-&lt;td>报文段TCP,用户数据报UDP&lt;/td>
+&lt;td style="text-align: left">传输层&lt;/td>
+&lt;td style="text-align: left">负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
+&lt;td style="text-align: left">&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
+&lt;td style="text-align: left">TCP, UDP&lt;/td>
+&lt;td style="text-align: left">报文段TCP,用户数据报UDP&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>会话层&lt;/td>
-&lt;td>&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
-&lt;td>建立,管理,终止会话.也称建立同步SYN&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">会话层&lt;/td>
+&lt;td style="text-align: left">&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">建立,管理,终止会话.也称建立同步SYN&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>表示层&lt;/td>
-&lt;td>处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
-&lt;td>抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">表示层&lt;/td>
+&lt;td style="text-align: left">处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>应用层&lt;/td>
-&lt;td>提供系统与⽤户的接口&lt;/td>
-&lt;td>为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
-&lt;td>FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">应用层&lt;/td>
+&lt;td style="text-align: left">提供系统与⽤户的接口&lt;/td>
+&lt;td style="text-align: left">为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
+&lt;td style="text-align: left">FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -17065,46 +17065,46 @@ FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连�
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>对比的方面&lt;/th>
-&lt;th>虚电路服务&lt;/th>
-&lt;th>数据报服务&lt;/th>
+&lt;th style="text-align: left">对比的方面&lt;/th>
+&lt;th style="text-align: left">虚电路服务&lt;/th>
+&lt;th style="text-align: left">数据报服务&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>思路&lt;/td>
-&lt;td>可靠通信应当由网络来保证&lt;/td>
-&lt;td>可靠通信应当由用户主机来保证&lt;/td>
+&lt;td style="text-align: left">思路&lt;/td>
+&lt;td style="text-align: left">可靠通信应当由网络来保证&lt;/td>
+&lt;td style="text-align: left">可靠通信应当由用户主机来保证&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>连接的建立&lt;/td>
-&lt;td>必须有&lt;/td>
-&lt;td>不需要&lt;/td>
+&lt;td style="text-align: left">连接的建立&lt;/td>
+&lt;td style="text-align: left">必须有&lt;/td>
+&lt;td style="text-align: left">不需要&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>终点地址&lt;/td>
-&lt;td>仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
-&lt;td>每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">终点地址&lt;/td>
+&lt;td style="text-align: left">仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>分组的转发&lt;/td>
-&lt;td>属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
-&lt;td>每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
+&lt;td style="text-align: left">分组的转发&lt;/td>
+&lt;td style="text-align: left">属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
+&lt;td style="text-align: left">每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>当结点出故障时&lt;/td>
-&lt;td>所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
-&lt;td>出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
+&lt;td style="text-align: left">当结点出故障时&lt;/td>
+&lt;td style="text-align: left">所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>分组的顺序&lt;/td>
-&lt;td>总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
-&lt;td>到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
+&lt;td style="text-align: left">分组的顺序&lt;/td>
+&lt;td style="text-align: left">总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
+&lt;td style="text-align: left">到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>端到端的差错处理和流量控制&lt;/td>
-&lt;td>可以由网络负责，也可以由用户主机负责&lt;/td>
-&lt;td>由用户主机负责&lt;/td>
+&lt;td style="text-align: left">端到端的差错处理和流量控制&lt;/td>
+&lt;td style="text-align: left">可以由网络负责，也可以由用户主机负责&lt;/td>
+&lt;td style="text-align: left">由用户主机负责&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -17142,54 +17142,54 @@ FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连�
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>类别&lt;/th>
-&lt;th>网络号(bit)&lt;/th>
-&lt;th>主机号(bit)&lt;/th>
-&lt;th>网络号范围&lt;/th>
-&lt;th>每个网络最大主机数&lt;/th>
-&lt;th>内网地址&lt;/th>
+&lt;th style="text-align: left">类别&lt;/th>
+&lt;th style="text-align: left">网络号(bit)&lt;/th>
+&lt;th style="text-align: left">主机号(bit)&lt;/th>
+&lt;th style="text-align: left">网络号范围&lt;/th>
+&lt;th style="text-align: left">每个网络最大主机数&lt;/th>
+&lt;th style="text-align: left">内网地址&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>A&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>1~127&lt;/td>
-&lt;td>16777214(2^24-2)&lt;/td>
-&lt;td>10.0.0.0~10.255.255.255&lt;/td>
+&lt;td style="text-align: left">A&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">1~127&lt;/td>
+&lt;td style="text-align: left">16777214(2^24-2)&lt;/td>
+&lt;td style="text-align: left">10.0.0.0~10.255.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>B&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>128.1~191.255&lt;/td>
-&lt;td>65534(2^16-2)&lt;/td>
-&lt;td>172.16.0.0~172.31.255.255&lt;/td>
+&lt;td style="text-align: left">B&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">128.1~191.255&lt;/td>
+&lt;td style="text-align: left">65534(2^16-2)&lt;/td>
+&lt;td style="text-align: left">172.16.0.0~172.31.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>C&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>192.0.1~223.255.255&lt;/td>
-&lt;td>254(2^8 - 2)&lt;/td>
-&lt;td>192.168.0.0~192.168.255.255&lt;/td>
+&lt;td style="text-align: left">C&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">192.0.1~223.255.255&lt;/td>
+&lt;td style="text-align: left">254(2^8 - 2)&lt;/td>
+&lt;td style="text-align: left">192.168.0.0~192.168.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>D&lt;/td>
-&lt;td>&lt;strong>组播地址&lt;/strong>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>224.0.0.0~239.255.255.255&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">D&lt;/td>
+&lt;td style="text-align: left">&lt;strong>组播地址&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">224.0.0.0~239.255.255.255&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>E&lt;/td>
-&lt;td>保留&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">E&lt;/td>
+&lt;td style="text-align: left">保留&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -17894,62 +17894,62 @@ openwrt&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>&lt;/th>
-&lt;th>任务&lt;/th>
-&lt;th>功能&lt;/th>
-&lt;th>协议&lt;/th>
-&lt;th>传输单位&lt;/th>
+&lt;th style="text-align: left">&lt;/th>
+&lt;th style="text-align: left">任务&lt;/th>
+&lt;th style="text-align: left">功能&lt;/th>
+&lt;th style="text-align: left">协议&lt;/th>
+&lt;th style="text-align: left">传输单位&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>物理层&lt;/td>
-&lt;td>在物理媒介上为数据端设备执行任务&lt;/td>
-&lt;td>&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>比特&lt;/td>
+&lt;td style="text-align: left">物理层&lt;/td>
+&lt;td style="text-align: left">在物理媒介上为数据端设备执行任务&lt;/td>
+&lt;td style="text-align: left">&lt;strong>透明&lt;/strong>地传输比特流&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">比特&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>数据链路层&lt;/td>
-&lt;td>将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
-&lt;td>封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
-&lt;td>SDLC,HDLC,PPP,STP,帧中继&lt;/td>
-&lt;td>帧&lt;/td>
+&lt;td style="text-align: left">数据链路层&lt;/td>
+&lt;td style="text-align: left">将网络层传来的&lt;strong>数据报&lt;/strong>组装成帧&lt;/td>
+&lt;td style="text-align: left">封装成帧,&lt;strong>差错控制&lt;/strong>,&lt;strong>流量控制&lt;/strong>,传输管理&lt;/td>
+&lt;td style="text-align: left">SDLC,HDLC,PPP,STP,帧中继&lt;/td>
+&lt;td style="text-align: left">帧&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>网络层&lt;/td>
-&lt;td>将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
-&lt;td>1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
-&lt;td>IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
-&lt;td>数据报,IP分组&lt;/td>
+&lt;td style="text-align: left">网络层&lt;/td>
+&lt;td style="text-align: left">将分组传输到目的端,为分组交换网上的&lt;strong>主机&lt;/strong>提供通信服务.&lt;/td>
+&lt;td style="text-align: left">1.将传输层产⽣的&lt;strong>报⽂段&lt;/strong>或⽤户数据报封装成分组&lt;br />2.路由选择 3.&lt;strong>流量控制&lt;/strong> 4.拥塞控制 5.&lt;strong>差错控制&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">IP, IPX.ICMP, IGMP,ARP,RARP,OSPF&lt;/td>
+&lt;td style="text-align: left">数据报,IP分组&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>传输层&lt;/td>
-&lt;td>负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
-&lt;td>&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
-&lt;td>TCP, UDP&lt;/td>
-&lt;td>报文段TCP,用户数据报UDP&lt;/td>
+&lt;td style="text-align: left">传输层&lt;/td>
+&lt;td style="text-align: left">负责主机中两个&lt;strong>进程&lt;/strong>之间的通信(端到端)&lt;/td>
+&lt;td style="text-align: left">&lt;strong>流量控制, 差错控制&lt;/strong>,服务质量,数据传输管理&lt;/td>
+&lt;td style="text-align: left">TCP, UDP&lt;/td>
+&lt;td style="text-align: left">报文段TCP,用户数据报UDP&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>会话层&lt;/td>
-&lt;td>&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
-&lt;td>建立,管理,终止会话.也称建立同步SYN&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">会话层&lt;/td>
+&lt;td style="text-align: left">&lt;strong>管理主机之间&lt;/strong>的会话&lt;strong>进程&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">建立,管理,终止会话.也称建立同步SYN&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>表示层&lt;/td>
-&lt;td>处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
-&lt;td>抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">表示层&lt;/td>
+&lt;td style="text-align: left">处理&lt;strong>两个通信系统&lt;/strong>之间&lt;strong>交换信息&lt;/strong>的&lt;strong>表现方式&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">抽象的标准方法定义数据结构,数据压缩,加密,解密&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>应用层&lt;/td>
-&lt;td>提供系统与⽤户的接口&lt;/td>
-&lt;td>为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
-&lt;td>FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">应用层&lt;/td>
+&lt;td style="text-align: left">提供系统与⽤户的接口&lt;/td>
+&lt;td style="text-align: left">为特定类型的网络应用提供接入到OSI模型的手段&lt;/td>
+&lt;td style="text-align: left">FTP.SMTP,HTTP,DNS,Telnet,SNMP&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -18469,46 +18469,46 @@ openwrt&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>对比的方面&lt;/th>
-&lt;th>虚电路服务&lt;/th>
-&lt;th>数据报服务&lt;/th>
+&lt;th style="text-align: left">对比的方面&lt;/th>
+&lt;th style="text-align: left">虚电路服务&lt;/th>
+&lt;th style="text-align: left">数据报服务&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>思路&lt;/td>
-&lt;td>可靠通信应当由网络来保证&lt;/td>
-&lt;td>可靠通信应当由用户主机来保证&lt;/td>
+&lt;td style="text-align: left">思路&lt;/td>
+&lt;td style="text-align: left">可靠通信应当由网络来保证&lt;/td>
+&lt;td style="text-align: left">可靠通信应当由用户主机来保证&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>连接的建立&lt;/td>
-&lt;td>必须有&lt;/td>
-&lt;td>不需要&lt;/td>
+&lt;td style="text-align: left">连接的建立&lt;/td>
+&lt;td style="text-align: left">必须有&lt;/td>
+&lt;td style="text-align: left">不需要&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>终点地址&lt;/td>
-&lt;td>仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
-&lt;td>每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">终点地址&lt;/td>
+&lt;td style="text-align: left">仅在连接建立阶段使用，每个分组使用&lt;strong>短的虚电路号&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">每个分组都&lt;strong>有终点的完整地址&lt;/strong>&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>分组的转发&lt;/td>
-&lt;td>属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
-&lt;td>每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
+&lt;td style="text-align: left">分组的转发&lt;/td>
+&lt;td style="text-align: left">属于同一条虚电路的分组均&lt;strong>按照同一路由&lt;/strong>进行转发&lt;/td>
+&lt;td style="text-align: left">每个分组&lt;strong>独立选择路由&lt;/strong>进行转发&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>当结点出故障时&lt;/td>
-&lt;td>所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
-&lt;td>出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
+&lt;td style="text-align: left">当结点出故障时&lt;/td>
+&lt;td style="text-align: left">所有通过出故障的结点的虚电路&lt;strong>均不能工作&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">出故障的结点可能会&lt;strong>丢失分组&lt;/strong>，一些路由可能会发生变化&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>分组的顺序&lt;/td>
-&lt;td>总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
-&lt;td>到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
+&lt;td style="text-align: left">分组的顺序&lt;/td>
+&lt;td style="text-align: left">总是&lt;strong>按发送顺序&lt;/strong>到达终点&lt;/td>
+&lt;td style="text-align: left">到达终点时&lt;strong>不一定按&lt;/strong>发送顺序&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>端到端的差错处理和流量控制&lt;/td>
-&lt;td>可以由网络负责，也可以由用户主机负责&lt;/td>
-&lt;td>由用户主机负责&lt;/td>
+&lt;td style="text-align: left">端到端的差错处理和流量控制&lt;/td>
+&lt;td style="text-align: left">可以由网络负责，也可以由用户主机负责&lt;/td>
+&lt;td style="text-align: left">由用户主机负责&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -18516,60 +18516,60 @@ openwrt&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>类别&lt;/th>
-&lt;th>网络号&lt;/th>
-&lt;th>主机号&lt;/th>
-&lt;th>第一个网络号&lt;/th>
-&lt;th>最后一个网络号&lt;/th>
-&lt;th>每个网络最大主机数&lt;/th>
-&lt;th>内网地址&lt;/th>
+&lt;th style="text-align: left">类别&lt;/th>
+&lt;th style="text-align: left">网络号&lt;/th>
+&lt;th style="text-align: left">主机号&lt;/th>
+&lt;th style="text-align: left">第一个网络号&lt;/th>
+&lt;th style="text-align: left">最后一个网络号&lt;/th>
+&lt;th style="text-align: left">每个网络最大主机数&lt;/th>
+&lt;th style="text-align: left">内网地址&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>A&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>126&lt;/td>
-&lt;td>16777214&lt;/td>
-&lt;td>10.0.0.0 到 10.255.255.255&lt;/td>
+&lt;td style="text-align: left">A&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">1&lt;/td>
+&lt;td style="text-align: left">126&lt;/td>
+&lt;td style="text-align: left">16777214&lt;/td>
+&lt;td style="text-align: left">10.0.0.0 到 10.255.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>B&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>128.1&lt;/td>
-&lt;td>191.255&lt;/td>
-&lt;td>65534&lt;/td>
-&lt;td>172.16.0.0 到 172.31.255.255&lt;/td>
+&lt;td style="text-align: left">B&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">128.1&lt;/td>
+&lt;td style="text-align: left">191.255&lt;/td>
+&lt;td style="text-align: left">65534&lt;/td>
+&lt;td style="text-align: left">172.16.0.0 到 172.31.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>C&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>192.0.1&lt;/td>
-&lt;td>223.255.255&lt;/td>
-&lt;td>254&lt;/td>
-&lt;td>192.168.0.0 到 192.168.255.255&lt;/td>
+&lt;td style="text-align: left">C&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">192.0.1&lt;/td>
+&lt;td style="text-align: left">223.255.255&lt;/td>
+&lt;td style="text-align: left">254&lt;/td>
+&lt;td style="text-align: left">192.168.0.0 到 192.168.255.255&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>D&lt;/td>
-&lt;td>&lt;strong>组播地址&lt;/strong>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>224.0.0.0&lt;/td>
-&lt;td>239.255.255.255&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">D&lt;/td>
+&lt;td style="text-align: left">&lt;strong>组播地址&lt;/strong>&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">224.0.0.0&lt;/td>
+&lt;td style="text-align: left">239.255.255.255&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>E&lt;/td>
-&lt;td>保留&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">E&lt;/td>
+&lt;td style="text-align: left">保留&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -18736,54 +18736,54 @@ BGP发言人都过&lt;strong>建立TCP连接&lt;/strong>交换不同自治系统
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>类别&lt;/th>
-&lt;th>网络号&lt;/th>
-&lt;th>主机号&lt;/th>
-&lt;th>第一个网络号&lt;/th>
-&lt;th>最后一个网络号&lt;/th>
-&lt;th>每个网络最大主机数&lt;/th>
+&lt;th style="text-align: left">类别&lt;/th>
+&lt;th style="text-align: left">网络号&lt;/th>
+&lt;th style="text-align: left">主机号&lt;/th>
+&lt;th style="text-align: left">第一个网络号&lt;/th>
+&lt;th style="text-align: left">最后一个网络号&lt;/th>
+&lt;th style="text-align: left">每个网络最大主机数&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>A&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>1&lt;/td>
-&lt;td>126&lt;/td>
-&lt;td>16777214&lt;/td>
+&lt;td style="text-align: left">A&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">1&lt;/td>
+&lt;td style="text-align: left">126&lt;/td>
+&lt;td style="text-align: left">16777214&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>B&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>16&lt;/td>
-&lt;td>128.1&lt;/td>
-&lt;td>191.255&lt;/td>
-&lt;td>65534&lt;/td>
+&lt;td style="text-align: left">B&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">16&lt;/td>
+&lt;td style="text-align: left">128.1&lt;/td>
+&lt;td style="text-align: left">191.255&lt;/td>
+&lt;td style="text-align: left">65534&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>C&lt;/td>
-&lt;td>24&lt;/td>
-&lt;td>8&lt;/td>
-&lt;td>192.0.1&lt;/td>
-&lt;td>223.255.255&lt;/td>
-&lt;td>254&lt;/td>
+&lt;td style="text-align: left">C&lt;/td>
+&lt;td style="text-align: left">24&lt;/td>
+&lt;td style="text-align: left">8&lt;/td>
+&lt;td style="text-align: left">192.0.1&lt;/td>
+&lt;td style="text-align: left">223.255.255&lt;/td>
+&lt;td style="text-align: left">254&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>D&lt;/td>
-&lt;td>组播地址&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>224.0.0.0&lt;/td>
-&lt;td>239.255.255.255&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">D&lt;/td>
+&lt;td style="text-align: left">组播地址&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">224.0.0.0&lt;/td>
+&lt;td style="text-align: left">239.255.255.255&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>E&lt;/td>
-&lt;td>保留&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
-&lt;td>&lt;/td>
+&lt;td style="text-align: left">E&lt;/td>
+&lt;td style="text-align: left">保留&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
+&lt;td style="text-align: left">&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -19921,31 +19921,31 @@ cv.wait(lck);
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>编码格式&lt;/th>
-&lt;th>中文字符所占字节数&lt;/th>
-&lt;th>英文字符所占字节数&lt;/th>
+&lt;th style="text-align: left">编码格式&lt;/th>
+&lt;th style="text-align: left">中文字符所占字节数&lt;/th>
+&lt;th style="text-align: left">英文字符所占字节数&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>GBK&lt;/td>
-&lt;td>2&lt;/td>
-&lt;td>1&lt;/td>
+&lt;td style="text-align: left">GBK&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
+&lt;td style="text-align: left">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>UTF-8&lt;/td>
-&lt;td>3&lt;/td>
-&lt;td>1&lt;/td>
+&lt;td style="text-align: left">UTF-8&lt;/td>
+&lt;td style="text-align: left">3&lt;/td>
+&lt;td style="text-align: left">1&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>UTF-16&lt;/td>
-&lt;td>2&lt;/td>
-&lt;td>2&lt;/td>
+&lt;td style="text-align: left">UTF-16&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>unicode&lt;/td>
-&lt;td>2&lt;/td>
-&lt;td>2&lt;/td>
+&lt;td style="text-align: left">unicode&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
+&lt;td style="text-align: left">2&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
@@ -24390,36 +24390,36 @@ b回滚,a不会滚&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th>属性名&lt;/th>
-&lt;th>默认值&lt;/th>
-&lt;th>说明&lt;/th>
+&lt;th style="text-align: left">属性名&lt;/th>
+&lt;th style="text-align: left">默认值&lt;/th>
+&lt;th style="text-align: left">说明&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td>propagation&lt;/td>
-&lt;td>Propagation.REQUIRED&lt;/td>
-&lt;td>事务的传播行为&lt;/td>
+&lt;td style="text-align: left">propagation&lt;/td>
+&lt;td style="text-align: left">Propagation.REQUIRED&lt;/td>
+&lt;td style="text-align: left">事务的传播行为&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>isolation&lt;/td>
-&lt;td>Isolation.DEFAULT&lt;/td>
-&lt;td>事务的隔离级别&lt;/td>
+&lt;td style="text-align: left">isolation&lt;/td>
+&lt;td style="text-align: left">Isolation.DEFAULT&lt;/td>
+&lt;td style="text-align: left">事务的隔离级别&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>timeout&lt;/td>
-&lt;td>TransactionDefinition.TIMEOUT_DEFAULT(-1)&lt;/td>
-&lt;td>事务的超时时间&lt;/td>
+&lt;td style="text-align: left">timeout&lt;/td>
+&lt;td style="text-align: left">TransactionDefinition.TIMEOUT_DEFAULT(-1)&lt;/td>
+&lt;td style="text-align: left">事务的超时时间&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>readOnly&lt;/td>
-&lt;td>false&lt;/td>
-&lt;td>事务的只读属性&lt;/td>
+&lt;td style="text-align: left">readOnly&lt;/td>
+&lt;td style="text-align: left">false&lt;/td>
+&lt;td style="text-align: left">事务的只读属性&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td>rollbackFor&lt;/td>
-&lt;td>{}&lt;/td>
-&lt;td>导致事务回滚的异常类数组&lt;/td>
+&lt;td style="text-align: left">rollbackFor&lt;/td>
+&lt;td style="text-align: left">{}&lt;/td>
+&lt;td style="text-align: left">导致事务回滚的异常类数组&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
