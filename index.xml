@@ -6143,6 +6143,15 @@ nginx -t&lt;/p>
 dropped: 丢弃的数据包的数量
 overruns: 数据包在接收时超出了缓冲区的大小
 frame: 数据包在接收时出现了 CRC 错误&lt;/p>
+&lt;h3 id="防火墙">防火墙&lt;/h3>
+&lt;p>查看防火墙状态
+firewall-cmd &amp;ndash;state&lt;/p>
+&lt;p>查看防火墙规则
+firewall-cmd &amp;ndash;list-all&lt;/p>
+&lt;p>查看端口是否开放
+firewall-cmd &amp;ndash;query-port=80/tcp&lt;/p>
+&lt;p>开放端口
+firewall-cmd &amp;ndash;zone=public &amp;ndash;add-port=80/tcp &amp;ndash;permanent&lt;/p>
 &lt;h3 id="socket信息查看">socket信息查看&lt;/h3>
 &lt;p>netstat
 含义: 显示网络状态信息&lt;/p>
@@ -6249,6 +6258,8 @@ rxcmp/s 和 txcmp/s 分别是接收和发送的压缩数据包数，单位是包
 &lt;li>3: 三次 ICMP 数据包的延迟时间&lt;/li>
 &lt;li>*: 丢包&lt;/li>
 &lt;/ul>
+&lt;p>测试ip+端口&lt;/p>
+&lt;p>telnet &lt;a href="https://www.baidu.com" target="_blank" rel="noopener">www.baidu.com&lt;/a> 80&lt;/p>
 &lt;h2 id="日志分析">日志分析&lt;/h2>
 &lt;p>如何从日志分析 PV、UV？&lt;/p>
 &lt;p>很多时候，我们观察程序是否如期运行，或者是否有错误，最直接的方式就是看运行日志，当然要想从日志快速查到我们想要的信息，前提是程序打印的日志要精炼、精准。&lt;/p>
