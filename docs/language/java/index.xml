@@ -2710,4 +2710,10 @@ G1更适合中大型堆、需要良好的吞吐量和可预测停顿时间的应
 &lt;li>符号引用常量池：用于存储类、方法、字段等符号引用。&lt;/li>
 &lt;li>运行时常量池：用于存储在类加载时解析的常量池信息，包括字面量常量池和符号引用常量池中的内容。&lt;/li>
 &lt;/ol>
-&lt;p>使用常量池的主要目的是为了提高程序的性能和减少内存的占用。由于常量池中的常量是唯一的，因此可以避免重复创建相同的常量对象，从而减少内存的占用。同时，由于常量池中的常量是在编译期间就确定的，因此可以在运行时直接使用，避免了重复计算和创建对象的开销，提高了程序的性能。&lt;/p></description></item></channel></rss>
+&lt;p>使用常量池的主要目的是为了提高程序的性能和减少内存的占用。由于常量池中的常量是唯一的，因此可以避免重复创建相同的常量对象，从而减少内存的占用。同时，由于常量池中的常量是在编译期间就确定的，因此可以在运行时直接使用，避免了重复计算和创建对象的开销，提高了程序的性能。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/language/java/%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/language/java/%E5%AE%9E%E6%88%98/</guid><description>&lt;h2 id="线上机器突然cpu暴增有什么可能的原因">线上机器突然cpu暴增，有什么可能的原因&lt;/h2>
+&lt;p>&lt;a href="https://www.cnblogs.com/dennyzhangdd/p/11585971.html" target="_blank" rel="noopener">https://www.cnblogs.com/dennyzhangdd/p/11585971.html&lt;/a>
+&lt;a href="https://www.cnblogs.com/dennyzhangdd/p/11585971.html" target="_blank" rel="noopener">https://www.cnblogs.com/dennyzhangdd/p/11585971.html&lt;/a>
+&lt;a href="https://www.cnblogs.com/huyangshu-fs/p/16718553.html" target="_blank" rel="noopener">https://www.cnblogs.com/huyangshu-fs/p/16718553.html&lt;/a>
+&lt;a href="https://cloud.tencent.com/developer/article/1650717" target="_blank" rel="noopener">https://cloud.tencent.com/developer/article/1650717&lt;/a>&lt;/p>
+&lt;p>并发量提升&lt;/p>
+&lt;p>内存不足 full GC&lt;/p></description></item></channel></rss>
