@@ -234,243 +234,20 @@ c. 如果内层子查询有结果,则外层行满足条件,否则不满足&lt;/p
 &lt;p>a. 先执行内层 IN 子查询,获取子查询的结果集
 b. 然后对外层查询的每一行,检查是否在子查询的结果集中&lt;/p>
 &lt;p>与 EXISTS 不同,IN 子查询需要先完整执行内层子查询,才能判断外层行是否满足条件。&lt;/p>
-&lt;h2 id="其他">其他&lt;/h2>
-&lt;p>MySQL的单表最大记录如何计算&lt;/p>
+&lt;h2 id="实战">实战&lt;/h2>
+&lt;h3 id="mysql的单表最大记录如何计算">MySQL的单表最大记录如何计算&lt;/h3>
+&lt;p>&lt;a href="https://xiaolincoding.com/mysql/index/2000w.html#%E5%AE%9E%E9%AA%8C" target="_blank" rel="noopener">https://xiaolincoding.com/mysql/index/2000w.html#%E5%AE%9E%E9%AA%8C&lt;/a>&lt;/p>
 &lt;p>a为索引字段占用的空间
 b为非索引字段占用的空间&lt;/p>
-&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BC%98%E5%8C%96/</guid><description>&lt;h1 id="数据库优化">数据库优化&lt;/h1>
-&lt;p>优化思路：&lt;/p>
-&lt;ol>
-&lt;li>索引&lt;/li>
-&lt;li>执行计划(查询优化)&lt;/li>
-&lt;li>SQL优化&lt;/li>
-&lt;li>分库分表&lt;/li>
-&lt;li>数据库设计&lt;/li>
-&lt;/ol>
-&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
-&lt;h2 id="sql优化">SQL优化&lt;/h2>
-&lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
-&lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
-&lt;p>sql语句是分为动态部分和静态部分的。而动态部分在一般的情况下，对执行计划的影响是微乎其微的。&lt;/p>
-&lt;p>&lt;strong>同一个sql语句有不同动态部分生成的执行计划是相同的。&lt;/strong>&lt;/p>
-&lt;p>优点：&lt;/p>
-&lt;ul>
-&lt;li>使用动态绑定，可以&lt;strong>减少sql的解析&lt;/strong>，从而减少了数据库引擎在sql解析上资源的消耗。&lt;/li>
-&lt;li>提高了&lt;strong>执行效率和可靠性&lt;/strong>。减少对数据库的访问实际上就是减少了数据库的工作量&lt;/li>
-&lt;/ul>
-&lt;p>缺点：&lt;/p>
-&lt;ul>
-&lt;li>可能长时间使用动态sql，由于参数的不同。可能sql的&lt;strong>执行效率不同&lt;/strong>；&lt;/li>
-&lt;li>&lt;strong>使用不当会有安全问题 sql注入&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;h3 id="实现数据安全性控制的常用方法和技术">&lt;strong>实现数据安全性控制的常用方法和技术&lt;/strong>&lt;/h3>
-&lt;p>数据库管理系统提供的安全措施主要包括&lt;/p>
-&lt;ul>
-&lt;li>用户&lt;strong>身份鉴别&lt;/strong>&lt;/li>
-&lt;li>自主存取控制 Discretionary Access Control&lt;/li>
-&lt;li>强制存取控制 Mandatory Access Control&lt;/li>
-&lt;li>&lt;strong>视图&lt;/strong>机制&lt;/li>
-&lt;li>&lt;strong>审计&lt;/strong>&lt;/li>
-&lt;li>数据&lt;strong>加密&lt;/strong>存储和加密传输等&lt;/li>
-&lt;/ul>
-&lt;h3 id="登记日志的原则运行记录优先原则是什么为什么">&lt;strong>登记日志的原则（运行记录优先原则）是什么，为什么&lt;/strong>&lt;/h3>
-&lt;p>&lt;strong>运行记录优先原则&lt;/strong>:&lt;/p>
-&lt;ol>
-&lt;li>&lt;strong>登记的次序严格按并发事务执行的时间次序&lt;/strong>&lt;/li>
-&lt;li>必须&lt;strong>先写日志文件，后写数据库&lt;/strong>&lt;/li>
-&lt;/ol>
-&lt;p>如果先写了数据库修改，而在运行记录中没有登记下这个修改，则以后就&lt;strong>无法恢复这个修改&lt;/strong>了。&lt;/p>
-&lt;p>如果先写日志，但没有修改数据库，按日志文件恢复时只不过是多执行一次&lt;strong>不必要的UNDO操作&lt;/strong>，并&lt;strong>不会影响数据库的正确性&lt;/strong>。&lt;/p>
-&lt;p>所以为了安全，一定要先写日志文件，即首先把日志记录写到日志文件中，然后写数据库的修改。这就是**“先写日志文件”的原则**&lt;/p>
-&lt;h3 id="sql-语句的执行过程并简单对各个步骤的所花费的代价大小进行描述和比较">SQL 语句的执行过程，并简单对各个步骤的所花费的代价大小进行描述和比较。&lt;/h3>
-&lt;ol>
-&lt;li>语法分析：确保语句的正确性和有效性。代价很小，语法分析器已预先定义了所有合法的 SQL 语法。&lt;/li>
-&lt;li>语义分析：需要检查语句中的&lt;strong>对象是否存在&lt;/strong>、&lt;strong>用户是否有访问权限&lt;/strong>等信息。代价比语法分析高一些。&lt;/li>
-&lt;li>解析（软解析和硬解析）：将 SQL 语句转换成执行计划，比语义分析高。需要进行语法转换、查询优化等复杂操作。
-&lt;ol>
-&lt;li>在软解析过程中，DBMS 会查找已经编译好的执行计划缓存，如果找到了对应的执行计划就直接使用.&lt;/li>
-&lt;li>否则会进行硬解析，生成新的执行计划，此时代价最大。&lt;/li>
-&lt;li>执行计划生成：生成最优的执行计划，以最小化查询的代价。代价最高，需要进行大量的计算和查询优化。&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;li>查询执行：按照执行计划执行查询，并从磁盘中读取数据、对数据进行排序、过滤和聚合等操作，可能还需要进行大量的磁盘和内存交换。代价取决于查询本身的复杂度以及所涉及的数据量。&lt;/li>
-&lt;/ol>
-&lt;p>综合来看，SQL 语句的执行过程中，查询优化和查询执行往往是代价最大的两个步骤。在实际应用中，可以通过&lt;strong>优化查询语句的结构&lt;/strong>、&lt;strong>创建合适的索引&lt;/strong>、&lt;strong>优化查询计划&lt;/strong>等手段来提高查询性能，从而减少查询优化和查询执行所需的代价。&lt;/p>
-&lt;h3 id="sql-优化原理是什么优化的逻辑是怎样的对此经验之谈">&lt;strong>SQL 优化原理是什么？优化的逻辑是怎样的？对此经验之谈&lt;/strong>&lt;/h3>
-&lt;p>SQL 优化的原理：&lt;/p>
-&lt;ul>
-&lt;li>通过&lt;strong>优化查询的执行计划&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>减少查询的时间和资源消耗&lt;/strong>&lt;/li>
-&lt;li>提高数据库系统的&lt;strong>性能&lt;/strong>。&lt;/li>
-&lt;/ul>
-&lt;p>SQL 优化的逻辑一般可以分为以下几个步骤：&lt;/p>
-&lt;ol>
-&lt;li>优化&lt;strong>查询语句&lt;/strong>：对查询语句进行优化，包括&lt;strong>重写查询语句&lt;/strong>、&lt;strong>使用索引&lt;/strong>、&lt;strong>避免全表扫描&lt;/strong>等。&lt;/li>
-&lt;li>优化&lt;strong>数据库结构&lt;/strong>：根据业务需求优化数据库中表的&lt;strong>结构、索引、分区&lt;/strong>等，以提高查询和更新操作的性能。&lt;/li>
-&lt;li>优化&lt;strong>硬件环境&lt;/strong>：优化数据库所在的硬件环境，包括 CPU、内存、磁盘、网络等，以提高数据库系统的整体性能。&lt;/li>
-&lt;/ol>
-&lt;p>对于 SQL 优化的经验之谈，以下是一些常见的建议：&lt;/p>
-&lt;ol>
-&lt;li>将&lt;strong>过滤条件进行排序&lt;/strong>,好的过滤条件先做&lt;/li>
-&lt;li>使用&lt;strong>join来暗示表连接顺序&lt;/strong>，当有多表连接操作时，考虑使用&lt;strong>exists和in操作来优化&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>避免过度连接表&lt;/strong>，将多维度的查询进行降维处理，一次连接的表不要超过3张，超过就将非关联子查询变成内嵌视图。
-&lt;ul>
-&lt;li>聚合子查询转化为JOIN&lt;/li>
-&lt;li>非关联子查询变成内嵌视图&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>&lt;strong>避免在高层使用distinct&lt;/strong>，用exists和in来处理&lt;/li>
-&lt;li>*&lt;em>避免在高层使用select &lt;em>&lt;strong>, 这样会产生&lt;/strong>冗余的结果集，降低性能&lt;/em>&lt;/em>&lt;/li>
-&lt;li>&lt;strong>不要滥用子查询&lt;/strong>. 子查询有如下好处,除这些好处外,不要用
-&lt;ol>
-&lt;li>分辨过滤条件的好坏&lt;/li>
-&lt;li>避免顶层的distinct&lt;/li>
-&lt;/ol>
-&lt;/li>
-&lt;/ol>
-&lt;p>总之，SQL 优化需要根据具体的情况进行分析和优化，需要综合考虑查询的复杂度、数据的规模和类型、硬件环境等因素。&lt;/p>
-&lt;h3 id="sql有什么优化策略从硬件系统应用上分析">&lt;strong>SQL有什么优化策略，从硬件、系统、应用上分析&lt;/strong>&lt;/h3>
-&lt;p>这个优化法则归纳为5个层次：&lt;/p>
-&lt;ul>
-&lt;li>减少数据访问（&lt;strong>减少磁盘访问&lt;/strong>）系统上
-&lt;ul>
-&lt;li>正确使用&lt;strong>索引&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>优化执行计划&lt;/strong>&lt;/li>
-&lt;li>尽量使用&lt;strong>自带函数&lt;/strong>,慎用自定义函数.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>减少服务器CPU开销（&lt;strong>减少CPU&lt;/strong>及内存开销）
-&lt;ul>
-&lt;li>使用&lt;strong>绑定变量&lt;/strong>&lt;/li>
-&lt;li>合理使用&lt;strong>排序&lt;/strong>&lt;/li>
-&lt;li>减少&lt;strong>模糊查找&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>返回&lt;strong>更少数据&lt;/strong>（减少网络传输或磁盘访问）应用上
-&lt;ul>
-&lt;li>数据&lt;strong>分页&lt;/strong>处理&lt;/li>
-&lt;li>返回&lt;strong>只需要的字段&lt;/strong>&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>减少交互次数（减少网络传输）应用上
-&lt;ul>
-&lt;li>一次连接批量处理数据&lt;/li>
-&lt;li>使用存储过程.&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;li>利用更多资源（硬件上）
-&lt;ul>
-&lt;li>扩大内存&lt;/li>
-&lt;li>增加CPU&lt;/li>
-&lt;li>更快的硬盘&lt;/li>
-&lt;li>更高速的网络&lt;/li>
-&lt;/ul>
-&lt;/li>
-&lt;/ul>
-&lt;h3 id="请描述oracle中iot的物理存储结构和读取数据的方式并与堆文件的物理存储结构和读取数据的方式进行比较后解释iot的适用范围">&lt;strong>请描述Oracle中IOT的物理存储结构和读取数据的方式，并与堆文件的物理存储结构和读取数据的方式进行比较后解释IOT的适用范围。&lt;/strong>&lt;/h3>
-&lt;p>IOT（&lt;strong>Index-Organized&lt;/strong> Table）索引组织表 是一种基于B+树的索引类型，它的索引键包括表的主键和数据列。IOT的数据访问和索引访问是一体化的。&lt;/p>
-&lt;p>IOT通常用于&lt;strong>需要频繁地使用主键查询&lt;/strong>的表，因为IOT将主键值和对应的数据行存储在同一个B+树节点中，可以减少磁盘I/O操作的次数，从而提高查询性能。&lt;/p>
-&lt;p>与堆文件的存储结构相比。&lt;/p>
-&lt;ul>
-&lt;li>堆文件的存储是&lt;strong>随机存储&lt;/strong>的，而IOT使用的B树结构是&lt;strong>根据主键按照一定顺序存储&lt;/strong>的。&lt;/li>
-&lt;li>堆文件的读取是需要&lt;strong>遍历整个堆文件数据&lt;/strong>的，而IOT则可以&lt;strong>通过主键的信息&lt;/strong>快速定位到相关节点，读取数据。&lt;/li>
-&lt;/ul>
-&lt;p>IOT适用范围：&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>主键很少更新&lt;/strong>。因为主键更新会导致B树结构的重新调整。&lt;/li>
-&lt;li>&lt;strong>多用主键查询&lt;/strong>。因为IOT是以主键为节点构造B树的，以主键信息查询能较快找到对应节点。&lt;/li>
-&lt;li>&lt;strong>很少插入新数据&lt;/strong>。插入新数据会导致B树重新调整。&lt;/li>
-&lt;li>希望数据已某种特定的&lt;strong>顺序物理存储&lt;/strong>，那也适合用IOT&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>IOT的优点&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>&lt;strong>记录排序&lt;/strong>，查询效率贼强&lt;/li>
-&lt;li>&lt;strong>节约磁盘空间开销&lt;/strong>，主键没有空间开销，索引就是数据&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>IOT缺点&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>&lt;strong>插入效率也许低于堆文件&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>对于&lt;strong>经常更新的表不适合用IOT&lt;/strong>，因为维护的索引代价大，更何况是多字段索引&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;h2 id="分库分表">分库分表&lt;/h2>
-&lt;p>分库 就是将数据库中的数据分散到不同的数据库上，可以垂直分库，也可以水平分库。
-分表 就是将数据库中的数据分散到不同的表上，可以垂直分表，也可以水平分表。&lt;/p>
-&lt;h3 id="分区的作用与类型">分区的作用与类型&lt;/h3>
-&lt;p>&lt;strong>分区的作用&lt;/strong>: 提高&lt;strong>并发性和并行性&lt;/strong>，从而增强系统架构的&lt;strong>可伸缩性&lt;/strong>&lt;/p>
-&lt;p>&lt;strong>分区的类型&lt;/strong>（不一定是方式）&lt;/p>
-&lt;p>循环分区：&lt;strong>不受数据影响&lt;/strong>的内部机制。分区定义为各个磁盘的存储区域；可以看作是随意散布数据的机制；保持更改带来的磁盘I/O操作的平衡&lt;/p>
-&lt;p>数据驱动分区：根据**一个或多个字段中的值(分区键)**来定义分区。是一种手工分区，一般叫分区视图.&lt;/p>
-&lt;h3 id="数据驱动分区的实现方式">&lt;strong>数据驱动分区的实现方式&lt;/strong>&lt;/h3>
-&lt;p>&lt;strong>哈希分区(Hash-partitioning)&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>对&lt;strong>分区键进行哈希运算&lt;/strong>，根据运算结果进行分区.&lt;/li>
-&lt;li>能保证&lt;strong>根据分区键可以快速找到记录&lt;/strong>，但对范围搜索没有任何帮助。&lt;/li>
-&lt;li>其实更接近与循环分区, 只是它还能&lt;strong>负载均衡提高并发&lt;/strong>的能力.&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>范围分区(Range- partitioning)&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>滑动窗口，就是范围分区，&lt;strong>根据连续数据的范围&lt;/strong>对数据进行分区。&lt;/li>
-&lt;li>&lt;strong>非常适合处理历史数据&lt;/strong>，每一个分区专门用来存储&lt;strong>特定范围内的数据&lt;/strong>。&lt;/li>
-&lt;li>一般系统还会设定&lt;strong>else分区&lt;/strong>,来存储所有&lt;strong>可能漏网的数据&lt;/strong>(其他)&lt;/li>
-&lt;li>应用: 时间范围, 字母范围&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>列表分区(List-partitioning)&lt;/strong>&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>是一种最具手工风格的分区类型，适合&lt;strong>定制某种特殊的解决方案&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>分区键必须明确指定&lt;/strong>，但&lt;strong>分区键只能有一列&lt;/strong>，不能像范围或者哈希分区那样同时指定多个列做为分区键，但它的&lt;strong>单个分区对应值可以是多个&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>一旦插入的列值不在分区范围内，则插入/更新就会失败.&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>因此
-通常建议使用列表分区时，要创建一个&lt;strong>default分区&lt;/strong>存储那些&lt;strong>不在指定列表内的记录&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>复合分区&lt;/strong>:&lt;/p>
-&lt;ul>
-&lt;li>
-&lt;p>很多数据库中分区可以嵌套，即分区可以再建立子分区，叫sub partition.子分区是分区内的分区。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>一种二位分区处理的方法，比如在时间的分区中，建立哈希分区,范围-哈希分区、范围-列表分区等&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>OB把它叫做二级分区&lt;/strong>，再举个例子，&lt;strong>类似于用户账单领域，会按照user id做哈希分区，按照账单创建时间做范围分区&lt;/strong>。&lt;/p>
-&lt;/li>
-&lt;/ul>
-&lt;p>数据驱动的分区是最常使用的分区方式，用数据值本身作为分区的基础，这时候&lt;strong>数据分区最具有开发使用的价值&lt;/strong>。&lt;/p>
-&lt;h3 id="分区是如何提高查询效率">&lt;strong>分区是如何提高查询效率&lt;/strong>&lt;/h3>
-&lt;p>分区后，逻辑上表仍然是一张完整的表，只是将表中的数据在物理上存放到多个表空间（物理文件上），利于高速检索，&lt;strong>查询数据时，不至于每次都扫描整张表&lt;/strong>.&lt;/p>
-&lt;h3 id="分区的优点和缺点">&lt;strong>分区的优点和缺点&lt;/strong>&lt;/h3>
-&lt;p>&lt;strong>优点&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>增强&lt;strong>可用性&lt;/strong>：如果表的某个分区出现故障，表在其他分区的数据仍然可用；&lt;/li>
-&lt;li>&lt;strong>维护&lt;/strong>方便：如果表的某个分区出现故障，需要修复数据，只修复该分区即可；&lt;/li>
-&lt;li>&lt;strong>均衡I/O&lt;/strong>：可以把不同的分区映射到磁盘以平衡I/O，改善整个系统性能；&lt;/li>
-&lt;li>改善&lt;strong>查询性能&lt;/strong>：对分区对象的查询可以仅搜索自己关心的分区，提高检索速度。&lt;/li>
-&lt;/ul>
-&lt;p>&lt;strong>缺点&lt;/strong>：&lt;/p>
-&lt;ul>
-&lt;li>除了堆文件之外的任何存储方法，都会&lt;strong>带来复杂性&lt;/strong>&lt;/li>
-&lt;li>&lt;strong>选错存储方式&lt;/strong>会带来大幅度的性能降低&lt;/li>
-&lt;li>降低了并发个数，但如果&lt;strong>涉及数据量非常庞大&lt;/strong>，&lt;strong>降低并发所带来的缺陷远远小于分区所带来的性能提高&lt;/strong>&lt;/li>
-&lt;li>由于&lt;strong>强制的部分数据聚合&lt;/strong>可能会&lt;strong>导致其他数据的分散&lt;/strong>，所以不同的查询请求也可能会形成性能上的矛盾&lt;/li>
-&lt;/ul>
-&lt;h3 id="数据分区的最佳方法">&lt;strong>数据分区的最佳方法&lt;/strong>&lt;/h3>
-&lt;ul>
-&lt;li>当&lt;strong>数据分区键均匀分布时&lt;/strong>，分区表查询收益最大&lt;/li>
-&lt;li>&lt;strong>避免更新分区键&lt;/strong>, 更新分区键会影响数据移动&lt;/li>
-&lt;li>&lt;strong>不在更新数据频繁时使用分区&lt;/strong>.&lt;/li>
-&lt;li>&lt;strong>考虑整体&lt;/strong>,当有多个处理执行时，解决方案就不应该过度偏袒其中任何一个&lt;/li>
-&lt;/ul></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
+&lt;p>非叶子节点内指向其他页的数量为 x
+叶子节点内能容纳的数据行数为 y
+B+ 数的层数为 z&lt;/p>
+&lt;p>x=15*1024/12≈1280 行。&lt;/p>
+&lt;p>按一条行数据 1k 来算，那一页就能存下 15 条，Y = 15*1024/1000 ≈15。&lt;/p>
+&lt;p>这边我们暂时按一条行数据 1k 来算，那一页就能存下 15 条，Y = 15*1024/1000 ≈15。&lt;/p>
+&lt;p>假设 B+ 树是三层，那就是 z = 3， Total = （1280 ^2） *15 = 24576000 （约 2.45kw）&lt;/p>
+&lt;p>如果是 4 层，查询的时候磁盘 IO 次数会增加&lt;/p>
+&lt;p>Total = 8000^3 / ( (a+4)^2 * (a+b+30) )&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="数据库">数据库&lt;/h1>
 &lt;h2 id="索引">索引&lt;/h2>
 &lt;h3 id="索引的优缺点">索引的优缺点&lt;/h3>
 &lt;p>优点：&lt;/p>
@@ -779,7 +556,7 @@ b为非索引字段占用的空间&lt;/p>
 &lt;ul>
 &lt;li>&lt;code>explain select * from company_info where cname like '%小%'&lt;/code>&lt;/li>
 &lt;li>看possible_keys和key列&lt;/li>
-&lt;li>possible_keys 可能用到的索引; key 实际用到的索引&lt;/li>
+&lt;li>possible_keys 可能用到的所有索引; key 实际用到的索引&lt;/li>
 &lt;/ul>
 &lt;/li>
 &lt;/ul>
@@ -1412,4 +1189,238 @@ b为非索引字段占用的空间&lt;/p>
 &lt;h3 id="数据湖">&lt;strong>数据湖&lt;/strong>:&lt;/h3>
 &lt;p>企业希望把**所有数据(结构化与非结构化)**都完整保存下来，进行有效管理与集中治理，挖掘和探索数据价值。&lt;/p>
 &lt;p>数据湖是一个集中存储各类&lt;strong>结构化和非结构化&lt;/strong>数据的大型数据仓库，它可以存储来自&lt;strong>多个数据源、多种数据类型&lt;/strong>的&lt;strong>原始数据&lt;/strong>，数据&lt;strong>无需经过结构化处理&lt;/strong>，就可以进行存取、处理、分析和传输。&lt;/p>
-&lt;p>对于数据仓库与数据湖的不同之处，可以类比为仓库和湖泊的区别：仓库存储着来自特定来源的货物；而湖泊的水来自河流、溪流和其他来源，&lt;strong>并且是原始数据&lt;/strong>。&lt;/p></description></item></channel></rss>
+&lt;p>对于数据仓库与数据湖的不同之处，可以类比为仓库和湖泊的区别：仓库存储着来自特定来源的货物；而湖泊的水来自河流、溪流和其他来源，&lt;strong>并且是原始数据&lt;/strong>。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="实践">实践&lt;/h1>
+&lt;p>数据库最大表&lt;/p>
+&lt;h1 id="数据库优化">数据库优化&lt;/h1>
+&lt;p>优化思路：&lt;/p>
+&lt;ol>
+&lt;li>索引&lt;/li>
+&lt;li>执行计划(查询优化)&lt;/li>
+&lt;li>SQL优化&lt;/li>
+&lt;li>分库分表&lt;/li>
+&lt;li>数据库设计&lt;/li>
+&lt;/ol>
+&lt;h2 id="布隆过滤器">布隆过滤器&lt;/h2>
+&lt;h2 id="sql优化">SQL优化&lt;/h2>
+&lt;h3 id="sql中使用绑定变量的优点与缺点">&lt;strong>Sql中使用绑定变量的优点与缺点&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>绑定变量实质就是变量&lt;/strong>。类似于我们是用过的替代变量（占位符）。就是在sql语句中使用变量，通过改变变量的值来得到不同的结果。&lt;/p>
+&lt;p>sql语句是分为动态部分和静态部分的。而动态部分在一般的情况下，对执行计划的影响是微乎其微的。&lt;/p>
+&lt;p>&lt;strong>同一个sql语句有不同动态部分生成的执行计划是相同的。&lt;/strong>&lt;/p>
+&lt;p>优点：&lt;/p>
+&lt;ul>
+&lt;li>使用动态绑定，可以&lt;strong>减少sql的解析&lt;/strong>，从而减少了数据库引擎在sql解析上资源的消耗。&lt;/li>
+&lt;li>提高了&lt;strong>执行效率和可靠性&lt;/strong>。减少对数据库的访问实际上就是减少了数据库的工作量&lt;/li>
+&lt;/ul>
+&lt;p>缺点：&lt;/p>
+&lt;ul>
+&lt;li>可能长时间使用动态sql，由于参数的不同。可能sql的&lt;strong>执行效率不同&lt;/strong>；&lt;/li>
+&lt;li>&lt;strong>使用不当会有安全问题 sql注入&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;h3 id="实现数据安全性控制的常用方法和技术">&lt;strong>实现数据安全性控制的常用方法和技术&lt;/strong>&lt;/h3>
+&lt;p>数据库管理系统提供的安全措施主要包括&lt;/p>
+&lt;ul>
+&lt;li>用户&lt;strong>身份鉴别&lt;/strong>&lt;/li>
+&lt;li>自主存取控制 Discretionary Access Control&lt;/li>
+&lt;li>强制存取控制 Mandatory Access Control&lt;/li>
+&lt;li>&lt;strong>视图&lt;/strong>机制&lt;/li>
+&lt;li>&lt;strong>审计&lt;/strong>&lt;/li>
+&lt;li>数据&lt;strong>加密&lt;/strong>存储和加密传输等&lt;/li>
+&lt;/ul>
+&lt;h3 id="登记日志的原则运行记录优先原则是什么为什么">&lt;strong>登记日志的原则（运行记录优先原则）是什么，为什么&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>运行记录优先原则&lt;/strong>:&lt;/p>
+&lt;ol>
+&lt;li>&lt;strong>登记的次序严格按并发事务执行的时间次序&lt;/strong>&lt;/li>
+&lt;li>必须&lt;strong>先写日志文件，后写数据库&lt;/strong>&lt;/li>
+&lt;/ol>
+&lt;p>如果先写了数据库修改，而在运行记录中没有登记下这个修改，则以后就&lt;strong>无法恢复这个修改&lt;/strong>了。&lt;/p>
+&lt;p>如果先写日志，但没有修改数据库，按日志文件恢复时只不过是多执行一次&lt;strong>不必要的UNDO操作&lt;/strong>，并&lt;strong>不会影响数据库的正确性&lt;/strong>。&lt;/p>
+&lt;p>所以为了安全，一定要先写日志文件，即首先把日志记录写到日志文件中，然后写数据库的修改。这就是**“先写日志文件”的原则**&lt;/p>
+&lt;h3 id="sql-语句的执行过程并简单对各个步骤的所花费的代价大小进行描述和比较">SQL 语句的执行过程，并简单对各个步骤的所花费的代价大小进行描述和比较。&lt;/h3>
+&lt;ol>
+&lt;li>语法分析：确保语句的正确性和有效性。代价很小，语法分析器已预先定义了所有合法的 SQL 语法。&lt;/li>
+&lt;li>语义分析：需要检查语句中的&lt;strong>对象是否存在&lt;/strong>、&lt;strong>用户是否有访问权限&lt;/strong>等信息。代价比语法分析高一些。&lt;/li>
+&lt;li>解析（软解析和硬解析）：将 SQL 语句转换成执行计划，比语义分析高。需要进行语法转换、查询优化等复杂操作。
+&lt;ol>
+&lt;li>在软解析过程中，DBMS 会查找已经编译好的执行计划缓存，如果找到了对应的执行计划就直接使用.&lt;/li>
+&lt;li>否则会进行硬解析，生成新的执行计划，此时代价最大。&lt;/li>
+&lt;li>执行计划生成：生成最优的执行计划，以最小化查询的代价。代价最高，需要进行大量的计算和查询优化。&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;li>查询执行：按照执行计划执行查询，并从磁盘中读取数据、对数据进行排序、过滤和聚合等操作，可能还需要进行大量的磁盘和内存交换。代价取决于查询本身的复杂度以及所涉及的数据量。&lt;/li>
+&lt;/ol>
+&lt;p>综合来看，SQL 语句的执行过程中，查询优化和查询执行往往是代价最大的两个步骤。在实际应用中，可以通过&lt;strong>优化查询语句的结构&lt;/strong>、&lt;strong>创建合适的索引&lt;/strong>、&lt;strong>优化查询计划&lt;/strong>等手段来提高查询性能，从而减少查询优化和查询执行所需的代价。&lt;/p>
+&lt;h3 id="sql-优化原理是什么优化的逻辑是怎样的对此经验之谈">&lt;strong>SQL 优化原理是什么？优化的逻辑是怎样的？对此经验之谈&lt;/strong>&lt;/h3>
+&lt;p>SQL 优化的原理：&lt;/p>
+&lt;ul>
+&lt;li>通过&lt;strong>优化查询的执行计划&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>减少查询的时间和资源消耗&lt;/strong>&lt;/li>
+&lt;li>提高数据库系统的&lt;strong>性能&lt;/strong>。&lt;/li>
+&lt;/ul>
+&lt;p>SQL 优化的逻辑一般可以分为以下几个步骤：&lt;/p>
+&lt;ol>
+&lt;li>优化&lt;strong>查询语句&lt;/strong>：对查询语句进行优化，包括&lt;strong>重写查询语句&lt;/strong>、&lt;strong>使用索引&lt;/strong>、&lt;strong>避免全表扫描&lt;/strong>等。&lt;/li>
+&lt;li>优化&lt;strong>数据库结构&lt;/strong>：根据业务需求优化数据库中表的&lt;strong>结构、索引、分区&lt;/strong>等，以提高查询和更新操作的性能。&lt;/li>
+&lt;li>优化&lt;strong>硬件环境&lt;/strong>：优化数据库所在的硬件环境，包括 CPU、内存、磁盘、网络等，以提高数据库系统的整体性能。&lt;/li>
+&lt;/ol>
+&lt;p>对于 SQL 优化的经验之谈，以下是一些常见的建议：&lt;/p>
+&lt;ol>
+&lt;li>将&lt;strong>过滤条件进行排序&lt;/strong>,好的过滤条件先做&lt;/li>
+&lt;li>使用&lt;strong>join来暗示表连接顺序&lt;/strong>，当有多表连接操作时，考虑使用&lt;strong>exists和in操作来优化&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>避免过度连接表&lt;/strong>，将多维度的查询进行降维处理，一次连接的表不要超过3张，超过就将非关联子查询变成内嵌视图。
+&lt;ul>
+&lt;li>聚合子查询转化为JOIN&lt;/li>
+&lt;li>非关联子查询变成内嵌视图&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>&lt;strong>避免在高层使用distinct&lt;/strong>，用exists和in来处理&lt;/li>
+&lt;li>*&lt;em>避免在高层使用select &lt;em>&lt;strong>, 这样会产生&lt;/strong>冗余的结果集，降低性能&lt;/em>&lt;/em>&lt;/li>
+&lt;li>&lt;strong>不要滥用子查询&lt;/strong>. 子查询有如下好处,除这些好处外,不要用
+&lt;ol>
+&lt;li>分辨过滤条件的好坏&lt;/li>
+&lt;li>避免顶层的distinct&lt;/li>
+&lt;/ol>
+&lt;/li>
+&lt;/ol>
+&lt;p>总之，SQL 优化需要根据具体的情况进行分析和优化，需要综合考虑查询的复杂度、数据的规模和类型、硬件环境等因素。&lt;/p>
+&lt;h3 id="sql有什么优化策略从硬件系统应用上分析">&lt;strong>SQL有什么优化策略，从硬件、系统、应用上分析&lt;/strong>&lt;/h3>
+&lt;p>这个优化法则归纳为5个层次：&lt;/p>
+&lt;ul>
+&lt;li>减少数据访问（&lt;strong>减少磁盘访问&lt;/strong>）系统上
+&lt;ul>
+&lt;li>正确使用&lt;strong>索引&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>优化执行计划&lt;/strong>&lt;/li>
+&lt;li>尽量使用&lt;strong>自带函数&lt;/strong>,慎用自定义函数.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>减少服务器CPU开销（&lt;strong>减少CPU&lt;/strong>及内存开销）
+&lt;ul>
+&lt;li>使用&lt;strong>绑定变量&lt;/strong>&lt;/li>
+&lt;li>合理使用&lt;strong>排序&lt;/strong>&lt;/li>
+&lt;li>减少&lt;strong>模糊查找&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>返回&lt;strong>更少数据&lt;/strong>（减少网络传输或磁盘访问）应用上
+&lt;ul>
+&lt;li>数据&lt;strong>分页&lt;/strong>处理&lt;/li>
+&lt;li>返回&lt;strong>只需要的字段&lt;/strong>&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>减少交互次数（减少网络传输）应用上
+&lt;ul>
+&lt;li>一次连接批量处理数据&lt;/li>
+&lt;li>使用存储过程.&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;li>利用更多资源（硬件上）
+&lt;ul>
+&lt;li>扩大内存&lt;/li>
+&lt;li>增加CPU&lt;/li>
+&lt;li>更快的硬盘&lt;/li>
+&lt;li>更高速的网络&lt;/li>
+&lt;/ul>
+&lt;/li>
+&lt;/ul>
+&lt;h3 id="请描述oracle中iot的物理存储结构和读取数据的方式并与堆文件的物理存储结构和读取数据的方式进行比较后解释iot的适用范围">&lt;strong>请描述Oracle中IOT的物理存储结构和读取数据的方式，并与堆文件的物理存储结构和读取数据的方式进行比较后解释IOT的适用范围。&lt;/strong>&lt;/h3>
+&lt;p>IOT（&lt;strong>Index-Organized&lt;/strong> Table）索引组织表 是一种基于B+树的索引类型，它的索引键包括表的主键和数据列。IOT的数据访问和索引访问是一体化的。&lt;/p>
+&lt;p>IOT通常用于&lt;strong>需要频繁地使用主键查询&lt;/strong>的表，因为IOT将主键值和对应的数据行存储在同一个B+树节点中，可以减少磁盘I/O操作的次数，从而提高查询性能。&lt;/p>
+&lt;p>与堆文件的存储结构相比。&lt;/p>
+&lt;ul>
+&lt;li>堆文件的存储是&lt;strong>随机存储&lt;/strong>的，而IOT使用的B树结构是&lt;strong>根据主键按照一定顺序存储&lt;/strong>的。&lt;/li>
+&lt;li>堆文件的读取是需要&lt;strong>遍历整个堆文件数据&lt;/strong>的，而IOT则可以&lt;strong>通过主键的信息&lt;/strong>快速定位到相关节点，读取数据。&lt;/li>
+&lt;/ul>
+&lt;p>IOT适用范围：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>主键很少更新&lt;/strong>。因为主键更新会导致B树结构的重新调整。&lt;/li>
+&lt;li>&lt;strong>多用主键查询&lt;/strong>。因为IOT是以主键为节点构造B树的，以主键信息查询能较快找到对应节点。&lt;/li>
+&lt;li>&lt;strong>很少插入新数据&lt;/strong>。插入新数据会导致B树重新调整。&lt;/li>
+&lt;li>希望数据已某种特定的&lt;strong>顺序物理存储&lt;/strong>，那也适合用IOT&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IOT的优点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>记录排序&lt;/strong>，查询效率贼强&lt;/li>
+&lt;li>&lt;strong>节约磁盘空间开销&lt;/strong>，主键没有空间开销，索引就是数据&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>IOT缺点&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>&lt;strong>插入效率也许低于堆文件&lt;/strong>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>对于&lt;strong>经常更新的表不适合用IOT&lt;/strong>，因为维护的索引代价大，更何况是多字段索引&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;h2 id="分库分表">分库分表&lt;/h2>
+&lt;p>分库 就是将数据库中的数据分散到不同的数据库上，可以垂直分库，也可以水平分库。
+分表 就是将数据库中的数据分散到不同的表上，可以垂直分表，也可以水平分表。&lt;/p>
+&lt;h3 id="分区的作用与类型">分区的作用与类型&lt;/h3>
+&lt;p>&lt;strong>分区的作用&lt;/strong>: 提高&lt;strong>并发性和并行性&lt;/strong>，从而增强系统架构的&lt;strong>可伸缩性&lt;/strong>&lt;/p>
+&lt;p>&lt;strong>分区的类型&lt;/strong>（不一定是方式）&lt;/p>
+&lt;p>循环分区：&lt;strong>不受数据影响&lt;/strong>的内部机制。分区定义为各个磁盘的存储区域；可以看作是随意散布数据的机制；保持更改带来的磁盘I/O操作的平衡&lt;/p>
+&lt;p>数据驱动分区：根据**一个或多个字段中的值(分区键)**来定义分区。是一种手工分区，一般叫分区视图.&lt;/p>
+&lt;h3 id="数据驱动分区的实现方式">&lt;strong>数据驱动分区的实现方式&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>哈希分区(Hash-partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>对&lt;strong>分区键进行哈希运算&lt;/strong>，根据运算结果进行分区.&lt;/li>
+&lt;li>能保证&lt;strong>根据分区键可以快速找到记录&lt;/strong>，但对范围搜索没有任何帮助。&lt;/li>
+&lt;li>其实更接近与循环分区, 只是它还能&lt;strong>负载均衡提高并发&lt;/strong>的能力.&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>范围分区(Range- partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>滑动窗口，就是范围分区，&lt;strong>根据连续数据的范围&lt;/strong>对数据进行分区。&lt;/li>
+&lt;li>&lt;strong>非常适合处理历史数据&lt;/strong>，每一个分区专门用来存储&lt;strong>特定范围内的数据&lt;/strong>。&lt;/li>
+&lt;li>一般系统还会设定&lt;strong>else分区&lt;/strong>,来存储所有&lt;strong>可能漏网的数据&lt;/strong>(其他)&lt;/li>
+&lt;li>应用: 时间范围, 字母范围&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>列表分区(List-partitioning)&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>是一种最具手工风格的分区类型，适合&lt;strong>定制某种特殊的解决方案&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>分区键必须明确指定&lt;/strong>，但&lt;strong>分区键只能有一列&lt;/strong>，不能像范围或者哈希分区那样同时指定多个列做为分区键，但它的&lt;strong>单个分区对应值可以是多个&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>一旦插入的列值不在分区范围内，则插入/更新就会失败.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>因此
+通常建议使用列表分区时，要创建一个&lt;strong>default分区&lt;/strong>存储那些&lt;strong>不在指定列表内的记录&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>复合分区&lt;/strong>:&lt;/p>
+&lt;ul>
+&lt;li>
+&lt;p>很多数据库中分区可以嵌套，即分区可以再建立子分区，叫sub partition.子分区是分区内的分区。&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>一种二位分区处理的方法，比如在时间的分区中，建立哈希分区,范围-哈希分区、范围-列表分区等&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>OB把它叫做二级分区&lt;/strong>，再举个例子，&lt;strong>类似于用户账单领域，会按照user id做哈希分区，按照账单创建时间做范围分区&lt;/strong>。&lt;/p>
+&lt;/li>
+&lt;/ul>
+&lt;p>数据驱动的分区是最常使用的分区方式，用数据值本身作为分区的基础，这时候&lt;strong>数据分区最具有开发使用的价值&lt;/strong>。&lt;/p>
+&lt;h3 id="分区是如何提高查询效率">&lt;strong>分区是如何提高查询效率&lt;/strong>&lt;/h3>
+&lt;p>分区后，逻辑上表仍然是一张完整的表，只是将表中的数据在物理上存放到多个表空间（物理文件上），利于高速检索，&lt;strong>查询数据时，不至于每次都扫描整张表&lt;/strong>.&lt;/p>
+&lt;h3 id="分区的优点和缺点">&lt;strong>分区的优点和缺点&lt;/strong>&lt;/h3>
+&lt;p>&lt;strong>优点&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>增强&lt;strong>可用性&lt;/strong>：如果表的某个分区出现故障，表在其他分区的数据仍然可用；&lt;/li>
+&lt;li>&lt;strong>维护&lt;/strong>方便：如果表的某个分区出现故障，需要修复数据，只修复该分区即可；&lt;/li>
+&lt;li>&lt;strong>均衡I/O&lt;/strong>：可以把不同的分区映射到磁盘以平衡I/O，改善整个系统性能；&lt;/li>
+&lt;li>改善&lt;strong>查询性能&lt;/strong>：对分区对象的查询可以仅搜索自己关心的分区，提高检索速度。&lt;/li>
+&lt;/ul>
+&lt;p>&lt;strong>缺点&lt;/strong>：&lt;/p>
+&lt;ul>
+&lt;li>除了堆文件之外的任何存储方法，都会&lt;strong>带来复杂性&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>选错存储方式&lt;/strong>会带来大幅度的性能降低&lt;/li>
+&lt;li>降低了并发个数，但如果&lt;strong>涉及数据量非常庞大&lt;/strong>，&lt;strong>降低并发所带来的缺陷远远小于分区所带来的性能提高&lt;/strong>&lt;/li>
+&lt;li>由于&lt;strong>强制的部分数据聚合&lt;/strong>可能会&lt;strong>导致其他数据的分散&lt;/strong>，所以不同的查询请求也可能会形成性能上的矛盾&lt;/li>
+&lt;/ul>
+&lt;h3 id="数据分区的最佳方法">&lt;strong>数据分区的最佳方法&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>当&lt;strong>数据分区键均匀分布时&lt;/strong>，分区表查询收益最大&lt;/li>
+&lt;li>&lt;strong>避免更新分区键&lt;/strong>, 更新分区键会影响数据移动&lt;/li>
+&lt;li>&lt;strong>不在更新数据频繁时使用分区&lt;/strong>.&lt;/li>
+&lt;li>&lt;strong>考虑整体&lt;/strong>,当有多个处理执行时，解决方案就不应该过度偏袒其中任何一个&lt;/li>
+&lt;/ul></description></item></channel></rss>

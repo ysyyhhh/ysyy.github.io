@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>分布式 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><description>分布式</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>分布式</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="经典问题">经典问题&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>分布式 | Ysyy's</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/</link><atom:link href="https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/index.xml" rel="self" type="application/rss+xml"/><description>分布式</description><generator>Hugo Blox Builder (https://hugoblox.com)</generator><language>en-us</language><image><url>https://ysyyhhh.github.io/media/logo.svg</url><title>分布式</title><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/</link></image><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E4%BA%8B%E5%8A%A1/</guid><description>&lt;p>分布式事务的中间件Seata&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%88%86%E5%B8%83%E5%BC%8F%E5%9F%BA%E7%A1%80/</guid><description>&lt;h2 id="经典问题">经典问题&lt;/h2>
 &lt;p>拜占庭将军问题
 描述： 一组将军围攻一座城市，他们需要达成一致的决策，但是其中一些将军可能是叛徒，他们会向其他将军发送错误的信息。这个问题的目标是找到一种算法，使得所有忠诚的将军能够达成一致的决策，即使有叛徒存在。
 经典设置：&lt;/p>
@@ -97,6 +97,7 @@
 &lt;/li>
 &lt;/ol>
 &lt;p>总之,两阶段提交协议提供了一种可靠的分布式事务处理机制,但在某些极端情况下,如协调者故障,参与者需要采取一定的措施来保证事务的一致性和完整性。&lt;/p>
+&lt;p>分布式事务的中间件Seata&lt;/p>
 &lt;h2 id="todo-分布式缓存">TODO: 分布式缓存&lt;/h2>
 &lt;h3 id="一致性哈希算法">一致性哈希算法&lt;/h3>
 &lt;h3 id="redis使用的哈希槽">Redis使用的哈希槽&lt;/h3></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E5%AD%98%E5%82%A8/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%A1%86%E6%9E%B6hadoop/</guid><description/></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%B3%BB%E7%BB%9F%E8%AE%BE%E8%AE%A1/%E5%88%86%E5%B8%83%E5%BC%8F/%E6%B6%88%E6%81%AF%E9%98%9F%E5%88%97/</guid><description>&lt;h1 id="消息队列">消息队列&lt;/h1>
@@ -155,8 +156,8 @@
 &lt;h2 id="mq的问题">MQ的问题&lt;/h2>
 &lt;p>保证高可用&lt;/p>
 &lt;p>重复消费消息问题&lt;/p>
-&lt;p>消费的顺序性问题&lt;/p>
 &lt;p>消息丢失问题&lt;/p>
+&lt;p>消费的顺序性问题&lt;/p>
 &lt;p>分布式事务问题&lt;/p>
 &lt;p>消息堆积问题&lt;/p>
 &lt;h2 id="三个消息队列的区别">三个消息队列的区别&lt;/h2>
