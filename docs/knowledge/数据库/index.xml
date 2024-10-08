@@ -1191,6 +1191,7 @@ B+ 数的层数为 z&lt;/p>
 &lt;p>数据湖是一个集中存储各类&lt;strong>结构化和非结构化&lt;/strong>数据的大型数据仓库，它可以存储来自&lt;strong>多个数据源、多种数据类型&lt;/strong>的&lt;strong>原始数据&lt;/strong>，数据&lt;strong>无需经过结构化处理&lt;/strong>，就可以进行存取、处理、分析和传输。&lt;/p>
 &lt;p>对于数据仓库与数据湖的不同之处，可以类比为仓库和湖泊的区别：仓库存储着来自特定来源的货物；而湖泊的水来自河流、溪流和其他来源，&lt;strong>并且是原始数据&lt;/strong>。&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E6%95%B0%E6%8D%AE%E5%BA%93/%E6%95%B0%E6%8D%AE%E5%BA%93%E5%AE%9E%E6%88%98/</guid><description>&lt;h1 id="实践">实践&lt;/h1>
 &lt;p>数据库最大表&lt;/p>
+&lt;p>深分页&lt;/p>
 &lt;h1 id="数据库优化">数据库优化&lt;/h1>
 &lt;p>优化思路：&lt;/p>
 &lt;ol>
