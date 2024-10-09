@@ -1145,6 +1145,7 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;p>如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。&lt;/p>
 &lt;h4 id="reentrantlock">ReentrantLock&lt;/h4>
 &lt;p>ReentrantLock是JUC包中的类，是一种可重入的互斥锁。&lt;/p>
+&lt;p>TODO: 原理&lt;/p>
 &lt;p>ReentrantLock可以替代synchronized进行同步，ReentrantLock可以提供更多的同步操作，如中断、超时、多个条件等。&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">public class ReentrantLockExample {
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> private ReentrantLock lock = new ReentrantLock();
