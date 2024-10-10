@@ -1166,7 +1166,11 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> executorService.execute(() -&amp;gt; example.method());
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> executorService.execute(() -&amp;gt; example.method());
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
-&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h4 id="synchronized-和-reentrantlock-的区别">synchronized 和 ReentrantLock 的区别&lt;/h4>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>ReentrantLock 的底层实现主要依赖于 AbstractQueuedSynchronizer（AQS）这个抽象类。AQS 是一个提供了基本同步机制的框架，其中包括了队列、状态值等。&lt;/p>
+&lt;p>ReentrantLock 在 AQS 的基础上通过内部类 Sync 来实现具体的锁操作。&lt;/p>
+&lt;p>可重入锁是指同一个线程在获取了锁之后，可以再次重复获取该锁而不会造成死锁或其他问题。当一个线程持有锁时，如果再次尝试获取该锁，就会成功获取而不会被阻塞。&lt;/p>
+&lt;p>ReentrantLock实现可重入锁的机制是基于线程持有锁的计数器。&lt;/p>
+&lt;h4 id="synchronized-和-reentrantlock-的区别">synchronized 和 ReentrantLock 的区别&lt;/h4>
 &lt;ul>
 &lt;li>锁的实现: synchronized是Java的关键字, 是JVM层面的锁, 是隐式的, &lt;strong>不需要用户去手动释放锁&lt;/strong>; ReentrantLock是JUC包中的类, 是API层面的锁, 是显式的, 需要用户去手动释放锁.&lt;/li>
 &lt;li>性能: synchronized的性能在JDK6之后得到了很大的提升, 但是在并发量很高的情况下, ReentrantLock的性能要优于synchronized.(优化后大致相同)&lt;/li>
@@ -1233,6 +1237,7 @@ A: ConcurrentHashMap最耗时的操作是put操作，因为put操作需要保证
 &lt;p>如果需要解决ABA问题, 用传统的互斥同步会更好.&lt;/p>
 &lt;p>JUC包中提供了一个带有标记的原子引用类AtomicStampedReference来解决ABA问题。&lt;/p>
 &lt;p>它可以通过控制变量的版本来保证CAS的正确性。&lt;/p>
+&lt;p>Java中有AtomicStampedReference来解决这个问题，他加入了预期标志和更新后标志两个字段，更新时不光检查值，还要检查当前的标志是否等于预期标志，全部相等的话才会更新。&lt;/p>
 &lt;h3 id="无同步方案">无同步方案&lt;/h3>
 &lt;p>无同步方案是指在多线程环境下，不做任何的同步措施，也不会出现线程安全问题。&lt;/p>
 &lt;p>核心是: &lt;strong>不共享数据&lt;/strong>.&lt;/p>
