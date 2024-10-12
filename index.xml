@@ -15062,7 +15062,35 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;p>因此与快排形成的二叉树不同. 该方法每层的搜索总长度是递减的.&lt;/p>
 &lt;p>即 n + n/2 + n/4 + n/8 + &amp;hellip;&lt;/p>
 &lt;p>易得上述公式的近似为 2*n, 时间复杂度O(n)&lt;/p>
-&lt;h2 id="串">串&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">int findk(int* a, int l, int r, int k)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> while (1) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> int flagi = (l + r) / 2;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> swap(a[flagi], a[l]);
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> int i = l, j = r;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> int flag = a[i];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> while (i &amp;lt; j) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> while (i &amp;lt; j &amp;amp;&amp;amp; a[j] &amp;gt;= flag)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> j--;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> a[i] = a[j];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> while (i &amp;lt; j &amp;amp;&amp;amp; a[i] &amp;lt;= flag)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> i++;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> a[j] = a[i];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> a[i] = flag;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> if (i == k)
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> return a[i];
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> else if (i &amp;lt; k) {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> l = i + 1;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> } else {
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> r = i - 1;
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> }
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="串">串&lt;/h2>
 &lt;h3 id="字符串全排列httpsleetcodecnproblemszi-fu-chuan-de-pai-lie-lcof">&lt;a href="https://leetcode.cn/problems/zi-fu-chuan-de-pai-lie-lcof/" target="_blank" rel="noopener">字符串全排列&lt;/a>&lt;/h3>
 &lt;h3 id="最长回文子串---on">最长回文子串&amp;ndash; O(n)&lt;/h3>
 &lt;p>思路:&lt;a href="https://blog.csdn.net/qq_51116518/article/details/117370554" target="_blank" rel="noopener">马拉车算法&lt;/a>&lt;/p>
