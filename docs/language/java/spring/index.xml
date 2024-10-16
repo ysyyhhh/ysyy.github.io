@@ -870,36 +870,36 @@ b回滚,a不会滚&lt;/p>
 &lt;table>
 &lt;thead>
 &lt;tr>
-&lt;th style="text-align: left">属性名&lt;/th>
-&lt;th style="text-align: left">默认值&lt;/th>
-&lt;th style="text-align: left">说明&lt;/th>
+&lt;th>属性名&lt;/th>
+&lt;th>默认值&lt;/th>
+&lt;th>说明&lt;/th>
 &lt;/tr>
 &lt;/thead>
 &lt;tbody>
 &lt;tr>
-&lt;td style="text-align: left">propagation&lt;/td>
-&lt;td style="text-align: left">Propagation.REQUIRED&lt;/td>
-&lt;td style="text-align: left">事务的传播行为&lt;/td>
+&lt;td>propagation&lt;/td>
+&lt;td>Propagation.REQUIRED&lt;/td>
+&lt;td>事务的传播行为&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">isolation&lt;/td>
-&lt;td style="text-align: left">Isolation.DEFAULT&lt;/td>
-&lt;td style="text-align: left">事务的隔离级别&lt;/td>
+&lt;td>isolation&lt;/td>
+&lt;td>Isolation.DEFAULT&lt;/td>
+&lt;td>事务的隔离级别&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">timeout&lt;/td>
-&lt;td style="text-align: left">TransactionDefinition.TIMEOUT_DEFAULT(-1)&lt;/td>
-&lt;td style="text-align: left">事务的超时时间&lt;/td>
+&lt;td>timeout&lt;/td>
+&lt;td>TransactionDefinition.TIMEOUT_DEFAULT(-1)&lt;/td>
+&lt;td>事务的超时时间&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">readOnly&lt;/td>
-&lt;td style="text-align: left">false&lt;/td>
-&lt;td style="text-align: left">事务的只读属性&lt;/td>
+&lt;td>readOnly&lt;/td>
+&lt;td>false&lt;/td>
+&lt;td>事务的只读属性&lt;/td>
 &lt;/tr>
 &lt;tr>
-&lt;td style="text-align: left">rollbackFor&lt;/td>
-&lt;td style="text-align: left">{}&lt;/td>
-&lt;td style="text-align: left">导致事务回滚的异常类数组&lt;/td>
+&lt;td>rollbackFor&lt;/td>
+&lt;td>{}&lt;/td>
+&lt;td>导致事务回滚的异常类数组&lt;/td>
 &lt;/tr>
 &lt;/tbody>
 &lt;/table>
