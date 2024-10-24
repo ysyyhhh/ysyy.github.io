@@ -1783,10 +1783,10 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;/ul>
 &lt;h4 id="四次挥手过程">四次挥手过程&lt;/h4>
 &lt;ul>
-&lt;li>&lt;strong>第一次&lt;/strong>：&lt;strong>客户端&lt;/strong>发送&lt;strong>FIN报文请求释放连接&lt;/strong>。用来关闭客户端到服务端的数据传送。单向关闭。&lt;/li>
-&lt;li>&lt;strong>第二次&lt;/strong>：&lt;strong>服务端&lt;/strong>收到这个FIN后，&lt;strong>发回ACK确认&lt;/strong>。客户端到服务端方向的连接释放，TCP处于半关闭。客户端无法向服务端发送数据，但服务端仍然可以向客户端发送数据。&lt;/li>
-&lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。&lt;/li>
-&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在2MSL后关闭。TCP连接释放完成。&lt;/li>
+&lt;li>&lt;strong>第一次&lt;/strong>：&lt;strong>客户端&lt;/strong>发送&lt;strong>FIN报文请求释放连接&lt;/strong>。用来关闭客户端到服务端的数据传送。单向关闭，客户端的状态变为FIN_WAIT_1。&lt;/li>
+&lt;li>&lt;strong>第二次&lt;/strong>：&lt;strong>服务端&lt;/strong>收到这个FIN后，&lt;strong>发回ACK确认&lt;/strong>。客户端到服务端方向的连接释放，TCP处于半关闭。客户端无法向服务端发送数据，但服务端仍然可以向客户端发送数据。服务端的状态变为CLOSE_WAIT。客户端收到ACK后，状态变为FIN_WAIT_2。&lt;/li>
+&lt;li>&lt;strong>第三次&lt;/strong>：&lt;strong>服务端&lt;/strong>发送&lt;strong>FIN报文释放连接&lt;/strong>，用来关闭服务端到客户端的数据传送。服务端的状态变为LAST_ACK。&lt;/li>
+&lt;li>&lt;strong>第四次&lt;/strong>：&lt;strong>客户端发送ACK&lt;/strong>，并等待2MSL。客户端收到FIN后，状态变为TIME_WAIT。服务端等待客户端的确认。若客户端在2MSL内&lt;strong>未收到&lt;/strong>服务端&lt;strong>重发的FIN报文&lt;/strong>，则客户端在2MSL后关闭。TCP连接释放完成。服务端收到ACK后，状态变为CLOSED。&lt;/li>
 &lt;/ul>
 &lt;p>&lt;strong>TCP四次挥手原因&lt;/strong>&lt;/p>
 &lt;p>当客户端请求释放连接时，服务端发回ACK确认，但是服务端并不一定也要关闭TCP连接。即服务端不一定会马上关闭SOCKET。所以会将&lt;strong>ACK报⽂文和FIN报文分开&lt;/strong>发送。&lt;/p>
