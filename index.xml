@@ -15254,6 +15254,57 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">capacity&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">new_capacity&lt;/span>&lt;span class="p">;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="实现-lru">实现 LRU&lt;/h2>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;unordered_map&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">#include&lt;/span> &lt;span class="cpf">&amp;lt;list&amp;gt;&lt;/span>&lt;span class="cp">
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="cp">&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">LRUCache&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">public&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">LRUCache&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">capacity&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">this&lt;/span>&lt;span class="o">-&amp;gt;&lt;/span>&lt;span class="n">capacity&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">capacity&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="nf">get&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 如果 key 不存在,返回 -1
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">cache&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">cache&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 将访问的 key 移到链表头部
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">list&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;::&lt;/span>&lt;span class="n">iterator&lt;/span> &lt;span class="n">it&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">second&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">erase&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">it&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push_front&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">first&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">()};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">first&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">void&lt;/span> &lt;span class="nf">put&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="kt">int&lt;/span> &lt;span class="n">key&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="kt">int&lt;/span> &lt;span class="n">value&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 如果 key 已存在,更新值并将其移到链表头部
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">cache&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">find&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">!=&lt;/span> &lt;span class="n">cache&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">end&lt;/span>&lt;span class="p">())&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">erase&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">].&lt;/span>&lt;span class="n">second&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push_front&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">()};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 如果缓存已满,删除最近最少使用的 key
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="k">if&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">size&lt;/span>&lt;span class="p">()&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="n">capacity&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">lru_key&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">back&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">pop_back&lt;/span>&lt;span class="p">();&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">erase&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">lru_key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1">// 添加新的 key-value 到缓存
+&lt;/span>&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1">&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">push_front&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">cache&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">key&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">{&lt;/span>&lt;span class="n">value&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">.&lt;/span>&lt;span class="n">begin&lt;/span>&lt;span class="p">()};&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span>&lt;span class="o">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="kt">int&lt;/span> &lt;span class="n">capacity&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">unordered_map&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">pair&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;::&lt;/span>&lt;span class="n">iterator&lt;/span>&lt;span class="o">&amp;gt;&amp;gt;&lt;/span> &lt;span class="n">cache&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">std&lt;/span>&lt;span class="o">::&lt;/span>&lt;span class="n">list&lt;/span>&lt;span class="o">&amp;lt;&lt;/span>&lt;span class="kt">int&lt;/span>&lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">cache_list&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">};&lt;/span>
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;h1 id="stl用法">STL用法&lt;/h1>
 &lt;p>&lt;a href="https://www.luogu.com.cn/article/ig60mcky" target="_blank" rel="noopener">Vector代替平衡树&lt;/a>
 1.插入一个数 x。
@@ -15369,6 +15420,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;li>问题的目标是找到一种算法，使得所有忠诚的将军能够达成一致的决策，即使有叛徒存在。&lt;/li>
 &lt;/ol>
 &lt;h2 id="cap--base理论">CAP &amp;amp; Base理论&lt;/h2>
+&lt;h3 id="cap-理论">CAP 理论&lt;/h3>
 &lt;p>CAP理论是分布式系统设计中的一个重要理论，它指出在一个分布式系统中，一致性（Consistency）、可用性（Availability）、分区容错性（Partition tolerance）这三个要素不可兼得，最多只能同时满足其中的两个。&lt;/p>
 &lt;ul>
 &lt;li>一致性（Consistency）：在分布式系统中的所有节点上的数据是一致的，即一个节点上的数据发生了变化，那么在其他节点上也应该立即发生变化。&lt;/li>
@@ -15381,12 +15433,43 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;li>CP：HBase、MongoDB等分布式数据库是CP系统，它要求数据一致性和分区容错性，但是无法保证所有节点的可用性。&lt;/li>
 &lt;li>AP：Cassandra、DynamoDB等分布式数据库是AP系统，它要求可用性和分区容错性，但是无法保证数据一致性。&lt;/li>
 &lt;/ul>
+&lt;p>一致性与可用性的矛盾&lt;/p>
+&lt;ul>
+&lt;li>一致性要求所有节点看到的数据都是相同的,这意味着在更新数据时需要等待所有节点的确认。&lt;/li>
+&lt;li>而可用性要求系统在出现网络分区时仍然能够对外提供服务,这就意味着不能等待所有节点的确认。
+在网络分区的情况下,这两个要求是矛盾的。&lt;/li>
+&lt;/ul>
 &lt;p>注册中心负责服务地址的注册与查找，相当于目录服务，服务提供者和消费者只在启动时与注册中心交互，注册中心不转发请求，压力较小。&lt;/p>
 &lt;p>常见的可以作为注册中心的组件有：ZooKeeper、Eureka、Nacos&lt;/p>
 &lt;p>ZooKeeper保证的是CP，Eureka保证的是AP，Nacos既可以保证CP也可以保证AP。&lt;/p>
+&lt;h3 id="base-理论">Base 理论&lt;/h3>
+&lt;p>Base理论是对CAP理论的一个补充，它是指在分布式系统中，基本的理论是基于CAP理论，但是在实际的分布式系统中，我们往往无法做到强一致性，而是通过牺牲强一致性来换取可用性或者分区容错性。&lt;/p>
+&lt;p>BASE 是 Basically Available（基本可用）、Soft-state（软状态） 和 Eventually Consistent（最终一致性）&lt;/p>
+&lt;p>什么叫允许损失部分可用性呢？&lt;/p>
+&lt;ul>
+&lt;li>响应时间上的损失: 正常情况下，处理用户请求需要 0.5s 返回结果，但是由于系统出现故障，处理用户请求的时间变为 3 s。&lt;/li>
+&lt;li>系统功能上的损失：正常情况下，用户可以使用系统的全部功能，但是由于系统访问量突然剧增，系统的部分非核心功能无法使用。&lt;/li>
+&lt;/ul>
+&lt;p>软状态指
+允许系统中的数据存在中间状态（CAP 理论中的数据不一致），并认为该中间状态的存在不会影响系统的整体可用性，即允许系统在不同节点的数据副本之间进行数据同步的过程存在延时。&lt;/p>
+&lt;p>分布式一致性的 3 种级别：&lt;/p>
+&lt;ul>
+&lt;li>强一致性：系统写入了什么，读出来的就是什么。&lt;/li>
+&lt;li>弱一致性：不一定可以读取到最新写入的值，也不保证多少时间之后读取到的数据是最新的，只是会尽量保证某个时刻达到数据一致的状态。&lt;/li>
+&lt;li>最终一致性：弱一致性的升级版，系统会保证在一定时间内达到数据一致的状态。&lt;/li>
+&lt;/ul>
+&lt;p>实现最终一致性的方法：&lt;/p>
+&lt;ul>
+&lt;li>读时修复 : 在读取数据时，检测数据的不一致，进行修复。比如 Cassandra 的 Read Repair 实现，具体来说，在向 Cassandra 系统查询数据的时候，如果检测到不同节点的副本数据不一致，系统就自动修复数据。&lt;/li>
+&lt;li>写时修复 : 在写入数据，检测数据的不一致时，进行修复。比如 Cassandra 的 Hinted Handoff 实现。具体来说，Cassandra 集群的节点之间远程写数据的时候，如果写失败 就将数据缓存下来，然后定时重传，修复数据的不一致性。&lt;/li>
+&lt;li>异步修复 : 这个是最常用的方式，通过定时对账检测副本数据的一致性，并修复。&lt;/li>
+&lt;/ul>
 &lt;h2 id="分布式算法">分布式算法&lt;/h2>
 &lt;p>Paxos算法&lt;/p>
 &lt;p>Raft算法&lt;/p>
+&lt;ul>
+&lt;li>&lt;a href="https://javaguide.cn/distributed-system/protocol/raft-algorithm.html#_2-3-%E6%97%A5%E5%BF%97" target="_blank" rel="noopener">https://javaguide.cn/distributed-system/protocol/raft-algorithm.html#_2-3-%E6%97%A5%E5%BF%97&lt;/a>&lt;/li>
+&lt;/ul>
 &lt;h2 id="分布式id">分布式ID&lt;/h2>
 &lt;p>一个最基本的分布式 ID 需要满足下面这些要求：&lt;/p>
 &lt;ul>
@@ -15463,6 +15546,30 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;/li>
 &lt;/ol>
 &lt;p>总之,两阶段提交协议提供了一种可靠的分布式事务处理机制,但在某些极端情况下,如协调者故障,参与者需要采取一定的措施来保证事务的一致性和完整性。&lt;/p>
+&lt;p>2PC 存在的问题：
+同步阻塞 ：事务参与者会在正式提交事务之前会一直占用相关的资源。比如用户小明转账给小红，那其他事务也要操作用户小明或小红的话，就会阻塞。
+数据不一致 ：由于网络问题或者TM宕机都有可能会造成数据不一致的情况。比如在第2阶段（提交阶段），部分网络出现问题导致部分参与者收不到 Commit/Rollback 消息的话，就会导致数据不一致。
+单点问题 ： TM在其中也是一个很重要的角色，如果TM在准备(Prepare)阶段完成之后挂掉的话，事务参与者就会一直卡在提交(Commit)阶段。&lt;/p>
+&lt;h3 id="三阶段提交">三阶段提交&lt;/h3>
+&lt;p>准备阶段&lt;/p>
+&lt;ul>
+&lt;li>协调者向所有参与者发送事务内容，询问是否可以执行事务。&lt;/li>
+&lt;/ul>
+&lt;p>CanCommit 阶段&lt;/p>
+&lt;ul>
+&lt;li>参与者收到协调者的 CanCommit 消息后，会执行事务，然后向协调者发送 Yes 消息。&lt;/li>
+&lt;li>如果参与者执行事务失败，会向协调者发送 No 消息。&lt;/li>
+&lt;/ul>
+&lt;p>预提交阶段&lt;/p>
+&lt;ul>
+&lt;li>协调者收到所有参与者的 Yes 消息后，会向所有参与者发送预提交消息。&lt;/li>
+&lt;li>参与者收到预提交消息后，会执行事务，并向协调者发送 Ack 消息。&lt;/li>
+&lt;/ul>
+&lt;p>提交阶段&lt;/p>
+&lt;ul>
+&lt;li>协调者收到所有参与者的 Ack 消息后，会向所有参与者发送 Commit 消息。&lt;/li>
+&lt;li>参与者收到 Commit 消息后，会提交事务。&lt;/li>
+&lt;/ul>
 &lt;p>分布式事务的中间件Seata&lt;/p>
 &lt;h2 id="todo-分布式缓存">TODO: 分布式缓存&lt;/h2>
 &lt;h3 id="一致性哈希算法">一致性哈希算法&lt;/h3>
@@ -16460,7 +16567,8 @@ FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连�
 &lt;li>HTTP/2 的队头阻塞: HTTP/2 通过多路复用解决了HTTP/1.x的队头阻塞问题，可以同时发送多个请求，而且不会被阻塞。&lt;/li>
 &lt;li>HTTP/3 的队头阻塞: HTTP/3 使用了 UDP + QUIC 协议，解决了TCP队头阻塞问题。&lt;/li>
 &lt;/ul>
-&lt;h2 id="面向字节流的协议">面向字节流的协议&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h2 id="面向字节流的协议">面向字节流的协议&lt;/h2>
+&lt;p>QUIC&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>LAN：Local Area Network，局域网&lt;/li>
@@ -17857,58 +17965,30 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;h3 id="ip">IP&lt;/h3>
 &lt;h3 id="mac">MAC&lt;/h3>
 &lt;ul>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>应用层决定请求URL后,由于IP地址还未知,首先会发起域名解析请求。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>域名解析请求通过UDP传输到本地DNS服务器。&lt;/p>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/li>
+&lt;/ul>
+&lt;p>详细过程：&lt;/p>
+&lt;ul>
+&lt;li>应用层决定请求URL后,由于IP地址还未知,首先会发起域名解析请求。&lt;/li>
+&lt;li>域名解析请求通过UDP传输到本地DNS服务器。
 &lt;ul>
 &lt;li>DNS服务器根据域名查询缓存或者递归查询根DNS、顶级域名服务器等,直到获取到目标主机的IP地址。&lt;/li>
 &lt;li>DNS服务器回复客户端IP地址,此过程采用UDP传输。&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>客户端获得IP后对请求进行封装,生成HTTP请求报文。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>传输层:HTTP请求报文交给TCP协议处理。TCP会为该通信会话建立连接,并将HTTP报文切成一个个TCP段,每个TCP段添加序列号等控制信息。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>网络层:TCP段交给IP处理。IP给每个TCP段添加源IP地址、目标IP地址、检查字以及其他控制信息,将其封装成IP数据报。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>链路层:IP数据报交给链路层(如以太网)处理。以太网将IP数据报装入以太网帧中,添加源MAC地址、目标MAC地址等,形成真正通过物理链路传输的帧格式数据。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>物理层:将以太网帧通过以太网卡发送到 physical network 即万兆交换机等,再通过光纤或电缆等物理传输媒介传输到目标主机。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>目的主机接收到帧后,各层逆向解析和处理,最终应用层获取到完整的HTTP请求报文。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>服务器应用处理请求逻辑,生成HTTP响应报文。响应报文经过TCP/IP封装打包成 frames 后,返回客户端,各层相反的顺序传送。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/p>
-&lt;/li>
+&lt;li>客户端获得IP后对请求进行封装,生成HTTP请求报文。&lt;/li>
+&lt;li>传输层:HTTP请求报文交给TCP协议处理。TCP会为该通信会话建立连接,并将HTTP报文切成一个个TCP段,每个TCP段添加序列号等控制信息。&lt;/li>
+&lt;li>网络层:TCP段交给IP处理。IP给每个TCP段添加源IP地址、目标IP地址、检查字以及其他控制信息,将其封装成IP数据报。&lt;/li>
+&lt;li>链路层:IP数据报交给链路层(如以太网)处理。以太网将IP数据报装入以太网帧中,添加源MAC地址、目标MAC地址等,形成真正通过物理链路传输的帧格式数据。&lt;/li>
+&lt;li>物理层:将以太网帧通过以太网卡发送到 physical network 即万兆交换机等,再通过光纤或电缆等物理传输媒介传输到目标主机。&lt;/li>
+&lt;li>目的主机接收到帧后,各层逆向解析和处理,最终应用层获取到完整的HTTP请求报文。&lt;/li>
+&lt;li>服务器应用处理请求逻辑,生成HTTP响应报文。响应报文经过TCP/IP封装打包成 frames 后,返回客户端,各层相反的顺序传送。&lt;/li>
+&lt;li>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/li>
 &lt;/ul>
 &lt;h2 id="todo-linux-收发网络包的过程">TODO: Linux 收发网络包的过程&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
 &lt;h2 id="协议">协议&lt;/h2>

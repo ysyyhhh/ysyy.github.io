@@ -573,7 +573,8 @@ FIN：该位为 1 时，表示今后不会再有数据发送，希望断开连�
 &lt;li>HTTP/2 的队头阻塞: HTTP/2 通过多路复用解决了HTTP/1.x的队头阻塞问题，可以同时发送多个请求，而且不会被阻塞。&lt;/li>
 &lt;li>HTTP/3 的队头阻塞: HTTP/3 使用了 UDP + QUIC 协议，解决了TCP队头阻塞问题。&lt;/li>
 &lt;/ul>
-&lt;h2 id="面向字节流的协议">面向字节流的协议&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
+&lt;h2 id="面向字节流的协议">面向字节流的协议&lt;/h2>
+&lt;p>QUIC&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%9F%BA%E7%A1%80/</guid><description>&lt;h1 id="计算机网络基础">计算机网络基础&lt;/h1>
 &lt;h2 id="概述">概述&lt;/h2>
 &lt;ul>
 &lt;li>LAN：Local Area Network，局域网&lt;/li>
@@ -1970,58 +1971,30 @@ MAC地址和IP地址必须&lt;strong>事先静态配置&lt;/strong>好。&lt;/li
 &lt;h3 id="ip">IP&lt;/h3>
 &lt;h3 id="mac">MAC&lt;/h3>
 &lt;ul>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>应用层决定请求URL后,由于IP地址还未知,首先会发起域名解析请求。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>域名解析请求通过UDP传输到本地DNS服务器。&lt;/p>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>URL&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>查询&lt;/strong>DNS服务器，&lt;strong>获取&lt;/strong>URL中的&lt;strong>域名&lt;/strong>对应的&lt;strong>IP地址&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>向&lt;/strong>该&lt;strong>IP地址&lt;/strong>的&lt;strong>服务器&lt;/strong>发出&lt;strong>HTTP请求&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>接收到&lt;strong>请求&lt;/strong>后，会&lt;strong>根据&lt;/strong>请求的&lt;strong>路径&lt;/strong>找到&lt;strong>对应的文件&lt;/strong>&lt;/li>
+&lt;li>&lt;strong>服务器&lt;/strong>会&lt;strong>将&lt;/strong>该文件&lt;strong>返回&lt;/strong>给**浏览器&lt;/li>
+&lt;li>&lt;strong>浏览器&lt;/strong>会&lt;strong>解析&lt;/strong>文件，&lt;strong>并&lt;/strong>将&lt;strong>解析&lt;/strong>后的&lt;strong>文件&lt;/strong>显示在&lt;strong>页面&lt;/strong>上&lt;/li>
+&lt;/ul>
+&lt;p>详细过程：&lt;/p>
+&lt;ul>
+&lt;li>应用层决定请求URL后,由于IP地址还未知,首先会发起域名解析请求。&lt;/li>
+&lt;li>域名解析请求通过UDP传输到本地DNS服务器。
 &lt;ul>
 &lt;li>DNS服务器根据域名查询缓存或者递归查询根DNS、顶级域名服务器等,直到获取到目标主机的IP地址。&lt;/li>
 &lt;li>DNS服务器回复客户端IP地址,此过程采用UDP传输。&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;li>
-&lt;p>客户端获得IP后对请求进行封装,生成HTTP请求报文。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>传输层:HTTP请求报文交给TCP协议处理。TCP会为该通信会话建立连接,并将HTTP报文切成一个个TCP段,每个TCP段添加序列号等控制信息。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>网络层:TCP段交给IP处理。IP给每个TCP段添加源IP地址、目标IP地址、检查字以及其他控制信息,将其封装成IP数据报。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>链路层:IP数据报交给链路层(如以太网)处理。以太网将IP数据报装入以太网帧中,添加源MAC地址、目标MAC地址等,形成真正通过物理链路传输的帧格式数据。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>物理层:将以太网帧通过以太网卡发送到 physical network 即万兆交换机等,再通过光纤或电缆等物理传输媒介传输到目标主机。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>目的主机接收到帧后,各层逆向解析和处理,最终应用层获取到完整的HTTP请求报文。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>服务器应用处理请求逻辑,生成HTTP响应报文。响应报文经过TCP/IP封装打包成 frames 后,返回客户端,各层相反的顺序传送。&lt;/p>
-&lt;/li>
-&lt;li>
-&lt;p>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/p>
-&lt;/li>
+&lt;li>客户端获得IP后对请求进行封装,生成HTTP请求报文。&lt;/li>
+&lt;li>传输层:HTTP请求报文交给TCP协议处理。TCP会为该通信会话建立连接,并将HTTP报文切成一个个TCP段,每个TCP段添加序列号等控制信息。&lt;/li>
+&lt;li>网络层:TCP段交给IP处理。IP给每个TCP段添加源IP地址、目标IP地址、检查字以及其他控制信息,将其封装成IP数据报。&lt;/li>
+&lt;li>链路层:IP数据报交给链路层(如以太网)处理。以太网将IP数据报装入以太网帧中,添加源MAC地址、目标MAC地址等,形成真正通过物理链路传输的帧格式数据。&lt;/li>
+&lt;li>物理层:将以太网帧通过以太网卡发送到 physical network 即万兆交换机等,再通过光纤或电缆等物理传输媒介传输到目标主机。&lt;/li>
+&lt;li>目的主机接收到帧后,各层逆向解析和处理,最终应用层获取到完整的HTTP请求报文。&lt;/li>
+&lt;li>服务器应用处理请求逻辑,生成HTTP响应报文。响应报文经过TCP/IP封装打包成 frames 后,返回客户端,各层相反的顺序传送。&lt;/li>
+&lt;li>客户端得到完整的HTTP响应,应用层解析响应,返回给用户,完成整个请求响应过程。&lt;/li>
 &lt;/ul>
 &lt;h2 id="todo-linux-收发网络包的过程">TODO: Linux 收发网络包的过程&lt;/h2></description></item><item><title/><link>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/knowledge/%E7%BD%91%E7%BB%9C/%E5%AE%9E%E6%88%98%E6%A2%B3%E7%90%86/</guid><description>&lt;h1 id="实战梳理">实战梳理&lt;/h1>
 &lt;h2 id="协议">协议&lt;/h2>
