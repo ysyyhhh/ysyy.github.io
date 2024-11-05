@@ -728,6 +728,13 @@ leader哨兵会把旧主节点设置为从节点(A), A向新主节点请求同�
 &lt;p>使用有序集合（ZSet）的方式来实现延迟消息队列的，ZSet 有一个 Score 属性可以用来存储延迟执行的时间&lt;/p>
 &lt;p>使用 zadd score1 value1 命令就可以一直往内存中生产消息。再利用 &lt;strong>zrangebysocre 查询符合条件的所有待处理的任务， 通过循环执行队列任务&lt;/strong>即可。&lt;/p>
 &lt;h3 id="redis的大key处理">Redis的大Key处理&lt;/h3>
+&lt;p>&lt;a href="https://help.aliyun.com/zh/redis/user-guide/identify-and-handle-large-keys-and-hotkeys" target="_blank" rel="noopener">https://help.aliyun.com/zh/redis/user-guide/identify-and-handle-large-keys-and-hotkeys&lt;/a>&lt;/p>
+&lt;p>答：Redis 的大 Key 问题是指 Redis 中某个 Key 的 Value 过大，导致 Redis 在处理这个 Key 的时候，会出现阻塞的情况。&lt;/p>
+&lt;p>解决方案：&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>拆分 Key&lt;/strong>：将大 Key 拆分成多个小 Key，这样可以减少单个 Key 的 Value 的大小，从而避免大 Key 问题。&lt;/li>
+&lt;li>&lt;strong>使用 Hash&lt;/strong>：将大 Key 的 Value 使用 Hash 结构存储，这样可以将大 Key 拆分成多个小 Key，从而避免大 Key 问题。&lt;/li>
+&lt;/ul>
 &lt;h3 id="redis是否支持事务">Redis是否支持事务&lt;/h3>
 &lt;p>Redis 支持事务，但是 Redis 的事务和数据库的事务是不同的。&lt;/p>
 &lt;p>开启事务, 使用 MULTI 命令，然后执行多个命令，最后使用 EXEC 命令来执行事务中的所有命令。&lt;/p>
