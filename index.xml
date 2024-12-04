@@ -25313,7 +25313,8 @@ xhost +&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-shell" data-lang="shell">&lt;span class="line">&lt;span class="cl">adb install xxx.apk
 &lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tips/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tips/%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/</guid><description>&lt;p>服务器重启后可能出现的问题：&lt;/p>
 &lt;p>DISPLAY权限：非root用户需要重新获取权限&lt;/p>
-&lt;p>dd&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/docker/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/docker/docker/</guid><description>&lt;h1 id="docker-usage">docker Usage&lt;/h1>
+&lt;p>xhost +
+dd&lt;/p></description></item><item><title/><link>https://ysyyhhh.github.io/docs/tool/docker/docker/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://ysyyhhh.github.io/docs/tool/docker/docker/</guid><description>&lt;h1 id="docker-usage">docker Usage&lt;/h1>
 &lt;h2 id="多阶段构建docker镜像">多阶段构建docker镜像&lt;/h2>
 &lt;p>多阶段构建的修改不会保留到下一阶段，只有COPY和ADD命令会保留到下一阶段&lt;/p>
 &lt;p>usages：&lt;/p>
