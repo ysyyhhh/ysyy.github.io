@@ -1,4 +1,4 @@
-<!doctype html><!-- This site was created with Hugo Blox. https://hugoblox.com --><!-- Last Published: January 11, 2025 --><html lang=en-us dir=ltr data-wc-theme-default=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo Blox Builder 0.2.0"><meta name=author content="吴德盛"><meta name=description content="写在前面
+<!doctype html><!-- This site was created with Hugo Blox. https://hugoblox.com --><!-- Last Published: January 13, 2025 --><html lang=en-us dir=ltr data-wc-theme-default=light><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta http-equiv=X-UA-Compatible content="IE=edge"><meta name=generator content="Hugo Blox Builder 0.2.0"><meta name=author content="吴德盛"><meta name=description content="写在前面
 笔试上机题型基本是经典算法题，且难度最多leetcode hard。但面试的题目类型很多，如场景题、NP问题等没有最优解的问题。
 以下对求职面试算法题做整理，主要面向ACMer，是对比赛中不常见的算法题的补充。
 篇幅有限，仅给出简要思路，正解代码可选择该篇，或者自行搜索。背代码没用，经过思考后自己写一遍，面试时才能写出来。
@@ -947,7 +947,7 @@ text-gray-500 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hove
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>        <span class=n>data</span><span class=p>[</span><span class=n>h</span><span class=p>].</span><span class=n>push_back</span><span class=p>(</span><span class=k>new</span> <span class=n>Node</span><span class=p>(</span><span class=n>key</span><span class=p>,</span> <span class=n>value</span><span class=p>));</span>
 </span></span><span class=line><span class=cl>        <span class=n>size</span><span class=o>++</span><span class=p>;</span>
-</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>size</span> <span class=o>&gt;</span> <span class=n>capacity</span> <span class=o>*</span> <span class=err>f</span><span class=n>actor</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> <span class=p>(</span><span class=n>size</span> <span class=o>&gt;</span> <span class=n>capacity</span> <span class=o>*</span> <span class=n>factor</span><span class=p>)</span> <span class=p>{</span>
 </span></span><span class=line><span class=cl>            <span class=n>resize</span><span class=p>(</span><span class=n>capacity</span> <span class=o>*</span> <span class=mi>2</span><span class=p>);</span>
 </span></span><span class=line><span class=cl>        <span class=p>}</span>
 </span></span><span class=line><span class=cl>    <span class=p>}</span>
