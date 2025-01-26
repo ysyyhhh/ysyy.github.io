@@ -15135,7 +15135,7 @@ price_ history表就客观上小多了，查询更快。&lt;/p>
 &lt;h1 id="实现题">实现题&lt;/h1>
 &lt;h2 id="实现vector">实现vector&lt;/h2>
 &lt;p>构造，析构，push_back，operator[]，resize，reserve&lt;/p>
-&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">template&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="k">typename&lt;/span> &lt;span class="err">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-c++" data-lang="c++">&lt;span class="line">&lt;span class="cl">&lt;span class="k">template&lt;/span> &lt;span class="o">&amp;lt;&lt;/span>&lt;span class="k">typename&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="o">&amp;gt;&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">class&lt;/span> &lt;span class="nc">Vector&lt;/span> &lt;span class="p">{&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">private&lt;/span>&lt;span class="o">:&lt;/span>
 &lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">T&lt;/span>&lt;span class="o">*&lt;/span> &lt;span class="n">data&lt;/span>&lt;span class="p">;&lt;/span>
