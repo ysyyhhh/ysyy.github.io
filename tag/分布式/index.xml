@@ -185,15 +185,12 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;p>主节点&lt;strong>定期对每个工作节点进行 ping&lt;/strong>。如果一段时间内没有从工作节点接收到响应，主节点将该工作节点标记为失败。&lt;/p>
 &lt;blockquote>
 &lt;p>任何状态的Map任务被重置
-由该工作节点完成的&lt;strong>任何Map任务&lt;/strong>都将被重置回初始空闲状态，因此可以被重新调度到其他工作节点上。&lt;/p>
-&lt;/blockquote>
+由该工作节点完成的&lt;strong>任何Map任务&lt;/strong>都将被重置回初始空闲状态，因此可以被重新调度到其他工作节点上。&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>进行中的Reduce被重置
-类似地，由失败的工作节点&lt;strong>进行中&lt;/strong>的任何Map任务或Reduce任务也将被重置为空闲状态，并且有资格重新调度。&lt;/p>
-&lt;/blockquote>
+类似地，由失败的工作节点&lt;strong>进行中&lt;/strong>的任何Map任务或Reduce任务也将被重置为空闲状态，并且有资格重新调度。&lt;/p>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>已完成的Reduce任务不需要被重置&lt;/p>
-&lt;/blockquote>
+&lt;p>已完成的Reduce任务不需要被重置&lt;/p>&lt;/blockquote>
 &lt;p>由于其输出存储在失败机器的本地磁盘上，因此&lt;strong>已完成的Map任务在失败时会被重新执行&lt;/strong>，并且因此无法访问。
 &lt;strong>已完成的Reduce任务无需重新执行&lt;/strong>，因为其输出存储在全局文件系统中。&lt;/p>
 &lt;p>当工作节点 A 首先执行Map任务，然后稍后由工作节点 B（因为 A 失败）执行时，&lt;strong>执行Reduce任务的所有工作节点&lt;/strong>都会收到重新执行的通知。

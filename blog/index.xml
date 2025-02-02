@@ -67,8 +67,7 @@
 &lt;blockquote>
 &lt;p>如果现在直接执行mrcoordinator会一直卡在那, 因为&lt;code>mr/coordinator.go&lt;/code>中的Done函数没有被实现.
 一直返回false, 无法结束任务.
-如果想先测试一下流程,直接把&lt;code>mr/coordinator.go&lt;/code>中的&lt;code>Done&lt;/code>函数改成&lt;code>return true&lt;/code>就可以了.&lt;/p>
-&lt;/blockquote>
+如果想先测试一下流程,直接把&lt;code>mr/coordinator.go&lt;/code>中的&lt;code>Done&lt;/code>函数改成&lt;code>return true&lt;/code>就可以了.&lt;/p>&lt;/blockquote>
 &lt;p>这个测试脚本会输出到 &lt;code>mr-out-X&lt;/code>中&lt;/p>
 &lt;p>如果全部完成了,可以看到输出的内容:&lt;/p>
 &lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-bash" data-lang="bash">&lt;span class="line">&lt;span class="cl">*** Starting wc test.
@@ -352,15 +351,12 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;p>主节点&lt;strong>定期对每个工作节点进行 ping&lt;/strong>。如果一段时间内没有从工作节点接收到响应，主节点将该工作节点标记为失败。&lt;/p>
 &lt;blockquote>
 &lt;p>任何状态的Map任务被重置
-由该工作节点完成的&lt;strong>任何Map任务&lt;/strong>都将被重置回初始空闲状态，因此可以被重新调度到其他工作节点上。&lt;/p>
-&lt;/blockquote>
+由该工作节点完成的&lt;strong>任何Map任务&lt;/strong>都将被重置回初始空闲状态，因此可以被重新调度到其他工作节点上。&lt;/p>&lt;/blockquote>
 &lt;blockquote>
 &lt;p>进行中的Reduce被重置
-类似地，由失败的工作节点&lt;strong>进行中&lt;/strong>的任何Map任务或Reduce任务也将被重置为空闲状态，并且有资格重新调度。&lt;/p>
-&lt;/blockquote>
+类似地，由失败的工作节点&lt;strong>进行中&lt;/strong>的任何Map任务或Reduce任务也将被重置为空闲状态，并且有资格重新调度。&lt;/p>&lt;/blockquote>
 &lt;blockquote>
-&lt;p>已完成的Reduce任务不需要被重置&lt;/p>
-&lt;/blockquote>
+&lt;p>已完成的Reduce任务不需要被重置&lt;/p>&lt;/blockquote>
 &lt;p>由于其输出存储在失败机器的本地磁盘上，因此&lt;strong>已完成的Map任务在失败时会被重新执行&lt;/strong>，并且因此无法访问。
 &lt;strong>已完成的Reduce任务无需重新执行&lt;/strong>，因为其输出存储在全局文件系统中。&lt;/p>
 &lt;p>当工作节点 A 首先执行Map任务，然后稍后由工作节点 B（因为 A 失败）执行时，&lt;strong>执行Reduce任务的所有工作节点&lt;/strong>都会收到重新执行的通知。
@@ -3950,8 +3946,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;blockquote>
 &lt;ul>
 &lt;li>大多数系统不会将这些类型混合在一页中。 有些系统会要求页面是自成一体（self-contained）的，也就是说，阅读每个页面所需的所有信息都在页面本身。读取每一页的所有信息都在页面本身&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;ul>
 &lt;li>Each page is given a unique identifier.
 &lt;ul>
@@ -4273,8 +4268,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>
 &lt;p>An OLTP workload will typically handle &lt;strong>more writes than reads&lt;/strong>.&lt;/p>
 &lt;blockquote>
-&lt;p>An example of an OLTP workload is the Amazon storefront. Users can add things to their cart, they can make purchases, but the actions only affect their account.&lt;/p>
-&lt;/blockquote>
+&lt;p>An example of an OLTP workload is the Amazon storefront. Users can add things to their cart, they can make purchases, but the actions only affect their account.&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;/ul>
 &lt;p>OLAP: Online Analytical Processing&lt;/p>
@@ -4285,8 +4279,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>
 &lt;p>In OLAP workloads, the database system is analyzing and &lt;strong>deriving&lt;/strong>(推导/添加) new data from existing data collected on the OLTP side.&lt;/p>
 &lt;blockquote>
-&lt;p>An example of an OLAP workload would be Amazon computing the most bought item in Pittsburgh on a day when its raining.&lt;/p>
-&lt;/blockquote>
+&lt;p>An example of an OLAP workload would be Amazon computing the most bought item in Pittsburgh on a day when its raining.&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;/ul>
 &lt;p>HTAP: Hybrid Transaction + Analytical Processing&lt;/p>
@@ -4389,8 +4382,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>数据集往往在同一元组的属性之间有很高的相关性（例如，邮政编码到城市。订单日期与发货日期）。 Manag&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;p>Given this, we want a database compression scheme to have the following properties:&lt;/p>
 &lt;ul>
 &lt;li>Must produce &lt;strong>fixed-length values&lt;/strong>. The only exception is var-length data stored in separate pools. This because the DBMS should follow word-&lt;strong>alignment&lt;/strong>(对齐) and be able to access data using offsets.&lt;/li>
@@ -4883,8 +4875,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;p>叶子节点：包含真正的数据实体&lt;/p>
 &lt;p>由于树是动态增长和收缩，所以要处理 split 和 merge&lt;/p>
 &lt;blockquote>
-&lt;p>Since the tree structure grows and shrink dynamically, you are required to handle the logic of split and merge.&lt;/p>
-&lt;/blockquote>
+&lt;p>Since the tree structure grows and shrink dynamically, you are required to handle the logic of split and merge.&lt;/p>&lt;/blockquote>
 &lt;p>&lt;strong>Checkpoint #1 — Due Date: Oct 11 @ 11:59pm&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-pages" target="_blank" rel="noopener">Task #1 - B+Tree Pages&lt;/a>&lt;/strong>&lt;/li>

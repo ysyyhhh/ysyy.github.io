@@ -19,8 +19,7 @@
 &lt;li>使用任务计划程序定时执行py脚本&lt;/li>
 &lt;/ol>
 &lt;/li>
-&lt;/ol>
-&lt;/blockquote>
+&lt;/ol>&lt;/blockquote>
 &lt;h2 id="使用hugo搭建博客">使用hugo搭建博客&lt;/h2>
 &lt;p>参考:
 &lt;a href="https://gohugo.io/getting-started/quick-start/" target="_blank" rel="noopener">hugo官网&lt;/a>

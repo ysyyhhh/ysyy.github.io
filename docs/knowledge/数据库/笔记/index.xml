@@ -1985,8 +1985,7 @@ session一起访问的时候，就会遇到问题。&lt;/p>
 索引中不记录T的记录，只把flag的值 等于F的记录记在索引结构中呢?&lt;/p>
 &lt;p>答案:给flag做&amp;ndash;个函数索引。&lt;/p>
 &lt;p>解析:编写一个函数，如果是T，就返回NULL;如果是F，就返回一个非NULL的
-值。&lt;/p>
-&lt;/blockquote>
+值。&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;li>
 &lt;p>&lt;strong>有选择的唯一性&lt;/strong>&lt;/p>
@@ -2311,8 +2310,7 @@ Where x.sex = &amp;rsquo;m&amp;rsquo; order by rating limit 100000, 10) AS x USI
 &lt;p>数据驱动的分区，最核心的一个概念是&lt;strong>分区键(partition key)&lt;/strong>,&lt;/p>
 &lt;p>也就是说, 分区时根据&lt;strong>一个或多个字段的值&lt;/strong>，来决定这条记录应该放入哪个分区中。此时不同分区的数据有 或强或弱的联系.&lt;/p>
 &lt;blockquote>
-&lt;p>就像范围查询一样: 如果某一个&lt;strong>范围的数据都集中在一个页&lt;/strong>中，那么&lt;strong>查询的效率将大幅度提高&lt;/strong>。&lt;/p>
-&lt;/blockquote>
+&lt;p>就像范围查询一样: 如果某一个&lt;strong>范围的数据都集中在一个页&lt;/strong>中，那么&lt;strong>查询的效率将大幅度提高&lt;/strong>。&lt;/p>&lt;/blockquote>
 &lt;p>分区也一样，只不过粒度从页扩展到了分区。&lt;/p>
 &lt;p>&lt;strong>滑动窗口&lt;/strong>是 &lt;strong>最早数据驱动分区&lt;/strong>方式。&lt;/p>
 &lt;p>最大的数据库一般都是金融业, 电信, 移动互联网, 社交网络.&lt;/p>

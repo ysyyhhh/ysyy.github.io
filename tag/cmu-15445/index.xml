@@ -499,8 +499,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;blockquote>
 &lt;ul>
 &lt;li>大多数系统不会将这些类型混合在一页中。 有些系统会要求页面是自成一体（self-contained）的，也就是说，阅读每个页面所需的所有信息都在页面本身。读取每一页的所有信息都在页面本身&lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;ul>
 &lt;li>Each page is given a unique identifier.
 &lt;ul>
@@ -822,8 +821,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>
 &lt;p>An OLTP workload will typically handle &lt;strong>more writes than reads&lt;/strong>.&lt;/p>
 &lt;blockquote>
-&lt;p>An example of an OLTP workload is the Amazon storefront. Users can add things to their cart, they can make purchases, but the actions only affect their account.&lt;/p>
-&lt;/blockquote>
+&lt;p>An example of an OLTP workload is the Amazon storefront. Users can add things to their cart, they can make purchases, but the actions only affect their account.&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;/ul>
 &lt;p>OLAP: Online Analytical Processing&lt;/p>
@@ -834,8 +832,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>
 &lt;p>In OLAP workloads, the database system is analyzing and &lt;strong>deriving&lt;/strong>(推导/添加) new data from existing data collected on the OLTP side.&lt;/p>
 &lt;blockquote>
-&lt;p>An example of an OLAP workload would be Amazon computing the most bought item in Pittsburgh on a day when its raining.&lt;/p>
-&lt;/blockquote>
+&lt;p>An example of an OLAP workload would be Amazon computing the most bought item in Pittsburgh on a day when its raining.&lt;/p>&lt;/blockquote>
 &lt;/li>
 &lt;/ul>
 &lt;p>HTAP: Hybrid Transaction + Analytical Processing&lt;/p>
@@ -938,8 +935,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;li>数据集往往在同一元组的属性之间有很高的相关性（例如，邮政编码到城市。订单日期与发货日期）。 Manag&lt;/li>
 &lt;/ul>
 &lt;/li>
-&lt;/ul>
-&lt;/blockquote>
+&lt;/ul>&lt;/blockquote>
 &lt;p>Given this, we want a database compression scheme to have the following properties:&lt;/p>
 &lt;ul>
 &lt;li>Must produce &lt;strong>fixed-length values&lt;/strong>. The only exception is var-length data stored in separate pools. This because the DBMS should follow word-&lt;strong>alignment&lt;/strong>(对齐) and be able to access data using offsets.&lt;/li>
@@ -1432,8 +1428,7 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;p>叶子节点：包含真正的数据实体&lt;/p>
 &lt;p>由于树是动态增长和收缩，所以要处理 split 和 merge&lt;/p>
 &lt;blockquote>
-&lt;p>Since the tree structure grows and shrink dynamically, you are required to handle the logic of split and merge.&lt;/p>
-&lt;/blockquote>
+&lt;p>Since the tree structure grows and shrink dynamically, you are required to handle the logic of split and merge.&lt;/p>&lt;/blockquote>
 &lt;p>&lt;strong>Checkpoint #1 — Due Date: Oct 11 @ 11:59pm&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;strong>&lt;a href="https://15445.courses.cs.cmu.edu/fall2022/project2/#b&amp;#43;tree-pages" target="_blank" rel="noopener">Task #1 - B+Tree Pages&lt;/a>&lt;/strong>&lt;/li>
